@@ -198,20 +198,23 @@ body {
   margin: 28px;
   font-size: 30px;
   font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .smallfont {
   font-size: 30px;
   font-weight: normal;
+  color: #0B2C44;
 }
 .smallBoldfont {
   font-size: 30px;
   font-weight: bold;
+  color: #0B2C44;
 }
 .extraBoldfont {
   font-size: 40px;
   font-weight: bolder;
+  color: #0B2C44;
 }
-
 </style>
 
 <script lang="ts">
