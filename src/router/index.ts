@@ -6,16 +6,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
+      name: 'BuyTicket',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/Ticket_Buy.vue')
     },
     {
       path: '/Event',
@@ -24,6 +19,30 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/EventView.vue')
+    },
+    {  
+      path: '/BuyPromotion',
+      name: 'BuyPromotion',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Promotion_Buy.vue')
+    },
+    {
+      path: '/BuyPackage',
+      name: 'BuyPackage',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Package_Buy.vue')
+    },
+    {
+      path: '/BuyEvent',
+      name: 'BuyEvent',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Event_Buy.vue')
     }
   ]
 })
