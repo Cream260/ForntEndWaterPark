@@ -20,7 +20,7 @@ const tab = ref(1);
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark" >
+                <v-card color="#F5F1DC" theme="dark">
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
@@ -30,7 +30,7 @@ const tab = ref(1);
                     <v-card-title class="ma-11">
                       <div>
                         <h2 class="extraBoldfont">บัตรเด็ก</h2>
-                        <br>
+                        <br />
                         <div>
                           <p3 class="smallBoldfont">
                             บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
@@ -46,13 +46,9 @@ const tab = ref(1);
                             เฉพาะเด็กและเล่นได้แบบเต็มวัน
                           </p3>
                         </div>
-                        <p3 class="smallfont">
-                          ส่วนสูง ≥ 106 เซนติเมตร
-                        </p3>
+                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
                         <div>
-                          <p3 class="smallfont"
-                            >ราคาหน้าเคาน์เตอร์ 799</p3
-                          >
+                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
                         </div>
                         <v-card-actions class="no-padding"
                           ><div>
@@ -60,7 +56,7 @@ const tab = ref(1);
                           </div>
                           <v-spacer></v-spacer>
                           <v-flex>
-                            <v-btn 
+                            <v-btn
                               :icon="mdiPlusBox"
                               @click="calStore.Childincrement"
                             ></v-btn
@@ -81,7 +77,7 @@ const tab = ref(1);
             </v-row>
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark" >
+                <v-card color="#F5F1DC" theme="dark">
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
@@ -91,7 +87,7 @@ const tab = ref(1);
                     <v-card-title class="ma-11">
                       <div>
                         <h2 class="extraBoldfont">บัตรผู้ใหญ่</h2>
-                        <br>
+                        <br />
                         <div>
                           <p3 class="smallBoldfont">
                             บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
@@ -107,13 +103,9 @@ const tab = ref(1);
                             เฉพาะเด็กและเล่นได้แบบเต็มวัน
                           </p3>
                         </div>
-                        <p3 class="smallfont">
-                          ส่วนสูง ≥ 106 เซนติเมตร
-                        </p3>
+                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
                         <div>
-                          <p3 class="smallfont"
-                            >ราคาหน้าเคาน์เตอร์ 799</p3
-                          >
+                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
                         </div>
                         <v-card-actions class="no-padding"
                           ><div>
@@ -121,7 +113,7 @@ const tab = ref(1);
                           </div>
                           <v-spacer></v-spacer>
                           <v-flex>
-                            <v-btn 
+                            <v-btn
                               :icon="mdiPlusBox"
                               @click="calStore.Adultincrement"
                             ></v-btn
@@ -144,19 +136,21 @@ const tab = ref(1);
         </v-window-item>
       </v-window>
       <v-divider></v-divider>
+
       <v-row>
-        <v-col cols="12" sm="6" class="text-right">
-          <!-- <v-text-field
-            v-model="Code"
-            :counter="4"
-            required
-            hide-details
-            variant="solo-filled"
-            class="custom-text-field"
-          ><label color="#666">โปรโมโค้ด</label></v-text-field> -->
+        <v-col cols="12" sm="7" class="text-right">
+          <v-flex>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder="โปรโมโค้ด"
+              class="placeholder-color"
+            />
+          </v-flex>
         </v-col>
-        <v-col cols="12" sm="6" class="text-left" >
-          <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
+        <v-col cols="12" sm="5" class="text-left">
+          <v-flex><v-btn color="#87B859" class="large-button">ยืนยัน</v-btn></v-flex>
         </v-col>
       </v-row>
     </v-card>
@@ -184,13 +178,6 @@ body {
 .fontlarge {
   font-size: xx-large;
 }
-.custom-text-field {
-  border-radius: 24px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  padding: 10px 16px;
-  height: 48px;
-}
 .large-button {
   width: 222px;
   height: 77px;
@@ -198,30 +185,42 @@ body {
   margin: 28px;
   font-size: 30px;
   font-weight: bold;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .smallfont {
   font-size: 30px;
   font-weight: normal;
-  color: #0B2C44;
+  color: #0b2c44;
 }
 .smallBoldfont {
   font-size: 30px;
   font-weight: bold;
-  color: #0B2C44;
+  color: #0b2c44;
 }
 .extraBoldfont {
   font-size: 40px;
   font-weight: bolder;
-  color: #0B2C44;
+  color: #0b2c44;
+}
+input[type="text"] {
+  background-color: #8eadcdeb;
+  border-radius: 20px;
+  width: 504px;
+  height: 77px;
+  padding: 12px 20px;
+  margin: 28px;
+  box-sizing: border-box; 
+  outline: none;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input[type="text"]:focus {
+  background-color: lightblue;
+}
+.placeholder-color::placeholder {
+  color: white;
 }
 </style>
-
-<script lang="ts">
-export default {
-  data: () => ({
-    valid: false,
-    Code: "",
-  }),
-};
-</script>
