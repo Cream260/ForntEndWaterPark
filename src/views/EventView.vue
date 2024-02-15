@@ -9,7 +9,7 @@
             <v-row justify="center" align="center">
                 <v-card
                     class="my-8"
-                    style="width: 90%; height: 90vh;align-items: center;border-radius: 10px; background-color: #FFFBF5;"
+                    style="width: 90%; height: 90vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
                     elevation="5"
                 >
                 <v-container>
