@@ -20,38 +20,43 @@ const tab = ref(1);
           <v-container fluid>
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark">
+                <v-card color="#F5F1DC" theme="dark" >
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
-                      width="33%"
-                      class="ma-11"
+                      width="40%"
+                      class="ma-2"
                     ></v-img>
                     <v-card-title class="ma-11">
                       <div>
-                        <h2>บัตรเด็ก</h2>
+                        <h2 class="extraBoldfont">บัตรเด็ก</h2>
+                        <br>
                         <div>
-                          <p3 class="font-weight-bold">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่นเครื่องเล่น
+                          <p3 class="smallBoldfont">
+                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
                           </p3>
                         </div>
                         <div>
-                          <p3 class="font-weight-bold">
-                            ได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็ก
-                            และเล่นได้แบบเต็มวัน
+                          <p3 class="smallBoldfont">
+                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
                           </p3>
                         </div>
-                        <p3 class="font-weight-thin">
+                        <div>
+                          <p3 class="smallBoldfont">
+                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
+                          </p3>
+                        </div>
+                        <p3 class="smallfont">
                           ส่วนสูง ≥ 106 เซนติเมตร
                         </p3>
                         <div>
-                          <p3 class="font-weight-thin"
+                          <p3 class="smallfont"
                             >ราคาหน้าเคาน์เตอร์ 799</p3
                           >
                         </div>
                         <v-card-actions class="no-padding"
                           ><div>
-                            <p3 class="font-weight-light">ราคา 699 บาท</p3>
+                            <p3 class="smallfont">ราคา 699 บาท</p3>
                           </div>
                           <v-spacer></v-spacer>
                           <v-flex>
@@ -60,7 +65,7 @@ const tab = ref(1);
                               @click="calStore.Childincrement"
                             ></v-btn
                           ></v-flex>
-                          <div>{{ calStore.Childcount }}</div>
+                          <div class="smallfont">{{ calStore.Childcount }}</div>
                           <v-flex class="text-xs-right"
                             ><v-btn
                               :icon="mdiMinusBox"
@@ -76,47 +81,52 @@ const tab = ref(1);
             </v-row>
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark">
+                <v-card color="#F5F1DC" theme="dark" >
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
-                      width="33%"
-                      class="ma-11"
+                      width="40%"
+                      class="ma-2"
                     ></v-img>
                     <v-card-title class="ma-11">
                       <div>
-                        <h2>บัตรผู้ใหญ่</h2>
+                        <h2 class="extraBoldfont">บัตรผู้ใหญ่</h2>
+                        <br>
                         <div>
-                          <p3 class="font-weight-bold">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่นเครื่องเล่น
+                          <p3 class="smallBoldfont">
+                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
                           </p3>
                         </div>
                         <div>
-                          <p3 class="font-weight-bold">
-                            ได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็ก
-                            และเล่นได้แบบเต็มวัน
+                          <p3 class="smallBoldfont">
+                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
                           </p3>
                         </div>
-                        <p3 class="font-weight-thin">
+                        <div>
+                          <p3 class="smallBoldfont">
+                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
+                          </p3>
+                        </div>
+                        <p3 class="smallfont">
                           ส่วนสูง ≥ 106 เซนติเมตร
                         </p3>
                         <div>
-                          <p3 class="font-weight-thin"
+                          <p3 class="smallfont"
                             >ราคาหน้าเคาน์เตอร์ 799</p3
                           >
                         </div>
                         <v-card-actions class="no-padding"
                           ><div>
-                            <p3 class="font-weight-light">ราคา 699 บาท</p3>
+                            <p3 class="smallfont">ราคา 699 บาท</p3>
                           </div>
                           <v-spacer></v-spacer>
                           <v-flex>
-                            <v-btn
+                            <v-btn 
                               :icon="mdiPlusBox"
                               @click="calStore.Adultincrement"
                             ></v-btn
                           ></v-flex>
-                          <div>{{ calStore.Adultcount }}</div>
+                          <div class="smallfont">{{ calStore.Adultcount }}</div>
                           <v-flex class="text-xs-right"
                             ><v-btn
                               :icon="mdiMinusBox"
@@ -136,17 +146,17 @@ const tab = ref(1);
       <v-divider></v-divider>
       <v-row>
         <v-col cols="12" sm="6" class="text-right">
-          <v-text-field
+          <!-- <v-text-field
             v-model="Code"
             :counter="4"
-            label="โปรโมโค้ด"
             required
             hide-details
             variant="solo-filled"
-          ></v-text-field>
+            class="custom-text-field"
+          ><label color="#666">โปรโมโค้ด</label></v-text-field> -->
         </v-col>
-        <v-col cols="12" sm="6" class="text-left">
-          <v-btn color="#87B859">ยืนยัน</v-btn>
+        <v-col cols="12" sm="6" class="text-left" >
+          <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -174,6 +184,34 @@ body {
 .fontlarge {
   font-size: xx-large;
 }
+.custom-text-field {
+  border-radius: 24px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  height: 48px;
+}
+.large-button {
+  width: 222px;
+  height: 77px;
+  border-radius: 20px;
+  margin: 28px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.smallfont {
+  font-size: 30px;
+  font-weight: normal;
+}
+.smallBoldfont {
+  font-size: 30px;
+  font-weight: bold;
+}
+.extraBoldfont {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
 </style>
 
 <script lang="ts">
