@@ -9,32 +9,33 @@
             <v-row justify="center" align="center">
                 <v-card
                     class="my-8"
-                    style="width: 90%; height: 90vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
+                    style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
                     elevation="5"
                 >
                 <v-container>
                     <v-row justify="center" align="center">
                         <v-card
                             class="my-8"
-                            style="margin-top: 80%; width: 95%; height: 81vh; border-radius: 40px; background-color: #097F9E;"
+                            style="margin-top: 80%; width: 93%; height: 72vh; border-radius: 40px; background-color: #097F9E;"
                             elevation="5"
                         >
                         <v-row>
                             <v-col order="6">
-                                <img src="../images/Pagkage/ProfilePackage.jpg" height="90.4%" width="100%" style="border-radius: 12% 0% 0% 12%;"/>
+
+                                <img src="../images/Event/ProfileEvent.jpg" height="97.7%" width="100%" style="border-radius: 12% 0% 0% 12%;"/>
                             </v-col>
                             <v-col order="12">
                                 <v-card
                                     class="my-3"
-                                    style=" width: 97%; height: 87%; border-radius: 40px; background-color: #FFFBF5;"
+                                    style=" width: 97%; height: 94%; border-radius: 40px; background-color: #FFFBF5;"
                                     elevation="5"
                                 >   
                                 <v-row justify="center" align="center" class="my-5">
-                                    <img src="../images/Pagkage/event.jpg" height="20%" width="71%" style="border-radius: 8% ; " />
+                                    <img src="../images/Event/event.jpg" height="50%" width="81%" style="border-radius: 8% ; " />
                                     
                                 </v-row>
                                 <v-row justify="center" align="center">
-                                        <img src="../images/Pagkage/iconLearn.jpg" height="10%" width="10%" style="border-radius: 8% ; margin-right: 20px;"/>
+                                        <img src="../images/Event/iconLearn.jpg" height="10%" width="10%" style="border-radius: 8% ; margin-right: 20px;"/>
                                         <h1 style="color: #024864; font-size: 40px;">ศูนย์ฝึกอบรม</h1>
 
                                 </v-row>
@@ -58,6 +59,7 @@
             </v-row>
         </v-container>
     </div>
+
     
     
     
@@ -65,9 +67,9 @@
 
   <style scoped>
     .body {
-        background-image: url('../images/Pagkage/WallPaperPagkage.jpg');
+        background-image: url('../images/Event/WallPaper.jpg');
         background-size: cover;
         width: 100vw;
-        height: 100vh;
+        height: 91.3vh;
     }
   </style>

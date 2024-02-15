@@ -3,8 +3,8 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <img src="https://codetheweb.blog/assets/img/icon2.png"/>
+  <!-- <header> -->
+    <!-- <img src="https://codetheweb.blog/assets/img/icon2.png"/> -->
     <nav>
       <RouterLink to="/">บัตร</RouterLink>
       <RouterLink to="/BuyEvent">กิจกรรม</RouterLink>
@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
       <v-btn>จองเลย</v-btn>
     </nav>
-  </header>
+  <!-- </header> -->
   <RouterView></RouterView>
 </template>
 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { ref } from 'vue'
-import { mdiPlusBox, mdiMinusBox } from '@mdi/js';
+// import { mdiPlusBox, mdiMinusBox } from '@mdi/js';
+
 const tab = ref(1)
 </script>
 
@@ -36,8 +37,8 @@ const tab = ref(1)
                   </v-layout>
                   <v-divider light></v-divider>
                   <v-card-actions>
-                    <v-btn :icon="mdiPlusBox"></v-btn>
-                    <v-btn :icon="mdiMinusBox"></v-btn>
+                    <!-- <v-btn :icon="mdiPlusBox"></v-btn> -->
+                    <!-- <v-btn :icon="mdiMinusBox"></v-btn> -->
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -62,7 +63,7 @@ const tab = ref(1)
 <style scoped>
 body {
   height: 125vh;
-  background-image: url('../images/Pagkage/WallPaperPagkage.jpg');
+  background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
   font-family: sans-serif;
   margin-top: 80px;
