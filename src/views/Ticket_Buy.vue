@@ -17,7 +17,7 @@ const tab = ref(1);
       <v-divider></v-divider>
       <v-window v-model="tab">
         <v-window-item v-for="n in 2" :key="n" :value="n">
-          <v-container fluid>
+          <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
                 <v-card color="#F5F1DC" theme="dark">
@@ -75,6 +75,7 @@ const tab = ref(1);
                 </v-card>
               </v-col>
             </v-row>
+            
             <v-row>
               <v-col>
                 <v-card color="#F5F1DC" theme="dark">
@@ -150,7 +151,13 @@ const tab = ref(1);
           </v-flex>
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
-          <v-flex><RouterLink to="/filldetail"><v-btn color="#87B859" class="large-button">ยืนยัน</v-btn></RouterLink></v-flex>
+          <v-flex
+            ><RouterLink to="/filldetail"
+              ><v-btn color="#87B859" class="large-button"
+                >ยืนยัน</v-btn
+              ></RouterLink
+            ></v-flex
+          >
         </v-col>
       </v-row>
     </v-card>
@@ -159,17 +166,17 @@ const tab = ref(1);
 
 <style scoped>
 body {
-  position: sticky;
   background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   font-family: sans-serif;
   margin-top: 80px;
   padding: 60px;
 }
+
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
+  top: 2rem;
   z-index: 2;
 }
 .no-padding {
@@ -209,7 +216,7 @@ input[type="text"] {
   height: 77px;
   padding: 12px 20px;
   margin: 28px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   outline: none;
   text-align: center;
   font-size: 35px;
@@ -222,5 +229,29 @@ input[type="text"]:focus {
 }
 .placeholder-color::placeholder {
   color: white;
+}
+.scroll-container {
+  height: 430px;
+  overflow-y: scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.scroll-container::-webkit-scrollbar-button {
+  display: none;
 }
 </style>

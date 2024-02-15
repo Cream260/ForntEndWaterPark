@@ -17,6 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style scoped>
 header {
+  position: fixed;
   background-color: rgb(31, 121, 143);
   position: fixed;
   top: 0;
@@ -68,9 +69,4 @@ nav a:first-of-type {
   border: 0;
 }
 
-.activeTabs {
-  position: sticky;
-  top: 5rem;
-  z-index: 2;
-}
 </style>
