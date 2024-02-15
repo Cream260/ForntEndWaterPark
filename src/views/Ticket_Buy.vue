@@ -171,6 +171,9 @@ body {
 .no-padding {
   padding: 0;
 }
+.fontlarge {
+  font-size: xx-large;
+}
 </style>
 
 <script lang="ts">
