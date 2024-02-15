@@ -150,7 +150,7 @@ const tab = ref(1);
           </v-flex>
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
-          <v-flex><v-btn color="#87B859" class="large-button">ยืนยัน</v-btn></v-flex>
+          <v-flex><RouterLink to="/filldetail"><v-btn color="#87B859" class="large-button">ยืนยัน</v-btn></RouterLink></v-flex>
         </v-col>
       </v-row>
     </v-card>
