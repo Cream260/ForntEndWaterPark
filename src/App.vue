@@ -4,13 +4,12 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img src="https://codetheweb.blog/assets/img/icon2.png"/>
+    <img src="../src/images/Ticket/Icon.png"/>
     <nav>
       <RouterLink to="/">บัตร</RouterLink>
       <RouterLink to="/BuyEvent">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
-      <v-btn>จองเลย</v-btn>
     </nav>
   </header>
   <RouterView></RouterView>

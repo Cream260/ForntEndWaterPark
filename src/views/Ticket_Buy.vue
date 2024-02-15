@@ -1,44 +1,132 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
-import { mdiPlusBox, mdiMinusBox } from '@mdi/js';
-const tab = ref(1)
+import { RouterLink, RouterView } from "vue-router";
+import { ref } from "vue";
+import { usePlusMinusStore } from "../stores/counter";
+import { mdiPlusBox, mdiMinusBox } from "@mdi/js";
+const calStore = usePlusMinusStore();
+const tab = ref(1);
 </script>
 
 <template>
   <body>
     <v-card class="activeTabs">
       <v-tabs v-model="tab" color="deep-purple-accent-4" grow>
-        <v-tab :value="1">ชาวไทย</v-tab>
-        <v-tab :value="2">ชาวต่างชาติ</v-tab>
+        <v-tab :value="1" class="fontlarge">ชาวไทย</v-tab>
+        <v-tab :value="2" class="fontlarge">ชาวต่างชาติ</v-tab>
       </v-tabs>
       <v-divider></v-divider>
       <v-window v-model="tab">
         <v-window-item v-for="n in 2" :key="n" :value="n">
           <v-container fluid>
             <v-row>
-              <v-col v-for="i in 6" :key="i" cols="12" md="6">
-
+              <v-col>
                 <v-card color="#F5F1DC" theme="dark">
                   <v-layout>
-                    <v-avatar class="ma-3" size="125" rounded="0">
-                      <v-img src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"></v-img>
-                    </v-avatar>
-                    <v-card-title class="text-h8">
+                    <v-img
+                      src="../src/images/Ticket/ChildTicket.png"
+                      width="33%"
+                      class="ma-11"
+                    ></v-img>
+                    <v-card-title class="ma-11">
                       <div>
-                        <div class="headline">บัตรเด็ก</div>
-                        <div class="font">
-                          บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่นเครื่องเล่นได้ทุกชนิด </div>
-                        <div class="font">โดยจะมีเครื่องเล่นเฉพาะเด็ก และเล่นได้แบบเต็มวัน</div>
-                        <div class="font">ส่วนสูง ≥ 106 เซนติเมตร ราคาหน้าเคาน์เตอร์ 799 ราคา 699 บาท</div>
+                        <h2>บัตรเด็ก</h2>
+                        <div>
+                          <p3 class="font-weight-bold">
+                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่นเครื่องเล่น
+                          </p3>
+                        </div>
+                        <div>
+                          <p3 class="font-weight-bold">
+                            ได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็ก
+                            และเล่นได้แบบเต็มวัน
+                          </p3>
+                        </div>
+                        <p3 class="font-weight-thin">
+                          ส่วนสูง ≥ 106 เซนติเมตร
+                        </p3>
+                        <div>
+                          <p3 class="font-weight-thin"
+                            >ราคาหน้าเคาน์เตอร์ 799</p3
+                          >
+                        </div>
+                        <v-card-actions class="no-padding"
+                          ><div>
+                            <p3 class="font-weight-light">ราคา 699 บาท</p3>
+                          </div>
+                          <v-spacer></v-spacer>
+                          <v-flex>
+                            <v-btn 
+                              :icon="mdiPlusBox"
+                              @click="calStore.Childincrement"
+                            ></v-btn
+                          ></v-flex>
+                          <div>{{ calStore.Childcount }}</div>
+                          <v-flex class="text-xs-right"
+                            ><v-btn
+                              :icon="mdiMinusBox"
+                              @click="calStore.Childdecrement"
+                            ></v-btn
+                          ></v-flex>
+                        </v-card-actions>
                       </div>
                     </v-card-title>
                   </v-layout>
-                  <v-divider light></v-divider>
-                  <v-card-actions>
-                    <v-btn :icon="mdiPlusBox"></v-btn>
-                    <v-btn :icon="mdiMinusBox"></v-btn>
-                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-card color="#F5F1DC" theme="dark">
+                  <v-layout>
+                    <v-img
+                      src="../src/images/Ticket/ChildTicket.png"
+                      width="33%"
+                      class="ma-11"
+                    ></v-img>
+                    <v-card-title class="ma-11">
+                      <div>
+                        <h2>บัตรผู้ใหญ่</h2>
+                        <div>
+                          <p3 class="font-weight-bold">
+                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่นเครื่องเล่น
+                          </p3>
+                        </div>
+                        <div>
+                          <p3 class="font-weight-bold">
+                            ได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็ก
+                            และเล่นได้แบบเต็มวัน
+                          </p3>
+                        </div>
+                        <p3 class="font-weight-thin">
+                          ส่วนสูง ≥ 106 เซนติเมตร
+                        </p3>
+                        <div>
+                          <p3 class="font-weight-thin"
+                            >ราคาหน้าเคาน์เตอร์ 799</p3
+                          >
+                        </div>
+                        <v-card-actions class="no-padding"
+                          ><div>
+                            <p3 class="font-weight-light">ราคา 699 บาท</p3>
+                          </div>
+                          <v-spacer></v-spacer>
+                          <v-flex>
+                            <v-btn
+                              :icon="mdiPlusBox"
+                              @click="calStore.Adultincrement"
+                            ></v-btn
+                          ></v-flex>
+                          <div>{{ calStore.Adultcount }}</div>
+                          <v-flex class="text-xs-right"
+                            ><v-btn
+                              :icon="mdiMinusBox"
+                              @click="calStore.Adultdecrement"
+                            ></v-btn
+                          ></v-flex>
+                        </v-card-actions>
+                      </div>
+                    </v-card-title>
+                  </v-layout>
                 </v-card>
               </v-col>
             </v-row>
@@ -48,8 +136,14 @@ const tab = ref(1)
       <v-divider></v-divider>
       <v-row>
         <v-col cols="12" sm="6" class="text-right">
-          <v-text-field v-model="Code" :counter="4" label="โปรโมโค้ด" required hide-details
-            variant="solo-filled"></v-text-field>
+          <v-text-field
+            v-model="Code"
+            :counter="4"
+            label="โปรโมโค้ด"
+            required
+            hide-details
+            variant="solo-filled"
+          ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" class="text-left">
           <v-btn color="#87B859">ยืนยัน</v-btn>
@@ -61,8 +155,8 @@ const tab = ref(1)
 
 <style scoped>
 body {
-  height: 125vh;
-  background-image: url('../images/Pagkage/WallPaperPagkage.jpg');
+  position: sticky;
+  background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   font-family: sans-serif;
   margin-top: 80px;
@@ -74,8 +168,8 @@ body {
   top: 3rem;
   z-index: 2;
 }
-.font {
-  font-size: small;
+.no-padding {
+  padding: 0;
 }
 </style>
 
@@ -83,7 +177,7 @@ body {
 export default {
   data: () => ({
     valid: false,
-    Code: '',
+    Code: "",
   }),
-}
+};
 </script>
