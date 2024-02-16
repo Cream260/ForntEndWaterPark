@@ -19,7 +19,6 @@ import { RouterLink, RouterView } from 'vue-router'
 header {
   position: fixed;
   background-color: rgb(31, 121, 143);
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -27,6 +26,7 @@ header {
   display: flex;
   align-items: center;
   box-shadow: 0 0 25px 0 black;
+  z-index: 2;
 }
 
 header img {
@@ -45,7 +45,7 @@ nav {
   text-align: left;
   margin-top: 2rem;
   margin: 20px;
-  
+
 }
 
 nav a.router-link-exact-active {
@@ -63,6 +63,8 @@ nav a {
   color: white; 
   text-decoration: none;
   margin-left: 40px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 nav a:first-of-type {

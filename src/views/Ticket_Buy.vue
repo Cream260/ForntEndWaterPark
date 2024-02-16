@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import { ref } from "vue";
 import { usePlusMinusStore } from "../stores/counter";
-import { mdiPlusBox, mdiMinusBox } from "@mdi/js";
+import { mdiPlus, mdiMinus } from "@mdi/js";
 const calStore = usePlusMinusStore();
 const tab = ref(1);
 </script>
@@ -20,7 +20,7 @@ const tab = ref(1);
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark">
+                <v-card color="#F5F1DC" theme="dark" class="borderradius">
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
@@ -57,14 +57,14 @@ const tab = ref(1);
                           <v-spacer></v-spacer>
                           <v-flex>
                             <v-btn
-                              :icon="mdiPlusBox"
+                              :icon="mdiPlus"
                               @click="calStore.Childincrement"
                             ></v-btn
                           ></v-flex>
                           <div class="smallfont">{{ calStore.Childcount }}</div>
                           <v-flex class="text-xs-right"
                             ><v-btn
-                              :icon="mdiMinusBox"
+                              :icon="mdiMinus"
                               @click="calStore.Childdecrement"
                             ></v-btn
                           ></v-flex>
@@ -78,7 +78,7 @@ const tab = ref(1);
             
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark">
+                <v-card color="#F5F1DC" theme="dark" class="borderradius">
                   <v-layout>
                     <v-img
                       src="../src/images/Ticket/ChildTicket.png"
@@ -115,14 +115,14 @@ const tab = ref(1);
                           <v-spacer></v-spacer>
                           <v-flex>
                             <v-btn
-                              :icon="mdiPlusBox"
+                              :icon="mdiPlus"
                               @click="calStore.Adultincrement"
                             ></v-btn
                           ></v-flex>
                           <div class="smallfont">{{ calStore.Adultcount }}</div>
                           <v-flex class="text-xs-right"
                             ><v-btn
-                              :icon="mdiMinusBox"
+                              :icon="mdiMinus"
                               @click="calStore.Adultdecrement"
                             ></v-btn
                           ></v-flex>
@@ -172,18 +172,20 @@ body {
   margin-top: 80px;
   padding: 60px;
 }
-
+.borderradius {
+  border-radius: 20px;
+}
 .activeTabs {
   border-radius: 20px;
   position: sticky;
   top: 2rem;
-  z-index: 2;
 }
 .no-padding {
   padding: 0;
 }
 .fontlarge {
-  font-size: xx-large;
+  font-size: 45px;
+  font-weight: normal;
 }
 .large-button {
   width: 222px;
@@ -234,24 +236,22 @@ input[type="text"]:focus {
   height: 430px;
   overflow-y: scroll;
 }
-
 .scroll-container::-webkit-scrollbar {
   width: 12px;
 }
-
 .scroll-container::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
 .scroll-container::-webkit-scrollbar-thumb {
   background: #888;
 }
-
 .scroll-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 .scroll-container::-webkit-scrollbar-button {
   display: none;
+}
+.v-tabs--density-default {  
+    --v-tabs-height: 80px;
 }
 </style>
