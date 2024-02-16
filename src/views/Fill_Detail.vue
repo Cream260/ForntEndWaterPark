@@ -79,11 +79,15 @@ import { RouterLink, RouterView } from "vue-router";
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" lg="6" class="text-left">
-            <v-btn color="#87B859" class="large-button">ซื้อเลยตอนนี้</v-btn>
+          <v-col cols="12" lg="6" class="text-left"><RouterLink to="/sumdetail"
+              >
+            <v-btn color="#87B859" class="large-button">ซื้อเลยตอนนี้</v-btn></RouterLink
+            >
           </v-col>
-          <v-col cols="12" lg="6" class="text-left">
-            <v-btn color="#FF835A" class="large-button">ยกเลิกการซื้อ</v-btn>
+          <v-col cols="12" lg="6" class="text-left"><RouterLink to="/"
+              >
+            <v-btn color="#FF835A" class="large-button">ยกเลิกการซื้อ</v-btn></RouterLink
+            >
           </v-col>
           <v-col> </v-col>
         </v-row>
