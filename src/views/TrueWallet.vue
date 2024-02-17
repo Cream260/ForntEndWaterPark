@@ -73,6 +73,7 @@ header {
 .fontheader {
   font-size: 60px;
   font-weight: normal;
+  margin-left: 19px;
 }
 body {
   position: sticky;
