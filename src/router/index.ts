@@ -59,6 +59,30 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/Sum_Detail.vue')
+    },
+    {
+      path: '/CreditCard',
+      name: 'creditcard',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/CreditCard.vue')
+    },
+    {
+      path: '/TrueWallet',
+      name: 'truewallet',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/TrueWallet.vue')
+    },
+    {
+      path: '/PromptPay',
+      name: 'promptpay',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/PromptPay.vue')
     }
   ]
 })
