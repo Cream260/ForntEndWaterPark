@@ -1,6 +1,5 @@
 <script setup lang="ts">
- import PackageCard from '../components/icons/Package/PackageCard.vue';
- const url = import.meta.env.VITE_URL_PORT
+ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -41,7 +40,8 @@
                                 </v-row>
                                 <v-row justify="center" align="center" class="my-9" >
                                     <v-btn style="border-radius: 20px; width: 320px; height: 55px; background-color: #FAEF9B;">
-                                        <p style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</p>
+                                        <!-- <p style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</p> -->
+                                        <RouterLink to="/" style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</RouterLink>
                                     </v-btn>
 
                                 </v-row>
