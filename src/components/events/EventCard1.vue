@@ -3,14 +3,16 @@
 </script>
 
 <template>
+  <v-list-item to="/Event">
       <v-card class="card" >
+        
         <img src="@/images/Event/lifeGuard.jpg" height="63.7%" width="100%" />
         <div class="card-text">
-          <h2>ไลฟ์การ์ด</h2>
+          <h2 >ไลฟ์การ์ด</h2>
           <p >3 หลักสูตร</p>
         </div>
       </v-card>
-
+  </v-list-item>
     
   </template>
 

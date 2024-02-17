@@ -3,13 +3,16 @@
 </script>
 
 <template>
-      <v-card class="card" >
-        <img src="@/images/Event/swim.jpg" height="63.7%" width="100%" />
-        <div class="card-text">
-          <h2>ว่ายน้ำ</h2>
-          <p >3 หลักสูตร</p>
-        </div>
-      </v-card>
+  <v-list-item to="/Event">
+    <v-card class="card" >
+      <img src="@/images/Event/swim.jpg" height="63.7%" width="100%" />
+      <div class="card-text">
+        <h2>ว่ายน้ำ</h2>
+        <p >3 หลักสูตร</p>
+      </div>
+    </v-card>
+  </v-list-item>
+      
 
     
   </template>

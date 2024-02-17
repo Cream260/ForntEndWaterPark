@@ -52,13 +52,13 @@
                             </v-row>
                             <v-row>
                                 <v-col ols="4">
-                                    <EventCard1 style="margin-left: 13%; "></EventCard1>
+                                    <EventCard1 style="margin-left: 9%; "></EventCard1>
                                 </v-col>
                                 <v-col cols="4">
-                                    <EventCard2 style="margin-left: 9%;"></EventCard2>
+                                    <EventCard2 style="margin-left: 5%;"></EventCard2>
                                 </v-col>
                                 <v-col cols="4">
-                                    <EventCard3 style="margin-left: 5%;"></EventCard3>
+                                    <EventCard3 style="margin-left: 1%;"></EventCard3>
                                 </v-col>
                             </v-row>
                             
