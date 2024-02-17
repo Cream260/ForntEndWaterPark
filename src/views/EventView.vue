@@ -41,7 +41,7 @@
                                 <v-row justify="center" align="center" class="my-9" >
                                     <v-btn style="border-radius: 20px; width: 320px; height: 55px; background-color: #FAEF9B;">
                                         <!-- <p style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</p> -->
-                                        <RouterLink to="/" style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</RouterLink>
+                                        <v-list-item to="/EventDetail" style="font-size: 33px; font-weight: bolder; color: #9E6F21;">กดเพื่อดูข้อมูล</v-list-item>
                                     </v-btn>
 
                                 </v-row>
