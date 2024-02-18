@@ -9,48 +9,78 @@ import { RouterLink, RouterView } from "vue-router";
         รายละเอียดของคุณ
         <v-card class="pa-4 ma-6 detailCard">
           <v-row>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>ชื่อ</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>Paowaric Vachiranantakul</h5></v-col
+            >
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>ชื่อบัตร</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>บัตรเด็ก</h5></v-col
+            >
           </v-row>
           <v-row>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>อีเมลล์</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>gxz321@hotmail.com</h5></v-col
+            >
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>โปรโมชั่น</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>-</h5></v-col
+            >
           </v-row>
           <v-row>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>เบอร์โทรศัพท์</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>0869703269</h5></v-col
+            >
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>ราคา</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>699 THB x 1</h5></v-col
+            >
           </v-row>
           <v-row>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>วันที่มาใช้บริการ</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>28 Jan, 2024</h5></v-col
+            >
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>ส่วนลด</h5></v-col
+            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>-</h5></v-col
             >
           </v-row>
           <v-row>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>บัตรหมดอายุ</h5></v-col
             >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>29 Jan, 2024</h5></v-col
+            >
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="6" class="text-left smallnormalFont"
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
               ><h5>ราคาสุทธิ</h5></v-col
+            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont"
+              ><h5>699 THB</h5></v-col
             >
           </v-row>
         </v-card>
