@@ -1,5 +1,39 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+// let lastuserId = 1
+// interface InfoDetail {
+//   userId: number
+//   customername: ''
+//   tel: string
+//   email: string
+//   price: number
+//   discount: number
+//   totalPrice: number
+// }
+// const infoStore = ref<InfoDetail>({
+//   userId: 1,
+//   customername: '',
+//   tel: '',
+//   email: '',
+//   price: 0,
+//   discount: 0,
+//   totalPrice: 0
+// })
+// const personalinfoList = ref<InfoDetail[]>([])
+// function save() {
+//   infoStore.value.userId = lastuserId++
+//   personalinfoList.value.push(infoStore.value)
+//   infoStore.value = {
+//   userId: 1,
+//   customername: '',
+//   tel: '',
+//   email: '',
+//   price: 0,
+//   discount: 0,
+//   totalPrice: 0
+//   }
+// }
 </script>
 
 <template>
@@ -10,86 +44,58 @@ import { RouterLink, RouterView } from "vue-router";
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="ชื่อ"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"/>
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="เบอร์โทรศัพท์"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"/>
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="อีเมลล์"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="เลือกวันที่มาใช้บริการ"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="ราคา"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input
-                type="text"
-                placeholder="ส่วนลด"
-                class="placeholder-color forumSize0"
-              />
+              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="12">
             <v-flex>
-              <input
-                type="text"
-                placeholder="ราคาสุทธิ"
-                class="placeholder-color forumSize"
-              />
+              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" lg="6" class="text-left"><RouterLink to="/sumdetail"
-              >
-            <v-btn color="#87B859" class="large-button">ซื้อเลยตอนนี้</v-btn></RouterLink
-            >
+          <v-col cols="12" lg="6" class="text-left">
+            <RouterLink to="/sumdetail">
+              <v-btn color="#87B859" class="large-button">ซื้อเลยตอนนี้</v-btn>
+            </RouterLink>
           </v-col>
-          <v-col cols="12" lg="6" class="text-left"><RouterLink to="/"
-              >
-            <v-btn color="#FF835A" class="large-button">ยกเลิกการซื้อ</v-btn></RouterLink
-            >
+          <v-col cols="12" lg="6" class="text-left">
+            <RouterLink to="/">
+              <v-btn color="#FF835A" class="large-button">ยกเลิกการซื้อ</v-btn>
+            </RouterLink>
           </v-col>
-          <v-col> </v-col>
+          <v-col></v-col>
         </v-row>
       </v-card>
     </container>
@@ -105,15 +111,18 @@ body {
   margin-top: 80px;
   padding: 60px;
 }
+
 .activeTabs {
   border-radius: 20px;
   position: sticky;
   top: 3rem;
   z-index: 2;
 }
+
 .placeholder-color::placeholder {
   color: #00000045;
 }
+
 .forumSize0 {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
@@ -128,6 +137,7 @@ body {
   border: 2px solid #0ebfd7;
   width: 90%;
 }
+
 .forumSize {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
@@ -146,12 +156,14 @@ body {
 input[type="text"]:focus {
   background-color: lightblue;
 }
+
 .lgallfont {
   font-size: 48px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
 }
+
 .large-button {
   width: 599px;
   height: 77px;
