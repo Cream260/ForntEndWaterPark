@@ -70,5 +70,9 @@
         background-size: cover;
         width: 100vw;
         height: 91.3vh;
+        width: 100vw;
+        height: 91.2vh;
+        margin-top: 80px;
+        padding: 15px;
     }
 </style>
