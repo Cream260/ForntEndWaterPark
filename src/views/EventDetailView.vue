@@ -65,8 +65,6 @@
                         </v-card>
                     </v-row>
                 </v-container>
-                
-          
               
                 </v-card>
             </v-row>
