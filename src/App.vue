@@ -3,23 +3,23 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <header> -->
-    <!-- <img src="https://codetheweb.blog/assets/img/icon2.png"/> -->
+
+  <header>
+    <img src="../src/images/Ticket/Icon.png"/>
     <nav>
       <RouterLink to="/">บัตร</RouterLink>
       <RouterLink to="/BuyEvent">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
-      <v-btn>จองเลย</v-btn>
     </nav>
-  <!-- </header> -->
+  </header>
   <RouterView></RouterView>
 </template>
 
 <style scoped>
 header {
-  background-color: rgb(31, 121, 143);
   position: fixed;
+  background-color: rgb(31, 121, 143);
   top: 0;
   left: 0;
   right: 0;
@@ -27,6 +27,7 @@ header {
   display: flex;
   align-items: center;
   box-shadow: 0 0 25px 0 black;
+  z-index: 2;
 }
 
 header img {
@@ -45,7 +46,7 @@ nav {
   text-align: left;
   margin-top: 2rem;
   margin: 20px;
-  
+
 }
 
 nav a.router-link-exact-active {
@@ -63,15 +64,12 @@ nav a {
   color: white; 
   text-decoration: none;
   margin-left: 40px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 nav a:first-of-type {
   border: 0;
 }
 
-.activeTabs {
-  position: sticky;
-  top: 5rem;
-  z-index: 2;
-}
 </style>
