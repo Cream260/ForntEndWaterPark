@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <img src="../src/images/Ticket/Icon.png"/>
     <nav>
       <RouterLink to="/">บัตร</RouterLink>
-      <RouterLink to="/BuyEvent">กิจกรรม</RouterLink>
+      <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
     </nav>
