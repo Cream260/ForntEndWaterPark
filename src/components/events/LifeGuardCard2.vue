@@ -6,9 +6,12 @@
       <div class="detail" style=" font-size: 18px;">ใบรับรองอาชีพ</div>
     </div>
     <div class="price">ราคาต่อคน 6,888 บาท</div>
-    <div class="image-container">
-      <img class="corner-image" src="../../images/Event/lifeguardIcon2.png">
+    <div style="margin-top: 20%;">
+      <div class="image-container">
+        <img class="corner-image" src="../../images/Event/lifeguardIcon2.png">
+      </div>
     </div>
+    
   </div>
 </template>
 
@@ -56,7 +59,7 @@ export default {
 
 .image-container {
   position: absolute;
-  bottom: 1px;
+  top: 210px;
   right: 10px;
 }
 

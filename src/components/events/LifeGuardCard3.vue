@@ -56,7 +56,7 @@ export default {
 
 .image-container {
   position: absolute;
-  bottom: 10px;
+  top: 210px;
   right: 10px;
 }
 
