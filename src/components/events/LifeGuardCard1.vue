@@ -5,8 +5,8 @@
         <li v-for="(item, index) in infoItems" :key="index">
           <span class="bullet-point">•</span>{{ item }}
         </li>
-        <div class="image-container">
-            <img class="corner-image" src="../images/Event/education.png">
+        <div class="image-container" >
+            <img class="corner-image" src="../../images/Event/education.png" style="margin-top: 50%;">
         </div>
       </ul>
     </div>
@@ -61,12 +61,14 @@
   }
 
   .image-container {
+    
     position: absolute;
-    bottom: 10px; /* Adjust as necessary */
+    bottom: 1px; /* Adjust as necessary */
     right: 10px; /* Adjust as necessary */
   }
   .corner-image {
-    width: 50px; /* Adjust as necessary */
+    
+    width: 65px; /* Adjust as necessary */
     height: auto;
     /* Add more styles if needed */
   }

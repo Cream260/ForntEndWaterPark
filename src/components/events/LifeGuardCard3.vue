@@ -7,7 +7,7 @@
     </div>
     <div class="price">ราคาเต็ม 888 บาท</div>
     <div class="image-container">
-      <img class="corner-image" src="../images/Event/education.png">
+      <img class="corner-image" src="../../images/Event/lifeguardIcon3.png">
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
 }
 
 .corner-image {
-  width: 50px; /* Adjust as necessary */
+  width: 65px; /* Adjust as necessary */
   height: auto;
 }
 </style>
