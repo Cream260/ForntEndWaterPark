@@ -1,11 +1,18 @@
 <script setup lang="ts">
 
 import { RouterLink, RouterView } from "vue-router";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { usePlusMinusStore } from "../stores/counter";
+import {useTicketStore} from "../stores/ticket.store";
+
 import { mdiPlus, mdiMinus } from "@mdi/js";
 const calStore = usePlusMinusStore();
 const tab = ref(1);
+const ticketStore = useTicketStore();
+onMounted(() => {
+  ticketStore.getTicket();
+
+})
 </script>
 
 <template>
@@ -158,11 +165,10 @@ const tab = ref(1);
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
           <v-flex
-            ><RouterLink to="/filldetail"
-              ><v-btn color="#87B859" class="large-button"
+            >
+              <v-btn color="#87B859" class="large-button" @click="ticketStore.getTicket()"
                 >ยืนยัน</v-btn
-              ></RouterLink
-            ></v-flex
+              ></v-flex
           >
         </v-col>
       </v-row>
