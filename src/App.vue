@@ -11,6 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
+      <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
     </nav>
   </header>
   <RouterView></RouterView>

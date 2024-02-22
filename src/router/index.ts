@@ -91,6 +91,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/PromptPay.vue')
+    },
+    {
+      path: '/CheckRequire',
+      name: 'checkrequire',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/checkRequire.vue')
+    },
+    {
+      path: '/CheckRequire2',
+      name: 'checkrequire2',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/checkRequire2.vue')
     }
   ]
 })
