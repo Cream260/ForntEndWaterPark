@@ -44,12 +44,12 @@ import { RouterLink, RouterView } from "vue-router";
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"/>
+              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"/>
+              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" />
             </v-flex>
           </v-col>
         </v-row>
@@ -104,12 +104,12 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style scoped>
 body {
-  position: sticky;
-  background-image: url("../images/Event/WallPaper.jpg");
+  background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
-  font-family: sans-serif;
+  width: 100vw;
+  height: 91.2vh;
   margin-top: 80px;
-  padding: 60px;
+  padding: 25px;
 }
 
 .activeTabs {

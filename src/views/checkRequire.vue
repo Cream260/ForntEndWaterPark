@@ -15,25 +15,25 @@
             <v-card class="detailCard">
               <v-row class="pt-6">
                 <v-col cols="12" lg="2" class="lgallfont"
-                  ><h5>ชื่อบัตร</h5></v-col
+                  ><h5 class="ml-8">ชื่อบัตร</h5></v-col
                 >
                 <v-col cols="12" lg="2" class="lgallfont"><h5>-</h5></v-col>
                 <v-col cols="12" lg="2" class="lgallfont"
-                  ><h5>ชื่อโปรโมชั่น</h5></v-col
+                  ><h5 class="ml-8">ชื่อโปรโมชั่น</h5></v-col
                 >
                 <v-col cols="12" lg="2" class="lgallfont"><h5>-</h5></v-col>
               </v-row>
               <v-row class="pt-6 mt-6">
                 <v-col cols="12" lg="4" class="lgallfont"
-                  ><h5>วันที่เข้าสวนน้ำ</h5></v-col
+                  ><h5 class="ml-8">วันที่เข้าสวนน้ำ</h5></v-col
                 >
-                <v-col cols="12" lg="4" class="lgallfont"><h5>-</h5></v-col>
+                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8">-</h5></v-col>
               </v-row>
               <v-row class="pt-6 mt-6">
                 <v-col cols="12" lg="4" class="lgallfont"
-                  ><h5>ระยะเวลาที่เหลือของตั๋ว</h5></v-col
+                  ><h5 class="ml-8">ระยะเวลาที่เหลือของตั๋ว</h5></v-col
                 >
-                <v-col cols="12" lg="4" class="lgallfont"><h5>-</h5></v-col>
+                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8">-</h5></v-col>
               </v-row>
             </v-card>
           </v-col>

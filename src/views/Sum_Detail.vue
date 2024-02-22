@@ -9,79 +9,79 @@ import { RouterLink, RouterView } from "vue-router";
         รายละเอียดของคุณ
         <v-card class="pa-4 ma-6 detailCard">
           <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>ชื่อ</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>Paowaric Vachiranantakul</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ชื่อ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>Paowaric Vachiranantakul</h5>
+            </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>ชื่อบัตร</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>บัตรเด็ก</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ชื่อบัตร</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>บัตรเด็ก</h5>
+            </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>อีเมลล์</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>gxz321@hotmail.com</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>อีเมลล์</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>gxz321@hotmail.com</h5>
+            </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>โปรโมชั่น</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>-</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>โปรโมชั่น</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>-</h5>
+            </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>เบอร์โทรศัพท์</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>0869703269</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>เบอร์โทรศัพท์</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>0869703269</h5>
+            </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>ราคา</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>699 THB x 1</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ราคา</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>699 THB x 1</h5>
+            </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>วันที่มาใช้บริการ</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>28 Jan, 2024</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>วันที่มาใช้บริการ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>28 Jan, 2024</h5>
+            </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>ส่วนลด</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>-</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ส่วนลด</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>-</h5>
+            </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>บัตรหมดอายุ</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>29 Jan, 2024</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>บัตรหมดอายุ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>29 Jan, 2024</h5>
+            </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>ราคาสุทธิ</h5></v-col
-            >
-            <v-col cols="12" lg="3" class="text-left smallnormalFont"
-              ><h5>699 THB</h5></v-col
-            >
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ราคาสุทธิ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>699 THB</h5>
+            </v-col>
           </v-row>
         </v-card>
         <v-row>
@@ -90,26 +90,26 @@ import { RouterLink, RouterView } from "vue-router";
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" lg="4" class="text-left"
-            ><RouterLink to="/CreditCard">
-              <v-btn class="large-button1"
-                ><div class="smallnormalFont">Credit/Debit Card</div></v-btn
-              ></RouterLink
-            >
+          <v-col cols="12" lg="4" class="text-left">
+            <RouterLink to="/CreditCard">
+              <v-btn class="large-button1">
+                <div class="smallnormalFont">Credit/Debit Card</div>
+              </v-btn>
+            </RouterLink>
           </v-col>
-          <v-col cols="12" lg="4" class="text-left"
-            ><RouterLink to="/TrueWallet">
-              <v-btn class="large-button2"
-                ><div class="smallnormalFont">True Wallet</div></v-btn
-              ></RouterLink
-            >
+          <v-col cols="12" lg="4" class="text-left">
+            <RouterLink to="/TrueWallet">
+              <v-btn class="large-button2">
+                <div class="smallnormalFont">True Wallet</div>
+              </v-btn>
+            </RouterLink>
           </v-col>
-          <v-col cols="12" lg="4" class="text-left"
-            ><RouterLink to="/PromptPay">
-              <v-btn class="large-button3"
-                ><div class="smallnormalFont">Prompt Pay</div></v-btn
-              ></RouterLink
-            >
+          <v-col cols="12" lg="4" class="text-left">
+            <RouterLink to="/PromptPay">
+              <v-btn class="large-button3">
+                <div class="smallnormalFont">Prompt Pay</div>
+              </v-btn>
+            </RouterLink>
           </v-col>
         </v-row>
       </v-card>
@@ -119,19 +119,21 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style scoped>
 body {
-  position: sticky;
-  background-image: url("../images/Event/WallPaper.jpg");
+  background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
-  font-family: sans-serif;
+  width: 100vw;
+  height: 91.2vh;
   margin-top: 80px;
-  padding: 60px;
+  padding: 25px;
 }
+
 .activeTabs {
   border-radius: 20px;
   position: sticky;
   top: 3rem;
   z-index: 2;
 }
+
 .detailCard {
   border-radius: 20px;
   position: sticky;
@@ -139,17 +141,20 @@ body {
   z-index: 2;
   background-color: #f5f1dc34;
 }
+
 .lgallfont {
   font-size: 48px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
 }
+
 .smallnormalFont {
   font-size: 36px;
   font-weight: normal;
   color: #000000;
 }
+
 .large-button1 {
   width: 415px;
   height: 132px;
@@ -160,6 +165,7 @@ body {
   background-color: #9eb8d9;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .large-button2 {
   width: 415px;
   height: 132px;
@@ -170,6 +176,7 @@ body {
   background-color: #eec759;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .large-button3 {
   width: 415px;
   height: 132px;
@@ -179,5 +186,4 @@ body {
   font-weight: normal;
   background-color: #e7bcde;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-</style>
+}</style>
