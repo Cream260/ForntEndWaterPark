@@ -3,7 +3,7 @@
     <h1 class="title">การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</h1>
     <div class="details">
       <div class="detail" style="margin-right: 4%; font-size: 18px;">อายุ 15 ปีขึ้นไป</div>
-      <div class="detail" style=" font-size: 18px;">ใบรับรองอาชีพ</div>
+      <div class="detail" style="font-size: 18px;">ใบรับรองอาชีพ</div>
     </div>
     <div class="price">ราคาเต็ม 6,888 บาท</div>
     <div class="image-container">
@@ -43,8 +43,9 @@ export default {
 
 .detail {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 6px 20px;
+  padding: 15px 13px;
   border-radius: 35px;
+  margin-right: 18px ;
 }
 
 

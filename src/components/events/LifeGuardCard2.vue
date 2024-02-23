@@ -3,7 +3,7 @@
     <h1 class="title">การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล</h1>
     <div class="details">
       <div class="detail" style="margin-right: 4%; font-size: 18px;">อายุ 15 ปีขึ้นไป</div>
-      <div class="detail" style=" font-size: 18px;">ใบรับรองอาชีพ</div>
+      <div class="detail" style=" font-size: 18px; font-size: 18px;">ใบรับรองอาชีพ</div>
     </div>
     <div class="price">ราคาต่อคน 6,888 บาท</div>
     <div style="margin-top: 20%;">
@@ -46,8 +46,9 @@ export default {
 
 .detail {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 6px 20px;
+  padding: 15px 13px;
   border-radius: 35px;
+  margin-right: 18px ;
 }
 
 
