@@ -38,25 +38,19 @@ import { RouterLink, RouterView } from "vue-router";
     <v-row>
       <v-col cols="12" lg="6">
         <label for="fname">หมายเลขบัตร</label>
-        <input type="text" placeholder="ชื่อ - นามสกุล" />
+        <input type="text" placeholder="0000-0000-0000-0000" />
       </v-col>
       <v-col cols="12" lg="6"></v-col>
       <v-col cols="12" lg="6">
-        <label for="fname">วันหมดอายุ</label>
-        <input type="text" placeholder="ดด/ปป" />
-      </v-col>
-      <v-col cols="12" lg="6">
-        <label for="fname">รหัส CVV/CVV2</label>
-        <input type="text" placeholder="..." />
-      </v-col>
-      <v-col cols="12" lg="6">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>
-        <input type="text"/>
+        <input type="text" placeholder="ชื่อ - นามสกุล"/>
       </v-col>
+      <v-col cols="12" lg="6"></v-col>
       <v-col cols="12" lg="6">
         <label for="fname">อีเมลล์</label>
         <input type="text" />
       </v-col>
+      <v-col cols="12" lg="6"></v-col>
       <RouterLink to="/">
         <v-btn class="large-button1"
           ><div class="smallnormalFont">ยกเลิก</div></v-btn
