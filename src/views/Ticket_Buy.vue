@@ -13,8 +13,8 @@ onMounted(() => {
   ticketStore.getTicket();
 
 })
-</script>
 
+</script>
 <template>
   <body>
     <v-card class="activeTabs">
@@ -28,6 +28,7 @@ onMounted(() => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
+                
                 <v-card color="#F5F1DC" theme="dark" class="borderradius">
                   <v-layout>
                     <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>

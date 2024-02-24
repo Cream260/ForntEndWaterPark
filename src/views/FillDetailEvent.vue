@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-
+import { usePlusMinusStore } from "../stores/counter";
+import { mdiPlus, mdiMinus } from "@mdi/js";
+const calStore = usePlusMinusStore();
 </script>
 
 <template>
@@ -28,16 +30,19 @@ import { RouterLink, RouterView } from "vue-router";
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
-              <v-flex>
+              <!-- <v-flex> -->
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
-                  <v-select
+                  <select
                     class="placeholder-color forumSize0"
+                    style="font-size:35px;"
                     
-                    label="หลักสูตร"
-                  
-                    :items="['การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล', 'หลักสูตร จูเนียร์ ไลฟ์การ์ด', 'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล']"
-                  ></v-select>
-              </v-flex>
+                  >
+                    <option class="placeholder-color forumSize0">หลักสูตร</option>
+                    <option>การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล</option>
+                    <option>หลักสูตร จูเนียร์ ไลฟ์การ์ด</option>
+                    <option>การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</option>
+                  </select>
+              <!-- </v-flex> -->
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
@@ -59,11 +64,15 @@ import { RouterLink, RouterView } from "vue-router";
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
-              <v-flex>
-                <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize" />
-              </v-flex>
+              <div class="d-flex align-center">
+                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color forumSize mr-2" />
+                <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-2"></v-btn>
+                <div class="smallfont mr-2">{{ calStore.Childcount }}</div>
+                <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn>
+              </div>
             </v-col>
           </v-row>
+          
           <v-row>
             <v-col cols="12" lg="6" class="text-left">
               <RouterLink to="/sumdetail">
@@ -117,7 +126,22 @@ body {
   margin: 12px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 35px; 
+  font-weight: lighter;
+  border: 2px solid #0ebfd7;
+  width: 90%;
+}
+
+.v-field__input {
+  background-color: rgba(0, 0, 0, 0.07);
+  border-radius: 40px;
+  width: 555px;
+  height: 77px;
+  padding: 12px 20px;
+  margin: 12px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 35px; 
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
