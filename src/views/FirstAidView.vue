@@ -1,9 +1,9 @@
 <script setup lang="ts">
  import { RouterLink, RouterView } from 'vue-router'
- import LifeGuardCard1 from '../components/events/LifeGuardCard1.vue';
- import LifeGuardCard2 from '../components/events/LifeGuardCard2.vue';
- import LifeGuardCard3 from '../components/events/LifeGuardCard3.vue';
- import LifeGuardCard4 from '../components/events/LifeGuardCard4.vue';
+ import FirstAidCard1 from '../components/events/FirstAidCard1.vue';
+ import FirstAidCard2 from '../components/events/FirstAidCard2.vue';
+ import FirstAidCard3 from '../components/events/FirstAidCard3.vue';
+ import FirstAidCard4 from '../components/events/FirstAidCard4.vue';
 </script>
 
 <template>
@@ -22,13 +22,13 @@
                         <v-col class="my-8" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #F2F2F2; margin-right: 50%; border-color: #E0DCDC; border-width: 3px;"
                             elevation="5">
-                            <LifeGuardCard1></LifeGuardCard1>
+                            <FirstAidCard1></FirstAidCard1>
                             </v-card>
                         </v-col>
                         <v-col class="my-8" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #58CEB9; margin-right: 5%;border-color: #70BEAA; border-width: 3px;"
                             elevation="5">
-                            <LifeGuardCard2></LifeGuardCard2>
+                            <FirstAidCard2></FirstAidCard2>
                             </v-card>
                             
                         </v-col>
@@ -49,14 +49,14 @@
                         <v-col  cols="3.5">
                             <v-card style=" width: 87%; height: 33.8vh; border-radius: 40px; background-color: #58CEB9;margin-left: 17%;border-color: #70BEAA; border-width: 3px;"
                             elevation="5">
-                            <LifeGuardCard3></LifeGuardCard3>
+                            <FirstAidCard3></FirstAidCard3>
                             </v-card>
                             
                         </v-col>
                         <v-col cols="3.5">
                             <v-card style=" width: 85%; height: 33.8vh; border-radius: 40px; background-color: #58CEB9; left: 10%;border-color: #70BEAA; border-width: 3px;"
                             elevation="5">
-                            <LifeGuardCard4></LifeGuardCard4>
+                            <FirstAidCard4></FirstAidCard4>
                             </v-card>
                             
                         </v-col>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <v-list-item to="/LifeGuard">
+  <v-list-item to="/FirstAid">
     <v-card class="card" >
       <img src="@/images/Event/Safety.jpg" height="63.7%" width="80%" />
       <div class="card-text">
