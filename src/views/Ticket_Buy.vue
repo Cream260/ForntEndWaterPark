@@ -32,25 +32,13 @@ onMounted(async () => {
                     <v-layout>
                       <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
                       <v-card-title class="ma-11">
-                        <h2 class="extraBoldfont">{{ item.name }}</h2>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
-                          </p3>
+                        <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                        <div v-for="(item, index) in detail" :key="index" >
+                          <h2 class="smallBoldfont">{{ item }}</h2>
                         </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
-                          </p3>
-                        </div>
-                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
-                        <div>
-                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
+                        <div class="mb-6"></div>
+                        <div v-for="(item, index) in subdetail" :key="index">
+                          <h2 class="smallfont">{{ item }}</h2>
                         </div>
                         <v-card-actions class="no-padding">
                           <div>
@@ -82,7 +70,10 @@ onMounted(async () => {
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
-            <v-btn color="#87B859" class="large-button" @click="ticketStore.getTicket()">ยืนยัน</v-btn></v-flex>
+            <RouterLink to="/filldetail">
+              <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
+            </RouterLink>
+          </v-flex>
         </v-col>
       </v-row>
     </v-card>
@@ -130,19 +121,19 @@ body {
 }
 
 .smallfont {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: normal;
   color: #0b2c44;
 }
 
 .smallBoldfont {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   color: #0b2c44;
 }
 
 .extraBoldfont {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bolder;
   color: #0b2c44;
 }
@@ -199,3 +190,21 @@ input[type="text"]:focus {
   --v-tabs-height: 80px;
 }
 </style>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      detail: [
+        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง',
+        'สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น',
+        'เฉพาะเด็กและเล่นได้แบบเต็มวัน'
+      ],
+      subdetail: [
+        'ส่วนสูง ≥ 106 เซนติเมตร',
+        'ราคาหน้าเคาน์เตอร์ 799'
+      ],
+    };
+  }
+};
+</script>
