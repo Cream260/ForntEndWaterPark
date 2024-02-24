@@ -9,9 +9,8 @@ import { mdiPlus, mdiMinus } from "@mdi/js";
 const calStore = usePlusMinusStore();
 const tab = ref(1);
 const ticketStore = useTicketStore();
-onMounted(() => {
-  ticketStore.getTicket();
-
+onMounted(async () => {
+  await ticketStore.getTicket();
 })
 </script>
 
@@ -28,13 +27,12 @@ onMounted(() => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark" class="borderradius">
-                  <v-layout>
-                    <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                    <v-card-title class="ma-11">
-                      <div>
-                        <h2 class="extraBoldfont">บัตรเด็ก</h2>
-                        <br />
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                    <v-layout>
+                      <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                      <v-card-title class="ma-11">
+                        <h2 class="extraBoldfont">{{ item.name }}</h2>
                         <div>
                           <p3 class="smallBoldfont">
                             บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
@@ -56,70 +54,19 @@ onMounted(() => {
                         </div>
                         <v-card-actions class="no-padding">
                           <div>
-                            <p3 class="smallfont">ราคา 699 บาท</p3>
+                            <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
                           </div>
                           <v-spacer></v-spacer>
                           <v-flex>
                             <v-btn :icon="mdiPlus" @click="calStore.Childincrement"></v-btn></v-flex>
                           <div class="smallfont">{{ calStore.Childcount }}</div>
-                          <v-flex class="text-xs-right"><v-btn :icon="mdiMinus"
-                              @click="calStore.Childdecrement"></v-btn></v-flex>
+                          <v-flex class="text-xs-right">
+                            <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn></v-flex>
                         </v-card-actions>
-                      </div>
-                    </v-card-title>
-                  </v-layout>
-                </v-card>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col>
-                <v-card color="#F5F1DC" theme="dark" class="borderradius">
-                  <v-layout>
-                    <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                    <v-card-title class="ma-11">
-                      <div>
-                        <h2 class="extraBoldfont">บัตรผู้ใหญ่</h2>
-                        <br />
-                        <div>
-                          <p3 class="smallBoldfont">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
-                          </p3>
-                        </div>
-                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
-                        <div>
-                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
-                        </div>
-                        <v-card-actions class="no-padding">
-                          <div>
-                            <p3 class="smallfont">ราคา 699 บาท</p3>
-                          </div>
-                          <v-spacer></v-spacer>
-                          <v-flex>
-                            <v-btn :icon="mdiPlus" @click="calStore.Adultincrement"></v-btn></v-flex>
-                          <div class="smallfont">{{ calStore.Adultcount }}</div>
-                          <v-flex class="text-xs-right"><v-btn :icon="mdiMinus"
-                              @click="calStore.Adultdecrement"></v-btn></v-flex>
-                        </v-card-actions>
-                      </div>
-                    </v-card-title>
-                  </v-layout>
-                  <v-divider light></v-divider>
-                  <v-card-actions>
-                    <!-- <v-btn :icon="mdiPlusBox"></v-btn> -->
-                    <!-- <v-btn :icon="mdiMinusBox"></v-btn> -->
-                  </v-card-actions>
-                </v-card>
+                      </v-card-title>
+                    </v-layout>
+                  </v-card>
+                </div>
               </v-col>
             </v-row>
           </v-container>
@@ -143,14 +90,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* body {
-  height: 125vh;
-  background-image: url('../images/Event/WallPaper.jpg');
-  background-size: cover;
-  font-family: sans-serif;
-  margin-top: 80px;
-  padding: 60px;
-} */
 body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
@@ -158,6 +97,7 @@ body {
   height: 91.2vh;
   margin-top: 80px;
   padding: 25px;
+  font-family: 'Kanit', 'sans-serif';
 }
 
 .borderradius {

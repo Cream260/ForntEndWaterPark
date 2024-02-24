@@ -8,7 +8,7 @@ export const useTicketStore = defineStore("ticket", () => {
   async function getTicket() {
     try {
       const res = await ticketService.getTicket();
-      console.log(res.data);
+      tickets.value = res.data;
 
     } catch (e) {
       console.log(e);

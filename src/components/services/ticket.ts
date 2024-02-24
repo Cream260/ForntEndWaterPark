@@ -1,8 +1,4 @@
-import type Ticket from "@/stores/type/ticket.ts";
 import http from "./axios";
-
-
-
 
 function getTicket() {
     return http.get("/ticket");

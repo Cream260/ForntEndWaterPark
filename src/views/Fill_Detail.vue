@@ -110,6 +110,7 @@ body {
   height: 91.2vh;
   margin-top: 80px;
   padding: 25px;
+  font-family: 'Kanit', 'sans-serif';
 }
 
 .activeTabs {
@@ -151,10 +152,6 @@ body {
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 95%;
-}
-
-input[type="text"]:focus {
-  background-color: lightblue;
 }
 
 .lgallfont {

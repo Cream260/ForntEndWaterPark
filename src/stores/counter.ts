@@ -1,11 +1,11 @@
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const usePlusMinusStore = defineStore("counter", () => {
   const count = ref(0);
   const Childcount = ref(0);
   const Adultcount = ref(0);
-  const doubleChildCount = computed(() => Childcount.value * 2);
+
   function Childincrement() {
     Childcount.value++;
   }
@@ -24,5 +24,5 @@ export const usePlusMinusStore = defineStore("counter", () => {
     Adultcount.value--;
   }
 
-  return { count, Childcount, Adultcount, doubleChildCount, Childincrement, Childdecrement, Adultincrement, Adultdecrement };
+  return { count, Childcount, Adultcount, Childincrement, Childdecrement, Adultincrement, Adultdecrement };
 });
