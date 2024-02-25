@@ -1,9 +1,9 @@
 <script setup lang="ts">
  import { RouterLink, RouterView } from 'vue-router'
- import FirstAidCard1 from '../components/events/FirstAidCard1.vue';
- import FirstAidCard2 from '../components/events/FirstAidCard2.vue';
- import FirstAidCard3 from '../components/events/FirstAidCard3.vue';
- import FirstAidCard4 from '../components/events/FirstAidCard4.vue';
+ import SwimCard1 from '../components/events/SwimCard1.vue';
+ import SwimCard2 from '../components/events/SwimCard2.vue';
+ import SwimCard3 from '../components/events/SwimCard3.vue';
+ import SwimCard4 from '../components/events/SwimCard4.vue';
 </script>
 
 <template>
@@ -22,13 +22,13 @@
                         <v-col class="my-8" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #F2F2F2; margin-right: 50%; border-color: #E0DCDC; border-width: 3px;"
                             elevation="5">
-                            <FirstAidCard1></FirstAidCard1>
+                            <SwimCard1></SwimCard1>
                             </v-card>
                         </v-col>
                         <v-col class="my-8" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #5A97E7; margin-right: 5%;border-color: #5286D4; border-width: 3px;"
                             elevation="5">
-                            <FirstAidCard2></FirstAidCard2>
+                            <SwimCard2></SwimCard2>
                             </v-card>
                             
                         </v-col>
@@ -49,14 +49,14 @@
                         <v-col  cols="3.5">
                             <v-card style=" width: 87%; height: 33.8vh; border-radius: 40px; background-color: #5A97E7;margin-left: 17%;border-color: #5286D4; border-width: 3px;"
                             elevation="5">
-                            <FirstAidCard3></FirstAidCard3>
+                            <SwimCard3></SwimCard3>
                             </v-card>
                             
                         </v-col>
                         <v-col cols="3.5">
                             <v-card style=" width: 85%; height: 33.8vh; border-radius: 40px; background-color: #5A97E7; left: 10%;border-color: #5286D4; border-width: 3px;"
                             elevation="5">
-                            <FirstAidCard4></FirstAidCard4>
+                            <SwimCard4></SwimCard4>
                             </v-card>
                             
                         </v-col>

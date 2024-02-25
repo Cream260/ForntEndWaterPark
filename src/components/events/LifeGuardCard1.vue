@@ -34,7 +34,7 @@
     font-family: 'Kanit', sans-serif;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    
     width: fit-content;
   }
   
