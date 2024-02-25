@@ -38,9 +38,9 @@ const calStore = usePlusMinusStore();
                     
                   >
                     <option class="placeholder-color forumSize0">หลักสูตร</option>
-                    <option>การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล</option>
-                    <option>หลักสูตร จูเนียร์ ไลฟ์การ์ด</option>
-                    <option>การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</option>
+                    <option>หลักสูตร การว่ายน้ำขั้นสูง</option>
+                    <option>หลักสูตร การว่ายน้ำขั้นพื้นฐาน</option>
+                    <option>หลักสูตร การว่ายน้ำสำหรับผู้ใหญ่</option>
                   </select>
               <!-- </v-flex> -->
             </v-col>

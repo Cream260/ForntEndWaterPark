@@ -43,7 +43,7 @@
                                  
                             </p>
                             <v-btn style="border-radius: 20px; width: 320px; height: 75px; background-color: #2FC2A8;" class="my-3">
-                                <v-list-item to="/FillDetailEvent" style="font-size: 32px; font-weight: bolder; color: white; font-family: 'Kanit', sans-serif;">ติดต่อรับข้อเสนอ</v-list-item>
+                                <v-list-item to="/FillDetailEventFirstAid" style="font-size: 32px; font-weight: bolder; color: white; font-family: 'Kanit', sans-serif;">ติดต่อรับข้อเสนอ</v-list-item>
                             </v-btn>
                         </v-col>
                         <v-col  cols="3.5">
