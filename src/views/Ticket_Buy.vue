@@ -1,14 +1,22 @@
 <script setup lang="ts">
-
 import { RouterLink, RouterView } from "vue-router";
 import { onMounted, ref } from "vue";
 import { usePlusMinusStore } from "../stores/counter";
 import { useTicketStore } from "../stores/ticket.store";
-
+import { useOrderStore } from "../stores/order.store";
 import { mdiPlus, mdiMinus } from "@mdi/js";
+import ticket from "@/components/services/ticket";
 const calStore = usePlusMinusStore();
-const tab = ref(1);
 const ticketStore = useTicketStore();
+const orderStore = useOrderStore();
+const ThCount = ref(0);
+const childThCount = ref(0);
+const AdultThCount = ref(0);
+function ChildThincrement() {
+  if(ticketStore.tickets.values.)
+  ThCount.value++;
+}
+const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTicket();
 })
@@ -23,37 +31,77 @@ onMounted(async () => {
       </v-tabs>
       <v-divider></v-divider>
       <v-window v-model="tab">
-        <v-window-item v-for="n in 2" :key="n" :value="n">
+        <v-window-item :value="1">
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
                 <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
-                  <v-card color="#F5F1DC" theme="dark" class="borderradius">
-                    <v-layout>
-                      <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                      <v-card-title class="ma-11">
-                        <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
-                        <div v-for="(item, index) in detail" :key="index" >
-                          <h2 class="smallBoldfont">{{ item }}</h2>
-                        </div>
-                        <div class="mb-6"></div>
-                        <div v-for="(item, index) in subdetail" :key="index">
-                          <h2 class="smallfont">{{ item }}</h2>
-                        </div>
-                        <v-card-actions class="no-padding">
-                          <div>
-                            <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                  <div v-if="item.type === 'คนไทย'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
-                          <v-spacer></v-spacer>
-                          <v-flex>
-                            <v-btn :icon="mdiPlus" @click="calStore.Childincrement"></v-btn></v-flex>
-                          <div class="smallfont">{{ calStore.Childcount }}</div>
-                          <v-flex class="text-xs-right">
-                            <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn></v-flex>
-                        </v-card-actions>
-                      </v-card-title>
-                    </v-layout>
-                  </v-card>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                                <v-flex>
+                                  <v-btn :icon="mdiPlus" @click=""></v-btn></v-flex>
+                                <div class="smallfont">{{ ThCount }}</div>
+                                <v-flex class="text-xs-right">
+                                  <v-btn :icon="mdiMinus" @click=""></v-btn></v-flex>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-window-item>
+        <v-window-item :value="2">
+          <v-container fluid class="scroll-container">
+            <v-row>
+              <v-col>
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <div v-if="item.type === 'คนต่างชาติ'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
+                          </div>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-flex>
+                              <v-btn :icon="mdiPlus" @click="calStore.Childincrement"></v-btn></v-flex>
+                            <div class="smallfont">{{ calStore.Childcount }}</div>
+                            <v-flex class="text-xs-right">
+                              <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn></v-flex>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
                 </div>
               </v-col>
             </v-row>
