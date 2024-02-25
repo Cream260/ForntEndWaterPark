@@ -3,26 +3,60 @@ import { defineStore } from "pinia";
 
 export const usePlusMinusStore = defineStore("counter", () => {
   const count = ref(0);
-  const Childcount = ref(0);
-  const Adultcount = ref(0);
+  const ThChildcount = ref(0);
+  const ThAdultcount = ref(0);
+  const EnChildcount = ref(0);
+  const EnAdultcount = ref(0);
 
-  function Childincrement() {
-    Childcount.value++;
+  function ThChildincrement() {
+    ThChildcount.value++;
   }
 
-  function Childdecrement() {
-    if (Childcount.value == 0) return;
-    Childcount.value--;
+  function ThChilddecrement() {
+    if (ThChildcount.value == 0) return;
+    ThChildcount.value--;
   }
 
-  function Adultincrement() {
-    Adultcount.value++;
+  function ThAdultincrement() {
+    ThAdultcount.value++;
   }
 
-  function Adultdecrement() {
-    if (Adultcount.value == 0) return;
-    Adultcount.value--;
+  function ThAdultdecrement() {
+    if (ThAdultcount.value == 0) return;
+    ThAdultcount.value--;
   }
 
-  return { count, Childcount, Adultcount, Childincrement, Childdecrement, Adultincrement, Adultdecrement };
+  function EnChildincrement() {
+    EnChildcount.value++;
+  }
+
+  function EnChilddecrement() {
+    if (EnChildcount.value == 0) return;
+    EnChildcount.value--;
+  }
+
+  function EnAdultincrement() {
+    EnAdultcount.value++;
+  }
+
+  function EnAdultdecrement() {
+    if (EnAdultcount.value == 0) return;
+    EnAdultcount.value--;
+  }
+
+  return {
+    count,
+    ThChildcount,
+    ThAdultcount,
+    EnChildcount,
+    EnAdultcount,
+    ThChildincrement,
+    ThChilddecrement,
+    ThAdultincrement,
+    ThAdultdecrement,
+    EnChildincrement,
+    EnChilddecrement,
+    EnAdultincrement,
+    EnAdultdecrement,
+  };
 });
