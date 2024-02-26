@@ -12,7 +12,7 @@
             ><v-img src="../src/images/Ticket/QrCode.png" width="100%"></v-img
           ></v-col>
           <v-col class="mt-6 pt-6">
-            <v-card class="detailCard">
+            <div>
               <v-row class="pt-6">
                 <v-col cols="12" lg="2" class="lgallfont"
                   ><h5 class="ml-8">ชื่อบัตร</h5></v-col
@@ -35,7 +35,7 @@
                 >
                 <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8">-</h5></v-col>
               </v-row>
-            </v-card>
+            </div>
           </v-col>
         </v-row>
 
@@ -104,7 +104,7 @@ body {
 .large-button1 {
   width: 201px;
   height: 77px;
-  border-radius: 35px;
+  border-radius: 20px;
   margin: 20px;
   font-size: 36px;
   font-weight: normal;
@@ -114,7 +114,7 @@ body {
 .large-button2 {
   width: 201px;
   height: 77px;
-  border-radius: 35px;
+  border-radius: 20px;
   margin: 20px;
   font-size: 36px;
   font-weight: normal;
