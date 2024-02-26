@@ -3,7 +3,8 @@ import { RouterLink } from "vue-router";
 import { onMounted, ref } from "vue";
 import { usePlusMinusStore } from "../stores/counter";
 import { useTicketStore } from "../stores/ticket.store";
-import { mdiPlus, mdiMinus } from "@mdi/js";
+import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
+import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
 const calStore = usePlusMinusStore();
 const ticketStore = useTicketStore();
 const tab = ref(1);
@@ -13,7 +14,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <body>
+  <body style="margin-top: 80px; width: 100vw; height: 91.2vh;">
     <v-card class="activeTabs">
       <v-tabs v-model="tab" color="deep-purple-accent-4" grow>
         <v-tab :value="1" class="fontlarge">ชาวไทย</v-tab>
@@ -155,12 +156,24 @@ onMounted(async () => {
         </v-window-item>
       </v-window>
       <v-divider></v-divider>
-
       <v-row>
         <v-col cols="12" sm="7" class="text-right">
-          <v-flex>
+          <!-- <v-flex>
             <input type="text" id="fname" name="fname" placeholder="โปรโมโค้ด" class="placeholder-color" />
-          </v-flex>
+          </v-flex> -->
+          <v-dialog transition="dialog-bottom-transition" width="auto">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด"></v-btn>
+              
+            </template>
+
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false"></v-btn></v-toolbar>           
+                <PromotionBuy></PromotionBuy>
+              </v-card>
+            </template>        
+          </v-dialog>
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
@@ -177,10 +190,7 @@ onMounted(async () => {
 <style scoped>
 body {
   background-image: url('../images/Event/WallPaper.jpg');
-  background-size: cover;
-  width: 100vw;
-  height: 91.2vh;
-  margin-top: 80px;
+  background-size: cover; 
   padding: 25px;
   font-family: 'Kanit', 'sans-serif';
 }
@@ -214,10 +224,24 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.promo-button {
+  width: 504px;
+  height: 77px;
+  border-radius: 20px;
+  margin: 28px;
+  font-size: 30px;
+  font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .smallfont {
   font-size: 40px;
   font-weight: normal;
   color: #0b2c44;
+}
+
+.whitefont {
+  color: white;
 }
 
 .smallBoldfont {
@@ -298,6 +322,7 @@ export default {
         'ส่วนสูง ≥ 106 เซนติเมตร',
         'ราคาหน้าเคาน์เตอร์ 799'
       ],
+      dialog: false,
     };
   }
 };
