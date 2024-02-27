@@ -30,6 +30,7 @@ header {
   align-items: center;
   box-shadow: 0 0 25px 0 black;
   z-index: 2;
+  font-family: 'Kanit', 'sans-serif';
 }
 
 header img {

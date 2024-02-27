@@ -54,6 +54,7 @@ import { RouterLink, RouterView } from "vue-router";
 <style scoped>
 header {
   margin-top: 80px;
+  font-family: 'Kanit', 'sans-serif';
 }
 .cardheader {
   background-color: #d9d9d940;
@@ -65,15 +66,11 @@ header {
 }
 body {
   position: sticky;
-  font-family: sans-serif;
+  font-family: 'Kanit', 'sans-serif';
   padding: 40px;
 }
 .placeholder-color::placeholder {
   color: #00000045;
-}
-
-input[type="text"]:focus {
-  background-color: lightblue;
 }
 .large-button1 {
   width: 230px;

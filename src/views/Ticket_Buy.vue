@@ -1,22 +1,20 @@
 <script setup lang="ts">
-
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
 import { onMounted, ref } from "vue";
 import { usePlusMinusStore } from "../stores/counter";
 import { useTicketStore } from "../stores/ticket.store";
-
-import { mdiPlus, mdiMinus } from "@mdi/js";
+import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
+import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
 const calStore = usePlusMinusStore();
-const tab = ref(1);
 const ticketStore = useTicketStore();
-onMounted(() => {
-  ticketStore.getTicket();
-
+const tab = ref(1);
+onMounted(async () => {
+  await ticketStore.getTicket();
 })
 
 </script>
 <template>
-  <body>
+  <body style="margin-top: 80px; width: 100vw; height: 91.2vh;">
     <v-card class="activeTabs">
       <v-tabs v-model="tab" color="deep-purple-accent-4" grow>
         <v-tab :value="1" class="fontlarge">ชาวไทย</v-tab>
@@ -24,119 +22,166 @@ onMounted(() => {
       </v-tabs>
       <v-divider></v-divider>
       <v-window v-model="tab">
-        <v-window-item v-for="n in 2" :key="n" :value="n">
+        <v-window-item :value="1">
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                
-                <v-card color="#F5F1DC" theme="dark" class="borderradius">
-                  <v-layout>
-                    <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                    <v-card-title class="ma-11">
-                      <div>
-                        <h2 class="extraBoldfont">บัตรเด็ก</h2>
-                        <br />
-                        <div>
-                          <p3 class="smallBoldfont">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
-                          </p3>
-                        </div>
-                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
-                        <div>
-                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
-                        </div>
-                        <v-card-actions class="no-padding">
-                          <div>
-                            <p3 class="smallfont">ราคา 699 บาท</p3>
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <div v-if="item.type === 'คนไทย' && item.name === 'บัตรเด็ก'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
+
                           </div>
-                          <v-spacer></v-spacer>
-                          <v-flex>
-                            <v-btn :icon="mdiPlus" @click="calStore.Childincrement"></v-btn></v-flex>
-                          <div class="smallfont">{{ calStore.Childcount }}</div>
-                          <v-flex class="text-xs-right"><v-btn :icon="mdiMinus"
-                              @click="calStore.Childdecrement"></v-btn></v-flex>
-                        </v-card-actions>
-                      </div>
-                    </v-card-title>
-                  </v-layout>
-                </v-card>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-btn :icon="mdiPlus" @click="calStore.ThChildincrement"></v-btn>
+                            <div class="smallfont">{{ calStore.ThChildcount }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.ThChilddecrement"></v-btn>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
+                </div>
+              </v-col>
+              <v-col>
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <div v-if="item.type === 'คนไทย' && item.name === 'บัตรผู้ใหญ่'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
+                          </div>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-btn :icon="mdiPlus" @click="calStore.ThAdultincrement"></v-btn>
+                            <div class="smallfont">{{ calStore.ThAdultcount }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.ThAdultdecrement"></v-btn>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
+                </div>
               </v-col>
             </v-row>
-
+          </v-container>
+        </v-window-item>
+        <v-window-item :value="2">
+          <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <v-card color="#F5F1DC" theme="dark" class="borderradius">
-                  <v-layout>
-                    <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                    <v-card-title class="ma-11">
-                      <div>
-                        <h2 class="extraBoldfont">บัตรผู้ใหญ่</h2>
-                        <br />
-                        <div>
-                          <p3 class="smallBoldfont">
-                            บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น
-                          </p3>
-                        </div>
-                        <div>
-                          <p3 class="smallBoldfont">
-                            เฉพาะเด็กและเล่นได้แบบเต็มวัน
-                          </p3>
-                        </div>
-                        <p3 class="smallfont"> ส่วนสูง ≥ 106 เซนติเมตร </p3>
-                        <div>
-                          <p3 class="smallfont">ราคาหน้าเคาน์เตอร์ 799</p3>
-                        </div>
-                        <v-card-actions class="no-padding">
-                          <div>
-                            <p3 class="smallfont">ราคา 699 บาท</p3>
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรเด็ก'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
-                          <v-spacer></v-spacer>
-                          <v-flex>
-                            <v-btn :icon="mdiPlus" @click="calStore.Adultincrement"></v-btn></v-flex>
-                          <div class="smallfont">{{ calStore.Adultcount }}</div>
-                          <v-flex class="text-xs-right"><v-btn :icon="mdiMinus"
-                              @click="calStore.Adultdecrement"></v-btn></v-flex>
-                        </v-card-actions>
-                      </div>
-                    </v-card-title>
-                  </v-layout>
-                  <v-divider light></v-divider>
-                  <v-card-actions>
-                    <!-- <v-btn :icon="mdiPlusBox"></v-btn> -->
-                    <!-- <v-btn :icon="mdiMinusBox"></v-btn> -->
-                  </v-card-actions>
-                </v-card>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-btn :icon="mdiPlus" @click="calStore.EnChildincrement"></v-btn>
+                            <div class="smallfont">{{ calStore.EnChildcount }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.EnChilddecrement"></v-btn>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
+                </div>
+              </v-col>
+              <v-col>
+                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                  <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรผู้ใหญ่'">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                      <v-layout>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-card-title class="ma-11">
+                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index">
+                            <h2 class="smallBoldfont">{{ item }}</h2>
+                          </div>
+                          <div class="mb-6"></div>
+                          <div v-for="(item, index) in subdetail" :key="index">
+                            <h2 class="smallfont">{{ item }}</h2>
+                          </div>
+                          <v-card-actions class="no-padding">
+                            <div>
+                              <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-btn :icon="mdiPlus" @click="calStore.EnAdultincrement"></v-btn>
+                            <div class="smallfont">{{ calStore.EnAdultcount }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.EnAdultdecrement"></v-btn>
+                          </v-card-actions>
+                        </v-card-title>
+                      </v-layout>
+                    </v-card>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </v-container>
         </v-window-item>
       </v-window>
       <v-divider></v-divider>
-
       <v-row>
         <v-col cols="12" sm="7" class="text-right">
-          <v-flex>
+          <!-- <v-flex>
             <input type="text" id="fname" name="fname" placeholder="โปรโมโค้ด" class="placeholder-color" />
-          </v-flex>
+          </v-flex> -->
+          <v-dialog transition="dialog-bottom-transition" width="auto">
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด"></v-btn>
+              
+            </template>
+
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false"></v-btn></v-toolbar>           
+                <PromotionBuy></PromotionBuy>
+              </v-card>
+            </template>        
+          </v-dialog>
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
-            <v-btn color="#87B859" class="large-button" @click="ticketStore.getTicket()">ยืนยัน</v-btn></v-flex>
+            <RouterLink to="/filldetail">
+              <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
+            </RouterLink>
+          </v-flex>
         </v-col>
       </v-row>
     </v-card>
@@ -144,21 +189,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* body {
-  height: 125vh;
-  background-image: url('../images/Event/WallPaper.jpg');
-  background-size: cover;
-  font-family: sans-serif;
-  margin-top: 80px;
-  padding: 60px;
-} */
 body {
   background-image: url('../images/Event/WallPaper.jpg');
-  background-size: cover;
-  width: 100vw;
-  height: 91.2vh;
-  margin-top: 80px;
+  background-size: cover; 
   padding: 25px;
+  font-family: 'Kanit', 'sans-serif';
 }
 
 .borderradius {
@@ -190,20 +225,34 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.smallfont {
+.promo-button {
+  width: 504px;
+  height: 77px;
+  border-radius: 20px;
+  margin: 28px;
   font-size: 30px;
+  font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.smallfont {
+  font-size: 40px;
   font-weight: normal;
   color: #0b2c44;
 }
 
+.whitefont {
+  color: white;
+}
+
 .smallBoldfont {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   color: #0b2c44;
 }
 
 .extraBoldfont {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bolder;
   color: #0b2c44;
 }
@@ -260,3 +309,22 @@ input[type="text"]:focus {
   --v-tabs-height: 80px;
 }
 </style>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      detail: [
+        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง',
+        'สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น',
+        'เฉพาะเด็กและเล่นได้แบบเต็มวัน'
+      ],
+      subdetail: [
+        'ส่วนสูง ≥ 106 เซนติเมตร',
+        'ราคาหน้าเคาน์เตอร์ 799'
+      ],
+      dialog: false,
+    };
+  }
+};
+</script>

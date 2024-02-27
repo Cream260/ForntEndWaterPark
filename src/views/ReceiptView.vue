@@ -155,6 +155,7 @@ body {
   height: 91.2vh;
   margin-top: 80px;
   padding: 25px;
+  font-family: 'Kanit', 'sans-serif';
 }
 
 .large-button1 {

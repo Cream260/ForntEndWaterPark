@@ -1,7 +1,7 @@
 import http from "./axios";
 
-function getTicket() {
-    return http.get("/ticket");
+function getOrder() {
+    return http.get("/orders");
   }
 // const createCustomer = (data:Ticket & {files:File[]})=>{
 //     const formData = new FormData();
@@ -32,4 +32,4 @@ function getTicket() {
 // }
 
 
-export default {getTicket}
+export default {getOrder}
