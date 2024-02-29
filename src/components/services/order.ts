@@ -1,8 +1,42 @@
+import type Order from "@/stores/type/order";
 import http from "./axios";
 
 function getOrder() {
-    return http.get("/orders");
-  }
+  return http.get("/orders");
+}
+
+// function saveOrder(order: {
+//   orderItems: {
+//     name: string;
+//     type: string;
+//     price: number;
+//     totalprice: number;
+//     qty: number;
+//   }[];
+//   userId: number;
+// }) {
+//   return http.post("/orders", order);
+// }
+
+function saveOrder(order: {
+  orderItems: {
+    name: string;
+    type: string;
+    price: number;
+    totalprice: number;
+    qty: number;
+  }[];
+}) {
+  return http.post("/orders", order);
+}
+
+function updateOrder(id: number, order: Order) {
+  return http.patch(`/orders/${id}`, order);
+}
+
+function deleteOrder(id: number) {
+  return http.delete(`/orders/${id}`);
+}
 // const createCustomer = (data:Ticket & {files:File[]})=>{
 //     const formData = new FormData();
 //     formData.append("name",data.name);
@@ -31,5 +65,4 @@ function getOrder() {
 //     return http.get(`/customers/search/tel/${tel}`);
 // }
 
-
-export default {getOrder}
+export default { getOrder, saveOrder, updateOrder, deleteOrder };
