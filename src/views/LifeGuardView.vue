@@ -11,7 +11,7 @@
         <v-container>
             <v-row justify="center" align="center">
                 <v-card
-                    class="my-8"
+                    class="my-1"
                     style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
                     elevation="5"
                 >
@@ -69,10 +69,8 @@
         background-image: url('../images/Event/WallPaper.jpg');
         background-size: cover;
         width: 100vw;
-        height: 91.3vh;
-        width: 100vw;
-        height: 91.2vh;
+        height: 89vh;
         margin-top: 80px;
-        padding: 15px;
+        padding: 25px;
     }
 </style>
