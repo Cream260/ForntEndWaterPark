@@ -1,5 +1,6 @@
 <script setup lang="ts">
  import { RouterLink, RouterView } from 'vue-router'
+ 
 </script>
 
 <template>
@@ -8,25 +9,25 @@
             <v-row justify="center" align="center" class="my-20">
                 <v-card
                     
-                    style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
+                    style="width: 75%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5; margin-top: 0.5%;"
                     elevation="5"
                 >
                 <v-container>
                     <v-row justify="center" align="center">
                         <v-card
-                            class="my-8"
-                            style="margin-top: 80%; width: 93%; height: 72vh; border-radius: 40px; background-color: #097F9E;"
+                            class="my-6"
+                            style="margin-top: 70%; width: 97%; height: 72vh; border-radius: 40px; background-color: #097F9E;"
                             elevation="5"
                         >
                         <v-row>
                             <v-col order="6">
 
-                                <img src="../images/Event/ProfileEvent.jpg" height="97.7%" width="100%" style="border-radius: 12% 0% 0% 12%;"/>
+                                <img src="../images/Event/ProfileEvent.jpg" height="95.5%" width="100%" style="border-radius: 12% 0% 0% 12%;"/>
                             </v-col>
                             <v-col order="12">
                                 <v-card
-                                    class="my-3"
-                                    style=" width: 97%; height: 94%; border-radius: 40px; background-color: #FFFBF5;"
+                                    class="my-1"
+                                    style=" width: 98%; height: 94%; border-radius: 40px; background-color: #FFFBF5;"
                                     elevation="5"
                                 >   
                                 <v-row justify="center" align="center" class="my-5">
@@ -70,7 +71,7 @@
         background-image: url('../images/Event/WallPaper.jpg');
         background-size: cover;
         width: 100vw;
-        height: 91.2vh;
+        height: 89vh;
         margin-top: 80px;
         padding: 25px;
     }

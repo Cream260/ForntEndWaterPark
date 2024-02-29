@@ -6,7 +6,10 @@ import { RouterLink, RouterView } from "vue-router";
   <body>
     <container class="fluid">
       <v-card class="activeTabs lgallfont">
-        รายละเอียดของคุณ
+        <div style="margin-top: 1%;">
+          รายละเอียดของคุณ
+        </div>
+        
         <v-card class="pa-4 ma-6 detailCard">
           <v-row>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -131,8 +134,11 @@ body {
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
   z-index: 2;
+  width: 70%; 
+  height: 80vh;
+  margin-left: 15%;
+  margin-top: 1.5%;
 }
 
 .detailCard {
@@ -144,10 +150,11 @@ body {
 }
 
 .lgallfont {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
+  
 }
 
 .smallnormalFont {
@@ -157,21 +164,22 @@ body {
 }
 
 .large-button1 {
-  width: 415px;
-  height: 132px;
+  width: 400px;
+  height: 100px;
   border-radius: 35px;
-  margin: 20px;
+  margin-left: 10px;
   font-size: 36px;
   font-weight: normal;
   background-color: #9eb8d9;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
 }
 
 .large-button2 {
-  width: 415px;
-  height: 132px;
+  width: 400px;
+  height: 100px;
   border-radius: 35px;
-  margin: 20px;
+  margin-left: 10px;
   font-size: 36px;
   font-weight: normal;
   background-color: #eec759;
@@ -179,10 +187,10 @@ body {
 }
 
 .large-button3 {
-  width: 415px;
-  height: 132px;
+  width: 400px;
+  height: 100px;
   border-radius: 35px;
-  margin: 20px;
+  margin-left: 10px;
   font-size: 36px;
   font-weight: normal;
   background-color: #e7bcde;

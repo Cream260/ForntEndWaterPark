@@ -1,7 +1,15 @@
 <script setup lang="ts">
- import EventCard1 from '../components/events/EventCard1.vue'
- import EventCard2 from '../components/events/EventCard2.vue'
- import EventCard3 from '../components/events/EventCard3.vue'
+import  EventCardVue from '@/components/events/EventCard.vue';
+import { useEventStore } from '@/stores/event.store';
+import { onMounted } from 'vue';
+
+const eventStore = useEventStore();
+
+onMounted(() => {
+    eventStore.getEvent();
+    console.log(eventStore.events)
+});
+
 </script>
 
 <template>
@@ -51,15 +59,12 @@
                                 </v-col>
                             </v-row>
                             <v-row>
-                                <v-col ols="4">
-                                    <EventCard1 style="margin-left: 9%; "></EventCard1>
+                                <v-col ols="4" v-for="index in 3" :key="index">
+                                   
+                                    <EventCardVue  :event-name="eventStore.events[index]?.name" 
+                                        :event-img="eventStore.events[index]?.event_image" style="margin-left: 9%; " />
                                 </v-col>
-                                <v-col cols="4">
-                                    <EventCard2 style="margin-left: 5%;"></EventCard2>
-                                </v-col>
-                                <v-col cols="4">
-                                    <EventCard3 style="margin-left: 1%;"></EventCard3>
-                                </v-col>
+                                
                             </v-row>
                             
                         </v-card>

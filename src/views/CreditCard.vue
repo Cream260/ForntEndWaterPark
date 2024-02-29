@@ -36,17 +36,17 @@ import { RouterLink, RouterView } from "vue-router";
   </header>
   <body>
     <v-row>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">หมายเลขบัตร</label>
         <input type="text" placeholder="0000-0000-0000-0000" />
       </v-col>
-      <v-col cols="12" lg="6"></v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" ></v-col>
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>
         <input type="text" placeholder="ชื่อ - นามสกุล"/>
       </v-col>
       <v-col cols="12" lg="6"></v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">อีเมลล์</label>
         <input type="text" />
       </v-col>
@@ -70,6 +70,7 @@ header {
 }
 .cardheader {
   background-color: #d9d9d940;
+  
 }
 .fontheader {
   font-size: 60px;
@@ -88,17 +89,19 @@ body {
   width: 230px;
   height: 87px;
   border-radius: 35px;
-  margin-top: 30px;
+  
   background-color: #dd5353;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 45%;
 }
 .large-button2 {
   width: 230px;
   height: 87px;
   border-radius: 35px;
-  margin-top: 30px;
+  
   background-color: #1f798f;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5.6%;
 }
 .smallnormalFont {
   font-size: 36px;

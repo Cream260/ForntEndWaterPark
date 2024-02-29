@@ -14,7 +14,7 @@ onMounted(async () => {
 
 </script>
 <template>
-  <body style="margin-top: 80px; width: 100vw; height: 91.2vh;">
+  <body style="margin-top: 80px; width: 100vw; height: 88.9vh; ">
     <v-card class="activeTabs">
       <v-tabs v-model="tab" color="deep-purple-accent-4" grow>
         <v-tab :value="1" class="fontlarge">ชาวไทย</v-tab>
@@ -97,7 +97,7 @@ onMounted(async () => {
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรเด็ก'">
                     <v-card color="#F5F1DC" theme="dark" class="borderradius">
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="35%" class="ma-2"></v-img>
                         <v-card-title class="ma-11">
                           <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
@@ -156,7 +156,7 @@ onMounted(async () => {
           </v-container>
         </v-window-item>
       </v-window>
-      <v-divider></v-divider>
+      <v-divider style="margin-top: 6%;"></v-divider>
       <v-row>
         <v-col cols="12" sm="7" class="text-right">
           <!-- <v-flex>
@@ -202,8 +202,11 @@ body {
 
 .activeTabs {
   border-radius: 20px;
-  position: sticky;
-  top: 2rem;
+  position: sticky;  
+  width: 70vw; 
+  height: 80vh;
+  margin-left: 13%;
+  margin-top: 0.7%
 }
 
 .no-padding {
@@ -246,13 +249,13 @@ body {
 }
 
 .smallBoldfont {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
   color: #0b2c44;
 }
 
 .extraBoldfont {
-  font-size: 50px;
+  font-size: 45px;
   font-weight: bolder;
   color: #0b2c44;
 }

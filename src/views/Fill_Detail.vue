@@ -39,8 +39,11 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <body>
     <container class="fluid">
-      <v-card class="activeTabs lgallfont">
-        รายละเอียดของคุณ
+      <v-card class="activeTabs lgallfont" >
+        <div style="margin-top: 2%;">
+          รายละเอียดของคุณ
+        </div>
+        
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
@@ -106,8 +109,8 @@ import { RouterLink, RouterView } from "vue-router";
 body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
-  width: 100vw;
-  height: 91.2vh;
+  width: 80vw;
+  height: 80vh;
   margin-top: 80px;
   padding: 25px;
   font-family: 'Kanit', 'sans-serif';
@@ -118,6 +121,10 @@ body {
   position: sticky;
   top: 3rem;
   z-index: 2;
+  width: 70%; 
+  height: 80%;
+  margin-left: 15%;
+  
 }
 
 .placeholder-color::placeholder {
@@ -159,13 +166,14 @@ body {
   font-weight: normal;
   color: #00000056;
   text-align: center;
+  
 }
 
 .large-button {
-  width: 599px;
-  height: 77px;
+  width: 500px;
+  height: 70px;
   border-radius: 20px;
-  margin-left: 40px;
+  margin-left: 70px;
   font-size: 48px;
   font-weight: bold;
   color: #ffffff;

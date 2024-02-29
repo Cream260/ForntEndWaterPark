@@ -1,14 +1,23 @@
-<script>
-  // 
+<script setup lang="ts">
+import { useEventStore } from '@/stores/event.store';
+import { onMounted, ref } from 'vue'
+
+const props = defineProps<{
+  eventName:string,
+  eventImg:string,
+
+}>();
 </script>
 
 <template>
   <v-list-item to="/LifeGuard">
       <v-card class="card" >
         
-        <img src="@/images/Event/lifeGuard.jpg" height="63.7%" width="100%" />
-        <div class="card-text">
-          <h2 >ไลฟ์การ์ด</h2>
+        <img :src="eventImg" height="63.7%" width="100%" />
+        <div 
+          class="card-text"
+        >
+          <h2 >{{ eventName }}</h2>
           <p >3 หลักสูตร</p>
         </div>
       </v-card>

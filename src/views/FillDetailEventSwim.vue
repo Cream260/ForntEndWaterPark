@@ -11,7 +11,7 @@ const calStore = usePlusMinusStore();
     <container >
       <v-row justify="center" align="center">
         <v-card 
-          class="activeTabs lgallfont my-8"
+          class="activeTabs lgallfont my-12"
           style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
           elevation="5" 
         >

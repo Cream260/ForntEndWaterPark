@@ -24,15 +24,17 @@ import { RouterLink, RouterView } from "vue-router";
   </header>
   <body>
     <v-row>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">ชื่อผู้ชำระเงิน</label>
         <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6"></v-col>
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">อีเมลล์</label>
         <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6"></v-col>
+      <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">หมายเลขโทรศัพท์</label>
         <input type="text" placeholder="(+66)" />
       </v-col>
@@ -79,6 +81,7 @@ body {
   margin-top: 145px;
   background-color: #dd5353;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 45%;
 }
 .large-button2 {
   width: 230px;
@@ -87,6 +90,7 @@ body {
   margin-top: 145px;
   background-color: #1f798f;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5.6%;
 }
 .smallnormalFont {
   font-size: 36px;

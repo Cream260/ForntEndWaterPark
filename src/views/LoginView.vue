@@ -23,7 +23,10 @@
             ></v-text-field>
           </div>
           <v-col>
-            <button type="submit" style="border-color: #22668D; background-color: #427D9D;" >Sign in</button>
+            <RouterLink to="/BuyTicket">
+                <button type="submit" style="border-color: #22668D; background-color: #427D9D;" >Sign in</button>
+            </RouterLink>
+            
           </v-col>
           
           <a href="#">Forgot Password?</a>
