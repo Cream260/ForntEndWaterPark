@@ -1,7 +1,7 @@
 export default interface Event {
     id?: number;
     name: string;
-    event_image: string;
+    images: string;
     price: number;
     type: string;
     createdDate?: Date;

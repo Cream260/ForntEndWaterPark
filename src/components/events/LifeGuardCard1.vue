@@ -1,16 +1,16 @@
 <template>
-    <div class="info-box">
-      <h2 style="font-size: 24px;">สิ่งที่คุณจะได้เรียนรู้</h2>
-      <ul class="info-list">
-        <li v-for="(item, index) in infoItems" :key="index">
-          <span class="bullet-point">•</span>{{ item }}
-        </li>
-        <div class="image-container" >
-            <img class="corner-image" src="../../images/Event/education.png" style="margin-top: 50%;">
-        </div>
-      </ul>
-    </div>
-  </template>
+  <div class="info-box">
+    <h2 style="font-size: 24px;">สิ่งที่คุณจะได้เรียนรู้</h2>
+    <ul class="info-list">
+      <li v-for="(item, index) in infoItems" :key="index">
+        <span class="bullet-point">•</span>{{ item }}
+      </li>
+      <div class="image-container" >
+          <img class="corner-image" src="../../images/Event/education.png" style="margin-top: 50%;">
+      </div>
+    </ul>
+  </div>
+</template>
   
   <script>
   export default {

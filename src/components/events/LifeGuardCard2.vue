@@ -28,7 +28,8 @@ export default {
   border-radius: 20px;
   margin-left: 20px;
   margin-top: 20px;
-  width: 300px; /* Adjust as necessary */
+  height: 100px;
+  width: 100px; /* Adjust as necessary */
   color: white; /* Adjust as necessary */
   font-family: 'Kanit', sans-serif;
 }

@@ -16,16 +16,16 @@
                     elevation="5"
                 >
                     <v-row>
-                        <v-col class="my-8" cols="5">
-                            <img src="../images/Event/lifeGuard.jpg" height="98%" width="90%" style="border-radius: 5%; margin-left: 5%;"/>
+                        <v-col class="my-5" cols="5">
+                            <img src="../images/Event/lifeGuard.jpg" height="90%" width="90%" style="border-radius: 5%; margin-left: 5%;"/>
                         </v-col>
-                        <v-col class="my-8" cols="3.5">
+                        <v-col class="my-5" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #F2F2F2; margin-right: 50%; border-color: #E0DCDC; border-width: 3px;"
                             elevation="5">
                             <LifeGuardCard1></LifeGuardCard1>
                             </v-card>
                         </v-col>
-                        <v-col class="my-8" cols="3.5">
+                        <v-col class="my-5" cols="3.5">
                             <v-card style=" width: 95%; height: 33.8vh; border-radius: 40px; background-color: #B784D8; margin-right: 5%;border-color: #A67AC2; border-width: 3px;"
                             elevation="5">
                             <LifeGuardCard2></LifeGuardCard2>
