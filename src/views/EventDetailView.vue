@@ -28,13 +28,13 @@ onMounted(() => {
                             style="width: 93%; height: 15vh;align-items: center;border-radius: 20px; background-color: #B0DAFF; border-color: #A4C9EA; border-width: 3px;"                            
                         >
                             <v-row >
-                                <v-col class="my-5" cols="4">
-                                    <p style="margin-left: 17%; color: #164159; font-size: 49px; font-weight: bolder;" class="text">
+                                <v-col class="my-6" cols="4">
+                                    <p style="margin-left: 17%; color: #164159; font-size: 33px; font-weight: bolder;" class="text">
                                         ศูนย์ฝึกอบรม
                                     </p>
                                 </v-col>
-                                <v-col class="my-4" cols="8">
-                                    <p style="margin-right: 7%;color: #164159; font-size: 22px; font-weight: bolder;">
+                                <v-col class="my-1" cols="8">
+                                    <p style="margin-right: 7%;color: #164159; font-size: 16px; font-weight: bolder;">
                                         เราภูมิใจที่จะนําเสนอหลักสูตร ไลฟ์การ์ด , First Aid และ หลักสูตรว่ายน้ำที่มีคุณภาพระดับสากลให้กับชุมชนคนพัทยาและทั่วประเทศไทย! ไม่มีที่ไหนที่จะเรียนรู้ได้ดีไปกว่าสวนน้ำที่ใหญ่ที่สุดและดีที่สุดแล้ว!
                                     </p>
                                 </v-col>
@@ -48,12 +48,12 @@ onMounted(() => {
                         >
                             <v-row>
                                 <v-col class="my-5" cols="4">
-                                    <p style="margin-left: 20%; color: #164159; font-size: 53px; font-weight: bolder;" class="my-4">
+                                    <p style="margin-left: 20%; color: #164159; font-size: 45px; font-weight: bolder;" class="my-4">
                                         หลักสูตร
                                     </p>
                                 </v-col>
                                 <v-col class="my-5" cols="8">
-                                    <p style="margin-right: 7%;color: #164159; font-size: 22px; font-weight: bolder;" class="my-4">
+                                    <p style="margin-right: 7%;color: #164159; font-size: 20px; font-weight: bolder;" class="my-4">
                                         ทุกหลักสูตรจะถูกสอนโดย ผู้ฝึกสอนจาก Ellis & Associates , การทำ CPR และ หลักสูตรการปฐมพยาบาล จะสอดคล้องตามหลักมาตรฐานของ Ellis & Associates National อย่างแน่นอน
                                     </p>
                                 </v-col>
@@ -86,11 +86,9 @@ onMounted(() => {
         background-image: url('../images/Event/WallPaper.jpg');
         background-size: cover;
         width: 100vw;
-        height: 91.3vh;
-        width: 100vw;
-        height: 91.2vh;
+        height: 89vh;
         margin-top: 80px;
-        padding: 25px;
+        padding: 25px; 
     }
     .cardBody {
         background-image: url('../images/Event/WallPaperCardEvent.jpg');
