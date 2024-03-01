@@ -2,8 +2,8 @@
   <div class="offer-card">
     <h1 class="title">หลักสูตร จูเนียร์ ไลฟ์การ์ด</h1>
     <div class="details">
-      <div class="detail" style="margin-right: 4%; font-size: 16px;">อายุ 10-17 ปีขึ้นไป</div>
-      <div class="detail" style=" font-size: 16px;">ใบรับรองการฝึก</div>
+      <div class="detail" style="font-size: 10px;">อายุ 10-17 ปีขึ้นไป</div>
+      <div class="detail" style="margin-right: 3%; font-size: 10px;">ใบรับรองการฝึก</div>
     </div>
     <div class="price">ราคาเต็ม 888 บาท</div>
     <div class="image-container">
@@ -24,46 +24,47 @@ export default {
   position: relative;
   border-radius: 20px;
   margin-left: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 100px;
   width: 100px;  /* Adjust as necessary */
   color: white; /* Adjust as necessary */
   font-family: 'Kanit', sans-serif;
+  width: fit-content;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 20px;
+
 }
 
 .details {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  
+  margin-bottom: 10px;
 }
 
 .detail {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 15px 13px;
+  padding: 10px 18px;
   border-radius: 35px;
-  margin-right: 18px ;
+  margin-right: 10px ;
 }
 
 
 .price {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 20px;
+  
 }
 
 .image-container {
   position: absolute;
-  top: 210px;
-  right: 10px;
+  top: 170px;
+  right: 11px;
 }
 
 .corner-image {
-  width: 65px; /* Adjust as necessary */
+  width: 50px; /* Adjust as necessary */
   height: auto;
 }
 </style>
