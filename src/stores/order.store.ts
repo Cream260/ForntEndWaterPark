@@ -7,7 +7,9 @@ import order from "@/components/services/order";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
-  const orderList = ref<{ ticket: Ticket; qty: number; sum: number }[]>([]);
+  const orderList = ref<
+    { ticketId: number; ticket: Ticket; qty: number; sum: number }[]
+  >([]);
   const ThChildqty = ref(0);
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
@@ -28,7 +30,12 @@ export const useOrderStore = defineStore("order", () => {
         return;
       }
     }
-    orderList.value.push({ ticket: item, qty: 1, sum: 1 * item.price });
+    orderList.value.push({
+      ticketId: item.id,
+      ticket: item,
+      qty: 1,
+      sum: 1 * item.price,
+    });
     console.log(orderList.value);
   }
 
@@ -36,7 +43,7 @@ export const useOrderStore = defineStore("order", () => {
     if (ThChildqty.value == 0) return;
     ThChildqty.value--;
     orderList.value.splice(index, 1);
-    
+
     console.log(orderList.value);
   }
 
@@ -49,7 +56,12 @@ export const useOrderStore = defineStore("order", () => {
         return;
       }
     }
-    orderList.value.push({ ticket: item, qty: 1, sum: 1 * item.price });
+    orderList.value.push({
+      ticketId: item.id,
+      ticket: item,
+      qty: 1,
+      sum: 1 * item.price,
+    });
     console.log(orderList.value);
   }
 
@@ -69,7 +81,12 @@ export const useOrderStore = defineStore("order", () => {
         return;
       }
     }
-    orderList.value.push({ ticket: item, qty: 1, sum: 1 * item.price });
+    orderList.value.push({
+      ticketId: item.id,
+      ticket: item,
+      qty: 1,
+      sum: 1 * item.price,
+    });
     console.log(orderList.value);
   }
 
@@ -89,7 +106,12 @@ export const useOrderStore = defineStore("order", () => {
         return;
       }
     }
-    orderList.value.push({ ticket: item, qty: 1, sum: 1 * item.price });
+    orderList.value.push({
+      ticketId: item.id,
+      ticket: item,
+      qty: 1,
+      sum: 1 * item.price,
+    });
     console.log(orderList.value);
   }
 
@@ -116,24 +138,21 @@ export const useOrderStore = defineStore("order", () => {
   async function openOrder() {
     const orderItems = orderList.value.map(
       (item) =>
-        <{ name: string; type:string; price: number; totalprice: number; qty: number }>{
-          name: item.ticket.name,
-          type: item.ticket.type,
-          price: item.ticket.price,
-          totalprice: item.sum,
+        <{ name: string; type: string; qty: number }>{
+          name: item.qty,
+          type: string,
           qty: item.qty,
         }
     );
     console.log(orderItems);
-    // const order = {userId:1, orderItems: orderItems};
-    const order = {orderItems: orderItems};
-    try {
-      const res = await orderService.saveOrder(order);
-      clearOrder();
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    }
+    // const order = {orderItems: orderItems};
+    // try {
+    //   const res = await orderService.saveOrder(order);
+    //   clearOrder();
+    //   console.log(res);
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
   return {
     ThChildqty,

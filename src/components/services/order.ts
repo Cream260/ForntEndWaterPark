@@ -13,7 +13,8 @@ function getOrder() {
 //     totalprice: number;
 //     qty: number;
 //   }[];
-//   userId: number;
+//   recID: number;
+//   ticketID: number;
 // }) {
 //   return http.post("/orders", order);
 // }
