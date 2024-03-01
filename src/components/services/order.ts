@@ -1,4 +1,5 @@
-import type Order from "@/stores/type/order";
+
+import type Order from "@/type/order";
 import http from "./axios";
 
 function getOrder() {

@@ -1,5 +1,5 @@
 import eventService from '../components/services/event';
-import type Event from './type/event'
+import type Event from '@/type/event'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 

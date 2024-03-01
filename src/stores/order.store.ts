@@ -1,14 +1,13 @@
 import orderService from "@/components/services/order";
-import type Order from "./type/order";
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import type Ticket from "./type/ticket";
-import order from "@/components/services/order";
+import type Ticket from "@/type/ticket";
+import type Order from "@/type/order";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
   const orderList = ref<
-    { ticketId: number; ticket: Ticket; qty: number; sum: number }[]
+    {ticket: Ticket; qty: number; sum: number }[]
   >([]);
   const ThChildqty = ref(0);
   const ThAdultqty = ref(0);
@@ -31,7 +30,6 @@ export const useOrderStore = defineStore("order", () => {
       }
     }
     orderList.value.push({
-      ticketId: item.id,
       ticket: item,
       qty: 1,
       sum: 1 * item.price,
@@ -57,7 +55,6 @@ export const useOrderStore = defineStore("order", () => {
       }
     }
     orderList.value.push({
-      ticketId: item.id,
       ticket: item,
       qty: 1,
       sum: 1 * item.price,
@@ -82,7 +79,6 @@ export const useOrderStore = defineStore("order", () => {
       }
     }
     orderList.value.push({
-      ticketId: item.id,
       ticket: item,
       qty: 1,
       sum: 1 * item.price,
@@ -107,7 +103,6 @@ export const useOrderStore = defineStore("order", () => {
       }
     }
     orderList.value.push({
-      ticketId: item.id,
       ticket: item,
       qty: 1,
       sum: 1 * item.price,
@@ -136,15 +131,15 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   async function openOrder() {
-    const orderItems = orderList.value.map(
-      (item) =>
-        <{ name: string; type: string; qty: number }>{
-          name: item.qty,
-          type: string,
-          qty: item.qty,
-        }
-    );
-    console.log(orderItems);
+    // const orderItems = orderList.value.map(
+    //   (item) =>
+    //     <{ name: string; type: string; qty: number }>{
+    //       name: item.qty,
+    //       type: string,
+    //       qty: item.qty,
+    //     }
+    // );
+    console.log(orderList);
     // const order = {orderItems: orderItems};
     // try {
     //   const res = await orderService.saveOrder(order);
