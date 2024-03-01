@@ -13,6 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
       <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
       <RouterLink to="/Receipt">Receipt</RouterLink>
+      <RouterLink to="/CheckWristband">CheckWristband</RouterLink>
     </nav>
   </header>
   <RouterView></RouterView>
