@@ -1,4 +1,3 @@
-
 import type Order from "@/type/order";
 import http from "./axios";
 
@@ -21,11 +20,17 @@ function getOrder() {
 // }
 
 function saveOrder(order: {
+  cusId: number;
+  qty: number;
+  totalPrice: number;
+  netPrice: number;
+  discount: number;
+  received: number;
+  payments: string;
+  startDate: string;
+  expDate: string;
   orderItems: {
-    name: string;
-    type: string;
-    price: number;
-    totalprice: number;
+    ticketId: number;
     qty: number;
   }[];
 }) {
@@ -39,32 +44,5 @@ function updateOrder(id: number, order: Order) {
 function deleteOrder(id: number) {
   return http.delete(`/orders/${id}`);
 }
-// const createCustomer = (data:Ticket & {files:File[]})=>{
-//     const formData = new FormData();
-//     formData.append("name",data.name);
-//     formData.append("point",data.point+'');
-//     formData.append("tel",data.tel);
-//     formData.append("file",data.files[0]);
-//     return http.post("/customers",formData,{headers:{'Content-Type':'multipart/form-data'}});
-
-// }
-// const updateCustomer = async (id:string,data:Customer & {files:File[]})=>{
-//     const formData = new FormData();
-//     formData.append("name",data.name);
-//     formData.append("point",data.point+'');
-//     formData.append("tel",data.tel);
-//     if(data.files){
-//         formData.append("file",data.files[0]);
-//     }
-//     return await http.patch(`/customers/${id}`,formData,{headers:{'Content-Type':'multipart/form-data'}});
-// }
-
-// const deleteCustomer = (id:string)=>{
-//     return http.delete(`/customers/${id}`);
-// }
-
-// const findCustomerBytel = (tel:string)=>{
-//     return http.get(`/customers/search/tel/${tel}`);
-// }
 
 export default { getOrder, saveOrder, updateOrder, deleteOrder };

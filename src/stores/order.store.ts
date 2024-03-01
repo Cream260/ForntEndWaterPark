@@ -6,9 +6,7 @@ import type Order from "@/type/order";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
-  const orderList = ref<
-    {ticket: Ticket; qty: number; sum: number }[]
-  >([]);
+  const orderList = ref<{ ticket: Ticket; qty: number; sum: number }[]>([]);
   const ThChildqty = ref(0);
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
@@ -20,6 +18,46 @@ export const useOrderStore = defineStore("order", () => {
     }
     return sum;
   });
+
+  async function getOrder() {
+    try {
+      const res = await orderService.getOrder();
+      orders.value = res.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function openOrder() {
+    const orderItems = orderList.value.map(
+      (item) =>
+        <{ ticketId: number; qty: number }>{
+          ticketId: item.ticket.id,
+          qty: item.qty,
+        }
+    );
+    const order = {
+      cusId: 1,
+      qty: 1,
+      totalPrice: 1,
+      netPrice: 1,
+      discount: 1,
+      received: 2097,
+      payments: "PromptPay",
+      startDate: "2024-03-01",
+      expDate: "2024-03-02",
+      orderItems: orderItems
+    };
+    console.log(order)
+    try {
+      const res = await orderService.saveOrder(order);
+      clearOrder();
+      console.log(res);
+    } catch (e) {
+      console.log("e");
+    }
+  }
+
   function ThChildincrement(item: Ticket) {
     ThChildqty.value++;
     for (let i = 0; i < orderList.value.length; i++) {
@@ -121,34 +159,6 @@ export const useOrderStore = defineStore("order", () => {
     orderList.value = [];
   }
 
-  async function getOrder() {
-    try {
-      const res = await orderService.getOrder();
-      orders.value = res.data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  async function openOrder() {
-    // const orderItems = orderList.value.map(
-    //   (item) =>
-    //     <{ name: string; type: string; qty: number }>{
-    //       name: item.qty,
-    //       type: string,
-    //       qty: item.qty,
-    //     }
-    // );
-    console.log(orderList);
-    // const order = {orderItems: orderItems};
-    // try {
-    //   const res = await orderService.saveOrder(order);
-    //   clearOrder();
-    //   console.log(res);
-    // } catch (e) {
-    //   console.log(e);
-    // }
-  }
   return {
     ThChildqty,
     ThAdultqty,

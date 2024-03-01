@@ -1,4 +1,7 @@
 import type OrderItem from "./OrderItem";
+import type Promotion from "./promotion";
+import type Package from "./package"
+import type Customer from "./customer"
 
 export default interface Order {
   id?: number;
@@ -15,10 +18,10 @@ export default interface Order {
   createdDate?: Date;
   updatedDate?: Date;
   deletedDate?: Date;
-//   wristband: Wristband[];
+  // wristband: Wristband[];
   orderItems?: OrderItem[];
-//   customer: Customer;
-//   package: Package;
+  customer?: Customer;
+  package: Package;
   event?: Event;
-//   promotion: Promotion;
+  promotion?: Promotion;
 }
