@@ -22,7 +22,7 @@ export default interface Order {
   wristband?: Wristband[];
   orderItems?: OrderItem[];
   customer?: Customer;
-  package: Package;
+  package?: Package;
   event?: Event;
   promotion?: Promotion;
 }

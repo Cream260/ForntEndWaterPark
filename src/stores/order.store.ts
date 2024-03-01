@@ -38,17 +38,19 @@ export const useOrderStore = defineStore("order", () => {
     );
     const order = {
       cusId: 1,
-      qty: 1,
-      totalPrice: 1,
-      netPrice: 1,
-      discount: 1,
-      received: 2097,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      numPeople: 0,
+      nameComp: "",
+      discount: 0,
+      received: 0,
       payments: "PromptPay",
-      startDate: "2024-03-01",
-      expDate: "2024-03-02",
-      orderItems: orderItems
+      startDate: new Date(),
+      expDate: new Date(),
+      orderItems: orderItems,
     };
-    console.log(order)
+    console.log(order);
     try {
       const res = await orderService.saveOrder(order);
       clearOrder();
