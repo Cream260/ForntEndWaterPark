@@ -1,6 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import order from "@/components/services/order";
+import { useCustomerStore } from "@/stores/customer";
+import { useOrderStore } from "@/stores/order.store";
+import { onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+const orderStore = useOrderStore();
+const customerStore = useCustomerStore();
+
+onMounted(async () => {
+  await orderStore.getOrder;
+  await customerStore.getCustomer;
+})
 // let lastuserId = 1
 // interface InfoDetail {
 //   userId: number
@@ -39,7 +49,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <body>
     <container class="fluid">
-      <v-card class="activeTabs lgallfont" >
+      <v-card class="activeTabs lgallfont">
         <div style="margin-top: 2%;">
           รายละเอียดของคุณ
         </div>
@@ -59,7 +69,7 @@ import { RouterLink, RouterView } from "vue-router";
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"/>
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
@@ -71,19 +81,19 @@ import { RouterLink, RouterView } from "vue-router";
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"  v-model="orderStore.currentOrder.totalPrice"/> 
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0" v-model="orderStore.currentOrder.discount"/>
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="12">
             <v-flex>
-              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize" />
+              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize"  v-model="orderStore.currentOrder.netPrice" />
             </v-flex>
           </v-col>
         </v-row>
@@ -95,7 +105,7 @@ import { RouterLink, RouterView } from "vue-router";
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
             <RouterLink to="/">
-              <v-btn color="#FF835A" class="large-button">ยกเลิกการซื้อ</v-btn>
+              <v-btn color="#FF835A" class="large-button" @click="orderStore.clearOrder()">ยกเลิกการซื้อ</v-btn>
             </RouterLink>
           </v-col>
           <v-col></v-col>
@@ -179,4 +189,4 @@ body {
   color: #ffffff;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-</style>
+</style>onMounted, 

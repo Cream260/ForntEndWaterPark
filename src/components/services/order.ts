@@ -6,36 +6,36 @@ function getOrder() {
   return http.get("/orders");
 }
 
-function saveOrder(order: {
-  qty: number;
-  totalPrice: number;
-  netPrice: number;
-  numPeople: number;
-  nameComp: string;
-  discount: number;
-  received: number;
-  payments: string;
-  startDate: Date;
-  expDate: Date;
-  cusId: {
-    customerId: number;
-    username: string;
-    password: string;
-    name: string;
-    email: string;
-    tel: number;
-  }[];
-  wristband : {
-    wristbandId: number,
-    type: string,
-    startDate: Date;
-    endDate: Date;
-  }[];
-  orderItems: {
-    ticketId: number;
-    qty: number;
-  }[];
-}) {
+function saveOrder(order: Order){
+//   qty: number;
+//   totalPrice: number;
+//   netPrice: number;
+//   numPeople: number;
+//   nameComp: string;
+//   discount: number;
+//   received: number;
+//   payments: string;
+//   startDate: Date;
+//   expDate: Date;
+//   cusId: {
+//     customerId: number;
+//     username: string;
+//     password: string;
+//     name: string;
+//     email: string;
+//     tel: number;
+//   }[];
+//   wristband : {
+//     wristbandId: number,
+//     type: string,
+//     startDate: Date;
+//     endDate: Date;
+//   }[];
+//   orderItems: {
+//     ticketId: number;
+//     qty: number;
+//   }[];
+// }) {
   return http.post("/orders", order);
 }
 

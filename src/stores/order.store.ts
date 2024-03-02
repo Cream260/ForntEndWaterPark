@@ -3,18 +3,38 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
+import wristband from "@/components/services/wristband";
+import type OrderItem from "@/type/OrderItem";
+import { useCustomerStore } from "./customer";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
-  const orderList = ref<{ ticket: Ticket; qty: number; sum: number }[]>([]);
+  const orderList = ref<OrderItem[]>([]);
   const ThChildqty = ref(0);
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
   const EnAdultqty = ref(0);
+  const totalTicket = ref(0)
+  const total = ref(0)
+  const currentOrder = ref<Order>({
+    cusID: 1,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      numPeople: null,
+      nameComp: null,
+      discount: 0,
+      received: 0,
+      payments: "PromptPay",
+      startDate: new Date(),
+      expDate: new Date(),
+      orderItems: orderList.value,
+  })
+
   const sumbeDis = computed(() => {
     let sum = 0;
     for (let i = 0; i < orderList.value.length; i++) {
-      sum = sum + orderList.value[i].sum;
+      sum = sum + orderList.value[i].totalPrice;
     }
     return sum;
   });
@@ -29,20 +49,14 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   async function openOrder() {
-    const orderItems = orderList.value.map(
-      (item) =>
-        <{ ticketId: number; qty: number }>{
-          ticketId: item.ticket.id,
-          qty: item.qty,
-        }
-    );
+    const orderItems = orderList.value
     const order = {
-      cusId: 1,
+      cusID: 1,
       qty: 0,
       totalPrice: 0,
       netPrice: 0,
-      numPeople: 0,
-      nameComp: "",
+      numPeople: null,
+      nameComp: null,
       discount: 0,
       received: 0,
       payments: "PromptPay",
@@ -53,8 +67,8 @@ export const useOrderStore = defineStore("order", () => {
     console.log(order);
     try {
       const res = await orderService.saveOrder(order);
-      clearOrder();
-      console.log(res);
+      currentOrder.value = res.data;
+      console.log(currentOrder.value);
     } catch (e) {
       console.log("e");
     }
@@ -63,16 +77,19 @@ export const useOrderStore = defineStore("order", () => {
   function ThChildincrement(item: Ticket) {
     ThChildqty.value++;
     for (let i = 0; i < orderList.value.length; i++) {
-      if (orderList.value[i].ticket.id === item.id) {
+      if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
-        orderList.value[i].sum = orderList.value[i].qty * item.price;
+        orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
         return;
       }
     }
     orderList.value.push({
-      ticket: item,
+      ticketId: item.id!,
+      name: item.name!,
+      type: item.type!,
       qty: 1,
-      sum: 1 * item.price,
+      price: item.price!,
+      totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
   }
@@ -88,16 +105,19 @@ export const useOrderStore = defineStore("order", () => {
   function ThAdultincrement(item: Ticket) {
     ThAdultqty.value++;
     for (let i = 0; i < orderList.value.length; i++) {
-      if (orderList.value[i].ticket.id === item.id) {
+      if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
-        orderList.value[i].sum = orderList.value[i].qty * item.price;
+        orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
         return;
       }
     }
     orderList.value.push({
-      ticket: item,
+      ticketId: item.id!,
+      name: item.name!,
+      type: item.type!,
       qty: 1,
-      sum: 1 * item.price,
+      price: item.price!,
+      totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
   }
@@ -112,16 +132,19 @@ export const useOrderStore = defineStore("order", () => {
   function EnChildincrement(item: Ticket) {
     EnChildqty.value++;
     for (let i = 0; i < orderList.value.length; i++) {
-      if (orderList.value[i].ticket.id === item.id) {
+      if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
-        orderList.value[i].sum = orderList.value[i].qty * item.price;
+        orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
         return;
       }
     }
     orderList.value.push({
-      ticket: item,
+      ticketId: item.id!,
+      name: item.name!,
+      type: item.type!,
       qty: 1,
-      sum: 1 * item.price,
+      price: item.price!,
+      totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
   }
@@ -136,16 +159,19 @@ export const useOrderStore = defineStore("order", () => {
   function EnAdultincrement(item: Ticket) {
     EnAdultqty.value++;
     for (let i = 0; i < orderList.value.length; i++) {
-      if (orderList.value[i].ticket.id === item.id) {
+      if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
-        orderList.value[i].sum = orderList.value[i].qty * item.price;
+        orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
         return;
       }
     }
     orderList.value.push({
-      ticket: item,
+      ticketId: item.id!,
+      name: item.name!,
+      type: item.type!,
       qty: 1,
-      sum: 1 * item.price,
+      price: item.price!,
+      totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
   }
@@ -180,5 +206,6 @@ export const useOrderStore = defineStore("order", () => {
     EnChilddecrement,
     EnAdultincrement,
     EnAdultdecrement,
+    currentOrder,
   };
 });
