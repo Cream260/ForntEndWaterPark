@@ -7,7 +7,6 @@ function getOrder() {
 }
 
 function saveOrder(order: {
-  cusId: number;
   qty: number;
   totalPrice: number;
   netPrice: number;
@@ -18,6 +17,20 @@ function saveOrder(order: {
   payments: string;
   startDate: Date;
   expDate: Date;
+  cusId: {
+    customerId: number;
+    username: string;
+    password: string;
+    name: string;
+    email: string;
+    tel: number;
+  }[];
+  wristband : {
+    wristbandId: number,
+    type: string,
+    startDate: Date;
+    endDate: Date;
+  }[];
   orderItems: {
     ticketId: number;
     qty: number;

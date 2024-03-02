@@ -4,16 +4,16 @@ import { useOrderStore } from "../stores/order.store";
 import { useTicketStore } from "../stores/ticket.store";
 import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
 import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
+import { useCustomerStore } from "@/stores/customer";
+import { useWristbandStore } from "@/stores/wristband";
 const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
+const customerStore = useCustomerStore();
+const wristbandStore = useWristbandStore();
 const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTicket();
 })
-// onMounted(async () => {
-//   await orderStore.getOrder();
-// })
-
 
 </script>
 <template>
@@ -182,7 +182,7 @@ onMounted(async () => {
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
             <!-- <RouterLink to="/filldetail"> -->
-              <v-btn color="#87B859" class="large-button" @click="orderStore.openOrder">ยืนยัน</v-btn>
+              <v-btn color="#87B859" class="large-button" @click="orderStore.openOrder()">ยืนยัน</v-btn>
             <!-- </RouterLink> -->
           </v-flex>
         </v-col>
