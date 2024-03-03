@@ -5,6 +5,9 @@ import customerService from "@/components/services/customer";
 
 export const useCustomerStore = defineStore("customer", () => {
   const customer = ref<Customer[]>([]);
+  const clearUser = () => {
+    currentUser.value = { name: "", password: "", email: "" };
+  };
   const currentUser = ref<Customer>({ 
     name: "ธนาวุฒิ รอดเจริญ", 
     email: "64160049@buu.ac.th", 
@@ -21,5 +24,10 @@ export const useCustomerStore = defineStore("customer", () => {
       console.log(e);
     }
   }
-  return { customer, currentUser, getCustomer };
+
+  // function clear()  {
+  //   currentUser.value = { name: "", password: "", email: "" };
+  // }
+
+  return { customer, currentUser, getCustomer, clearUser };
 });

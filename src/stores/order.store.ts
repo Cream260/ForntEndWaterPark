@@ -12,8 +12,8 @@ export const useOrderStore = defineStore("order", () => {
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
   const EnAdultqty = ref(0);
-  const totalTicket = ref(0);
-  const total = ref(0);
+  const startDate = ref(new Date());
+  const expDate = ref(new Date());
   const currentOrder = ref<Order>({
     cusID: 1,
     qty: 0,
@@ -24,10 +24,26 @@ export const useOrderStore = defineStore("order", () => {
     discount: 0,
     received: 0,
     payments: "PromptPay",
-    startDate: new Date(),
-    expDate: new Date(),
+    startDate: startDate.value,
+    expDate: expDate.value,
     orderItems: orderList.value,
   });
+  const clearOrderDetail = () => {
+    currentOrder.value = {
+      cusID: 0,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      numPeople: null,
+      nameComp: null,
+      discount: 0,
+      received: 0,
+      payments: "",
+      startDate: startDate.value,
+      expDate: expDate.value,
+      orderItems: [],
+    };
+  };
 
   const sumbeDis = computed(() => {
     let sum = 0;
@@ -198,6 +214,8 @@ export const useOrderStore = defineStore("order", () => {
     orders,
     sumbeDis,
     orderList,
+    currentOrder,
+    clearOrderDetail,
     clearOrder,
     getOrder,
     openOrder,
@@ -209,6 +227,5 @@ export const useOrderStore = defineStore("order", () => {
     EnChilddecrement,
     EnAdultincrement,
     EnAdultdecrement,
-    currentOrder,
   };
 });

@@ -2,6 +2,7 @@
 import order from "@/components/services/order";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import type Order from "@/type/order";
 import { onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const orderStore = useOrderStore();
@@ -11,6 +12,12 @@ onMounted(async () => {
   await orderStore.getOrder;
   await customerStore.getCustomer;
 })
+
+function clearFillDetail()  {
+  customerStore.clearUser();
+  orderStore.clearOrderDetail();
+}
+
 // let lastuserId = 1
 // interface InfoDetail {
 //   userId: number
@@ -47,6 +54,7 @@ onMounted(async () => {
 </script>
 
 <template>
+
   <body>
     <container class="fluid">
       <v-card class="activeTabs lgallfont">
@@ -57,43 +65,50 @@ onMounted(async () => {
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" v-model="customerStore.currentUser.name" />
+              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+                v-model="customerStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" v-model="customerStore.currentUser.tel" />
-            </v-flex>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" v-model="customerStore.currentUser.email" />
-            </v-flex>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0" v-model="orderStore.currentOrder.startDate" />
+              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
+                v-model="customerStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"  v-model="orderStore.currentOrder.totalPrice"/> 
+              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
+                v-model="customerStore.currentUser.email" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0" v-model="orderStore.currentOrder.discount"/>
+              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0"
+                v-model="orderStore.currentOrder.startDate" />
+            </v-flex>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" lg="6">
+            <v-flex>
+              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                v-model="orderStore.currentOrder.totalPrice" />
+            </v-flex>
+          </v-col>
+          <v-col cols="12" lg="6">
+            <v-flex>
+              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
+                v-model="orderStore.currentOrder.discount" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="12">
             <v-flex>
-              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize"  v-model="orderStore.currentOrder.netPrice" />
+              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize"
+                v-model="orderStore.currentOrder.netPrice" />
             </v-flex>
           </v-col>
         </v-row>
@@ -104,9 +119,9 @@ onMounted(async () => {
             </RouterLink>
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/">
-              <v-btn color="#FF835A" class="large-button" @click="orderStore.clearOrder()">ยกเลิกการซื้อ</v-btn>
-            </RouterLink>
+            <!-- <RouterLink to="/"> -->
+              <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
+            <!-- </RouterLink> -->
           </v-col>
           <v-col></v-col>
         </v-row>
@@ -131,10 +146,10 @@ body {
   position: sticky;
   top: 3rem;
   z-index: 2;
-  width: 70%; 
+  width: 70%;
   height: 80%;
   margin-left: 15%;
-  
+
 }
 
 .placeholder-color::placeholder {
@@ -176,7 +191,7 @@ body {
   font-weight: normal;
   color: #00000056;
   text-align: center;
-  
+
 }
 
 .large-button {
@@ -189,4 +204,4 @@ body {
   color: #ffffff;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-</style>onMounted, 
+</style>

@@ -14,8 +14,8 @@ export default interface Order {
   discount: number;
   received: number;
   payments: string;
-  startDate: Date;
-  expDate: Date;
+  startDate?: Date;
+  expDate?: Date;
   cusID: number;
   promoId?: number;
   eventId?: number;
