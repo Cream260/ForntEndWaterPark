@@ -53,28 +53,28 @@ onMounted(async () => {
         <div style="margin-top: 2%;">
           รายละเอียดของคุณ
         </div>
-        
+
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" v-model="customerStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" v-model="customerStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"/>
+              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" v-model="customerStore.currentUser.email" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0" />
+              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0" v-model="orderStore.currentOrder.startDate" />
             </v-flex>
           </v-col>
         </v-row>

@@ -5,6 +5,12 @@ import customerService from "@/components/services/customer";
 
 export const useCustomerStore = defineStore("customer", () => {
   const customer = ref<Customer[]>([]);
+  const currentUser = ref<Customer>({ 
+    name: "ธนาวุฒิ รอดเจริญ", 
+    email: "64160049@buu.ac.th", 
+    tel: "0922757567" 
+  });
+
   async function getCustomer() {
     try {
       const res = await customerService.getCustomer();
@@ -15,5 +21,5 @@ export const useCustomerStore = defineStore("customer", () => {
       console.log(e);
     }
   }
-  return { customer, getCustomer };
+  return { customer, currentUser, getCustomer };
 });

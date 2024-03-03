@@ -3,9 +3,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
-import wristband from "@/components/services/wristband";
 import type OrderItem from "@/type/OrderItem";
-import { useCustomerStore } from "./customer";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -14,22 +12,22 @@ export const useOrderStore = defineStore("order", () => {
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
   const EnAdultqty = ref(0);
-  const totalTicket = ref(0)
-  const total = ref(0)
+  const totalTicket = ref(0);
+  const total = ref(0);
   const currentOrder = ref<Order>({
     cusID: 1,
-      qty: 0,
-      totalPrice: 0,
-      netPrice: 0,
-      numPeople: null,
-      nameComp: null,
-      discount: 0,
-      received: 0,
-      payments: "PromptPay",
-      startDate: new Date(),
-      expDate: new Date(),
-      orderItems: orderList.value,
-  })
+    qty: 0,
+    totalPrice: 0,
+    netPrice: 0,
+    numPeople: null,
+    nameComp: null,
+    discount: 0,
+    received: 0,
+    payments: "PromptPay",
+    startDate: new Date(),
+    expDate: new Date(),
+    orderItems: orderList.value,
+  });
 
   const sumbeDis = computed(() => {
     let sum = 0;
@@ -49,7 +47,7 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   async function openOrder() {
-    const orderItems = orderList.value
+    const orderItems = orderList.value;
     const order = {
       cusID: 1,
       qty: 0,
@@ -68,7 +66,7 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
-      console.log(currentOrder.value);
+      clearOrder();
     } catch (e) {
       console.log("e");
     }
@@ -185,6 +183,11 @@ export const useOrderStore = defineStore("order", () => {
 
   function clearOrder() {
     orderList.value = [];
+    ThChildqty.value = 0;
+    ThAdultqty.value = 0;
+    EnChildqty.value = 0;
+    EnAdultqty.value = 0;
+    console.log(orderList.value);
   }
 
   return {
