@@ -205,8 +205,18 @@ export const useOrderStore = defineStore("order", () => {
     EnAdultqty.value = 0;
     console.log(orderList.value);
   }
+  const saveOrder = async () => {
+    try {
+      await orderService.saveOrder(currentOrder.value)
+      console.log(currentOrder.value)
+    } catch (e) {
+      console.log("e");
+    }
+  }
+  
 
   return {
+    saveOrder,
     ThChildqty,
     ThAdultqty,
     EnChildqty,

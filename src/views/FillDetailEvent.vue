@@ -3,7 +3,21 @@ import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { usePlusMinusStore } from "../stores/counter";
 import { mdiPlus, mdiMinus } from "@mdi/js";
+import { useOrderStore } from "@/stores/order.store";
+import type { VForm } from "vuetify/components";
+import { useEventStore } from "@/stores/event.store";
+import { useCustomerStore } from "@/stores/customer";
+const form = ref<VForm | null>(null)
 const calStore = usePlusMinusStore();
+const orderStore = useOrderStore();
+const customerStore = useCustomerStore();
+const eventStore = useEventStore();
+async function save() {
+    const { valid } = await form.value!.validate()
+    if (valid) {
+        await orderStore.saveOrder()
+    }
+}
 </script>
 
 <template>
@@ -19,20 +33,21 @@ const calStore = usePlusMinusStore();
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"/>
+                <input type="text" placeholder="ชื่อ" required v-model="customerStore.currentUser.name" class="placeholder-color forumSize0"/>
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"/>
+                <input type="text" placeholder="เบอร์โทรศัพท์"  required v-model="customerStore.currentUser.tel" class="placeholder-color forumSize0"/>
               </v-flex>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
-              <!-- <v-flex> -->
+              <v-flex>
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
-                  <select
+                  
+                <!-- <select
                     class="placeholder-color forumSize0"
                     style="font-size:35px;"
                     
@@ -41,31 +56,38 @@ const calStore = usePlusMinusStore();
                     <option>การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล</option>
                     <option>หลักสูตร จูเนียร์ ไลฟ์การ์ด</option>
                     <option>การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</option>
-                  </select>
-              <!-- </v-flex> -->
+                  </select> -->
+                  <v-select class="forumSize0" style="font-size:35px;" label="หลักสูตร" v-model="eventStore.currentEvent.type"
+                                        :items="['การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล', 'หลักสูตร จูเนียร์ ไลฟ์การ์ด', 'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล']">
+                                    </v-select>
+              </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" />
+                <input type="text" placeholder="ชื่อบริษัท"  required v-model="orderStore.currentOrder.nameComp" class="placeholder-color forumSize0" />
               </v-flex>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" />
+                <input type="text" placeholder="อีเมลล์" required v-model="customerStore.currentUser.email" class="placeholder-color forumSize0" />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
-              <v-flex>
+              <!-- <v-flex>
                 <input type="text" placeholder="เลือกวันที่จะเข้าอบรม" class="placeholder-color forumSize0" />
-              </v-flex>
+              </v-flex> -->
+              <form action="/action_page.php">
+  <label for="dateday"></label>
+  <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
+</form>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
               <div class="d-flex align-center">
-                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color forumSize mr-2" />
+                <input type="text" placeholder="จำนวนผู้เข้าอบรม" required v-model="orderStore.currentOrder.numPeople" class="placeholder-color forumSize mr-2" />
                 <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-2"></v-btn>
                 <div class="smallfont mr-2">{{ calStore.Childcount }}</div>
                 <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn>
@@ -76,7 +98,7 @@ const calStore = usePlusMinusStore();
           <v-row>
             <v-col  class="text-left; justify-center">
               <RouterLink to="/sumdetail">
-                <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
+                <v-btn color="#87B859" class="large-button" @click="save">ยืนยัน</v-btn>
               </RouterLink>
             </v-col>
             
