@@ -32,4 +32,5 @@ function getEvent() {
 // }
 
 
+
 export default {getEvent}

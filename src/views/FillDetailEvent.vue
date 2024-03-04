@@ -15,10 +15,7 @@ const eventStore = useEventStore();
 const PeopleIncrement = ref(0);
 
 async function save() {
-    const { valid } = await form.value!.validate()
-    if (valid) {
-        await orderStore.saveOrder()
-    }
+        await orderStore.eventOrder()
 }
 
 function add(){
@@ -118,9 +115,9 @@ function minus(){
           
           <v-row>
             <v-col  class="text-left; justify-center">
-              <RouterLink to="/sumdetail">
+              <!-- <RouterLink to="/sumdetail"> -->
                 <v-btn color="#87B859" class="large-button" @click="save">ยืนยัน</v-btn>
-              </RouterLink>
+              <!-- </RouterLink> -->
             </v-col>
             
           </v-row>

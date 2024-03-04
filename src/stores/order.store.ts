@@ -206,6 +206,7 @@ export const useOrderStore = defineStore("order", () => {
     EnAdultqty.value = 0;
     console.log(orderList.value);
   }
+  
   const saveOrder = async () => {
     try {
       await orderService.saveOrder(currentOrder.value)
@@ -214,10 +215,39 @@ export const useOrderStore = defineStore("order", () => {
       console.log("e");
     }
   }
+
+
+  async function eventOrder() {
+    const order = {
+      cusID: 1,
+      eventID: 39,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      numPeople: null,
+      nameComp: null,
+      discount: 0,
+      received: 0,
+      payments: "PromptPay",
+      startDate: new Date(),
+      expDate: new Date(),
+      orderItems: [],
+
+    };
+    console.log(order);
+    try {
+      const res = await orderService.saveOrder(order);
+      currentOrder.value = res.data;
+      clearOrder();
+    } catch (e) {
+      console.log("e");
+    }
+  }
   
 
 
   return {
+    eventOrder,
     saveOrder,
     ThChildqty,
     ThAdultqty,
