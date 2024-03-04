@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
+import Receipt from "@/views/ReceiptView.vue"
 </script>
 
 <template>
@@ -45,10 +46,12 @@ import { RouterLink, RouterView } from "vue-router";
           ><div class="smallnormalFont">ยกเลิก</div></v-btn
         ></RouterLink
       >
-
-      <v-btn class="large-button2 ml-12"
-        ><div class="smallnormalFont">ชำระเงิน</div></v-btn
-      >
+      <v-dialog transition="dialog-bottom-transition" width="auto" >
+            <template v-slot:activator="{ props: activatorProps }">
+              <v-btn class="large-button2 ml-12 smallnormalFont" v-bind="activatorProps"  text="ชำระเงิน"></v-btn>          
+            </template>                    
+                <Receipt></Receipt>  
+          </v-dialog>
     </v-row>
   </body>
 </template>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
 import { onMounted, ref } from "vue";
-import { usePlusMinusStore } from "../stores/counter";
+import { useOrderStore } from "../stores/order.store";
 import { useTicketStore } from "../stores/ticket.store";
 import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
 import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
-const calStore = usePlusMinusStore();
+const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
 const tab = ref(1);
 onMounted(async () => {
@@ -26,7 +25,7 @@ onMounted(async () => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
                   <div v-if="item.type === 'คนไทย' && item.name === 'บัตรเด็ก'">
                     <v-card color="#F5F1DC" theme="dark" class="borderradius">
                       <v-layout>
@@ -46,9 +45,9 @@ onMounted(async () => {
                               <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
                             </div>
                             <v-spacer></v-spacer>
-                            <v-btn :icon="mdiPlus" @click="calStore.ThChildincrement"></v-btn>
-                            <div class="smallfont">{{ calStore.ThChildcount }}</div>
-                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.ThChilddecrement"></v-btn>
+                            <v-btn :icon="mdiPlus" @click="orderStore.ThChildincrement(item)"></v-btn>
+                            <div class="smallfont">{{ orderStore.ThChildqty }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="orderStore.ThChilddecrement(index)"></v-btn>
                           </v-card-actions>
                         </v-card-title>
                       </v-layout>
@@ -57,7 +56,7 @@ onMounted(async () => {
                 </div>
               </v-col>
               <v-col>
-                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
                   <div v-if="item.type === 'คนไทย' && item.name === 'บัตรผู้ใหญ่'">
                     <v-card color="#F5F1DC" theme="dark" class="borderradius">
                       <v-layout>
@@ -76,9 +75,9 @@ onMounted(async () => {
                               <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
                             </div>
                             <v-spacer></v-spacer>
-                            <v-btn :icon="mdiPlus" @click="calStore.ThAdultincrement"></v-btn>
-                            <div class="smallfont">{{ calStore.ThAdultcount }}</div>
-                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.ThAdultdecrement"></v-btn>
+                            <v-btn :icon="mdiPlus" @click="orderStore.ThAdultincrement(item)"></v-btn>
+                            <div class="smallfont">{{ orderStore.ThAdultqty }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="orderStore.ThAdultdecrement(index)"></v-btn>
                           </v-card-actions>
                         </v-card-title>
                       </v-layout>
@@ -93,7 +92,7 @@ onMounted(async () => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรเด็ก'">
                     <v-card color="#F5F1DC" theme="dark" class="borderradius">
                       <v-layout>
@@ -112,9 +111,9 @@ onMounted(async () => {
                               <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
                             </div>
                             <v-spacer></v-spacer>
-                            <v-btn :icon="mdiPlus" @click="calStore.EnChildincrement"></v-btn>
-                            <div class="smallfont">{{ calStore.EnChildcount }}</div>
-                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.EnChilddecrement"></v-btn>
+                            <v-btn :icon="mdiPlus" @click="orderStore.EnChildincrement(item)"></v-btn>
+                            <div class="smallfont">{{ orderStore.EnChildqty }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="orderStore.EnChilddecrement(index)"></v-btn>
                           </v-card-actions>
                         </v-card-title>
                       </v-layout>
@@ -123,7 +122,7 @@ onMounted(async () => {
                 </div>
               </v-col>
               <v-col>
-                <div v-for="item of ticketStore.tickets" :key="item.id" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรผู้ใหญ่'">
                     <v-card color="#F5F1DC" theme="dark" class="borderradius">
                       <v-layout>
@@ -142,9 +141,9 @@ onMounted(async () => {
                               <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
                             </div>
                             <v-spacer></v-spacer>
-                            <v-btn :icon="mdiPlus" @click="calStore.EnAdultincrement"></v-btn>
-                            <div class="smallfont">{{ calStore.EnAdultcount }}</div>
-                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="calStore.EnAdultdecrement"></v-btn>
+                            <v-btn :icon="mdiPlus" @click="orderStore.EnAdultincrement(item)"></v-btn>
+                            <div class="smallfont">{{ orderStore.EnAdultqty }}</div>
+                            <v-btn class="text-xs-right" :icon="mdiMinus" @click="orderStore.EnAdultdecrement(index)"></v-btn>
                           </v-card-actions>
                         </v-card-title>
                       </v-layout>
@@ -179,7 +178,7 @@ onMounted(async () => {
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
             <RouterLink to="/filldetail">
-              <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
+              <v-btn color="#87B859" class="large-button" @click="orderStore.openOrder()">ยืนยัน</v-btn>
             </RouterLink>
           </v-flex>
         </v-col>

@@ -1,11 +1,18 @@
 import eventService from '../components/services/event';
-import type Event from './type/event'
+import type Event from '@/type/event'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 
 export const useEventStore = defineStore("event", () => {
   const events = ref<Event[]>([])
+  const currentEvent = ref<Event & { files: File[] }>({
+    name: " ",
+    event_image: 'no_image.jpg',
+    price: 0,
+    type: " ",
+    files: []
+  });
   async function getEvent() {
     try {
       const res = await eventService.getEvent();
@@ -17,5 +24,5 @@ export const useEventStore = defineStore("event", () => {
     }
   }
 
-  return { events, getEvent };
+  return { events, getEvent, currentEvent };
 });

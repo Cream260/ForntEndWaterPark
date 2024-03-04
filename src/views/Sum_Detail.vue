@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import { useCustomerStore } from "@/stores/customer";
+import { useOrderStore } from "@/stores/order.store";
+import { onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+const orderStore = useOrderStore();
+const customerStore = useCustomerStore();
+
+onMounted(async () => {
+  await orderStore.getOrder;
+  await customerStore.getCustomer;
+})
 </script>
 
 <template>
@@ -16,14 +26,14 @@ import { RouterLink, RouterView } from "vue-router";
               <h5>ชื่อ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>Paowaric Vachiranantakul</h5>
+              <h5>{{ customerStore.currentUser.name }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ชื่อบัตร</h5>
             </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>บัตรเด็ก</h5>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>??</h5>
             </v-col>
           </v-row>
           <v-row>
@@ -31,13 +41,13 @@ import { RouterLink, RouterView } from "vue-router";
               <h5>อีเมลล์</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>gxz321@hotmail.com</h5>
+              <h5>{{ customerStore.currentUser.email }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>โปรโมชั่น</h5>
             </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
               <h5>-</h5>
             </v-col>
           </v-row>
@@ -46,14 +56,14 @@ import { RouterLink, RouterView } from "vue-router";
               <h5>เบอร์โทรศัพท์</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>0869703269</h5>
+              <h5>{{ customerStore.currentUser.tel }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ราคา</h5>
             </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>699 THB x 1</h5>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>?? THB x {{ orderStore.currentOrder.qty }}</h5>
             </v-col>
           </v-row>
           <v-row>
@@ -61,14 +71,14 @@ import { RouterLink, RouterView } from "vue-router";
               <h5>วันที่มาใช้บริการ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>28 Jan, 2024</h5>
+              <h5>{{ orderStore.currentOrder.startDate }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ส่วนลด</h5>
             </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>-</h5>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{ orderStore.currentOrder.totalPrice }} THB</h5>
             </v-col>
           </v-row>
           <v-row>
@@ -76,14 +86,14 @@ import { RouterLink, RouterView } from "vue-router";
               <h5>บัตรหมดอายุ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>29 Jan, 2024</h5>
+              <h5>{{ orderStore.currentOrder.expDate }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ราคาสุทธิ</h5>
             </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>699 THB</h5>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{ orderStore.currentOrder.netPrice }} THB</h5>
             </v-col>
           </v-row>
         </v-card>

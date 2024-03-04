@@ -1,35 +1,49 @@
+import type Order from "@/type/order";
 import http from "./axios";
 
 function getOrder() {
-    return http.get("/orders");
-  }
-// const createCustomer = (data:Ticket & {files:File[]})=>{
-//     const formData = new FormData();
-//     formData.append("name",data.name);
-//     formData.append("point",data.point+'');
-//     formData.append("tel",data.tel);
-//     formData.append("file",data.files[0]);
-//     return http.post("/customers",formData,{headers:{'Content-Type':'multipart/form-data'}});
+  return http.get("/orders");
+}
 
-// }
-// const updateCustomer = async (id:string,data:Customer & {files:File[]})=>{
-//     const formData = new FormData();
-//     formData.append("name",data.name);
-//     formData.append("point",data.point+'');
-//     formData.append("tel",data.tel);
-//     if(data.files){
-//         formData.append("file",data.files[0]);
-//     }
-//     return await http.patch(`/customers/${id}`,formData,{headers:{'Content-Type':'multipart/form-data'}});
-// }
+function saveOrder(order: Order){
+//   qty: number;
+//   totalPrice: number;
+//   netPrice: number;
+//   numPeople: number;
+//   nameComp: string;
+//   discount: number;
+//   received: number;
+//   payments: string;
+//   startDate: Date;
+//   expDate: Date;
+//   cusId: {
+//     customerId: number;
+//     username: string;
+//     password: string;
+//     name: string;
+//     email: string;
+//     tel: number;
+//   }[];
+//   wristband : {
+//     wristbandId: number,
+//     type: string,
+//     startDate: Date;
+//     endDate: Date;
+//   }[];
+//   orderItems: {
+//     ticketId: number;
+//     qty: number;
+//   }[];
+// }) {
+  return http.post("/orders", order);
+}
 
-// const deleteCustomer = (id:string)=>{
-//     return http.delete(`/customers/${id}`);
-// }
+function updateOrder(id: number, order: Order) {
+  return http.patch(`/orders/${id}`, order);
+}
 
-// const findCustomerBytel = (tel:string)=>{
-//     return http.get(`/customers/search/tel/${tel}`);
-// }
+function deleteOrder(id: number) {
+  return http.delete(`/orders/${id}`);
+}
 
-
-export default {getOrder}
+export default { getOrder, saveOrder, updateOrder, deleteOrder };
