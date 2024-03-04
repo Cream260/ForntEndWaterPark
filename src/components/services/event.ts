@@ -3,6 +3,12 @@ import http from "./axios";
 function getEvent() {
     return http.get("/event");
   }
+
+  //get event by id
+
+  const getEventById = (id:number)=>{
+    return http.get(`/event/${id}`);
+  }
 // const createCustomer = (data:Ticket & {files:File[]})=>{
 //     const formData = new FormData();
 //     formData.append("name",data.name);
@@ -33,4 +39,4 @@ function getEvent() {
 
 
 
-export default {getEvent}
+export default {getEvent,getEventById}

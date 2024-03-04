@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
+import router from "@/router";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -220,36 +221,47 @@ export const useOrderStore = defineStore("order", () => {
   }
 
 
-  async function eventOrder() {
-    const order = {
-      cusID: 1,
-      eventID: 39,
-      qty: 0,
-      totalPrice: 0,
-      netPrice: 0,
-      numPeople: null,
-      nameComp: null,
-      discount: 0,
-      received: 0,
-      payments: "PromptPay",
-      startDate: new Date(),
-      expDate: new Date(),
-      orderItems: [],
-
-    };
-    console.log(order);
+  
+  //function create order by event
+  async function eventOrder(order:Order) {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
+      console.log(res.data);
+      //Json
+      console.log(JSON.stringify(order));
       clearOrder();
+      window.location.href = '/sumdetail/' + currentOrder.value.id;
     } catch (e) {
-      console.log("e");
+      console.log(e);
     }
   }
-  
+  //getOrder by id
+  async function getOrderById(id: number) {
+    try {
+      const res = await orderService.getOrderById(id);
+      currentOrder.value = res.data;
+      console.log(JSON.stringify(currentOrder.value));
+      
+      return currentOrder.value;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function getOrderById_(id: number) {
+    try {
+      const res = await orderService.getOrderById(id);
+      console.log(JSON.stringify(currentOrder.value));
+      
+      return res;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
 
   return {
+    getOrderById_,
     eventOrder,
     saveOrder,
     ThChildqty,
@@ -272,6 +284,7 @@ export const useOrderStore = defineStore("order", () => {
     EnChilddecrement,
     EnAdultincrement,
     EnAdultdecrement,
+    getOrderById
     // PeopleCrement,
   };
 });

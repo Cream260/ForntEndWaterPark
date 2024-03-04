@@ -6,7 +6,14 @@
  import LifeGuardCard4 from '../components/events/LifeGuardCard4.vue';
 import { useEventStore } from '@/stores/event.store';
 
- const eventStore = useEventStore;
+//set current event
+const eventStore = useEventStore();
+//crate function setCurrentEvent
+
+
+
+
+
 </script>
 
 <template>

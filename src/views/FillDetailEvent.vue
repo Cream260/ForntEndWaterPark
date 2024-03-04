@@ -7,92 +7,150 @@ import { useOrderStore } from "@/stores/order.store";
 import type { VForm } from "vuetify/components";
 import { useEventStore } from "@/stores/event.store";
 import { useCustomerStore } from "@/stores/customer";
+import type Order from "@/type/order";
 
-const form = ref<VForm | null>(null)
+const form = ref<VForm | null>(null);
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const eventStore = useEventStore();
 
-const selectedDate = ref<string>('');
-const endDate = ref<string>('');
-const minDate = ref<string>(new Date().toISOString().split('T')[0]);
+const selectedDate = ref<Date>(new Date());
+//enddare is 1 year
+const endDate = ref<string>("");
+const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
+const type = ref("");
+var expDate = new Date(selectedDate.value.setFullYear(selectedDate.value.getFullYear() + 1));
 
 async function save() {
-        await orderStore.eventOrder()
-}
+  if (
+    type.value ==
+    "การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล"
+  ) {
+    //get event id 35
+    eventStore.currentEvent.id = 35;
 
-function formatDate(date: string): string {            // format วันที่
-  const selectedDate = new Date(date);
-  const day = selectedDate.getDate().toString().padStart(2, '0');
-  const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = selectedDate.getFullYear();
-  return `${day}-${month}-${year}`;
-}
-
-function getDate() {                                // ดึงข้อมูลมาจากปฎิทิน
-  const input = document.getElementById('dateday') as HTMLInputElement;
-  if (input) {
-    selectedDate.value = formatDate(input.value);
-    console.log(selectedDate.value);
-    calculateEndDate();
   }
+  if (type.value == "หลักสูตร จูเนียร์ ไลฟ์การ์ด") {
+    //get event id 36
+    eventStore.currentEvent.id = 36;
+    // console.log(event);
+
+  }
+  if (
+    type.value == "การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล"
+  ) {
+    //get event id 37
+    eventStore.currentEvent.id = 34;
+    // console.log(event);
+  }else{
+    eventStore.currentEvent.id = 35;
+  }
+  const order:Order = {
+    cusID:1,
+    eventId: eventStore.currentEvent.id,
+    nameComp: orderStore.currentOrder.nameComp,
+    discount: 0,
+    expDate: expDate,
+    startDate: new Date(selectedDate.value),
+    qty: PeopleIncrement.value,
+    numPeople: PeopleIncrement.value,
+    netPrice:0,
+    
+    totalPrice:0,
+    received: 1,
+  }
+  await orderStore.eventOrder(order);
 }
 
-function calculateEndDate() {
-  const tempDate = new Date(selectedDate.value);
-  tempDate.setFullYear(tempDate.getFullYear() + 1); // เพิ่มเวลาหมดอายุ 1 ปี
-  endDate.value = formatDate(tempDate.toISOString().split('T')[0]);
-  console.log('End date:', endDate.value);
+// function formatDate(date: string): string {
+//   // format วันที่
+//   const selectedDate = new Date(date);
+//   const day = selectedDate.getDate().toString().padStart(2, "0");
+//   const month = (selectedDate.getMonth() + 1).toString().padStart(2, "0");
+//   const year = selectedDate.getFullYear();
+//   return `${day}-${month}-${year}`;
+// }
+
+// function getDate() {
+//   // ดึงข้อมูลมาจากปฎิทิน
+//   const input = document.getElementById("dateday") as HTMLInputElement;
+//   if (input) {
+//     selectedDate.value = formatDate(input.value);
+//     console.log(selectedDate.value);
+//     calculateEndDate();
+//   }
+// }
+
+// function calculateEndDate() {
+//   const tempDate = new Date(selectedDate.value);
+//   tempDate.setFullYear(tempDate.getFullYear() + 1); // เพิ่มเวลาหมดอายุ 1 ปี
+//   endDate.value = formatDate(tempDate.toISOString().split("T")[0]);
+//   console.log("End date:", endDate.value);
+// }
+
+// watch(selectedDate, () => {
+//   console.log("Selected date:", selectedDate.value);
+//   calculateEndDate();
+// });
+
+// watch(minDate, () => {
+//   getDate();
+// });
+
+function add() {
+  PeopleIncrement.value++;
 }
 
-watch(selectedDate, () => {
-  console.log('Selected date:', selectedDate.value);
-  calculateEndDate();
-});
-
-watch(minDate, () => {
-  getDate();
-});
-
-function add(){
-    PeopleIncrement.value ++;
-}
-
-function minus(){
-  if(PeopleIncrement.value<=0){
+function minus() {
+  if (PeopleIncrement.value <= 0) {
     PeopleIncrement.value = 0;
-  }
-  else{
+  } else {
     PeopleIncrement.value--;
   }
-  
 }
-
 </script>
 
 <template>
   <body>
-    <container >
+    <container>
       <v-row justify="center" align="center">
-        <v-card 
+        <v-card
           class="activeTabs lgallfont my-5"
-          style="width: 55%; height: 80vh; align-items: center;border-radius: 20px; background-color: #FFFBF5;"
-          elevation="5" 
+          style="
+            width: 55%;
+            height: 80vh;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #fffbf5;
+          "
+          elevation="5"
         >
-        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%;"> 
-          รายละเอียดของคุณ
-        </div>
-          
+          <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
+            รายละเอียดของคุณ
+          </div>
+
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อ" required v-model="customerStore.currentUser.name" class="placeholder-color forumSize0"/>
+                <input
+                  type="text"
+                  placeholder="ชื่อ"
+                  required
+                  v-model="customerStore.currentUser.name"
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="เบอร์โทรศัพท์"  required v-model="customerStore.currentUser.tel" class="placeholder-color forumSize0"/>
+                <input
+                  type="text"
+                  placeholder="เบอร์โทรศัพท์"
+                  required
+                  v-model="customerStore.currentUser.tel"
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
           </v-row>
@@ -100,7 +158,7 @@ function minus(){
             <v-col cols="12" lg="6">
               <v-flex>
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
-                  
+
                 <!-- <select
                     class="placeholder-color forumSize0"
                     style="font-size:25px;"
@@ -111,21 +169,42 @@ function minus(){
                     <option>หลักสูตร จูเนียร์ ไลฟ์การ์ด</option>
                     <option>การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</option>
                   </select> -->
-                  <v-select class="placeholder-color forumSize0" style="font-size:35px;" label="หลักสูตร" v-model="eventStore.currentEvent.type"
-                                        :items="['การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล', 'หลักสูตร จูเนียร์ ไลฟ์การ์ด', 'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล']">
-                                    </v-select>
+                <v-select
+                  class="placeholder-color forumSize0"
+                  style="font-size: 35px"
+                  label="หลักสูตร"
+                  v-model="eventStore.currentEvent.type"
+                  :items="[
+                    'การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล',
+                    'หลักสูตร จูเนียร์ ไลฟ์การ์ด',
+                    'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล',
+                  ]"
+                >
+                </v-select>
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อบริษัท"  required v-model="orderStore.currentOrder.nameComp" class="placeholder-color forumSize0" />
+                <input
+                  type="text"
+                  placeholder="ชื่อบริษัท"
+                  required
+                  v-model="orderStore.currentOrder.nameComp"
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="อีเมลล์" required v-model="customerStore.currentUser.email" class="placeholder-color forumSize0" />
+                <input
+                  type="text"
+                  placeholder="อีเมลล์"
+                  required
+                  v-model="customerStore.currentUser.email"
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
@@ -133,40 +212,58 @@ function minus(){
                 <input type="text" placeholder="เลือกวันที่จะเข้าอบรม" class="placeholder-color forumSize0" />
               </v-flex> -->
               <!-- <form action="/action_page.php"> -->
-            <!-- <label for="dateday"></label> -->
-           <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" @change="getDate()" :min="minDate">
-            <!-- </form>  -->
+              <!-- <label for="dateday"></label> -->
+              <input
+                class="placeholder-color forumSize0"
+                type="date"
+                id="dateday"
+                name="dateday"
+               v-model="selectedDate"
+                :min="minDate"
+              />
+              <!-- </form>  -->
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
               <div class="d-flex align-center forumSize">
-                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color mr-2" readonly/>
-                <button @click="add()" class="mr-4" style="margin-left: 350px; font-size: 30px;">+</button>
-                <div class="smallfont mr-4" >{{ PeopleIncrement }}</div>
-                <button style="font-size: 30px;" @click="minus()">−</button>
+                <input
+                  type="text"
+                  placeholder="จำนวนผู้เข้าอบรม"
+                  class="placeholder-color mr-2"
+                  readonly
+                />
+                <button
+                  @click="add()"
+                  class="mr-4"
+                  style="margin-left: 350px; font-size: 30px"
+                >
+                  +
+                </button>
+                <div class="smallfont mr-4">{{ PeopleIncrement }}</div>
+                <button style="font-size: 30px" @click="minus()">−</button>
               </div>
             </v-col>
           </v-row>
-          
+
           <v-row>
-            <v-col  class="text-left; justify-center">
+            <v-col class="text-left; justify-center">
               <!-- <RouterLink to="/sumdetail"> -->
-                <v-btn color="#87B859" class="large-button" @click="save">ยืนยัน</v-btn>
+              <v-btn color="#87B859" class="large-button" @click="save()"
+                >ยืนยัน</v-btn
+              >
               <!-- </RouterLink> -->
             </v-col>
-            
           </v-row>
         </v-card>
       </v-row>
-      
     </container>
   </body>
 </template>
 
 <style scoped>
 body {
-  background-image: url('../images/Event/WallPaper.jpg');
+  background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   width: 100vw;
   height: 89vh;
@@ -177,7 +274,7 @@ body {
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .placeholder-color::placeholder {
@@ -193,13 +290,11 @@ body {
   margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 25px; 
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
 }
-
-
 
 .forumSize {
   background-color: rgba(0, 0, 0, 0.07);
@@ -237,6 +332,4 @@ input[type="text"]:focus {
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
 </style>

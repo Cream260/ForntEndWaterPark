@@ -69,7 +69,7 @@ const router = createRouter({
       component: () => import('../views/Fill_Detail.vue')
     },
     {
-      path: '/sumdetail',
+      path: '/sumdetail/:id',
       name: 'sumdetail',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route

@@ -2,11 +2,19 @@
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
 import { useManageTime } from "@/stores/manageDate"
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+//get id from param
+import { useRoute } from "vue-router";
+import { useEventStore } from "@/stores/event.store";
+const route = useRoute();
 const orderStore = useOrderStore();
+const eventStore = useEventStore();
 const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
+const event_  = ref<Event>();
+// create function find event by event id in array
+
 const date = (index: string) => {
   let dd = new Date(index);
   let date = {
@@ -53,16 +61,25 @@ const date = (index: string) => {
   return date;
 };
 onMounted(async () => {
+  // 🥲
   orderStore.currentOrder.expDate = new Date();
   orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
   await orderStore.getOrder;
   await customerStore.getCustomer;
+const paramValue = route.params.id;
+//getOrderById
+console.log(paramValue);
+ await orderStore.getOrderById(parseInt(paramValue.toString()));
+ const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
+
+ await eventStore.getEventById(res?.data.event!.id);
 })
 </script>
 
 <template>
   <body>
+    <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs lgallfont">
         <div style="font-size: 40px; margin-top: 1%; margin-bottom: 1%;">
@@ -82,7 +99,7 @@ onMounted(async () => {
               <h5>ชื่อบัตร</h5>
             </v-col>
             <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>??</h5>
+              <h5>{{ eventStore.currentEvent.name }}</h5>
             </v-col>
           </v-row>
           <v-row>
@@ -112,7 +129,7 @@ onMounted(async () => {
               <h5>ราคา</h5>
             </v-col>
             <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>?? THB x {{ orderStore.currentOrder.qty }}</h5>
+              <h5>{{eventStore.currentEvent.price }} THB x {{ orderStore.currentOrder.qty }}</h5>
             </v-col>
           </v-row>
           <v-row>
@@ -137,9 +154,9 @@ onMounted(async () => {
               <h5>บัตรหมดอายุ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
-            + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
-              Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+              <h5 class="normalFont">{{ date(orderStore.currentOrder.expDate + "").date + " "
+            + manageTimeStore.month[new Date(orderStore.currentOrder.expDate + "").getMonth()] + " , " + new
+              Date(orderStore.currentOrder.expDate + "").getFullYear() }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -159,7 +176,7 @@ onMounted(async () => {
           <v-col cols="12" lg="4" class="text-left">
             <RouterLink to="/CreditCard">
               <v-btn class="large-button1">
-                <div class="smallnormalFont">Credit/Debit Card</div>
+                <div class="smallnormalFont" @click="">Credit/Debit Card</div>
               </v-btn>
             </RouterLink>
           </v-col>

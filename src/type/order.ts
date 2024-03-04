@@ -21,4 +21,5 @@ export default interface Order {
   eventId?: number;
   packageId?: number;
   orderItems?: OrderItem[];
+  event?:Event;
 }

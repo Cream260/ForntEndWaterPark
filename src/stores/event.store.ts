@@ -26,7 +26,19 @@ export const useEventStore = defineStore("event", () => {
     currentEvent.value = event;
     console.log(currentEvent.value);
   }
+
+  //get event by id
+  async function getEventById(id: number) {
+    try {
+      const res = await eventService.getEventById(id);
+      currentEvent.value = res.data;
+      console.log(res.data);
+      return currentEvent.value;
+    } catch (e) {
+      console.log(e);
+    }
+  }
  
 
-  return { events, getEvent, currentEvent ,setCurrentEvent};
+  return { events, getEvent, currentEvent ,setCurrentEvent,getEventById};
 });
