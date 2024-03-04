@@ -2,7 +2,7 @@
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
 import { onMounted } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 
