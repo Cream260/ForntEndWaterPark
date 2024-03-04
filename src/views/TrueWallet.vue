@@ -41,10 +41,13 @@ import Receipt from "@/views/ReceiptView.vue"
         <label for="fname">ชื่อผู้ชำระเงิน</label>
         <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
-      <v-col cols="12" lg="6" ></v-col>
+      <v-col cols="12" lg="6" style="font-size: 30px;">
+        <label for="fname">จำนวนเงิน</label>
+        <input type="text" placeholder="THB" />
+      </v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">อีเมลล์</label>
-        <input type="text" placeholder="ชื่อ - นามสกุล" />
+        <input type="text" placeholder="Email" />
       </v-col>
       <v-col cols="12" lg="6" ></v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">

@@ -5,14 +5,15 @@ import { onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
+
 </script>
 
 <template>
   <div class="d-flex align-center flex-column" style="font-family: 'Kanit', 'sans-serif';">
-    <v-card class="borderradius" width="620" height="750">
+    <v-card class="borderradius" width="620" height="780">
       <h1 class="text-center bignormalFont">ชำระเสร็จสิ้น</h1>
       <div class="d-flex align-center flex-column">
-        <v-card class="mt-3 invcard" width="500" height="550">
+        <v-card class="mt-3 invcard" width="500" height="580">
           <div class="d-flex align-center justify-space-around">
             <v-avatar color="grey" size="70" rounded="10" class="mt-3">
               <v-img cover src="../src/images/Ticket/Icon.png"></v-img>
@@ -52,28 +53,28 @@ const customerStore = useCustomerStore();
               </v-col>
               <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
             </v-row>
+            <v-col cols="12" sm="12" class="pt-4 pl-2">
+              <h5 class="normalFont">โปรหรรษาคลายร้อน??</h5>
+            </v-col>
           </div>
-          <div class="pt-2">
+          <div class="pt-2" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
             <v-row class="pl-2">
-              <v-col cols="12" sm="12" class="pt-6">
-                <h5 class="normalFont">โปรหรรษาคลายร้อน??</h5>
-              </v-col>
               <v-col cols="12" sm="5" class="pl-9">
-                <h5 class="normalFont">บัตรเข้าสวนน้ำแบบเต็มวัน??</h5>
+                <h5 class="normalFont">{{ item.name }}</h5>
               </v-col>
               <v-col cols="12" sm="2" class="pl-6">
-                <h5 class="normalFont">{{ orderStore.currentOrder.qty }}??</h5>
+                <h5 class="normalFont">{{ item.qty }}</h5>
               </v-col>
-              <v-col cols="12" sm="3" class="pl-12">
-                <h5 class="normalFont">{{ orderStore.currentOrder.netPrice }}</h5>
+              <v-col cols="12" sm="3" class="pl-12 text-right">
+                <h5 class="normalFont">{{ item.totalPrice }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
               </v-col>
-              <v-divider :thickness="3" class="border-opacity-50 mt-9"></v-divider>
             </v-row>
           </div>
-          <div class="pt-2">
+          <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
+          <div>
             <v-row class="pl-2 mt-2">
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">รวม : </h5>

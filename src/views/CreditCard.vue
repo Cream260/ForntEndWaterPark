@@ -41,7 +41,10 @@ import Receipt from "@/views/ReceiptView.vue"
         <label for="fname">หมายเลขบัตร</label>
         <input type="text" placeholder="0000-0000-0000-0000" />
       </v-col>
-      <v-col cols="12" lg="6" ></v-col>
+      <v-col cols="12" lg="6" style="font-size: 30px;">
+        <label for="fname">จำนวนเงิน</label>
+        <input type="text" placeholder="THB" />
+      </v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>
         <input type="text" placeholder="ชื่อ - นามสกุล"/>
@@ -49,7 +52,7 @@ import Receipt from "@/views/ReceiptView.vue"
       <v-col cols="12" lg="6"></v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">อีเมลล์</label>
-        <input type="text" />
+        <input type="text" placeholder="Email" />
       </v-col>
       <v-col cols="12" lg="6"></v-col>
       <RouterLink to="/">
