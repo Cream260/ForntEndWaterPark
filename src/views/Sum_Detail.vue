@@ -16,11 +16,11 @@ onMounted(async () => {
   <body>
     <container class="fluid">
       <v-card class="activeTabs lgallfont">
-        <div style="margin-top: 1%;">
+        <div style="font-size: 40px; margin-top: 1%; margin-bottom: 1%;">
           รายละเอียดของคุณ
         </div>
         
-        <v-card class="pa-4 ma-6 detailCard">
+        <v-card class="pa-4 ma-4 detailCard">
           <v-row>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ชื่อ</h5>
@@ -135,7 +135,7 @@ body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
   width: 100vw;
-  height: 91.2vh;
+  height: 89vh;
   margin-top: 80px;
   padding: 25px;
   font-family: 'Kanit', 'sans-serif';
@@ -148,13 +148,13 @@ body {
   width: 70%; 
   height: 80vh;
   margin-left: 15%;
-  margin-top: 1.5%;
+  margin-top: 0.5%;
 }
 
 .detailCard {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
+  top: 1rem;
   z-index: 2;
   background-color: #f5f1dc34;
 }
@@ -168,17 +168,17 @@ body {
 }
 
 .smallnormalFont {
-  font-size: 36px;
+  font-size: 23px;
   font-weight: normal;
   color: #000000;
 }
 
 .large-button1 {
-  width: 400px;
-  height: 100px;
+  width: 280px;
+  height: 80px;
   border-radius: 35px;
   margin-left: 10px;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: normal;
   background-color: #9eb8d9;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -186,8 +186,8 @@ body {
 }
 
 .large-button2 {
-  width: 400px;
-  height: 100px;
+  width: 280px;
+  height: 80px;
   border-radius: 35px;
   margin-left: 10px;
   font-size: 36px;
@@ -197,12 +197,13 @@ body {
 }
 
 .large-button3 {
-  width: 400px;
-  height: 100px;
+  width: 280px;
+  height: 80px;
   border-radius: 35px;
   margin-left: 10px;
   font-size: 36px;
   font-weight: normal;
   background-color: #e7bcde;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
 }</style>

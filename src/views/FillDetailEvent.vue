@@ -7,18 +7,19 @@ import { useOrderStore } from "@/stores/order.store";
 import type { VForm } from "vuetify/components";
 import { useEventStore } from "@/stores/event.store";
 import { useCustomerStore } from "@/stores/customer";
+
 const form = ref<VForm | null>(null)
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const eventStore = useEventStore();
+
 const selectedDate = ref<string>('');
 const endDate = ref<string>('');
 const minDate = ref<string>(new Date().toISOString().split('T')[0]);
+const PeopleIncrement = ref(0);
+
 async function save() {
-    const { valid } = await form.value!.validate()
-    if (valid) {
-        await orderStore.saveOrder()
-    }
+        await orderStore.eventOrder()
 }
 
 function formatDate(date: string): string {            // format วันที่
@@ -53,6 +54,21 @@ watch(selectedDate, () => {
 watch(minDate, () => {
   getDate();
 });
+
+function add(){
+    PeopleIncrement.value ++;
+}
+
+function minus(){
+  if(PeopleIncrement.value<=0){
+    PeopleIncrement.value = 0;
+  }
+  else{
+    PeopleIncrement.value--;
+  }
+  
+}
+
 </script>
 
 <template>
@@ -60,11 +76,14 @@ watch(minDate, () => {
     <container >
       <v-row justify="center" align="center">
         <v-card 
-          class="activeTabs lgallfont my-12"
-          style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
+          class="activeTabs lgallfont my-5"
+          style="width: 55%; height: 80vh; align-items: center;border-radius: 20px; background-color: #FFFBF5;"
           elevation="5" 
         >
+        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%;"> 
           รายละเอียดของคุณ
+        </div>
+          
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
@@ -84,7 +103,7 @@ watch(minDate, () => {
                   
                 <!-- <select
                     class="placeholder-color forumSize0"
-                    style="font-size:35px;"
+                    style="font-size:25px;"
                     
                   >
                     <option class="placeholder-color forumSize0">หลักสูตร</option>
@@ -121,20 +140,20 @@ watch(minDate, () => {
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
-              <div class="d-flex align-center">
-                <input type="text" placeholder="จำนวนผู้เข้าอบรม" required v-model="orderStore.currentOrder.numPeople" class="placeholder-color forumSize mr-2" />
-                <v-btn :icon="mdiPlus"  class="mr-2"></v-btn>
-                <div class="smallfont mr-2"></div>
-                <v-btn :icon="mdiMinus"></v-btn>
+              <div class="d-flex align-center forumSize">
+                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color mr-2" readonly/>
+                <button @click="add()" class="mr-4" style="margin-left: 350px; font-size: 30px;">+</button>
+                <div class="smallfont mr-4" >{{ PeopleIncrement }}</div>
+                <button style="font-size: 30px;" @click="minus()">−</button>
               </div>
             </v-col>
           </v-row>
           
           <v-row>
             <v-col  class="text-left; justify-center">
-              <RouterLink to="/sumdetail">
+              <!-- <RouterLink to="/sumdetail"> -->
                 <v-btn color="#87B859" class="large-button" @click="save">ยืนยัน</v-btn>
-              </RouterLink>
+              <!-- </RouterLink> -->
             </v-col>
             
           </v-row>
@@ -150,19 +169,15 @@ body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
   width: 100vw;
-  height: 91.3vh;
-  width: 100vw;
-  height: 91.2vh;
+  height: 89vh;
   margin-top: 80px;
-  padding: 15px;
+  padding: 25px;
 }
 
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
-  z-index: 2;
-  
+  z-index: 2; 
 }
 
 .placeholder-color::placeholder {
@@ -173,42 +188,30 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px; 
+  font-size: 25px; 
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
 }
 
-.v-field__input {
-  background-color: rgba(0, 0, 0, 0.07);
-  border-radius: 40px;
-  width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
-  box-sizing: border-box;
-  outline: none;
-  font-size: 35px; 
-  font-weight: lighter;
-  border: 2px solid #0ebfd7;
-  width: 90%;
-}
+
 
 .forumSize {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin-left: 23px;
+  margin-top: 4px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 95%;
@@ -219,19 +222,21 @@ input[type="text"]:focus {
 }
 
 .lgallfont {
-  font-size: 48px;
+  font-size: 28px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
 }
 
 .large-button {
-  width: 599px;
-  height: 77px;
+  width: 315px;
+  height: 57px;
   border-radius: 20px;
   margin-left: 30px;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
 </style>

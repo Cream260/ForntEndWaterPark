@@ -10,9 +10,6 @@ onMounted(() => {
     console.log(eventStore.events)
 });
 
-function selectEvent(event: Event) {
-    eventStore.setCurrentEvent(event);
-}
 
 </script>
 
@@ -21,14 +18,14 @@ function selectEvent(event: Event) {
         <v-container>
             <v-row justify="center" align="center">
                 <v-card
-                    class="my-50"
+                    class="my-40"
                     style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
                    
                 >
                 <v-container>
                     <v-row justify="center" align="center">
                         <v-card
-                            class="my-8"
+                            class="my-5"
                             style="width: 93%; height: 15vh;align-items: center;border-radius: 20px; background-color: #B0DAFF; border-color: #A4C9EA; border-width: 3px;"                            
                         >
                             <v-row >
@@ -47,7 +44,7 @@ function selectEvent(event: Event) {
                             </v-row>
                         </v-card>
                         <v-card
-                            style="width: 93%; height: 53vh;align-items: center;border-radius: 20px; " 
+                            style="width: 93%; height: 56vh;align-items: center;border-radius: 20px; " 
                             class="cardBody"                            
                         >
                             <v-row>
@@ -66,7 +63,7 @@ function selectEvent(event: Event) {
                                 <v-col ols="4" v-for="index in 3" :key="index">
                                    
                                     <EventCardVue  :event-name="eventStore.events[index]?.name" 
-                                        :event-img="eventStore.events[index]?.event_image" style="margin-left: 9%; " @click="selectEvent(event)"/>
+                                        :event-img="eventStore.events[index]?.images" style="margin-left: 7%; " />
                                 </v-col>
                                 
                             </v-row>

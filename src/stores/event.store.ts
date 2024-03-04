@@ -8,7 +8,7 @@ export const useEventStore = defineStore("event", () => {
   const events = ref<Event[]>([])
   const currentEvent = ref<Event>({
     name: " ",
-    event_image: 'no_image.jpg',
+    images: 'no_image.jpg',
     price: 0,
     type: " ",
   });
