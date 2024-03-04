@@ -13,7 +13,7 @@ onMounted(async () => {
   await customerStore.getCustomer;
 })
 
-function clearFillDetail()  {
+function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
@@ -84,10 +84,14 @@ function clearFillDetail()  {
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
-            <v-flex>
+            <!-- <v-flex>
               <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0"
                 v-model="orderStore.currentOrder.startDate" />
-            </v-flex>
+            </v-flex> -->
+            <form action="/action_page.php">
+              <label for="dateday"></label>
+              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
+            </form>
           </v-col>
         </v-row>
         <v-row>
@@ -120,7 +124,7 @@ function clearFillDetail()  {
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
             <!-- <RouterLink to="/"> -->
-              <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
+            <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
             <!-- </RouterLink> -->
           </v-col>
           <v-col></v-col>

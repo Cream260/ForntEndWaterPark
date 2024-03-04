@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { useCustomerStore } from "@/stores/customer";
+import { useOrderStore } from "@/stores/order.store";
+import { onMounted } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+const orderStore = useOrderStore();
+const customerStore = useCustomerStore();
 </script>
 
 <template>
@@ -19,13 +25,13 @@
                 <h5 class="normalFont">Date : </h5>
               </v-col>
               <v-col cols="12" sm="4">
-                <h5 class="normalFont">-</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
               </v-col>
-              <v-col cols="12" sm="3">
+              <v-col cols="12" sm="2">
                 <h5 class="normalFont">Time : </h5>
               </v-col>
-              <v-col cols="12" sm="3">
-                <h5 class="normalFont">-</h5>
+              <v-col cols="12" sm="4">
+                <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
               </v-col>
             </v-row>
             <v-row class="pl-2">
@@ -33,16 +39,16 @@
                 <h5 class="normalFont">Name : </h5>
               </v-col>
               <v-col cols="12" sm="4">
-                <h5 class="normalFont">-</h5>
+                <h5 class="normalFont">{{ customerStore.currentUser.name }}</h5>
               </v-col>
               <v-col cols="12" sm="3">
                 <h5 class="normalFont">รูปแบบการจ่าย :</h5>
               </v-col>
               <v-col cols="12" sm="3">
-                <h5 class="normalFont">-</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.payments }}</h5>
               </v-col>
               <v-col>
-                <h5 class="text-center headnormalFont">Queue #15</h5>
+                <h5 class="text-center headnormalFont">Queue # {{ orderStore.currentOrder.id }}</h5>
               </v-col>
               <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
             </v-row>
@@ -50,16 +56,16 @@
           <div class="pt-2">
             <v-row class="pl-2">
               <v-col cols="12" sm="12" class="pt-6">
-                <h5 class="normalFont">โปรหรรษาคลายร้อน</h5>
+                <h5 class="normalFont">โปรหรรษาคลายร้อน??</h5>
               </v-col>
               <v-col cols="12" sm="5" class="pl-9">
-                <h5 class="normalFont">บัตรเข้าสวนน้ำแบบเต็มวัน</h5>
+                <h5 class="normalFont">บัตรเข้าสวนน้ำแบบเต็มวัน??</h5>
               </v-col>
               <v-col cols="12" sm="2" class="pl-6">
-                <h5 class="normalFont">1</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.qty }}??</h5>
               </v-col>
               <v-col cols="12" sm="3" class="pl-12">
-                <h5 class="normalFont">699.00</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.netPrice }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
@@ -73,7 +79,7 @@
                 <h5 class="normalFont">รวม : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">699.00</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.netPrice }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
@@ -82,7 +88,7 @@
                 <h5 class="normalFont">ได้รับ : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">599.00</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.received }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
@@ -93,7 +99,7 @@
                 <h5 class="normalFont">ส่วนลด : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">100.00</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.discount }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
@@ -104,7 +110,7 @@
                 <h5 class="normalFont">รวมสุทธิ : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">599.00</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
