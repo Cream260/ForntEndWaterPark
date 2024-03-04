@@ -1,11 +1,62 @@
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import { useManageTime } from "@/stores/manageDate"
 import { onMounted } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
-
+const manageTimeStore = useManageTime();
+const date = (index: string) => {
+  let dd = new Date(index);
+  let date = {
+    date: "",
+    mouth: "",
+    year: "",
+    hour: "",
+    minute: "",
+    second: "",
+  };
+  date.year = dd.getFullYear() + "";
+  date.date = dd.getDate() + "";
+  date.mouth = dd.getMonth() + "";
+  date.minute = "" + dd.getMinutes();
+  date.hour = "" + dd.getHours();
+  date.second = "" + dd.getSeconds();
+  if (dd.getDate() < 10) {
+    date.date = "0" + dd.getDate();
+  }
+  if (dd.getMonth() < 10) {
+    date.mouth = "0" + dd.getMonth();
+  }
+  if (dd.getHours() < 10) {
+    date.hour = "0" + dd.getHours();
+  }
+  if (dd.getMinutes() < 10) {
+    date.minute = "0" + dd.getHours();
+  }
+  if (dd.getSeconds() < 10) {
+    date.second = dd.getSeconds() + "0";
+  }
+  if (dd.getMonth() < 10) {
+    date.mouth = "0" + dd.getMonth();
+  }
+  if (dd.getHours() < 10) {
+    date.hour = "0" + dd.getHours();
+  }
+  if (dd.getMinutes() < 10) {
+    date.minute = "0" + dd.getHours();
+  }
+  if (dd.getSeconds() < 10) {
+    date.second = dd.getSeconds() + "0";
+  }
+  return date;
+};
+onMounted(() => {
+  orderStore.currentOrder.expDate = new Date();
+  orderStore.currentOrder.startDate = new Date();
+  orderStore.getOrder();
+});
 </script>
 
 <template>
@@ -26,13 +77,17 @@ const customerStore = useCustomerStore();
                 <h5 class="normalFont">Date : </h5>
               </v-col>
               <v-col cols="12" sm="4">
-                <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
+                <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").date + " - "
+            + manageTimeStore.monthNum[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " - " + new
+              Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">Time : </h5>
               </v-col>
               <v-col cols="12" sm="4">
-                <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
+                <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").hour + " : "
+            + date(orderStore.currentOrder.startDate + "").minute + " : " +
+            date(orderStore.currentOrder.startDate + "").second }}</h5>
               </v-col>
             </v-row>
             <v-row class="pl-2">

@@ -1,12 +1,61 @@
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import { useManageTime } from "@/stores/manageDate"
 import { onMounted } from "vue";
 import { RouterLink } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
-
+const manageTimeStore = useManageTime();
+const date = (index: string) => {
+  let dd = new Date(index);
+  let date = {
+    date: "",
+    mouth: "",
+    year: "",
+    hour: "",
+    minute: "",
+    second: "",
+  };
+  date.year = dd.getFullYear() + "";
+  date.date = dd.getDate() + "";
+  date.mouth = dd.getMonth() + "";
+  date.minute = "" + dd.getMinutes();
+  date.hour = "" + dd.getHours();
+  date.second = "" + dd.getSeconds();
+  if (dd.getDate() < 10) {
+    date.date = "0" + dd.getDate();
+  }
+  if (dd.getMonth() < 10) {
+    date.mouth = "0" + dd.getMonth();
+  }
+  if (dd.getHours() < 10) {
+    date.hour = "0" + dd.getHours();
+  }
+  if (dd.getMinutes() < 10) {
+    date.minute = "0" + dd.getHours();
+  }
+  if (dd.getSeconds() < 10) {
+    date.second = dd.getSeconds() + "0";
+  }
+  if (dd.getMonth() < 10) {
+    date.mouth = "0" + dd.getMonth();
+  }
+  if (dd.getHours() < 10) {
+    date.hour = "0" + dd.getHours();
+  }
+  if (dd.getMinutes() < 10) {
+    date.minute = "0" + dd.getHours();
+  }
+  if (dd.getSeconds() < 10) {
+    date.second = dd.getSeconds() + "0";
+  }
+  return date;
+};
 onMounted(async () => {
+  orderStore.currentOrder.expDate = new Date();
+  orderStore.currentOrder.startDate = new Date();
+  orderStore.getOrder();
   await orderStore.getOrder;
   await customerStore.getCustomer;
 })
@@ -71,7 +120,9 @@ onMounted(async () => {
               <h5>วันที่มาใช้บริการ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ orderStore.currentOrder.startDate }}</h5>
+              <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
+            + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
+              Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -86,7 +137,9 @@ onMounted(async () => {
               <h5>บัตรหมดอายุ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ orderStore.currentOrder.expDate }}</h5>
+              <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
+            + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
+              Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
