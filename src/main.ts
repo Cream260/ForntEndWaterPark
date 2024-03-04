@@ -7,7 +7,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-// import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
+import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 // import '@mdi/font/css/materialdesignicons.css'
 // import './index.css'
 // import '@mdi/font/css/materialdesignicons.css'
@@ -18,9 +18,9 @@ import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
     icons: {
         defaultSet: 'mdi',
-        // aliases,
+        aliases,
         sets: {
-          // mdi,
+          mdi,
         }
       },
   components,

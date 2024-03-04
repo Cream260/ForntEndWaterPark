@@ -4,12 +4,8 @@ import { useOrderStore } from "../stores/order.store";
 import { useTicketStore } from "../stores/ticket.store";
 import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
 import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
-import { useCustomerStore } from "@/stores/customer";
-import { useWristbandStore } from "@/stores/wristband";
 const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
-const customerStore = useCustomerStore();
-const wristbandStore = useWristbandStore();
 const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTicket();
