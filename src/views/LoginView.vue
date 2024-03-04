@@ -1,22 +1,40 @@
-<script set lang="ts">
-import { useAuthStore } from '@/stores/auth';
-import { ref } from 'vue';
-import type { VForm } from "vuetify/components";
+<script setup lang="ts">
+import { useAuthStore } from "@/stores/auth";
+import { onMounted, ref } from "vue";
+const showPassword = ref(false); // Initially, the password is hidden
 
-const authStore = useAuthStore()
-const userName = ref('')
-const password = ref('')
-const valid = ref(true)
-const form = ref<InstanceType<typeof VForm> | null>(null)
-const login = async () => {
-const { valid } = await form.value!.validate()
-if (valid) {
-  authStore.login(userName.value, password.value)
+const username = ref("");
+const password = ref("");
+const authStore = useAuthStore();
+const errorMessage = ref("");
+ const showDialog = ref(false);
+
+ const login = async (event: Event) => {
+  event.preventDefault();
+  showDialog.value = false; 
+  errorMessage.value = "";
+
+  if (!username.value || !password.value) {
+    errorMessage.value = "Username and password are required.";
+    showDialog.value = true;
+    return;
+  }
+
+  try {
+    const res = await authStore.login(username.value, password.value);
+    if (res == null) {
+      errorMessage.value = "Your username or password is incorrect. Please try again.";
+      showDialog.value = true;
+    }
+  } catch (error) {
+    errorMessage.value = "Your username or password is incorrect. Please try again.";
+    showDialog.value = true;
+  }
+  
+  showDialog.value = false;
 }
-}
-const reset = () => {
-form.value?.reset()
-}
+
+
 </script>
 <template>
     <div class="login-container">
@@ -25,11 +43,11 @@ form.value?.reset()
       </div>
       <div class="form-container">
         <h2 style="text-align: center; font-size: 500%;">Login</h2>
-        <form @submit.prevent="submitForm">
+        <form >
           <div class="input-container">
             <label style="font-size: 200%;">User name:</label>
             <v-text-field
-                v-model="userName"
+                v-model="username"
                 :rules="[
                         (v) => !!v || 'Username is required'
                       ]" required
@@ -40,14 +58,20 @@ form.value?.reset()
             <label style="font-size: 200%;">Password:</label>
             <v-text-field
                 v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                placeholder="Password"
                 :rules="[
                         (v) => !!v || 'Password is required'
                       ]" required
             ></v-text-field>
+            <div class="mt-2 px-7 py-3" >
+              <p class="text-sm text-gray-500" style="color: red; text-align: center;">{{ errorMessage }}</p>
+            </div>
           </div>
           <v-col>
-                <button type="submit" style="border-color: #22668D; background-color: #427D9D;" @click = "login" >Sign in</button>
-            
+              <RouterLink to="/BuyTicket">
+                  <button  type="submit" style="border-color: #22668D; background-color: #427D9D;"   @click="login" >Sign in</button>
+              </RouterLink>
           </v-col>
           
           <a href="#">Forgot Password?</a>
@@ -55,22 +79,6 @@ form.value?.reset()
       </div>
     </div>
   </template>
-  <script>
-  export default {
-  data() {
-    return {
-      username: '',
-      password: ''
-    };
-  },
-  methods: {
-    submitForm() {
-      // Handle form submission
-      console.log(`Login for ${this.username}`);
-    }
-  }
-};
-</script>
 
   
   <style scoped>

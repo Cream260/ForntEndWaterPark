@@ -1,6 +1,31 @@
+
 import http from "./axios";
-function login(username: string, password: string) {
-  return http.post("/auth/login", { username, password });
+
+
+const  authenticate = async (email: string, password: string, username: string) =>{
+console.log({
+  email,
+  username: username,
+  user_password: password
+});
+    return await http.post("/auths/register", {
+      email,
+      username: username,
+      user_password: password
+    });
+
+  
 }
 
-export default { login };
+const login = async (credentials: { username: string; password: string }) =>{
+  try {
+    return await http.post("/auths/login", credentials);
+
+  } catch (error) {
+    console.error("Login failed", error);
+    throw error;
+  }
+}
+
+
+export default { login, authenticate };

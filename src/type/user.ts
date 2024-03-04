@@ -1,3 +1,4 @@
+import type Customer from "./customer";
 
 export default interface User {
     id?: number;
@@ -6,5 +7,6 @@ export default interface User {
     password: string;
     name: string;
     tel:string;
-    role:string
+    role:string;
+    customer:Customer;
   }

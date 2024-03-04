@@ -168,21 +168,5 @@ const router = createRouter({
     
   ]
 })
-const isLoggedIn = () => {
-  const user = localStorage.getItem('user')
-  if (user) {
-    return true
-  } else {
-    return false
-  }
-}
-router.beforeEach((to, from) => {
-  if (to.meta.requiresAuth && !isLoggedIn()) {
-    return {
-      path: '/login',
-      query: { redirect: to.fullPath }
-    }
-  }
-})
 
 export default router
