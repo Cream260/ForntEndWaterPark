@@ -67,10 +67,10 @@ const calStore = usePlusMinusStore();
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
-              <div class="d-flex align-center">
-                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color forumSize mr-2" />
-                <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-2"></v-btn>
-                <div class="smallfont mr-2">{{ calStore.Childcount }}</div>
+              <div class="d-flex align-center placeholder-color forumSize mr-2">
+                <input type="text" placeholder="จำนวนผู้เข้าอบรม" />
+                <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-4" style="margin-left: 330px;"></v-btn>
+                <div class="smallfont mr-4">{{ calStore.Childcount }}</div>
                 <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn>
               </div>
             </v-col>
@@ -134,13 +134,14 @@ body {
   width: 555px;
   height: 57px;
   padding: 8px 10px;
-  margin: 12px;
+  margin-left: 23px;
+  margin-top: 4px;
   box-sizing: border-box;
   outline: none;
   font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
-  width: 80%;
+  width: 95%;
 }
 
 input[type="text"]:focus {
@@ -163,4 +164,6 @@ input[type="text"]:focus {
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
 </style>
