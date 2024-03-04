@@ -13,10 +13,7 @@ const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const eventStore = useEventStore();
 async function save() {
-    const { valid } = await form.value!.validate()
-    if (valid) {
-        await orderStore.saveOrder()
-    }
+        await orderStore.eventOrder()
 }
 </script>
 
@@ -97,9 +94,9 @@ async function save() {
           
           <v-row>
             <v-col  class="text-left; justify-center">
-              <RouterLink to="/sumdetail">
+              <!-- <RouterLink to="/sumdetail"> -->
                 <v-btn color="#87B859" class="large-button" @click="save">ยืนยัน</v-btn>
-              </RouterLink>
+              <!-- </RouterLink> -->
             </v-col>
             
           </v-row>

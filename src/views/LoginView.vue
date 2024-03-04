@@ -1,3 +1,23 @@
+<script set lang="ts">
+import { useAuthStore } from '@/stores/auth';
+import { ref } from 'vue';
+import type { VForm } from "vuetify/components";
+
+const authStore = useAuthStore()
+const userName = ref('')
+const password = ref('')
+const valid = ref(true)
+const form = ref<InstanceType<typeof VForm> | null>(null)
+const login = async () => {
+const { valid } = await form.value!.validate()
+if (valid) {
+  authStore.login(userName.value, password.value)
+}
+}
+const reset = () => {
+form.value?.reset()
+}
+</script>
 <template>
     <div class="login-container">
       <div class="image-container">
@@ -10,7 +30,9 @@
             <label style="font-size: 200%;">User name:</label>
             <v-text-field
                 v-model="userName"
-                :rules="rules"
+                :rules="[
+                        (v) => !!v || 'Username is required'
+                      ]" required
                 label="User name"
             ></v-text-field>
           </div>
@@ -18,14 +40,13 @@
             <label style="font-size: 200%;">Password:</label>
             <v-text-field
                 v-model="password"
-                :rules="rules"
-                label="Password"
+                :rules="[
+                        (v) => !!v || 'Password is required'
+                      ]" required
             ></v-text-field>
           </div>
           <v-col>
-            <RouterLink to="/BuyTicket">
-                <button type="submit" style="border-color: #22668D; background-color: #427D9D;" >Sign in</button>
-            </RouterLink>
+                <button type="submit" style="border-color: #22668D; background-color: #427D9D;" @click = "login" >Sign in</button>
             
           </v-col>
           
@@ -34,23 +55,23 @@
       </div>
     </div>
   </template>
-  
   <script>
   export default {
-    data() {
-      return {
-        username: '',
-        password: ''
-      };
-    },
-    methods: {
-      submitForm() {
-        // Handle form submission
-        console.log(`Login for ${this.username}`);
-      }
+  data() {
+    return {
+      username: '',
+      password: ''
+    };
+  },
+  methods: {
+    submitForm() {
+      // Handle form submission
+      console.log(`Login for ${this.username}`);
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
   <style scoped>
   .login-container {
