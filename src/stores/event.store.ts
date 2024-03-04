@@ -6,12 +6,11 @@ import { defineStore } from 'pinia'
 
 export const useEventStore = defineStore("event", () => {
   const events = ref<Event[]>([])
-  const currentEvent = ref<Event & { files: File[] }>({
+  const currentEvent = ref<Event>({
     name: " ",
     event_image: 'no_image.jpg',
     price: 0,
     type: " ",
-    files: []
   });
   async function getEvent() {
     try {
@@ -23,6 +22,11 @@ export const useEventStore = defineStore("event", () => {
       console.log(e);
     }
   }
+  function setCurrentEvent(event: Event) {
+    currentEvent.value = event;
+    console.log(currentEvent.value);
+  }
+ 
 
-  return { events, getEvent, currentEvent };
+  return { events, getEvent, currentEvent ,setCurrentEvent};
 });

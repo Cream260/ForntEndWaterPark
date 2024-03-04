@@ -16,11 +16,14 @@ export const useOrderStore = defineStore("order", () => {
   const expDate = ref(new Date());
   const currentOrder = ref<Order>({
     cusID: 1,
+    promoId: 0,
+    packageId: 0,
+    eventId: 0,
     qty: 0,
     totalPrice: 0,
     netPrice: 0,
-    numPeople: null,
-    nameComp: null,
+    numPeople: 0,
+    nameComp: "",
     discount: 0,
     received: 0,
     payments: "PromptPay",

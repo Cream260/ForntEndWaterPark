@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { usePlusMinusStore } from "../stores/counter";
 import { mdiPlus, mdiMinus } from "@mdi/js";
@@ -8,16 +8,51 @@ import type { VForm } from "vuetify/components";
 import { useEventStore } from "@/stores/event.store";
 import { useCustomerStore } from "@/stores/customer";
 const form = ref<VForm | null>(null)
-const calStore = usePlusMinusStore();
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const eventStore = useEventStore();
+const selectedDate = ref<string>('');
+const endDate = ref<string>('');
+const minDate = ref<string>(new Date().toISOString().split('T')[0]);
 async function save() {
     const { valid } = await form.value!.validate()
     if (valid) {
         await orderStore.saveOrder()
     }
 }
+
+function formatDate(date: string): string {            // format วันที่
+  const selectedDate = new Date(date);
+  const day = selectedDate.getDate().toString().padStart(2, '0');
+  const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+  const year = selectedDate.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+function getDate() {                                // ดึงข้อมูลมาจากปฎิทิน
+  const input = document.getElementById('dateday') as HTMLInputElement;
+  if (input) {
+    selectedDate.value = formatDate(input.value);
+    console.log(selectedDate.value);
+    calculateEndDate();
+  }
+}
+
+function calculateEndDate() {
+  const tempDate = new Date(selectedDate.value);
+  tempDate.setFullYear(tempDate.getFullYear() + 1); // เพิ่มเวลาหมดอายุ 1 ปี
+  endDate.value = formatDate(tempDate.toISOString().split('T')[0]);
+  console.log('End date:', endDate.value);
+}
+
+watch(selectedDate, () => {
+  console.log('Selected date:', selectedDate.value);
+  calculateEndDate();
+});
+
+watch(minDate, () => {
+  getDate();
+});
 </script>
 
 <template>
@@ -57,7 +92,7 @@ async function save() {
                     <option>หลักสูตร จูเนียร์ ไลฟ์การ์ด</option>
                     <option>การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล</option>
                   </select> -->
-                  <v-select class="forumSize0" style="font-size:35px;" label="หลักสูตร" v-model="eventStore.currentEvent.type"
+                  <v-select class="placeholder-color forumSize0" style="font-size:35px;" label="หลักสูตร" v-model="eventStore.currentEvent.type"
                                         :items="['การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล', 'หลักสูตร จูเนียร์ ไลฟ์การ์ด', 'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล']">
                                     </v-select>
               </v-flex>
@@ -78,19 +113,19 @@ async function save() {
               <!-- <v-flex>
                 <input type="text" placeholder="เลือกวันที่จะเข้าอบรม" class="placeholder-color forumSize0" />
               </v-flex> -->
-              <form action="/action_page.php">
-  <label for="dateday"></label>
-  <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
-</form>
+              <!-- <form action="/action_page.php"> -->
+            <!-- <label for="dateday"></label> -->
+           <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" @change="getDate()" :min="minDate">
+            <!-- </form>  -->
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
               <div class="d-flex align-center">
                 <input type="text" placeholder="จำนวนผู้เข้าอบรม" required v-model="orderStore.currentOrder.numPeople" class="placeholder-color forumSize mr-2" />
-                <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-2"></v-btn>
-                <div class="smallfont mr-2">{{ calStore.Childcount }}</div>
-                <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn>
+                <v-btn :icon="mdiPlus"  class="mr-2"></v-btn>
+                <div class="smallfont mr-2"></div>
+                <v-btn :icon="mdiMinus"></v-btn>
               </div>
             </v-col>
           </v-row>

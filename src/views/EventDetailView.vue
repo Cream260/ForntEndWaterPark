@@ -10,6 +10,10 @@ onMounted(() => {
     console.log(eventStore.events)
 });
 
+function selectEvent(event: Event) {
+    eventStore.setCurrentEvent(event);
+}
+
 </script>
 
 <template>
@@ -62,7 +66,7 @@ onMounted(() => {
                                 <v-col ols="4" v-for="index in 3" :key="index">
                                    
                                     <EventCardVue  :event-name="eventStore.events[index]?.name" 
-                                        :event-img="eventStore.events[index]?.event_image" style="margin-left: 9%; " />
+                                        :event-img="eventStore.events[index]?.event_image" style="margin-left: 9%; " @click="selectEvent(event)"/>
                                 </v-col>
                                 
                             </v-row>

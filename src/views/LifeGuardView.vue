@@ -4,6 +4,9 @@
  import LifeGuardCard2 from '../components/events/LifeGuardCard2.vue';
  import LifeGuardCard3 from '../components/events/LifeGuardCard3.vue';
  import LifeGuardCard4 from '../components/events/LifeGuardCard4.vue';
+import { useEventStore } from '@/stores/event.store';
+
+ const eventStore = useEventStore;
 </script>
 
 <template>
