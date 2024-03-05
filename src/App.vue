@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
+const route = useRoute();
+
+
+const showNav = () => {
+  
+  const excludedRoutes = ['/', '/Login']; 
+  return !excludedRoutes.includes(route.path);
+}
 </script>
 
 <template>
 
-  <header>
+  <header   >
+    
     <img src="../src/images/Ticket/Icon.png"/>
-    <nav>
+    <nav >
       <RouterLink to="/">บัตร</RouterLink>
       <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
       <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
       <RouterLink to="/Receipt">Receipt</RouterLink>
-      <RouterLink to="/CheckWristband">CheckWristband</RouterLink>
+      <RouterLink to="/review">review</RouterLink>
+      
     </nav>
   </header>
   <RouterView></RouterView>

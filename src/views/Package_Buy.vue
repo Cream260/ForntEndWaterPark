@@ -1,5 +1,16 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+
+import { onMounted, ref } from "vue";
+import { useOrderStore } from "../stores/order.store";
+
+import { usePackageStore } from "@/stores/package.store";
+
+const orderStore = useOrderStore();
+const packageStore = usePackageStore();
+const tab = ref(1);
+onMounted(async () => {
+  await packageStore.getPackage();
+})
 </script>
 <template>
   <body>
