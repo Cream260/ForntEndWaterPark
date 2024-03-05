@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { RouterLink, RouterView } from "vue-router";
 </script>
 <template>
   <body>
-    
+    <v-card class="full-card">
+      
+    </v-card>
   </body>
 </template>
+
 <style scoped>
 body {
   background-image: url("../images/Event/WallPaper.jpg");

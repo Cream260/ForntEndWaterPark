@@ -2,14 +2,12 @@
 import http from "./axios";
 
 
-const  authenticate = async (email: string, password: string, username: string) =>{
+const  authenticate = async (password: string, username: string) =>{
 console.log({
-  email,
   username: username,
   user_password: password
 });
     return await http.post("/auths/register", {
-      email,
       username: username,
       user_password: password
     });

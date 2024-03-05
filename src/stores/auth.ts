@@ -1,9 +1,9 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import router from "@/router";
 import { useUserStore } from "./user.store";
 import auth from "@/components/services/auth";
 import type User from "@/type/user";
+import router from "@/router";
 
 export const useAuthStore = defineStore("auth", () => {
   const authName = ref({});
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore("auth", () => {
         }
         userStore.setUser(user__);
         console.log(user__);
-        router.push("/");
+        router.push("/BuyTicket");
       } else {
         console.error("User does not have customer");
         return null;
@@ -56,7 +56,7 @@ export const useAuthStore = defineStore("auth", () => {
       console.log(e);
     }
     isLogin.value = true;
-    router.push("/");
+    // router.push("/"); 
   };
 //   const login = async (username: string, password: string) => {
 //     try {
@@ -126,16 +126,15 @@ export const useAuthStore = defineStore("auth", () => {
       role: ""
     });
     userStore.setUser(currentUser.value);
-    router.replace("/login");
+    router.replace("/");
   };
   // create register user store
   const register = async (
-    email: string,
     password: string,
     username: string
   ) => {
     try {
-      const response = await auth.authenticate(email, password, username);
+      const response = await auth.authenticate(password, username);
       if (response != null) {
         const user__: User = {
           id: response.data.user_id,
@@ -143,16 +142,16 @@ export const useAuthStore = defineStore("auth", () => {
           email: response.data.user_email,
           password: response.data.user_password, // Storing password in frontend is usually not advisable.
           role: response.data.user_role,
+          name: response.data.user_name,
+          tel: response.data.user_tel,
           customer: {
             id: response.data.customer.cus_id,
             name: response.data.customer.cus_name,
           },
-          name: "",
-          tel: ""
         };
         userStore.setUser(user__);
         console.log(user__);
-        router.push("/");
+        router.push("");
       } else {
         console.error("User does not have customer");
         return null;
@@ -160,7 +159,7 @@ export const useAuthStore = defineStore("auth", () => {
 
       authName.value = JSON.parse(JSON.stringify(localStorage.getItem("user")));
       isLogin.value = true;
-      router.push("/");
+      router.push("");
     } catch (error) {
       console.log(error);
     }

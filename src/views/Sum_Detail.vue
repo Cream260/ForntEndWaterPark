@@ -78,11 +78,12 @@ console.log(paramValue);
 </script>
 
 <template>
+
   <body>
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
-      <v-card class="activeTabs lgallfont">
-        <div style="font-size: 40px; margin-top: 1%; margin-bottom: 1%;">
+      <v-card class="activeTabs">
+        <div class ="fontheader" style="font-size: 40px; margin-top: 1%; margin-bottom: 1%;">
           รายละเอียดของคุณ
         </div>
         
@@ -167,10 +168,86 @@ console.log(paramValue);
             </v-col>
           </v-row>
         </v-card>
+
         <v-row>
-          <v-col>
-            <h1 class="lgallfont">ช่องทางการจ่ายเงิน</h1>
+          <v-col cols="12" lg="6">
+            <v-card class="pa-4 ml-4 detailCard">
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">ชื่อ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ customerStore.currentUser.name }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">อีเมลล์</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ customerStore.currentUser.email }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">เบอร์โทรศัพท์</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ customerStore.currentUser.tel }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">วันที่มาใช้บริการ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
+                    + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
+                      Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">บัตรหมดอายุ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
+                    + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
+                      Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+                </v-col>
+                <v-col cols="12" lg="12">
+                  <v-divider class="border-opacity-50 mt-8"></v-divider>
+                </v-col>
+                <v-col>
+                  <h1 class="lgallfont mt-4">ช่องทางการจ่ายเงิน</h1>
+                </v-col>
+                <v-row class="mt-6">
+                  <v-col cols="12" lg="4">
+                    <RouterLink to="/CreditCard">
+                      <v-btn class="large-button1">
+                        <div class="smallbtnnormalFont">Credit Card</div>
+                      </v-btn>
+                    </RouterLink>
+                  </v-col>
+                  <v-col cols="12" lg="4">
+                    <RouterLink to="/TrueWallet">
+                      <v-btn class="large-button2">
+                        <div class="smallbtnnormalFont">True Wallet</div>
+                      </v-btn>
+                    </RouterLink>
+                  </v-col>
+                  <v-col cols="12" lg="4">
+                    <RouterLink to="/PromptPay">
+                      <v-btn class="large-button3">
+                        <div class="smallbtnnormalFont">Prompt Pay</div>
+                      </v-btn>
+                    </RouterLink>
+                  </v-col>
+                </v-row>
+              </v-row>
+            </v-card>
           </v-col>
+
         </v-row>
         <v-row>
           <v-col cols="12" lg="4" class="text-left">
@@ -193,6 +270,7 @@ console.log(paramValue);
                 <div class="smallnormalFont">Prompt Pay</div>
               </v-btn>
             </RouterLink>
+
           </v-col>
         </v-row>
       </v-card>
@@ -215,14 +293,14 @@ body {
   border-radius: 20px;
   position: sticky;
   z-index: 2;
-  width: 70%; 
+  width: 70%;
   height: 80vh;
   margin-left: 15%;
   margin-top: 0.5%;
 }
 
 .detailCard {
-  border-radius: 20px;
+  height: 620px;
   position: sticky;
   top: 1rem;
   z-index: 2;
@@ -230,36 +308,54 @@ body {
 }
 
 .lgallfont {
-  font-size: 40px;
+  font-size: 32px;
+  font-weight: normal;
+  color: #21292e82;
+  text-align: center;
+}
+
+.fontheader {
+  font-size: 48px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
-  
+}
+
+.fontSum {
+  font-size: 30px;
+  font-weight: lighter;
+  color: #000000;
+}
+
+.smallbtnnormalFont {
+  font-size: 20px;
+  font-weight: normal;
+  color: #000000;
 }
 
 .smallnormalFont {
-  font-size: 23px;
+  font-size: 24px;
   font-weight: normal;
   color: #000000;
 }
 
 .large-button1 {
-  width: 280px;
+  width: 180px;
   height: 80px;
   border-radius: 35px;
-  margin-left: 10px;
+
   font-size: 30px;
   font-weight: normal;
   background-color: #9eb8d9;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
+
 }
 
 .large-button2 {
-  width: 280px;
+  width: 180px;
   height: 80px;
   border-radius: 35px;
-  margin-left: 10px;
+
   font-size: 36px;
   font-weight: normal;
   background-color: #eec759;
@@ -267,13 +363,38 @@ body {
 }
 
 .large-button3 {
-  width: 280px;
+  width: 180px;
   height: 80px;
   border-radius: 35px;
-  margin-left: 10px;
+
   font-size: 36px;
   font-weight: normal;
   background-color: #e7bcde;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
-}</style>
+}
+
+.scroll-container {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.scroll-container::-webkit-scrollbar-button {
+  display: none;
+}
+</style>

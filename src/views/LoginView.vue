@@ -19,7 +19,7 @@ const errorMessage = ref("");
     showDialog.value = true;
     return;
   }
-
+  
   try {
     const res = await authStore.login(username.value, password.value);
     if (res == null) {
@@ -30,8 +30,6 @@ const errorMessage = ref("");
     errorMessage.value = "Your username or password is incorrect. Please try again.";
     showDialog.value = true;
   }
-  
-  showDialog.value = false;
 }
 
 
@@ -48,10 +46,11 @@ const errorMessage = ref("");
             <label style="font-size: 200%;">User name:</label>
             <v-text-field
                 v-model="username"
+                type="text"
                 :rules="[
                         (v) => !!v || 'Username is required'
                       ]" required
-                label="User name"
+                label="Username"
             ></v-text-field>
           </div>
           <div class="input-container">
@@ -69,9 +68,7 @@ const errorMessage = ref("");
             </div>
           </div>
           <v-col>
-              <RouterLink to="/BuyTicket">
                   <button  type="submit" style="border-color: #22668D; background-color: #427D9D;"   @click="login" >Sign in</button>
-              </RouterLink>
           </v-col>
           
           <a href="#">Forgot Password?</a>
