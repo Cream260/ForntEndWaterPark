@@ -4,7 +4,8 @@ import type Wristband from '@/type/wristbands';
 import wristbandService from "@/components/services/wristband";
 
 export const useWristbandStore = defineStore("wristband", () => {
-  const wristband = ref<Wristband[]>([])
+  const wristbands = ref<Wristband[]>([])
+  const wristband = ref<Wristband>();
   async function getWristband() {
     try {
       const res = await wristbandService.getWristband();
