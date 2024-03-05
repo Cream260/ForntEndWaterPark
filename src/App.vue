@@ -12,7 +12,7 @@ const showNav = () => {
 
 <template>
 
-  <header   >
+  <header v-if="showNav()">
     
     <img src="../src/images/Ticket/Icon.png"/>
     <nav >

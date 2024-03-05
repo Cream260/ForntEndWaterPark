@@ -36,7 +36,7 @@ instance.interceptors.response.use(
   function (error) {
     // Do something with request error
     if (401 === error.response.status) {
-      router.replace("/login");
+      router.replace("/");
     }
     return Promise.reject(error);
   }
