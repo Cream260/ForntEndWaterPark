@@ -39,6 +39,7 @@ const showNav = () => {
       <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
       <RouterLink to="/Receipt">Receipt</RouterLink>
       <RouterLink to="/review">review</RouterLink>
+      <RouterLink to="/Register">Register</RouterLink>
     </nav>
     <MemberHeader></MemberHeader>
   </header>
