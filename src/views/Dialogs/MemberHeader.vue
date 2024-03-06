@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRouter, type RouteLocationRaw } from 'vue-router';
 import { mdiMenuDown,mdiLogout} from '@mdi/js';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useUserStore } from '@/stores/user.store';
+import { useAuthStore } from '@/stores/auth';
 
 const router = useRouter();
+const userStore = useUserStore();
+const authStore = useAuthStore();
+onMounted(() => {
+  authStore.getUserFromLocalStorage();
+});
 
 // ใหม่
 const items = ref([
@@ -22,7 +29,7 @@ const handleMenuItemClick = (item: { route: RouteLocationRaw; }) => {
    <v-menu class="red-button">
                         <template v-slot:activator="{ props }">
                             <v-btn class="mr-5" color="#9AD0C2" rounded variant="flat"  v-bind="props">
-                                Nawapat
+                                {{userStore.currentUser.name}}
                                 <v-icon :icon="mdiMenuDown"></v-icon>
                             </v-btn>
                         </template>
