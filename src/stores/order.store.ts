@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
-import router from "@/router";
+import promotionService from "@/components/services/promotion";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -272,9 +272,19 @@ export const useOrderStore = defineStore("order", () => {
     }
 }
 
-
+async function updatePromotion(id: number, discount: number) {
+  try {
+      const promo = await promotionService.getPromotionById(id);
+      currentOrder.value.promoId = promo.data;
+      currentOrder.value.discount = discount;
+      await orderService.updateOrder(id, currentOrder.value);
+  } catch (e) {
+      console.log(e);
+  }
+}
 
   return {
+    updatePromotion,
     getOrderById_,
     updatePayment,
     eventOrder,
