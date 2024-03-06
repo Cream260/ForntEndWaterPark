@@ -25,8 +25,13 @@ const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
 const type = ref(""); 
-var expDate = new Date(selectedDate.value);
+const expDate = new Date(selectedDate.value);
 expDate.setFullYear(expDate.getFullYear());
+const day = selectedDate.value.getDate();
+const month = selectedDate.value.getMonth();
+expDate.setMonth(month);
+expDate.setDate(day);
+
 onMounted(() => {
   authStore.getUserFromLocalStorage();
 });
