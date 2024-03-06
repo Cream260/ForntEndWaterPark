@@ -123,6 +123,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
     }
 
     console.log(orderList.value);
@@ -158,6 +161,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
     }
 
     console.log(orderList.value);
@@ -193,6 +199,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
     }
 
     console.log(orderList.value);
@@ -228,6 +237,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
     }
 
     console.log(orderList.value);
