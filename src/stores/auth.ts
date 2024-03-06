@@ -46,6 +46,7 @@ export const useAuthStore = defineStore("auth", () => {
         userStore.setUser(user__);
         console.log(user__);
         router.push("/BuyTicket");
+        return response;
       } else {
         console.error("User does not have customer");
         return null;

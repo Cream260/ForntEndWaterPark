@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useAuthStore } from './stores/auth';
 const route = useRoute();
-
+const authStore = useAuthStore();
 
 const showNav = () => {
   
   const excludedRoutes = ['/', '/Login']; 
   return !excludedRoutes.includes(route.path);
 }
+
 </script>
 
 <template>
@@ -16,13 +18,14 @@ const showNav = () => {
     
     <img src="../src/images/Ticket/Icon.png"/>
     <nav >
-      <RouterLink to="/">บัตร</RouterLink>
+      <RouterLink to="/BuyTicket">บัตร</RouterLink>
       <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
       <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
       <RouterLink to="/Receipt">Receipt</RouterLink>
       <RouterLink to="/review">review</RouterLink>
+      <v-btn class="large-button"  @click="authStore.logout() ">Logout</v-btn>
       
     </nav>
   </header>
