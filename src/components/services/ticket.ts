@@ -6,11 +6,11 @@ function getTicket() {
 }
 
 function updateTicket(id: number, Ticket: Ticket) {
-  return http.patch(`/Tickets/${id}`, Ticket);
+  return http.patch(`/ticket/${id}`, Ticket);
 }
 
 function deleteTicket(id: number) {
-  return http.delete(`/Tickets/${id}`);
+  return http.delete(`/ticket/${id}`);
 }
 
 export default { getTicket, updateTicket, deleteTicket};

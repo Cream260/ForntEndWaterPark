@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
-import router from "@/router";
+import promotionService from "@/components/services/promotion";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -32,7 +32,6 @@ export const useOrderStore = defineStore("order", () => {
     startDate: startDate.value,
     expDate: expDate.value,
     orderItems: orderList.value,
-    
   });
   const clearOrderDetail = () => {
     currentOrder.value = {
@@ -115,9 +114,19 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   function ThChilddecrement(index: number) {
-    if (ThChildqty.value == 0) return;
-    ThChildqty.value--;
-    orderList.value.splice(index, 1);
+    if (ThChildqty.value == 0) {
+      orderList.value.splice(index, 1);
+      console.log(orderList.value);
+      return;
+    } else {
+      ThChildqty.value--;
+      orderList.value[index].qty -= 1;
+      orderList.value[index].totalPrice =
+        orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
+    }
 
     console.log(orderList.value);
   }
@@ -143,9 +152,20 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   function ThAdultdecrement(index: number) {
-    if (ThAdultqty.value == 0) return;
-    ThAdultqty.value--;
-    orderList.value.splice(index, 1);
+    if (ThAdultqty.value == 0) {
+      orderList.value.splice(index, 1);
+      console.log(orderList.value);
+      return;
+    } else {
+      ThAdultqty.value--;
+      orderList.value[index].qty -= 1;
+      orderList.value[index].totalPrice =
+        orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
+    }
+
     console.log(orderList.value);
   }
 
@@ -170,9 +190,20 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   function EnChilddecrement(index: number) {
-    if (EnChildqty.value == 0) return;
-    EnChildqty.value--;
-    orderList.value.splice(index, 1);
+    if (EnChildqty.value == 0) {
+      orderList.value.splice(index, 1);
+      console.log(orderList.value);
+      return;
+    } else {
+      EnChildqty.value--;
+      orderList.value[index].qty -= 1;
+      orderList.value[index].totalPrice =
+        orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
+    }
+
     console.log(orderList.value);
   }
 
@@ -197,9 +228,20 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   function EnAdultdecrement(index: number) {
-    if (EnAdultqty.value == 0) return;
-    EnAdultqty.value--;
-    orderList.value.splice(index, 1);
+    if (EnAdultqty.value == 0) {
+      orderList.value.splice(index, 1);
+      console.log(orderList.value);
+      return;
+    } else {
+      EnAdultqty.value--;
+      orderList.value[index].qty -= 1;
+      orderList.value[index].totalPrice =
+        orderList.value[index].qty * orderList.value[index].price!;
+        if (orderList.value[index].qty == 0) {
+          orderList.value.splice(index, 1);
+        }
+    }
+
     console.log(orderList.value);
   }
 
@@ -211,27 +253,25 @@ export const useOrderStore = defineStore("order", () => {
     EnAdultqty.value = 0;
     console.log(orderList.value);
   }
-  
+
   const saveOrder = async () => {
     try {
-      await orderService.saveOrder(currentOrder.value)
-      console.log(currentOrder.value)
+      await orderService.saveOrder(currentOrder.value);
+      console.log(currentOrder.value);
     } catch (e) {
       console.log("e");
     }
-  }
+  };
 
-
-  
   //function create order by event
-  async function eventOrder(order:Order) {
+  async function eventOrder(order: Order) {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
-      console.log("Order",res.data);
+      console.log("Order", res.data);
       //Json
       clearOrder();
-      window.location.href = '/sumdetail/' + currentOrder.value.id;
+      window.location.href = "/sumdetail/" + currentOrder.value.id;
     } catch (e) {
       console.log(e);
     }
@@ -242,7 +282,7 @@ export const useOrderStore = defineStore("order", () => {
       const res = await orderService.getOrderById(id);
       currentOrder.value = res.data;
       console.log(JSON.stringify(currentOrder.value));
-      
+
       return currentOrder.value;
     } catch (e) {
       console.log(e);
@@ -252,7 +292,7 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.getOrderById(id);
       console.log(JSON.stringify(currentOrder.value));
-      
+
       return res;
     } catch (e) {
       console.log(e);
@@ -260,21 +300,31 @@ export const useOrderStore = defineStore("order", () => {
   }
   async function updatePayment(id: number, payment: string) {
     try {
-        const res = await orderService.getOrderById(id);
-        const updatedOrder = res.data;
-        updatedOrder.payments = payment; // กำหนดวิธีการชำระเงิน
-        const result = await orderService.updateOrder(id, updatedOrder);
-        console.log(result); // แสดงผลลัพธ์การอัปเดต
-        currentOrder.value = result.data; // อัปเดตค่า currentOrder.value
-        console.log("update credit", currentOrder.value);
+      const res = await orderService.getOrderById(id);
+      const updatedOrder = res.data;
+      updatedOrder.payments = payment; // กำหนดวิธีการชำระเงิน
+      const result = await orderService.updateOrder(id, updatedOrder);
+      console.log(result); // แสดงผลลัพธ์การอัปเดต
+      currentOrder.value = result.data; // อัปเดตค่า currentOrder.value
+      console.log("update credit", currentOrder.value);
     } catch (e) {
-        console.log(e);
+      console.log(e);
     }
+  }
+
+async function updatePromotion(id: number, discount: number) {
+  try {
+      const promo = await promotionService.getPromotionById(id);
+      currentOrder.value.promoId = promo.data;
+      currentOrder.value.discount = discount;
+      await orderService.updateOrder(id, currentOrder.value);
+  } catch (e) {
+      console.log(e);
+  }
 }
 
-
-
   return {
+    updatePromotion,
     getOrderById_,
     updatePayment,
     eventOrder,
@@ -299,7 +349,8 @@ export const useOrderStore = defineStore("order", () => {
     EnChilddecrement,
     EnAdultincrement,
     EnAdultdecrement,
-    getOrderById
+    getOrderById,
     // PeopleCrement,
   };
-});
+}
+);

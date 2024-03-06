@@ -9,6 +9,7 @@ const ticketStore = useTicketStore();
 const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTicket();
+  await orderStore.getOrder();
 })
 
 </script>

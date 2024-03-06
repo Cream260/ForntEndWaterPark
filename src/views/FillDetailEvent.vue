@@ -19,9 +19,9 @@ const selectedDate = ref<Date>(new Date());
 const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
-const type = ref("");
+const type = ref(""); 
 var expDate = new Date(selectedDate.value);
-expDate.setFullYear(expDate.getFullYear()+1);
+expDate.setFullYear(expDate.getFullYear());
 
 async function save() {
   if (
