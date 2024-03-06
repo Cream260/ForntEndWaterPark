@@ -73,6 +73,9 @@ try {
           </v-col>
           
           <a href="#">Forgot Password?</a>
+          <RouterLink to="/Register">
+          <a href="#">Sing Up?</a>
+        </RouterLink>
         </form>
       </div>
     </div>

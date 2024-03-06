@@ -3,7 +3,7 @@
 
 </script>
 <template>
-    < <div class="login-container">
+     <div class="login-container">
       <div class="image-container">
         <!-- Background image here -->
       </div>
@@ -64,7 +64,7 @@
                          </div>
                     </v-col>
                 </v-row>
-                <button style="margin-bottom:40px ; border-color: #22668D; background-color: #427D9D;"   @click="sign" >submit   </button>
+                <button style="margin-bottom:40px ; border-color: #22668D; background-color: #427D9D;"   @click="submit" >submit   </button>
             </v-card>
         </form>
       </div>
