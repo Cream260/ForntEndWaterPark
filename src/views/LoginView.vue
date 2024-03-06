@@ -7,30 +7,29 @@ const username = ref("");
 const password = ref("");
 const authStore = useAuthStore();
 const errorMessage = ref("");
- const showDialog = ref(false);
+const showDialog = ref(false);
 
- const login = async (event: Event) => {
-  event.preventDefault();
-  showDialog.value = false; 
-  errorMessage.value = "";
+const login = async (event: Event) => {
+    event.preventDefault();
+    showDialog.value = false;
+    errorMessage.value = "";
 
-  if (!username.value || !password.value) {
-    errorMessage.value = "Username and password are required.";
-    showDialog.value = true;
-    return;
-  }
-  
-  try {
-    const res = await authStore.login(username.value, password.value);
-    if (res == null) {
-      errorMessage.value = "Your username or password is incorrect. Please try again.";
-      showDialog.value = true;
+    if (!username.value || !password.value) {
+        errorMessage.value = "Username and password are required.";
+        showDialog.value = true;
+        return;
     }
-  } catch (error) {
+try {
+   const res =  await authStore.login(username.value, password.value);
+ if(res == null){
     errorMessage.value = "Your username or password is incorrect. Please try again.";
     showDialog.value = true;
   }
-}
+    } catch (error) {
+      errorMessage.value ="Your username or password is incorrect. Please try again.";
+      showDialog.value = true;
+    }
+};
 
 
 </script>
@@ -39,7 +38,9 @@ const errorMessage = ref("");
       <div class="image-container">
         <!-- Background image here -->
       </div>
+      
       <div class="form-container">
+        <img src="../images/logo.png" style="height: 10vw;width: 23vh; margin-left: 37%;"/>
         <h2 style="text-align: center; font-size: 500%;">Login</h2>
         <form >
           <div class="input-container">

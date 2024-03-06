@@ -41,7 +41,7 @@ import Receipt from "@/views/ReceiptView.vue"
       </v-col>
     </v-row>
     <v-row>
-      <RouterLink to="/">
+      <RouterLink to="/BuyTicket">
         <v-btn class="large-button1">
           <div class="smallnormalFont">ยกเลิก</div>
         </v-btn>

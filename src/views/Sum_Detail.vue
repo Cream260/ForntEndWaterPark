@@ -7,59 +7,62 @@ import { RouterLink } from "vue-router";
 //get id from param
 import { useRoute } from "vue-router";
 import { useEventStore } from "@/stores/event.store";
+import { id } from "vuetify/locale";
+import order from "@/components/services/order";
 const route = useRoute();
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
 const event_  = ref<Event>();
+
 // create function find event by event id in array
 
-const date = (index: string) => {
-  let dd = new Date(index);
-  let date = {
-    date: "",
-    mouth: "",
-    year: "",
-    hour: "",
-    minute: "",
-    second: "",
-  };
-  date.year = dd.getFullYear() + "";
-  date.date = dd.getDate() + "";
-  date.mouth = dd.getMonth() + "";
-  date.minute = "" + dd.getMinutes();
-  date.hour = "" + dd.getHours();
-  date.second = "" + dd.getSeconds();
-  if (dd.getDate() < 10) {
-    date.date = "0" + dd.getDate();
-  }
-  if (dd.getMonth() < 10) {
-    date.mouth = "0" + dd.getMonth();
-  }
-  if (dd.getHours() < 10) {
-    date.hour = "0" + dd.getHours();
-  }
-  if (dd.getMinutes() < 10) {
-    date.minute = "0" + dd.getHours();
-  }
-  if (dd.getSeconds() < 10) {
-    date.second = dd.getSeconds() + "0";
-  }
-  if (dd.getMonth() < 10) {
-    date.mouth = "0" + dd.getMonth();
-  }
-  if (dd.getHours() < 10) {
-    date.hour = "0" + dd.getHours();
-  }
-  if (dd.getMinutes() < 10) {
-    date.minute = "0" + dd.getHours();
-  }
-  if (dd.getSeconds() < 10) {
-    date.second = dd.getSeconds() + "0";
-  }
-  return date;
-};
+// const date = (index: string) => {
+//   let dd = new Date(index);
+//   let date = {
+//     date: "",
+//     mouth: "",
+//     year: "",
+//     hour: "",
+//     minute: "",
+//     second: "",
+//   };
+//   date.year = dd.getFullYear() + "";
+//   date.date = dd.getDate() + "";
+//   date.mouth = dd.getMonth() + "";
+//   date.minute = "" + dd.getMinutes();
+//   date.hour = "" + dd.getHours();
+//   date.second = "" + dd.getSeconds();
+//   if (dd.getDate() < 10) {
+//     date.date = "0" + dd.getDate();
+//   }
+//   if (dd.getMonth() < 10) {
+//     date.mouth = "0" + dd.getMonth();
+//   }
+//   if (dd.getHours() < 10) {
+//     date.hour = "0" + dd.getHours();
+//   }
+//   if (dd.getMinutes() < 10) {
+//     date.minute = "0" + dd.getHours();
+//   }
+//   if (dd.getSeconds() < 10) {
+//     date.second = dd.getSeconds() + "0";
+//   }
+//   if (dd.getMonth() < 10) {
+//     date.mouth = "0" + dd.getMonth();
+//   }
+//   if (dd.getHours() < 10) {
+//     date.hour = "0" + dd.getHours();
+//   }
+//   if (dd.getMinutes() < 10) {
+//     date.minute = "0" + dd.getHours();
+//   }
+//   if (dd.getSeconds() < 10) {
+//     date.second = dd.getSeconds() + "0";
+//   }
+//   return date;
+// };
 onMounted(async () => {
   // 🥲
   orderStore.currentOrder.expDate = new Date();
@@ -75,6 +78,16 @@ console.log(paramValue);
 
  await eventStore.getEventById(res?.data.event!.id);
 })
+
+function updatePayment(payment: string) {
+  const orderId = route.params.id;
+  // Your logic to handle credit card update with the orderId
+  console.log("Updating credit for order with ID:", orderId);
+  // You can now use the orderId as needed in this method
+  orderStore.updatePayment(parseInt(orderId.toString()),payment);
+}
+
+
 </script>
 
 <template>
@@ -138,9 +151,7 @@ console.log(paramValue);
               <h5>วันที่มาใช้บริการ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="normalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
-            + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
-              Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+              <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -155,9 +166,7 @@ console.log(paramValue);
               <h5>บัตรหมดอายุ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="normalFont">{{ date(orderStore.currentOrder.expDate + "").date + " "
-            + manageTimeStore.month[new Date(orderStore.currentOrder.expDate + "").getMonth()] + " , " + new
-              Date(orderStore.currentOrder.expDate + "").getFullYear() }}</h5>
+              <h5 class="normalFont">{{ orderStore.currentOrder.expDate }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -201,9 +210,7 @@ console.log(paramValue);
                   <h5 class="smallnormalFont">วันที่มาใช้บริการ</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
-                    + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
-                      Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate}}</h5>
                 </v-col>
               </v-row>
               <v-row>
@@ -211,9 +218,7 @@ console.log(paramValue);
                   <h5 class="smallnormalFont">บัตรหมดอายุ</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ date(orderStore.currentOrder.startDate + "").date + " "
-                    + manageTimeStore.month[new Date(orderStore.currentOrder.startDate + "").getMonth()] + " , " + new
-                      Date(orderStore.currentOrder.startDate + "").getFullYear() }}</h5>
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate}}</h5>
                 </v-col>
                 <v-col cols="12" lg="12">
                   <v-divider class="border-opacity-50 mt-8"></v-divider>
@@ -225,21 +230,21 @@ console.log(paramValue);
                   <v-col cols="12" lg="4">
                     <RouterLink to="/CreditCard">
                       <v-btn class="large-button1">
-                        <div class="smallbtnnormalFont">Credit Card</div>
+                        <div class="smallbtnnormalFont" @click=" updatePayment('Credit Card')">Credit Card</div>
                       </v-btn>
                     </RouterLink>
                   </v-col>
                   <v-col cols="12" lg="4">
                     <RouterLink to="/TrueWallet">
                       <v-btn class="large-button2">
-                        <div class="smallbtnnormalFont">True Wallet</div>
+                        <div class="smallbtnnormalFont" @click=" updatePayment('True Wallet')">True Wallet</div>
                       </v-btn>
                     </RouterLink>
                   </v-col>
                   <v-col cols="12" lg="4">
                     <RouterLink to="/PromptPay">
                       <v-btn class="large-button3">
-                        <div class="smallbtnnormalFont">Prompt Pay</div>
+                        <div class="smallbtnnormalFont" @click=" updatePayment('True Wallet')">Prompt Pay</div>
                       </v-btn>
                     </RouterLink>
                   </v-col>
@@ -249,11 +254,11 @@ console.log(paramValue);
           </v-col>
 
         </v-row>
-        <v-row>
+        <!-- <v-row>
           <v-col cols="12" lg="4" class="text-left">
             <RouterLink to="/CreditCard">
               <v-btn class="large-button1">
-                <div class="smallnormalFont" @click="">Credit/Debit Card</div>
+                <div class="smallnormalFont" @click="orderStore.updateCredit()">Credit/Debit Card</div>
               </v-btn>
             </RouterLink>
           </v-col>
@@ -272,7 +277,7 @@ console.log(paramValue);
             </RouterLink>
 
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-card>
     </container>
   </body>
