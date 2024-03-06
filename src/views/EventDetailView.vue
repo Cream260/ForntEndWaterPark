@@ -60,7 +60,7 @@ onMounted(() => {
                                 </v-col>
                             </v-row>
                             <v-row>
-                                <v-col ols="4" v-for="index in 3" :key="index">
+                                <v-col ols="4" v-for="index in 1" :key="index">
                                    
                                     <EventCardVue  :event-name="eventStore.events[index]?.name" 
                                         :event-img="eventStore.events[index]?.images" style="margin-left: 7%; " />

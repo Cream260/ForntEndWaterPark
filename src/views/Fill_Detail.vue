@@ -123,9 +123,9 @@ function clearFillDetail() {
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/sumdetail/:id">
+            <!-- <RouterLink to="/sumdetail/:id"> -->
               <v-btn color="#87B859" class="large-button" >ซื้อเลยตอนนี้</v-btn>
-            </RouterLink>
+            <!-- </RouterLink> -->
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
             <RouterLink to="/BuyTicket">
