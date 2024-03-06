@@ -16,53 +16,31 @@ const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
 const event_  = ref<Event>();
 
-// create function find event by event id in array
 
-// const date = (index: string) => {
-//   let dd = new Date(index);
-//   let date = {
-//     date: "",
-//     mouth: "",
-//     year: "",
-//     hour: "",
-//     minute: "",
-//     second: "",
-//   };
-//   date.year = dd.getFullYear() + "";
-//   date.date = dd.getDate() + "";
-//   date.mouth = dd.getMonth() + "";
-//   date.minute = "" + dd.getMinutes();
-//   date.hour = "" + dd.getHours();
-//   date.second = "" + dd.getSeconds();
-//   if (dd.getDate() < 10) {
-//     date.date = "0" + dd.getDate();
-//   }
-//   if (dd.getMonth() < 10) {
-//     date.mouth = "0" + dd.getMonth();
-//   }
-//   if (dd.getHours() < 10) {
-//     date.hour = "0" + dd.getHours();
-//   }
-//   if (dd.getMinutes() < 10) {
-//     date.minute = "0" + dd.getHours();
-//   }
-//   if (dd.getSeconds() < 10) {
-//     date.second = dd.getSeconds() + "0";
-//   }
-//   if (dd.getMonth() < 10) {
-//     date.mouth = "0" + dd.getMonth();
-//   }
-//   if (dd.getHours() < 10) {
-//     date.hour = "0" + dd.getHours();
-//   }
-//   if (dd.getMinutes() < 10) {
-//     date.minute = "0" + dd.getHours();
-//   }
-//   if (dd.getSeconds() < 10) {
-//     date.second = dd.getSeconds() + "0";
-//   }
-//   return date;
-// };
+// const formatDate = (dateStr: string | number | Date) => {
+//   console.log('Input date string:', dateStr);
+//   const date = new Date(dateStr);
+//   console.log('Parsed date:', date);
+//   const formattedDate = date.toLocaleDateString("en-US", {
+//     year: "numeric",
+//     month: "numeric",
+//     day: "numeric",
+//   });
+//   console.log('Formatted date:', formattedDate);
+//   return formattedDate;
+// }
+const formatDate = (dateStr: string | number | Date) => {
+  if (!dateStr) return ''; // Handle case where dateStr is undefined or null
+
+  const date = new Date(dateStr);
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-GB', options as Intl.DateTimeFormatOptions);
+  return formattedDate;
+}
+
+
+
+
 onMounted(async () => {
   // 🥲
   orderStore.currentOrder.expDate = new Date();
@@ -151,7 +129,7 @@ function updatePayment(payment: string) {
               <h5>วันที่มาใช้บริการ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="normalFont">{{ orderStore.currentOrder.startDate }}</h5>
+              <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -166,7 +144,7 @@ function updatePayment(payment: string) {
               <h5>บัตรหมดอายุ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="normalFont">{{ orderStore.currentOrder.expDate }}</h5>
+              <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -178,7 +156,7 @@ function updatePayment(payment: string) {
           </v-row>
         </v-card>
 
-        <v-row>
+        <!-- <v-row>
           <v-col cols="12" lg="6">
             <v-card class="pa-4 ml-4 detailCard">
               <v-row>
@@ -210,7 +188,7 @@ function updatePayment(payment: string) {
                   <h5 class="smallnormalFont">วันที่มาใช้บริการ</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate}}</h5>
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
                 </v-col>
               </v-row>
               <v-row>
@@ -253,7 +231,7 @@ function updatePayment(payment: string) {
             </v-card>
           </v-col>
 
-        </v-row>
+        </v-row> -->
         <!-- <v-row>
           <v-col cols="12" lg="4" class="text-left">
             <RouterLink to="/CreditCard">
