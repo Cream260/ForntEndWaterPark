@@ -15,7 +15,6 @@ import { useAuthStore } from "@/stores/auth";
 
 const form = ref<VForm | null>(null);
 const orderStore = useOrderStore();
-const customerStore = useCustomerStore();
 const userStore = useUserStore();
 const authStore = useAuthStore();
 const eventStore = useEventStore();
