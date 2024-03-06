@@ -55,7 +55,7 @@ import Receipt from "@/views/ReceiptView.vue"
         <input type="text" placeholder="Email" />
       </v-col>
       <v-col cols="12" lg="6"></v-col>
-      <RouterLink to="/">
+      <RouterLink to="/BuyTicket">
         <v-btn class="large-button1"
           ><div class="smallnormalFont">ยกเลิก</div></v-btn
         ></RouterLink

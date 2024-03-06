@@ -13,6 +13,7 @@ export const useOrderStore = defineStore("order", () => {
   const ThAdultqty = ref(0);
   const EnChildqty = ref(0);
   const EnAdultqty = ref(0);
+  const payment = ref("");
   const startDate = ref(new Date());
   const expDate = ref(new Date());
   const currentOrder = ref<Order>({
@@ -27,7 +28,7 @@ export const useOrderStore = defineStore("order", () => {
     nameComp: "",
     discount: 0,
     received: 0,
-    payments: "PromptPay",
+    payments: payment.value,
     startDate: startDate.value,
     expDate: expDate.value,
     orderItems: orderList.value,
@@ -78,7 +79,7 @@ export const useOrderStore = defineStore("order", () => {
       nameComp: null,
       discount: 0,
       received: 0,
-      payments: "PromptPay",
+      payments: "",
       startDate: new Date(),
       expDate: new Date(),
       orderItems: orderItems,
@@ -227,9 +228,8 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
-      console.log(res.data);
+      console.log("Order",res.data);
       //Json
-      console.log(JSON.stringify(order));
       clearOrder();
       window.location.href = '/sumdetail/' + currentOrder.value.id;
     } catch (e) {
@@ -258,10 +258,25 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
+  async function updatePayment(id: number, payment: string) {
+    try {
+        const res = await orderService.getOrderById(id);
+        const updatedOrder = res.data;
+        updatedOrder.payments = payment; // กำหนดวิธีการชำระเงิน
+        const result = await orderService.updateOrder(id, updatedOrder);
+        console.log(result); // แสดงผลลัพธ์การอัปเดต
+        currentOrder.value = result.data; // อัปเดตค่า currentOrder.value
+        console.log("update credit", currentOrder.value);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 
   return {
     getOrderById_,
+    updatePayment,
     eventOrder,
     saveOrder,
     ThChildqty,
