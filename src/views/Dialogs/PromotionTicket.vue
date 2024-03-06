@@ -12,8 +12,6 @@ onMounted(async () => {
 
 function updatePromotion(id: number,discount: number) {
   orderStore.updatePromotion(id,discount);
-
-  
 }
 
 

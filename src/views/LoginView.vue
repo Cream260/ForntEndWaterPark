@@ -38,7 +38,9 @@ try {
       <div class="image-container">
         <!-- Background image here -->
       </div>
+      
       <div class="form-container">
+        <img src="../images/logo.png" style="height: 10vw;width: 23vh; margin-left: 37%;"/>
         <h2 style="text-align: center; font-size: 500%;">Login</h2>
         <form >
           <div class="input-container">
