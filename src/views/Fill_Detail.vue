@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import order from "@/components/services/order";
+import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
 import { onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
+const authStore = useAuthStore();
+const userStore = useUserStore();
 
 onMounted(async () => {
+  authStore.getUserFromLocalStorage();
   await orderStore.getOrder;
   await customerStore.getCustomer;
 })
@@ -66,13 +71,13 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.name" />
+                v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.tel" />
+                v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
@@ -80,7 +85,7 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.email" />
+                v-model="userStore.currentUser.email" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
@@ -118,14 +123,14 @@ function clearFillDetail() {
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/sumdetail">
+            <RouterLink to="/sumdetail/:id">
               <v-btn color="#87B859" class="large-button" >ซื้อเลยตอนนี้</v-btn>
             </RouterLink>
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <!-- <RouterLink to="/"> -->
+            <RouterLink to="/BuyTicket">
             <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
-            <!-- </RouterLink> -->
+            </RouterLink>
           </v-col>
           <v-col></v-col>
         </v-row>
