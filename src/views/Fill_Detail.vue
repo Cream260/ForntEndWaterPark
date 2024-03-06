@@ -57,8 +57,8 @@ function clearFillDetail() {
 
   <body>
     <container class="fluid">
-      <v-card class="activeTabs lgallfont">
-        <div style="margin-top: 2%;">
+      <v-card class="activeTabs lgallfont" style="width: 63%; height: 80vh; margin-left: 18%;margin-top: 0.7%">
+        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
           รายละเอียดของคุณ
         </div>
 
@@ -119,7 +119,7 @@ function clearFillDetail() {
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
             <RouterLink to="/sumdetail">
-              <v-btn color="#87B859" class="large-button" >ซื้อเลยตอนนี้</v-btn>
+              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
             </RouterLink>
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
@@ -138,8 +138,8 @@ function clearFillDetail() {
 body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
-  width: 80vw;
-  height: 80vh;
+  width: 100vw;
+  height: 89vh;
   margin-top: 80px;
   padding: 25px;
   font-family: 'Kanit', 'sans-serif';
@@ -164,12 +164,12 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
@@ -179,19 +179,19 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 95%;
 }
 
 .lgallfont {
-  font-size: 48px;
+  font-size: 28px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
@@ -199,11 +199,12 @@ body {
 }
 
 .large-button {
-  width: 500px;
-  height: 70px;
+  width: 315px;
+  height: 57px;
   border-radius: 20px;
-  margin-left: 70px;
-  font-size: 48px;
+  margin-top: 2%;
+  margin-left: 30px;
+  font-size: 38px;
   font-weight: bold;
   color: #ffffff;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

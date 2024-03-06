@@ -172,7 +172,7 @@ function minus() {
                   </select> -->
                 <v-select
                   class="placeholder-color forumSize0"
-                  style="font-size: 35px"
+                  style="font-size: 35px; margin-left: 5%;"
                   label="หลักสูตร"
                   v-model="eventStore.currentEvent.type"
                   :items="[

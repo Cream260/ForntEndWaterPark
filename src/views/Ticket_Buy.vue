@@ -31,8 +31,8 @@ onMounted(async () => {
                       <v-layout>
                         <v-img src="../src/images/Ticket/ChildTicket.png" style=" width: 25vw; height: 26vh; margin-right: 20%;" class="ma-2 mt-7"></v-img>
                         <v-card-title style="margin-right: 20%;">
-                          <h2 class="extraBoldfont">{{ item.name }}</h2>
-                          <div v-for="(item, index) in detail" :key="index">
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index" style="">
                             <h2 class="smallBoldfont">{{ item }}</h2>
 
                           </div>
@@ -62,7 +62,7 @@ onMounted(async () => {
                       <v-layout>
                         <v-img src="../src/images/Ticket/ChildTicket.png" width="30%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
                         <v-card-title style="margin-right: 20%;">
-                          <h2 class="extraBoldfont ">{{ item.name }}</h2>
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
@@ -98,7 +98,7 @@ onMounted(async () => {
                       <v-layout>
                         <v-img src="../src/images/Ticket/ChildTicket.png" width="35%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
                         <v-card-title style="margin-right: 20%;">
-                          <h2 class="extraBoldfont">{{ item.name }}</h2>
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
@@ -124,11 +124,11 @@ onMounted(async () => {
               <v-col>
                 <div v-for="(item, index) of ticketStore.tickets" :key="index">
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรผู้ใหญ่'">
-                    <v-card color="#F5F1DC" theme="dark" class="borderradius mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius"  >
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
                         <v-card-title style="margin-right: 20%;">
-                          <h2 class="extraBoldfont">{{ item.name }}</h2>
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
@@ -163,13 +163,13 @@ onMounted(async () => {
           </v-flex> -->
           <v-dialog transition="dialog-bottom-transition" width="auto">
             <template v-slot:activator="{ props: activatorProps }">
-              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด"></v-btn>
+              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด" style="margin-right: 30%;"></v-btn>
               
             </template>
 
             <template v-slot:default="{ isActive }">
               <v-card>
-                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false"></v-btn></v-toolbar>           
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false" ></v-btn></v-toolbar>           
                 <PromotionBuy></PromotionBuy>
               </v-card>
             </template>        
@@ -202,9 +202,9 @@ body {
 .activeTabs {
   border-radius: 20px;
   position: sticky;  
-  width: 75%; 
+  width: 63%; 
   height: 80vh;
-  margin-left: 13%;
+  margin-left: 18%;
   margin-top: 0.7%
 }
 
@@ -215,24 +215,26 @@ body {
 .fontlarge {
   font-size: 35px;
   font-weight: normal;
+  width: fit-content
 }
 
 .large-button {
-  width: 222px;
-  height: 77px;
+  width: 200px;
+  height: 47px;
   border-radius: 20px;
-  margin: 28px;
-  font-size: 30px;
+  margin-top: 12px;
+  
+  font-size: 20px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .promo-button {
-  width: 504px;
-  height: 77px;
+  width: 200px;
+  height: 47px;
   border-radius: 20px;
-  margin: 28px;
-  font-size: 30px;
+  margin-top: 12px;
+  font-size: 20px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -241,6 +243,7 @@ body {
   font-size: 15px;
   font-weight: normal;
   color: #0b2c44;
+  width: fit-content
 }
 
 .whitefont {
@@ -251,12 +254,14 @@ body {
   font-size: 15px;
   font-weight: bold;
   color: #0b2c44;
+  width: fit-content
 }
 
 .extraBoldfont {
   font-size: 30px;
   font-weight: bolder;
   color: #0b2c44;
+  width: fit-content
 }
 
 input[type="text"] {
@@ -317,9 +322,9 @@ export default {
   data() {
     return {
       detail: [
-        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง',
-        'สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น',
-        'เฉพาะเด็กและเล่นได้แบบเต็มวัน'
+        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่น',
+        'เครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็กและเล่นได้แบบเต็มวัน',
+        ''
       ],
       subdetail: [
         'ส่วนสูง ≥ 106 เซนติเมตร',
