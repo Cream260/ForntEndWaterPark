@@ -13,32 +13,23 @@ import { RouterLink, RouterView } from "vue-router";
 
         <v-col>
 
-          <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style="width: 90%;height: 102%;">
-            <div>
-              <h2 class="extraBoldfont2">หรรษาคลายร้อน</h2>
-            </div>
-            <div class="img-container">
-              <v-img src="../src/images/promo/sum.png" class="img1"></v-img>
-            </div>
-            <div>
-              <p3 class="smallBoldfont">ลดราคาบัตรเข้าสวนน้ำ 20%</p3>
-            </div>
-            <div>
-              <p3 class="smallBoldfont">สำหรับเด็กและผู้ใหญ่</p3>
-            </div>
-            <div>
-              <p3 class="smallBoldfont">เมื่อซื้อบัตรออนไลน์ล่วงหน้า</p3>
-            </div>
-            <div>
-              <p3 class="smallBoldfont">หน้าเพียงแค่กรอกโค้ด</p3>
-            </div>
-            <v-flex>
-              <RouterLink to="/filldetail"><v-btn class="large-button">Happy2024</v-btn></RouterLink>
-            </v-flex>
-            <div>
-              <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ 1 มีนาคม ถึงวันที่ 30 เมษายน 2567</p10>
-            </div>
-          </v-card>
+          <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center">
+          <div>
+            <h2 class="extraBoldfont2">{{ item.name }}</h2>
+          </div>
+          <div class="img-container">
+            <v-img src="../src/images/promo/sum.png" class="img1"></v-img>
+          </div>
+          <div>
+            <p3 class="smallBoldfont">{{ item.detail }}</p3>
+          </div>
+          <v-flex>
+            <RouterLink to="/filldetail"><v-btn class="large-button" @click="updatePromotion(item.id!,item.discount)">{{ item.code }}</v-btn></RouterLink>
+          </v-flex>
+          <div>
+            <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate }} ถึงวันที่ {{ item.endDate }}</p10>
+          </div>
+        </v-card>
 
 
         </v-col>
@@ -111,9 +102,7 @@ body {
   background-size: cover;
   font-family: sans-serif;
   width: 100vw;
-  height: 91.3vh;
-  width: 100vw;
-  height: 91.2vh;
+  height: 89vh;
   margin-top: 80px;
   padding: 15px;
 
@@ -155,7 +144,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  height: 150px;
   margin: 3%;
 }
 
@@ -203,7 +192,7 @@ body {
 }
 
 .extraBoldfont2 {
-  font-size: 35px;
+  font-size: 28px;
   font-weight: bolder;
   color: #024864;
 }
