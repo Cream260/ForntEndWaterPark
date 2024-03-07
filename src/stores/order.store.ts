@@ -125,9 +125,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
-        if (orderList.value[index].qty == 0) {
-          orderList.value.splice(index, 1);
-        }
+      if (orderList.value[index].qty == 0) {
+        orderList.value.splice(index, 1);
+      }
     }
 
     console.log(orderList.value);
@@ -163,9 +163,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
-        if (orderList.value[index].qty == 0) {
-          orderList.value.splice(index, 1);
-        }
+      if (orderList.value[index].qty == 0) {
+        orderList.value.splice(index, 1);
+      }
     }
 
     console.log(orderList.value);
@@ -201,9 +201,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
-        if (orderList.value[index].qty == 0) {
-          orderList.value.splice(index, 1);
-        }
+      if (orderList.value[index].qty == 0) {
+        orderList.value.splice(index, 1);
+      }
     }
 
     console.log(orderList.value);
@@ -239,9 +239,9 @@ export const useOrderStore = defineStore("order", () => {
       orderList.value[index].qty -= 1;
       orderList.value[index].totalPrice =
         orderList.value[index].qty * orderList.value[index].price!;
-        if (orderList.value[index].qty == 0) {
-          orderList.value.splice(index, 1);
-        }
+      if (orderList.value[index].qty == 0) {
+        orderList.value.splice(index, 1);
+      }
     }
 
     console.log(orderList.value);
@@ -314,16 +314,34 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
 
-async function updatePromotion(id: number, discount: number) {
-  try {
+  async function updatePromotion(id: number, discount: number) {
+    const orderItems = orderList.value;
+    const order = {
+      cusID: 1,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      numPeople: null,
+      nameComp: null,
+      discount: 0,
+      received: 0,
+      payments: "",
+      startDate: new Date(),
+      expDate: new Date(),
+      orderItems: orderItems,
+    };
+    try {
+      const res = await orderService.saveOrder(order);
       const promo = await promotionService.getPromotionById(id);
+      currentOrder.value = res.data;
       currentOrder.value.promoId = promo.data;
       currentOrder.value.discount = discount;
       await orderService.updateOrder(id, currentOrder.value);
-  } catch (e) {
+      clearOrder();
+    } catch (e) {
       console.log(e);
+    }
   }
-}
 
   return {
     updatePromotion,
@@ -354,5 +372,4 @@ async function updatePromotion(id: number, discount: number) {
     getOrderById,
     // PeopleCrement,
   };
-}
-);
+});
