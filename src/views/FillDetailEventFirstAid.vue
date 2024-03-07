@@ -20,6 +20,7 @@ const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
 const type = ref(""); 
+const nameComp = ref("");
 var expDate = new Date(selectedDate.value);
 const day = selectedDate.value.getDate();
 const month = selectedDate.value.getMonth();
@@ -67,7 +68,7 @@ async function save() {
   const order:Order = {
     cusID:1,
     eventId: eventStore.currentEvent.id,
-    nameComp: orderStore.currentOrder.nameComp,
+    nameComp: nameComp.value,
     discount: 0,
     expDate: expDate,
     startDate: new Date(selectedDate.value),
@@ -76,6 +77,7 @@ async function save() {
     netPrice:0, 
     totalPrice:0,
     received: 1,
+    payments: "",
   }
   await orderStore.eventOrder(order);
 }
@@ -135,7 +137,7 @@ async function save() {
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" />
+                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" v-model="nameComp"/>
               </v-flex>
             </v-col>
           </v-row>

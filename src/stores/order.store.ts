@@ -5,6 +5,7 @@ import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
 import promotionService from "@/components/services/promotion";
+import router from "@/router";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -14,6 +15,7 @@ export const useOrderStore = defineStore("order", () => {
   const EnChildqty = ref(0);
   const EnAdultqty = ref(0);
   const payment = ref("");
+  const nameComp = ref("");
   const startDate = ref(new Date());
   const expDate = ref(new Date());
   const currentOrder = ref<Order>({
@@ -39,8 +41,8 @@ export const useOrderStore = defineStore("order", () => {
       qty: 0,
       totalPrice: 0,
       netPrice: 0,
-      numPeople: null,
-      nameComp: null,
+      numPeople: 0,
+      nameComp: "",
       discount: 0,
       received: 0,
       payments: "",
@@ -74,8 +76,8 @@ export const useOrderStore = defineStore("order", () => {
       qty: 0,
       totalPrice: 0,
       netPrice: 0,
-      numPeople: null,
-      nameComp: null,
+      numPeople: 0,
+      nameComp: "",
       discount: 0,
       received: 0,
       payments: "",
@@ -268,10 +270,10 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
-      console.log("Order", res.data);
+      console.log("Order", currentOrder.value);
       //Json
       clearOrder();
-      window.location.href = "/sumdetail/" + currentOrder.value.id;
+      router.push("/sumdetail/" + currentOrder.value.id);
     } catch (e) {
       console.log(e);
     }

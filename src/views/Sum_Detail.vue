@@ -162,7 +162,7 @@ function updatePayment(payment: string) {
           </v-row>
         </v-card>
 
-        <!-- <v-row>
+        <v-row>
           <v-col cols="12" lg="6">
             <v-card class="pa-4 ml-4 detailCard">
               <v-row>
@@ -228,7 +228,7 @@ function updatePayment(payment: string) {
                   <v-col cols="12" lg="4">
                     <RouterLink to="/PromptPay">
                       <v-btn class="large-button3">
-                        <div class="smallbtnnormalFont" @click=" updatePayment('True Wallet')">Prompt Pay</div>
+                        <div class="smallbtnnormalFont" @click=" updatePayment('Prompt Pay')">Prompt Pay</div>
                       </v-btn>
                     </RouterLink>
                   </v-col>
@@ -237,7 +237,7 @@ function updatePayment(payment: string) {
             </v-card>
           </v-col>
 
-        </v-row> -->
+        </v-row> 
         <!-- <v-row>
           <v-col cols="12" lg="4" class="text-left">
             <RouterLink to="/CreditCard">

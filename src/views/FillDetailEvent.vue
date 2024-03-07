@@ -11,8 +11,6 @@ import type Order from "@/type/order";
 import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
 
-
-
 const form = ref<VForm | null>(null);
 const orderStore = useOrderStore();
 const userStore = useUserStore();
@@ -25,6 +23,7 @@ const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
 const type = ref(""); 
+const nameComp = ref("");
 const expDate = new Date(selectedDate.value);
 expDate.setFullYear(expDate.getFullYear());
 const day = selectedDate.value.getDate();
@@ -32,8 +31,9 @@ const month = selectedDate.value.getMonth();
 expDate.setMonth(month);
 expDate.setDate(day);
 
-onMounted(() => {
+onMounted(async () => {
   authStore.getUserFromLocalStorage();
+  await orderStore.getOrder();
 });
 
 
@@ -58,23 +58,22 @@ async function save() {
     //get event id 37
     eventStore.currentEvent.id = 34;
     // console.log(event);
-  }else{
-    eventStore.currentEvent.id = 35;
   }
   const order:Order = {
     cusID:1,
     eventId: eventStore.currentEvent.id,
-    nameComp: orderStore.currentOrder.nameComp,
+    nameComp: nameComp.value,
     discount: 0,
     expDate: expDate,
     startDate: new Date(selectedDate.value),
     qty: PeopleIncrement.value,
     numPeople: PeopleIncrement.value,
     netPrice:0,
-    
     totalPrice:0,
     received: 1,
+    payments: "",
   }
+  console.log(order.nameComp);
   await orderStore.eventOrder(order);
 }
 
@@ -188,7 +187,7 @@ function minus() {
                   class="placeholder-color forumSize0"
                   style="font-size: 35px"
                   label="หลักสูตร"
-                  v-model="eventStore.currentEvent.type"
+                  v-model="type"
                   :items="[
                     'การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล',
                     'หลักสูตร จูเนียร์ ไลฟ์การ์ด',
@@ -204,7 +203,7 @@ function minus() {
                   type="text"
                   placeholder="ชื่อบริษัท"
                   required
-                  v-model="orderStore.currentOrder.nameComp"
+                  v-model="nameComp"
                   class="placeholder-color forumSize0"
                 />
               </v-flex>
