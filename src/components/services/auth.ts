@@ -1,16 +1,24 @@
 
+import { mdiEmail } from "@mdi/js";
 import http from "./axios";
 
 
-const  authenticate = async (password: string, username: string) =>{
-console.log({
-  username: username,
-  user_password: password
-});
-    return await http.post("/auths/register", {
-      username: username,
-      user_password: password
+const  authenticate = async (password_: string, username_: string, email_:string, name_: string, tel_:string) =>{
+console.log(JSON.stringify({
+  username: username_,
+  password: password_,
+  email: email_,
+  name: name_,
+  tel:tel_
+}));
+    return  await http.post("/auths/register", {
+      username: username_,
+      password: password_,
+      email: email_,
+      name: name_,
+      tel:tel_
     });
+   
 
   
 }
