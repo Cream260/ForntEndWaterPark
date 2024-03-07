@@ -5,12 +5,13 @@ import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
 import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
+const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -22,6 +23,7 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
+
 
 // let lastuserId = 1
 // interface InfoDetail {
@@ -56,18 +58,19 @@ function clearFillDetail() {
 //   totalPrice: 0
 //   }
 // }
+
 </script>
 
 <template>
 
   <body>
     <container class="fluid">
-      <v-card class="activeTabs lgallfont">
-        <div style="margin-top: 2%;">
+      <v-card class="activeTabs">
+        <div style="margin-top: 2%;" class=" lgallfont">
           รายละเอียดของคุณ
         </div>
 
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
@@ -81,7 +84,7 @@ function clearFillDetail() {
             </v-flex>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
@@ -99,7 +102,7 @@ function clearFillDetail() {
             </form>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
@@ -113,11 +116,10 @@ function clearFillDetail() {
             </v-flex>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="12">
             <v-flex>
-              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize"
-                v-model="orderStore.currentOrder.netPrice" />
+              <h2 class="forumSize">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2>
             </v-flex>
           </v-col>
         </v-row>
