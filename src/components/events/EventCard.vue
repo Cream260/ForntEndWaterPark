@@ -1,29 +1,63 @@
 <script setup lang="ts">
 import { useEventStore } from '@/stores/event.store';
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, defineProps } from 'vue';
 
 const props = defineProps<{
-  eventName:string,
-  eventImg:string,
-
+  eventName: string,
+  eventImg: string,
 }>();
+
+// Your existing code
+onMounted(() => {
+  // Your logic here if needed
+});
+
 </script>
 
 <template>
-  <v-list-item to="/LifeGuard">
-      <v-card class="card" >
-        
-        <img :src="eventImg" height="100%" width="100%" />
-        <div 
-          class="card-text"
-        >
-          <h2 >{{ eventName }}</h2>
-          <p >3 หลักสูตร</p>
-        </div>
-      </v-card>
-  </v-list-item>
-    
-  </template>
+  <div>
+    <v-row>
+      <!-- LifeGuard Page Card -->
+      <v-col cols="4" offset="0.5">
+        <router-link to="/LifeGuard">
+          <v-card class="card">
+            <img src="../images/lifeGuard.jpg">
+            <div class="card-text">
+              <h2>Life Guard</h2>
+              <p>3 หลักสูตร</p>
+            </div>
+          </v-card>
+        </router-link>
+      </v-col>
+
+      <!-- FirstAid Page Card -->
+      <v-col cols="4" offset="0.5"> <!-- Adjust offset here -->
+        <router-link to="/FirstAid">
+          <v-card class="card">
+            <img src="../images/Safety.jpg">
+            <div class="card-text">
+              <h2>First Aid</h2>
+              <p>3 หลักสูตร</p>
+            </div>
+          </v-card>
+        </router-link>
+      </v-col>
+
+      <!-- Swim Page Card -->
+      <v-col cols="4" offset="0.5"> <!-- Adjust offset here -->
+        <router-link to="/Swim">
+          <v-card class="card">
+            <img src="../images/swim.jpg">
+            <div class="card-text">
+              <h2>Swim</h2>
+              <p>3 หลักสูตร</p>
+            </div>
+          </v-card>
+        </router-link>
+      </v-col>
+    </v-row>
+  </div>
+</template>
 
   <style scoped>
   .card {

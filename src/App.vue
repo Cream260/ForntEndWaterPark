@@ -1,12 +1,25 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { RouterLink, RouterView, useRouter, type RouteLocationRaw, useRoute  } from 'vue-router'
 import { useAuthStore } from './stores/auth';
+import MemberHeader from './views/Dialogs/MemberHeader.vue';
+import { ref } from 'vue';
+import router from './router';
+import { mdiMenuDown,mdiLogout} from '@mdi/js';
 const route = useRoute();
 const authStore = useAuthStore();
+const items = ref([
+    { title: 'Logout', route: '/' },
+]);
+// ใหม่
+
+const handleMenuItemClick = (item: { route: RouteLocationRaw; }) => {
+    // Handle navigation based on the clicked item
+    router.push(item.route);
+};
 
 const showNav = () => {
   
-  const excludedRoutes = ['/', '/Login']; 
+  const excludedRoutes = ['/', '/Login','/Register']; 
   return !excludedRoutes.includes(route.path);
 }
 
@@ -18,6 +31,7 @@ const showNav = () => {
     
     <img src="../src/images/Ticket/Icon.png"/>
     <nav >
+
       <RouterLink to="/BuyTicket">บัตร</RouterLink>
       <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
@@ -25,14 +39,18 @@ const showNav = () => {
       <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
       <RouterLink to="/Receipt">Receipt</RouterLink>
       <RouterLink to="/review">review</RouterLink>
-      <v-btn class="large-button"  @click="authStore.logout() ">Logout</v-btn>
-      
     </nav>
+    <MemberHeader></MemberHeader>
   </header>
+  
   <RouterView></RouterView>
 </template>
 
 <style scoped>
+.red-button {
+  float: right;
+
+}
 header {
   position: fixed;
   background-color: rgb(31, 121, 143);

@@ -1,9 +1,86 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { usePlusMinusStore } from "../stores/counter";
 import { mdiPlus, mdiMinus } from "@mdi/js";
-const calStore = usePlusMinusStore();
+import type { VForm } from "vuetify/components";
+import { useOrderStore } from "@/stores/order.store";
+import { useUserStore } from "@/stores/user.store";
+import { useAuthStore } from "@/stores/auth";
+import { useEventStore } from "@/stores/event.store";
+import type Order from "@/type/order";
+const selectedDate = ref<Date>(new Date());
+const form = ref<VForm | null>(null);
+const orderStore = useOrderStore();
+const userStore = useUserStore();
+const authStore = useAuthStore();
+const eventStore = useEventStore();
+//enddare is 1 year
+const endDate = ref<string>("");
+const minDate = ref<string>(new Date().toISOString().split("T")[0]);
+const PeopleIncrement = ref(0);
+const type = ref(""); 
+const nameComp = ref("");
+var expDate = new Date(selectedDate.value);
+const day = selectedDate.value.getDate();
+const month = selectedDate.value.getMonth();
+expDate.setMonth(month);
+expDate.setDate(day);
+onMounted(() => {
+  authStore.getUserFromLocalStorage();
+});
+
+function add() {
+  PeopleIncrement.value++;
+}
+
+function minus() {
+  if (PeopleIncrement.value <= 0) {
+    PeopleIncrement.value = 0;
+  } else {
+    PeopleIncrement.value--;
+  }
+}
+async function save() {
+  if (
+    type.value ==
+    "การฝึกฝนการปฐมพยาบาล จูเนียร์"
+  ) {
+    //get event id 35
+    eventStore.currentEvent.id = 37;
+
+  }
+  if (type.value == "หลักสูตร First aid,CPR & AED ระดับสากล") {
+    //get event id 36
+    eventStore.currentEvent.id = 38;
+    // console.log(event);
+
+  }
+  if (
+    type.value == "หลักสูตรCPR & AED"
+  ) {
+    //get event id 37
+    eventStore.currentEvent.id = 39;
+    // console.log(event);
+  }else{
+    eventStore.currentEvent.id = 37;
+  }
+  const order:Order = {
+    cusID:1,
+    eventId: eventStore.currentEvent.id,
+    nameComp: nameComp.value,
+    discount: 0,
+    expDate: expDate,
+    startDate: new Date(selectedDate.value),
+    qty: PeopleIncrement.value,
+    numPeople: PeopleIncrement.value,
+    netPrice:0, 
+    totalPrice:0,
+    received: 1,
+    payments: "",
+  }
+  await orderStore.eventOrder(order);
+}
 </script>
 
 <template>
@@ -19,12 +96,24 @@ const calStore = usePlusMinusStore();
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"/>
+                <input
+                  type="text"
+                  placeholder="ชื่อ"
+                  required
+                  v-model="userStore.currentUser.name "
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"/>
+                <input
+                  type="text"
+                  placeholder="เบอร์โทรศัพท์"
+                  required
+                  v-model="userStore.currentUser.tel "
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
           </v-row>
@@ -32,52 +121,80 @@ const calStore = usePlusMinusStore();
             <v-col cols="12" lg="6">
               <!-- <v-flex> -->
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
-                  <select
-                    class="placeholder-color forumSize0"
-                    style="font-size:35px;"
-                    
-                  >
-                    <option class="placeholder-color forumSize0">หลักสูตร</option>
-                    <option>หลักสูตร First aid, CPR & AED</option>
-                    <option>การฝึกฝนการปฐมพยาบาล จูเนียร์</option>
-                    <option>หลักสูตร CPR & AED</option>
-                  </select>
+                <v-select
+                  class="placeholder-color forumSize0"
+                  style="font-size: 35px"
+                  label="หลักสูตร"
+                  v-model="eventStore.currentEvent.type"
+                  :items="[
+                    'การฝึกฝนการปฐมพยาบาล จูเนียร์',
+                    'หลักสูตร First aid,CPR & AED ระดับสากล',
+                    'หลักสูตรCPR & AED',
+                  ]"
+                >
+                </v-select>
               <!-- </v-flex> -->
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" />
+                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" v-model="nameComp"/>
               </v-flex>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0" />
+                <input
+                  type="text"
+                  placeholder="อีเมล"
+                  required
+                  v-model="userStore.currentUser.email "
+                  class="placeholder-color forumSize0"
+                />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="เลือกวันที่จะเข้าอบรม" class="placeholder-color forumSize0" />
+                <input
+                class="placeholder-color forumSize0"
+                type="date"
+                id="dateday"
+                name="dateday"
+               v-model="selectedDate"
+                :min="minDate"
+              />
               </v-flex>
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
               <div class="d-flex align-center">
-                <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color forumSize mr-2" />
-                <v-btn :icon="mdiPlus" @click="calStore.Childincrement" class="mr-2"></v-btn>
-                <div class="smallfont mr-2">{{ calStore.Childcount }}</div>
-                <v-btn :icon="mdiMinus" @click="calStore.Childdecrement"></v-btn>
+                <div class="d-flex align-center forumSize">
+                <input
+                  type="text"
+                  placeholder="จำนวนผู้เข้าอบรม"
+                  class="placeholder-color mr-2"
+                  readonly
+                />
+                <button
+                  @click="add()"
+                  class="mr-4"
+                  style="margin-left: 350px; font-size: 30px"
+                >
+                  +
+                </button>
+                <div class="smallfont mr-4">{{ PeopleIncrement }}</div>
+                <button style="font-size: 30px" @click="minus()">−</button>
+              </div>
               </div>
             </v-col>
           </v-row>
           
           <v-row>
             <v-col  class="text-left; justify-center">
-              <RouterLink to="/sumdetail">
-                <v-btn color="#87B859" class="large-button">ยืนยัน</v-btn>
-              </RouterLink>
+                <v-btn color="#87B859" class="large-button" @click="save()"
+                >ยืนยัน</v-btn
+              >
             </v-col>
             
           </v-row>

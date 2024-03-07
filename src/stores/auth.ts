@@ -20,14 +20,14 @@ export const useAuthStore = defineStore("auth", () => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       if (response != null) {
-        const user__: User = {
-          id: response.data.user_id,
-          username: response.data.user_name,
-          email: response.data.user_email,
-          password: response.data.user_password, // Storing password in frontend is usually not advisable.
-          role: response.data.user_role,
-          tel: response.data.user_tel,
-          name: response.data.user_name,
+        const user: User = {
+          id: response.data.id,
+          username: response.data.username,
+          email: response.data.email,
+          password: response.data.password, // Storing password in frontend is usually not advisable.
+          role: response.data.role,
+          tel: response.data.tel,
+          name: response.data.name,
           customer: {
             id: -1,
             name: "",
@@ -36,15 +36,15 @@ export const useAuthStore = defineStore("auth", () => {
           },
         };
         if(response.data.customer){
-          user__.customer = {
-            id: response.data.customer.cus_id,
-            name: response.data.customer.cus_name,
-            email: response.data.customer.cus_email,
-            tel: response.data.customer.cus_tel,
+          user.customer = {
+            id: response.data.customer.id,
+            name: response.data.customer.name,
+            email: response.data.customer.email,
+            tel: response.data.customer.tel,
           }
         }
-        userStore.setUser(user__);
-        console.log(user__);
+        userStore.setUser(user);
+        console.log(user);
         router.push("/BuyTicket");
         return response;
       } else {
@@ -152,7 +152,7 @@ export const useAuthStore = defineStore("auth", () => {
         };
         userStore.setUser(user__);
         console.log(user__);
-        router.push("");
+     
       } else {
         console.error("User does not have customer");
         return null;

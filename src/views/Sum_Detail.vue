@@ -9,12 +9,16 @@ import { useRoute } from "vue-router";
 import { useEventStore } from "@/stores/event.store";
 import { id } from "vuetify/locale";
 import order from "@/components/services/order";
+import { useUserStore } from "@/stores/user.store";
+import { useAuthStore } from "@/stores/auth";
 const route = useRoute();
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
 const event_  = ref<Event>();
+const userStore = useUserStore();
+const authStore = useAuthStore();
 
 
 // const formatDate = (dateStr: string | number | Date) => {
@@ -43,6 +47,7 @@ const formatDate = (dateStr: string | number | Date) => {
 
 onMounted(async () => {
   // 🥲
+  authStore.getUserFromLocalStorage();
   orderStore.currentOrder.expDate = new Date();
   orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
@@ -84,8 +89,9 @@ function updatePayment(payment: string) {
               <h5>ชื่อ</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ customerStore.currentUser.name }}</h5>
+              <h5>{{ userStore.currentUser.name }}</h5>
             </v-col>
+            
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ชื่อบัตร</h5>
@@ -99,7 +105,7 @@ function updatePayment(payment: string) {
               <h5>อีเมลล์</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ customerStore.currentUser.email }}</h5>
+              <h5>{{ userStore.currentUser.email}}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -114,7 +120,7 @@ function updatePayment(payment: string) {
               <h5>เบอร์โทรศัพท์</h5>
             </v-col>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ customerStore.currentUser.tel }}</h5>
+              <h5>{{ userStore.currentUser.tel }}</h5>
             </v-col>
             <v-divider class="border-opacity-50" vertical></v-divider>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
@@ -156,7 +162,7 @@ function updatePayment(payment: string) {
           </v-row>
         </v-card>
 
-        <!-- <v-row>
+        <v-row>
           <v-col cols="12" lg="6">
             <v-card class="pa-4 ml-4 detailCard">
               <v-row>
@@ -222,7 +228,7 @@ function updatePayment(payment: string) {
                   <v-col cols="12" lg="4">
                     <RouterLink to="/PromptPay">
                       <v-btn class="large-button3">
-                        <div class="smallbtnnormalFont" @click=" updatePayment('True Wallet')">Prompt Pay</div>
+                        <div class="smallbtnnormalFont" @click=" updatePayment('Prompt Pay')">Prompt Pay</div>
                       </v-btn>
                     </RouterLink>
                   </v-col>
@@ -231,7 +237,7 @@ function updatePayment(payment: string) {
             </v-card>
           </v-col>
 
-        </v-row> -->
+        </v-row> 
         <!-- <v-row>
           <v-col cols="12" lg="4" class="text-left">
             <RouterLink to="/CreditCard">

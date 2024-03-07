@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import order from "@/components/services/order";
+import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
+const authStore = useAuthStore();
+const userStore = useUserStore();
+const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
 
 onMounted(async () => {
+  authStore.getUserFromLocalStorage();
   await orderStore.getOrder;
   await customerStore.getCustomer;
 })
@@ -17,6 +23,7 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
+
 
 // let lastuserId = 1
 // interface InfoDetail {
@@ -51,6 +58,7 @@ function clearFillDetail() {
 //   totalPrice: 0
 //   }
 // }
+
 </script>
 
 <template>
@@ -59,28 +67,29 @@ function clearFillDetail() {
     <container class="fluid">
       <v-card class="activeTabs lgallfont" style="width: 63%; height: 80vh; margin-left: 18%;margin-top: 0.7%">
         <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
+
           รายละเอียดของคุณ
         </div>
 
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.name" />
+                v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.tel" />
+                v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
-                v-model="customerStore.currentUser.email" />
+                v-model="userStore.currentUser.email" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
@@ -94,7 +103,7 @@ function clearFillDetail() {
             </form>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
@@ -108,11 +117,10 @@ function clearFillDetail() {
             </v-flex>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="ml-8">
           <v-col cols="12" lg="12">
             <v-flex>
-              <input type="text" placeholder="ราคาสุทธิ" class="placeholder-color forumSize"
-                v-model="orderStore.currentOrder.netPrice" />
+              <h2 class="forumSize">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2>
             </v-flex>
           </v-col>
         </v-row>
@@ -121,11 +129,12 @@ function clearFillDetail() {
             <RouterLink to="/sumdetail">
               <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
             </RouterLink>
+
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <!-- <RouterLink to="/"> -->
+            <RouterLink to="/BuyTicket">
             <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
-            <!-- </RouterLink> -->
+            </RouterLink>
           </v-col>
           <v-col></v-col>
         </v-row>
