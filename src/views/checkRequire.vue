@@ -3,55 +3,43 @@
 <template>
   <body>
     <container class="fluid">
-      <v-card class="lgallfont borderradius">
-        <div style="margin: 0px 0px 0px 40px" class="headFont">
+      <v-card class="lgallfont borderradius" style="width: 75%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5; margin-top: 0.5%; margin-left: 13%;" 
+              elevation="5">
+        <div class="headFont" style="margin-left: 5%; margin-top: 4%;">
           รายละเอียดบัตร
         </div>
         <v-row>
-          <v-col cols="12" lg="3" class="lgallfont"
-            ><v-img src="../src/images/Ticket/QrCode.png" width="100%"></v-img
+          <v-col cols="12" lg="4" class="lgallfont"
+            ><v-img src="../src/images/Ticket/QrCode.png" width="80%" style="margin-left: 15%; margin-top: 5%;"></v-img
           ></v-col>
-          <v-col class="mt-6 pt-6">
-            <div>
+          <v-col >
+            <div style="margin-top: 1%;">
               <v-row class="pt-6">
-                <v-col cols="12" lg="2" class="lgallfont"
-                  ><h5 class="ml-8">ชื่อบัตร</h5></v-col
+                <v-col cols="12" lg="3" class="lgallfont"
+                  ><h5 class="ml-4">ชื่อบัตร</h5></v-col
                 >
-                <v-col cols="12" lg="2" class="lgallfont"><h5>-</h5></v-col>
-                <v-col cols="12" lg="2" class="lgallfont"
-                  ><h5 class="ml-8">ชื่อโปรโมชั่น</h5></v-col
+                <v-col cols="12" lg="3" class="lgallfont" style="margin-left: 13%;"><h5>-</h5></v-col>
+                
+              </v-row>
+              <v-row class="pt-6">
+                <v-col cols="12" lg="3" class="lgallfont"
+                  ><h5 class="ml-4">ชื่อโปรโมชั่น</h5></v-col
                 >
-                <v-col cols="12" lg="2" class="lgallfont"><h5>-</h5></v-col>
+                <v-col cols="12" lg="3" class="lgallfont" style="margin-left: 13%;"><h5>-</h5></v-col>
+              </v-row>
+              <v-row class="pt-6">
+                <v-col cols="12" lg="4" class="lgallfont"
+                  ><h5 class="ml-4">วันที่เข้าสวนน้ำ</h5></v-col
+                >
+                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8" style="margin-left: 13%;">-</h5></v-col>
               </v-row>
               <v-row class="pt-6 mt-6">
-                <v-col cols="12" lg="4" class="lgallfont"
-                  ><h5 class="ml-8">วันที่เข้าสวนน้ำ</h5></v-col
+                <v-col cols="12" lg="6" class="lgallfont"
+                  ><h5 class="ml-4">ระยะเวลาที่เหลือของตั๋ว</h5></v-col
                 >
-                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8">-</h5></v-col>
-              </v-row>
-              <v-row class="pt-6 mt-6">
-                <v-col cols="12" lg="4" class="lgallfont"
-                  ><h5 class="ml-8">ระยะเวลาที่เหลือของตั๋ว</h5></v-col
-                >
-                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8">-</h5></v-col>
+                <v-col cols="12" lg="4" class="lgallfont"><h5 class="ml-8" style="margin-left: 13%;">-</h5></v-col>
               </v-row>
             </div>
-          </v-col>
-        </v-row>
-
-        <v-divider class="border-opacity-100"></v-divider>
-        <v-row>
-          <v-col cols="12" lg="5"
-            ><RouterLink to="/CheckRequire2">
-              <v-btn class="large-button1"
-                ><div class="smallnormalFont">Scan</div></v-btn
-              ></RouterLink>
-          </v-col>
-          <v-col cols="12" lg="7" class="btn-right"
-            >
-              <v-btn class="large-button2"
-                ><div class="smallnormalFont">อนุญาต</div></v-btn
-              >
           </v-col>
         </v-row>
       </v-card>
@@ -64,7 +52,7 @@ body {
   background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   width: 100vw;
-  height: 91.2vh;
+  height: 89vh;
   margin-top: 80px;
   padding: 25px;
   font-family: 'Kanit', 'sans-serif';
@@ -86,7 +74,7 @@ body {
   display: flex;
 }
 .headFont {
-  font-size: 64px;
+  font-size: 60px;
   font-weight: normal;
   color: #000000;
 }
