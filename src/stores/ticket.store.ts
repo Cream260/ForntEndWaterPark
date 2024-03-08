@@ -5,14 +5,13 @@ import { defineStore } from 'pinia'
 
 export const useTicketStore = defineStore("ticket", () => {
   const tickets = ref<Ticket[]>([])
-  async function getTicket() {
+  async function getTickets() {
     try {
-      const res = await ticketService.getTicket();
+      const res = await ticketService.getTickets();
       tickets.value = res.data;
-
     } catch (e) {
       console.log(e);
     }
   }
-  return { tickets, getTicket };
+  return { tickets, getTickets };
 });
