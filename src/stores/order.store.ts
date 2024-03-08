@@ -314,6 +314,20 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
 
+  async function updateReceived(id: number, received: number) {
+    try {
+      const res = await orderService.getOrderById(id);
+      const updatedOrder = res.data;
+      updatedOrder.received = received; // กำหนดวิธีการชำระเงิน
+      const result = await orderService.updateOrder(id, updatedOrder);
+      console.log(result); // แสดงผลลัพธ์การอัปเดต
+      currentOrder.value = result.data; // อัปเดตค่า currentOrder.value
+      console.log("update receive", currentOrder.value);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   async function updatePromotion(id: number, discount: number) {
     const orderItems = orderList.value;
     const order = {
@@ -344,6 +358,7 @@ export const useOrderStore = defineStore("order", () => {
   }
 
   return {
+    updateReceived,
     updatePromotion,
     getOrderById_,
     updatePayment,

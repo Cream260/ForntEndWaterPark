@@ -4,9 +4,12 @@ import { useOrderStore } from "@/stores/order.store";
 import { useManageTime } from "@/stores/manageDate"
 import { onMounted } from "vue";
 import { RouterLink } from "vue-router";
+import { useUserStore } from "@/stores/user.store";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
+const userStore = useUserStore();
+
 const date = (index: string) => {
   let dd = new Date(index);
   let date = {
@@ -95,7 +98,7 @@ onMounted(() => {
                 <h5 class="normalFont">Name : </h5>
               </v-col>
               <v-col cols="12" sm="4">
-                <h5 class="normalFont">{{ customerStore.currentUser.name }}</h5>
+                <h5 class="normalFont">{{ userStore.currentUser.name }}</h5>
               </v-col>
               <v-col cols="12" sm="3">
                 <h5 class="normalFont">รูปแบบการจ่าย :</h5>
@@ -108,14 +111,12 @@ onMounted(() => {
               </v-col>
               <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
             </v-row>
-            <v-col cols="12" sm="12" class="pt-4 pl-2">
-              <h5 class="normalFont">โปรหรรษาคลายร้อน??</h5>
-            </v-col>
           </div>
-          <div class="pt-2" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
+          
+          <div class="pt-4" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
             <v-row class="pl-2">
-              <v-col cols="12" sm="5" class="pl-9">
-                <h5 class="normalFont">{{ item.name }}</h5>
+              <v-col cols="12" sm="5" >
+                <h5 class="normalFont">{{ item.name }} ({{ item.type }})</h5>
               </v-col>
               <v-col cols="12" sm="2" class="pl-6">
                 <h5 class="normalFont">{{ item.qty }}</h5>
@@ -166,7 +167,7 @@ onMounted(() => {
                 <h5 class="normalFont">รวมสุทธิ : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice }}</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
