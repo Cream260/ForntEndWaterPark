@@ -12,6 +12,7 @@ const customerStore = useCustomerStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
 const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
+const price = computed(() => orderStore.currentOrder.totalPrice);
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -107,7 +108,7 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
-                v-model="orderStore.currentOrder.totalPrice" />
+                v-model="price" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
@@ -126,13 +127,13 @@ function clearFillDetail() {
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/sumdetail">
+      
               <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
-            </RouterLink>
+            
 
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/BuyTicket">
+            <RouterLink to="/BuyPackage">
             <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
             </RouterLink>
           </v-col>
