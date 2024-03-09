@@ -70,7 +70,7 @@ async function save() {
     numPeople: PeopleIncrement.value,
     netPrice:0,
     totalPrice:0,
-    received: 1,
+    received: 0,
     payments: "",
   }
   console.log(order.nameComp);
