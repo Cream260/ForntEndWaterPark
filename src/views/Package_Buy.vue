@@ -7,7 +7,7 @@ import { useOrderStore } from "@/stores/order.store";
 const packageStore = usePackageStore();
 const orderStore = useOrderStore();
 const addPackage = async (packageItem: Package) => {
-  console.log("Adding package :", packageItem);
+  console.log(packageItem);
  
 }
 onMounted(async () => {
