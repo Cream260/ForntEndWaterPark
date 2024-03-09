@@ -5,8 +5,11 @@ import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
 import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
+import type Package from "@/type/package";
 import { computed, onMounted, ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRoute } from "vue-router";
+const route = useRoute()
+const packageData = route.params.package as Package 
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const authStore = useAuthStore();
@@ -24,41 +27,6 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
-
-
-// let lastuserId = 1
-// interface InfoDetail {
-//   userId: number
-//   customername: ''
-//   tel: string
-//   email: string
-//   price: number
-//   discount: number
-//   totalPrice: number
-// }
-// const infoStore = ref<InfoDetail>({
-//   userId: 1,
-//   customername: '',
-//   tel: '',
-//   email: '',
-//   price: 0,
-//   discount: 0,
-//   totalPrice: 0
-// })
-// const personalinfoList = ref<InfoDetail[]>([])
-// function save() {
-//   infoStore.value.userId = lastuserId++
-//   personalinfoList.value.push(infoStore.value)
-//   infoStore.value = {
-//   userId: 1,
-//   customername: '',
-//   tel: '',
-//   email: '',
-//   price: 0,
-//   discount: 0,
-//   totalPrice: 0
-//   }
-// }
 
 </script>
 

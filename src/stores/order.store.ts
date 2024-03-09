@@ -80,7 +80,31 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
-
+    //function create order by event
+    async function packageOrder() {
+      const pack = {
+        cusID: 1,
+        qty: 0,
+        totalPrice: 0,
+        netPrice: 0,
+        received: 0,
+        discount: 0,
+        payments: "",
+        startDate: new Date(),
+        expDate: new Date(),
+      };
+      console.log(pack);
+      try {
+        const res = await orderService.saveOrder(pack);
+        currentOrder.value = res.data;
+        console.log("Order", currentOrder.value);
+        //Json
+        clearOrder();
+        
+      } catch (e) {
+        console.log(e);
+      }
+    }
   async function openOrder() {
     const orderItems = orderList.value;
     const order = {
@@ -291,6 +315,7 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
+
   //getOrder by id
   async function getOrderById(id: number) {
     try {
@@ -438,5 +463,6 @@ export const useOrderStore = defineStore("order", () => {
     EnAdultdecrement,
     getOrderById,
     // PeopleCrement,
+    packageOrder,
   };
 });
