@@ -1,7 +1,7 @@
 import type Ticket from "@/type/ticket";
 import http from "./axios";
 
-function getTicket() {
+function getTickets() {
   return http.get("/ticket");
 }
 
@@ -13,4 +13,4 @@ function deleteTicket(id: number) {
   return http.delete(`/ticket/${id}`);
 }
 
-export default { getTicket, updateTicket, deleteTicket};
+export default { getTickets, updateTicket, deleteTicket};
