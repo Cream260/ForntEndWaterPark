@@ -23,4 +23,18 @@ const getOrderById = (id:number)=>{
   return http.get(`/orders/${id}`);
 }
 
-export default { getOrder, saveOrder, updateOrder, deleteOrder,getOrderById };
+function getOrderQR(id: number) {
+  return http.get(`/orders/${id}/qr`);
+}
+
+function getEventByOrder(id: number) {
+  return http.get(`/orders/${id}/event`);
+}
+
+function getPackageByOrder(id: number) {
+  return http.get(`/orders/${id}/package`);
+}
+
+
+
+export default { getOrder, saveOrder, updateOrder, deleteOrder,getOrderById,getOrderQR ,getEventByOrder, getPackageByOrder};
