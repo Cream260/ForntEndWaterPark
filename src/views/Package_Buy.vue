@@ -1,89 +1,90 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useOrderStore } from "../stores/order.store";
+import { onMounted} from "vue";
+import { ref } from 'vue';
 import { usePackageStore } from "@/stores/package.store";
-const orderStore = useOrderStore();
+import type Package from "@/type/package" ;
+import { useOrderStore } from "@/stores/order.store";
 const packageStore = usePackageStore();
-const tab = ref(1);
+const orderStore = useOrderStore();
+const addPackage = async (packageItem: Package) => {
+  console.log("Adding package :", packageItem);
+ 
+}
 onMounted(async () => {
   await packageStore.getPackage();
+  await orderStore.getOrder();
 })
 </script>
-<template>
-  <body>
-    <v-card>
-      <div style="margin: 0px 0px 0px 40px;">
-        <h2 class="extraBoldfont">แพ็คเกจ</h2>
-      </div>
-      <v-card color="#F5F1DC" theme="dark" class="ma-10">
-        <v-row class="borderradius">
-          <v-col>
-            <v-img src="../src/images/package/family.png" width="400px" class="ma-10"></v-img>
-          </v-col>
-          <v-col class="ma-10">
-            <v-card-title class="ma-10">
-              <div>
-                <h2 class="extraBoldfont">แพ็คเกจครอบครัว</h2>
-                <br />
-                <div>
-                  <p3 class="smallBoldfont">แพ็คเกจพิเศษสำหรับครอบครัวซึ่งในเเพ็คเกจนี้</p3>
-                </div>
-                <div>
-                  <p3 class="smallBoldfont">จะประกอบไปด้วยตั๋วเข้าสวนน้ำสำหรับผู้ใหญ่สองคนและเด็กสองคน</p3>
-                </div>
-                <div>
-                  <p3 class="smallBoldfont">พร้อมที่จอดรถฟรีและส่วนลดสำหรับอาหารภายในสวนน้ำ</p3>
-                </div>
-                <v-card-actions class="no-padding">
-                  <div>
-                    <p3 class="smallBoldfont  ">ราคา 1999 บาท</p3>
-                  </div>
-                  <v-spacer></v-spacer>
-                  <v-flex>
-                    <RouterLink to="/filldetail"><v-btn color="#FFFFFF" class="large-button">ซื้อเลยตอนนี้</v-btn>
-                    </RouterLink>
-                  </v-flex>
-                </v-card-actions>
-              </div>
-            </v-card-title>
-          </v-col>
-        </v-row>
-      </v-card>
 
-      <v-card color="#F5F1DC" theme="dark" class="ma-10">
-        <v-row class="borderradius">
-          <v-col>
-            <v-img src="../src/images/package/birthday2.png" width="420px" class="ma-10"></v-img>
-          </v-col>
-          <v-col class="ma-10">
-            <v-card-title class="ma-10">
-              <div>
-                <h2 class="extraBoldfont">แพ็คเกจวันเกิด</h2>
-                <br />
-                <div>
-                  <p3 class="smallBoldfont">แพ็คเกจวันเกิดที่รวมตั๋วเข้าสวนน้ำ พื้นที่จัดปาร์ตี้</p3>
+<template>
+
+  <body>
+    <v-card class="full-card">
+      <div style="margin: 0px 0px 0px 40px;">
+        <h2 style="font-size: 35px; margin-top: 1%; margin-bottom: 1%;">แพ็คเกจ</h2>
+      </div>
+
+
+      <div v-for="(item, index) of packageStore.packages" :key="index">
+        <div v-if="item.name === 'แพ็คเกจวันเกิด'">
+          <v-card color="#F5F1DC" theme="dark" class="borderradius" style="height: 34vh;">
+            <v-layout>
+              <v-img src="../src/images/package/birthday2.png" style=" width: 25vw; height: 26vh; margin-right: 20%;"
+                class="ma-2 mt-7"></v-img>
+              <v-card-title style="margin-right: 20%;">
+                <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
+                <div v-for="(item, index) in detail2" :key="index" style="">
+                  <h2 class="smallBoldfont">{{ item }}</h2>
+
                 </div>
-                <div>
-                  <p3 class="smallBoldfont">และอาหารสำหรับกลุ่มของเด็กๆพร้อมของขวัญเล็กๆน้อยๆสำหรับผู้ฉลอง</p3>
-                </div>
-                <div>
-                  <p3 class="smallBoldfont"></p3>
-                </div>
+                <!-- <div></div> -->
+                
                 <v-card-actions class="no-padding">
-                  <div>
-                    <p3 class="smallBoldfont  ">ราคา 1999 บาท</p3>
-                  </div>
+                  <!-- <div> -->
+                  <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
+                  <!-- </div> -->
                   <v-spacer></v-spacer>
-                  <v-flex>
-                    <RouterLink to="/filldetail"><v-btn color="#FFFFFF" class="large-button">ซื้อเลยตอนนี้</v-btn>
-                    </RouterLink>
-                  </v-flex>
+                  
+                  <RouterLink to="/fillpackage">
+                  <v-btn class="large-button" color="#00000"@click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
+                </RouterLink>
                 </v-card-actions>
-              </div>
-            </v-card-title>
-          </v-col>
-        </v-row>
-      </v-card>
+              </v-card-title>
+            </v-layout>
+          </v-card>
+        </div>
+      </div>
+
+      <div v-for="(item, index) of packageStore.packages" :key="index">
+        <div v-if="item.name === 'แพ็คเกจครอบครัว'">
+          <v-card color="#F5F1DC" theme="dark" class="borderradius" style="height: 34vh;">
+            <v-layout>
+              <v-img src="../src/images/package/family.png" style=" width: 25vw; height: 26vh; margin-right: 20%;"
+                class="ma-2 mt-7"></v-img>
+              <v-card-title style="margin-right: 20%;">
+                <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
+                <div v-for="(item, index) in detail" :key="index" style="">
+                  <h2 class="smallBoldfont">{{ item }}</h2>
+
+                </div>
+                <!-- <div></div> -->
+               
+                <v-card-actions class="no-padding">
+                  <!-- <div> -->
+                  <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
+                  <!-- </div> -->
+                  <v-spacer></v-spacer>
+                  <RouterLink to="/fillpackage">
+                  <v-btn class="large-button" color="#00000" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
+                </RouterLink>
+                </v-card-actions>
+              </v-card-title>
+            </v-layout>
+          </v-card>
+        </div>
+      </div>
+
+
 
 
     </v-card>
@@ -95,14 +96,30 @@ body {
   background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   font-family: sans-serif;
-  margin-top: 40px;
+  width: 100vw;
+  height: 89vh;
+  margin-top: 80px;
+  padding: 15px;
 
-  padding: 60px;
+}
 
+.full-card {
+  width: 70%;
+  height: 80vh;
+  align-items: center;
+  border-radius: 20px;
+  margin-left: 15%;
+  margin-top: 2%;
 }
 
 .borderradius {
   border-radius: 20px;
+
+}
+
+.borderradius2 {
+  border-radius: 20px;
+  margin: 0px 0px 0px 40px;
 
 }
 
@@ -125,36 +142,30 @@ body {
 }
 
 .large-button {
-  width: 222px;
-  height: 77px;
+  width: 152px;
+  height: 45px;
   border-radius: 20px;
-  margin: 28px;
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #87B859;
 }
 
-.smallfont {
-  font-size: 30px;
-  font-weight: normal;
-  color: #0b2c44;
-}
 
 .smallBoldfont {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   color: #0b2c44;
 }
 
 .extraBoldfont {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bolder;
   color: #0b2c44;
 }
 
 input[type="text"] {
-  background-color: #8eadcdeb;
+  background-color: hsla(0, 0%, 100%, 0.922);
   border-radius: 20px;
   width: 504px;
   height: 77px;
@@ -203,4 +214,31 @@ input[type="text"]:focus {
 
 .v-tabs--density-default {
   --v-tabs-height: 80px;
-}</style>
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      detail: [
+        'แพ็คเกจพิเศษสำหรับครอบครัวซึ่งในเเพ็คเกจนี้จะประกอบไปด้วย ตั๋วเข้าสวนน้ำสำหรับ',
+        'ผู้ใหญ่สองคนและเด็กสองคน พร้อมที่จอดรถฟรีและส่วนลดสำหรับอาหารภายในสวนน้ำ',
+
+      ],
+      detail2: [
+        'แพ็คเกจวันเกิดที่รวมตั๋วเข้าสวนน้ำ พื้นที่จัดปาร์ตี้ และอาหารสำหรับกลุ่มของเด็กๆพร้อม',
+        'ของขวัญเล็กๆน้อยๆสำหรับผู้ฉลอง'
+      ],
+    };
+  }
+};
+
+</script>

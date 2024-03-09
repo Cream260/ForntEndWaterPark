@@ -6,7 +6,7 @@ function getOrder() {
 }
 
 function saveOrder(order: Order){
-
+  console.log(JSON.stringify(order));
   return http.post("/orders", order);
 }
 

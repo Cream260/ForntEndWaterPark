@@ -8,7 +8,7 @@ const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
 const tab = ref(1);
 onMounted(async () => {
-  await ticketStore.getTicket();
+  await ticketStore.getTickets();
   await orderStore.getOrder();
 })
 
@@ -26,25 +26,25 @@ onMounted(async () => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index">
                   <div v-if="item.type === 'คนไทย' && item.name === 'บัตรเด็ก'">
-                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius" style="height: 34vh;">
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                        <v-card-title class="ma-11">
-                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
-                          <div v-for="(item, index) in detail" :key="index">
+                        <v-img src="../src/images/Ticket/ChildTicket.png" style=" width: 25vw; height: 26vh; margin-right: 20%;" class="ma-2 mt-7"></v-img>
+                        <v-card-title style="margin-right: 20%;">
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
+                          <div v-for="(item, index) in detail" :key="index" style="">
                             <h2 class="smallBoldfont">{{ item }}</h2>
 
                           </div>
-                          <div class="mb-6"></div>
+                          <!-- <div></div> -->
                           <div v-for="(item, index) in subdetail" :key="index">
                             <h2 class="smallfont">{{ item }}</h2>
                           </div>
                           <v-card-actions class="no-padding">
-                            <div>
+                            <!-- <div> -->
                               <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
-                            </div>
+                            <!-- </div> -->
                             <v-spacer></v-spacer>
                             <v-btn :icon="mdiPlus" @click="orderStore.ThChildincrement(item)"></v-btn>
                             <div class="smallfont">{{ orderStore.ThChildqty }}</div>
@@ -57,17 +57,17 @@ onMounted(async () => {
                 </div>
               </v-col>
               <v-col>
-                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index">
                   <div v-if="item.type === 'คนไทย' && item.name === 'บัตรผู้ใหญ่'">
-                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius" style="height: 34vh;">
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                        <v-card-title class="ma-11">
-                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="30%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
+                        <v-card-title style="margin-right: 20%;">
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
-                          <div class="mb-6"></div>
+                          <div ></div>
                           <div v-for="(item, index) in subdetail" :key="index">
                             <h2 class="smallfont">{{ item }}</h2>
                           </div>
@@ -93,17 +93,17 @@ onMounted(async () => {
           <v-container fluid class="scroll-container">
             <v-row>
               <v-col>
-                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index">
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรเด็ก'">
-                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius " style="height: 34vh;" >
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="35%" class="ma-2"></v-img>
-                        <v-card-title class="ma-11">
-                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="35%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
+                        <v-card-title style="margin-right: 20%;">
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
-                          <div class="mb-6"></div>
+                          <div ></div>
                           <div v-for="(item, index) in subdetail" :key="index">
                             <h2 class="smallfont">{{ item }}</h2>
                           </div>
@@ -123,17 +123,17 @@ onMounted(async () => {
                 </div>
               </v-col>
               <v-col>
-                <div v-for="(item, index) of ticketStore.tickets" :key="index" class="mb-6">
+                <div v-for="(item, index) of ticketStore.tickets" :key="index">
                   <div v-if="item.type === 'คนต่างชาติ' && item.name === 'บัตรผู้ใหญ่'">
-                    <v-card color="#F5F1DC" theme="dark" class="borderradius">
+                    <v-card color="#F5F1DC" theme="dark" class="borderradius"  >
                       <v-layout>
-                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2"></v-img>
-                        <v-card-title class="ma-11">
-                          <h2 class="extraBoldfont mb-6">{{ item.name }}</h2>
+                        <v-img src="../src/images/Ticket/ChildTicket.png" width="40%" class="ma-2 mt-7" style=" width: 25vw; height: 26vh; margin-right: 20%;"></v-img>
+                        <v-card-title style="margin-right: 20%;">
+                          <h2 class="extraBoldfont mb-1 mt-3">{{ item.name }}</h2>
                           <div v-for="(item, index) in detail" :key="index">
                             <h2 class="smallBoldfont">{{ item }}</h2>
                           </div>
-                          <div class="mb-6"></div>
+                          <div></div>
                           <div v-for="(item, index) in subdetail" :key="index">
                             <h2 class="smallfont">{{ item }}</h2>
                           </div>
@@ -156,7 +156,7 @@ onMounted(async () => {
           </v-container>
         </v-window-item>
       </v-window>
-      <v-divider style="margin-top: 6%;"></v-divider>
+      <v-divider></v-divider>
       <v-row>
         <v-col cols="12" sm="7" class="text-right">
           <!-- <v-flex>
@@ -164,13 +164,13 @@ onMounted(async () => {
           </v-flex> -->
           <v-dialog transition="dialog-bottom-transition" width="auto">
             <template v-slot:activator="{ props: activatorProps }">
-              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด"></v-btn>
+              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด" style="margin-right: 30%;"></v-btn>
               
             </template>
 
             <template v-slot:default="{ isActive }">
               <v-card>
-                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false"></v-btn></v-toolbar>           
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false" ></v-btn></v-toolbar>           
                 <PromotionBuy></PromotionBuy>
               </v-card>
             </template>        
@@ -203,9 +203,9 @@ body {
 .activeTabs {
   border-radius: 20px;
   position: sticky;  
-  width: 70vw; 
+  width: 63%; 
   height: 80vh;
-  margin-left: 13%;
+  margin-left: 18%;
   margin-top: 0.7%
 }
 
@@ -214,34 +214,37 @@ body {
 }
 
 .fontlarge {
-  font-size: 45px;
+  font-size: 35px;
   font-weight: normal;
+  width: fit-content
 }
 
 .large-button {
-  width: 222px;
-  height: 77px;
+  width: 200px;
+  height: 47px;
   border-radius: 20px;
-  margin: 28px;
-  font-size: 30px;
+  margin-top: 12px;
+  
+  font-size: 20px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .promo-button {
-  width: 504px;
-  height: 77px;
+  width: 200px;
+  height: 47px;
   border-radius: 20px;
-  margin: 28px;
-  font-size: 30px;
+  margin-top: 12px;
+  font-size: 20px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .smallfont {
-  font-size: 40px;
+  font-size: 15px;
   font-weight: normal;
   color: #0b2c44;
+  width: fit-content
 }
 
 .whitefont {
@@ -249,15 +252,17 @@ body {
 }
 
 .smallBoldfont {
-  font-size: 35px;
+  font-size: 15px;
   font-weight: bold;
   color: #0b2c44;
+  width: fit-content
 }
 
 .extraBoldfont {
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bolder;
   color: #0b2c44;
+  width: fit-content
 }
 
 input[type="text"] {
@@ -270,7 +275,7 @@ input[type="text"] {
   box-sizing: border-box;
   outline: none;
   text-align: center;
-  font-size: 35px;
+  font-size: 15px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -318,9 +323,9 @@ export default {
   data() {
     return {
       detail: [
-        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่ง',
-        'สามารถเล่นเครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่น',
-        'เฉพาะเด็กและเล่นได้แบบเต็มวัน'
+        'บัตรเด็กนี้จะสามารถใช้เข้าสวนน้ำสำหรับเด็กหนึ่งคนซึ่งสามารถเล่น',
+        'เครื่องเล่นได้ทุกชนิด โดยจะมีเครื่องเล่นเฉพาะเด็กและเล่นได้แบบเต็มวัน',
+        ''
       ],
       subdetail: [
         'ส่วนสูง ≥ 106 เซนติเมตร',
