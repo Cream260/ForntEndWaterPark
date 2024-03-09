@@ -11,6 +11,8 @@ import { id } from "vuetify/locale";
 import order from "@/components/services/order";
 import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
+import { useTicketStore } from "@/stores/ticket.store";
+import { usePromotionStore } from "@/stores/promotion";
 const route = useRoute();
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
@@ -79,190 +81,61 @@ function updatePayment(payment: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class ="fontheader" style="font-size: 40px; margin-top: 1%; margin-bottom: 1%;">
+        <div class ="fontheader" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
-        
-        <v-card class="pa-4 ma-4 detailCard">
-          <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>ชื่อ</h5>
-            </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ userStore.currentUser.name }}</h5>
-            </v-col>
-            
-            <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>ชื่อบัตร</h5>
-            </v-col>
-            <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>{{ eventStore.currentEvent.name }}</h5>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>อีเมลล์</h5>
-            </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ userStore.currentUser.email}}</h5>
-            </v-col>
-            <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>โปรโมชั่น</h5>
-            </v-col>
-            <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>-</h5>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>เบอร์โทรศัพท์</h5>
-            </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>{{ userStore.currentUser.tel }}</h5>
-            </v-col>
-            <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>ราคา</h5>
-            </v-col>
-            <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>{{eventStore.currentEvent.price }} THB x {{ orderStore.currentOrder.qty }}</h5>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>วันที่มาใช้บริการ</h5>
-            </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
-            </v-col>
-            <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>ส่วนลด</h5>
-            </v-col>
-            <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>{{ orderStore.currentOrder.totalPrice }} THB</h5>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>บัตรหมดอายุ</h5>
-            </v-col>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</h5>
-            </v-col>
-            <v-divider class="border-opacity-50" vertical></v-divider>
-            <v-col cols="12" lg="3" class="text-left smallnormalFont">
-              <h5>ราคาสุทธิ</h5>
-            </v-col>
-            <v-col cols="12" lg="2" class="text-left smallnormalFont">
-              <h5>{{ orderStore.currentOrder.netPrice }} THB</h5>
-            </v-col>
-          </v-row>
-        </v-card>
-
         <v-row>
-          <v-col cols="12" lg="6">
-            <v-card class="pa-4 ml-4 detailCard">
-              <v-row>
-                <v-col cols="12" lg="4" class="text-left">
-                  <h5 class="smallnormalFont">ชื่อ</h5>
-                </v-col>
-                <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.name }}</h5>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" lg="4" class="text-left">
-                  <h5 class="smallnormalFont">อีเมลล์</h5>
-                </v-col>
-                <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.email }}</h5>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" lg="4" class="text-left">
-                  <h5 class="smallnormalFont">เบอร์โทรศัพท์</h5>
-                </v-col>
-                <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.tel }}</h5>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" lg="4" class="text-left">
-                  <h5 class="smallnormalFont">วันที่มาใช้บริการ</h5>
-                </v-col>
-                <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" lg="4" class="text-left">
-                  <h5 class="smallnormalFont">บัตรหมดอายุ</h5>
-                </v-col>
-                <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate}}</h5>
-                </v-col>
-                <v-col cols="12" lg="12">
-                  <v-divider class="border-opacity-50 mt-8"></v-divider>
-                </v-col>
-                <v-col>
-                  <h1 class="lgallfont mt-4">ช่องทางการจ่ายเงิน</h1>
-                </v-col>
-                <v-row class="mt-6">
-                  <v-col cols="12" lg="4">
+          <v-col>
+            
+            
+            <div class="card-container">
+              <div class="customer-details">
+                <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
+                <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
+                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate}}</div>
+              </div>
+              <hr class="divider"/>
+              <div class="payment-options">
+                
+                <div class="payment-section">
+                  <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
+                  <div class="payment-options">
                     <RouterLink to="/CreditCard">
-                      <v-btn class="large-button1">
-                        <div class="smallbtnnormalFont" @click=" updatePayment('Credit Card')">Credit Card</div>
-                      </v-btn>
+                      <button class="payment-btn ma-2" id="credit-card" @click="updatePayment('Credit Card')">Credit/Debit Card</button>
                     </RouterLink>
-                  </v-col>
-                  <v-col cols="12" lg="4">
                     <RouterLink to="/TrueWallet">
-                      <v-btn class="large-button2">
-                        <div class="smallbtnnormalFont" @click=" updatePayment('True Wallet')">True Wallet</div>
-                      </v-btn>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True Wallet</button>
                     </RouterLink>
-                  </v-col>
-                  <v-col cols="12" lg="4">
                     <RouterLink to="/PromptPay">
-                      <v-btn class="large-button3">
-                        <div class="smallbtnnormalFont" @click=" updatePayment('Prompt Pay')">Prompt Pay</div>
-                      </v-btn>
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt Pay</button>
                     </RouterLink>
-                  </v-col>
-                </v-row>
-              </v-row>
-            </v-card>
+                    
+                  </div>
+                </div>
+              </div>
+                
+              </div>
           </v-col>
-
-        </v-row> 
-        <!-- <v-row>
-          <v-col cols="12" lg="4" class="text-left">
-            <RouterLink to="/CreditCard">
-              <v-btn class="large-button1">
-                <div class="smallnormalFont" @click="orderStore.updateCredit()">Credit/Debit Card</div>
-              </v-btn>
-            </RouterLink>
+          <v-col>
+            
+            <div class="card-container2">
+              <div class="customer-details">
+                <div class="detail"><span class="label">ชื่อบัตร</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">ประเภทบัตร</span></div>
+                <div class="detail"><span class="label">โปรโมชั่น</span>{{usePromotionStore.name}}</div>
+                <div class="detail"><span class="label">ราคา</span>xx</div>
+                <div class="detail"><span class="label">ส่วนลด</span>xx</div>
+              </div>
+            </div>
+            <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>xx บาท</div>
           </v-col>
-          <v-col cols="12" lg="4" class="text-left">
-            <RouterLink to="/TrueWallet">
-              <v-btn class="large-button2">
-                <div class="smallnormalFont">True Wallet</div>
-              </v-btn>
-            </RouterLink>
-          </v-col>
-          <v-col cols="12" lg="4" class="text-left">
-            <RouterLink to="/PromptPay">
-              <v-btn class="large-button3">
-                <div class="smallnormalFont">Prompt Pay</div>
-              </v-btn>
-            </RouterLink>
-
-          </v-col>
-        </v-row> -->
+          
+        </v-row>
+        
       </v-card>
+      
     </container>
   </body>
 </template>
@@ -278,6 +151,14 @@ body {
   font-family: 'Kanit', 'sans-serif';
 }
 
+.payment-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
 .activeTabs {
   border-radius: 20px;
   position: sticky;
@@ -289,9 +170,9 @@ body {
 }
 
 .detailCard {
-  height: 620px;
+  height: 270px;
   position: sticky;
-  top: 1rem;
+  
   z-index: 2;
   background-color: #f5f1dc34;
 }
@@ -385,5 +266,75 @@ body {
 
 .scroll-container::-webkit-scrollbar-button {
   display: none;
+}
+
+.card-container {
+  background-color: #FFFBF5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30vw;
+  height: 65vh;
+  padding: 20px;
+  margin: 2%;
+  font-family: 'Kanit', sans-serif;
+}
+
+.card-container2 {
+  background-color: #FFFBF5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30vw;
+  height: 48vh;
+  padding: 20px;
+  margin: 2%;
+  font-family: 'Kanit', sans-serif;
+}
+
+.customer-details {
+  margin-bottom: 20px;
+}
+
+.detail {
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 28px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #333;
+  margin: 20px 0;
+}
+
+.payment-options {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.payment-btn {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  color: #FFF;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#credit-card {
+  background-color: #6cace4;
+}
+
+#true-wallet {
+  background-color: #ffcd3c;
+}
+
+#prompt-pay {
+  background-color: #c25bff;
 }
 </style>
