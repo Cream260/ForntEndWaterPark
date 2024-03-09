@@ -13,4 +13,8 @@ function deletePackage(id: number) {
   return http.delete(`/Packages/${id}`);
 }
 
-export default { getPackage, updatePackage, deletePackage};
+const getPackageById = (id:number)=>{
+  return http.get(`/package/${id}`);
+}
+
+export default { getPackage, updatePackage, deletePackage, getPackageById};

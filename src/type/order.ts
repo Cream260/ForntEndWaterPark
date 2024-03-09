@@ -1,4 +1,5 @@
 import type OrderItem from "./OrderItem";
+import type Package from "./package";
 
 export default interface Order {
   id?: number;
@@ -17,5 +18,6 @@ export default interface Order {
   eventId?: number;
   packageId?: number;
   orderItems?: OrderItem[];
-  event?:Event;
+  event?: Event;
+  package?: Package;
 }

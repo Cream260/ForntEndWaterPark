@@ -5,6 +5,13 @@ import type Package from '@/type/package';
 
 export const usePackageStore = defineStore("package", () => {
   const packages = ref<Package[]>([])
+  const currentPackage = ref<Package>({
+    name: " ",
+    images: 'no_image.jpg',
+    price: 0,
+    qty: 0,
+    package_detail: [],
+  });
   async function getPackage() {
     try {
       const res = await packageService.getPackage();
@@ -14,5 +21,16 @@ export const usePackageStore = defineStore("package", () => {
       console.log(e);
     }
   }
-  return { packages, getPackage };
+
+  async function getPackageById(id: number) {
+    try {
+      const res = await packageService.getPackageById(id);
+      currentPackage.value = res.data;
+      console.log("Package",res.data);
+      return currentPackage.value;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  return { packages, getPackage ,getPackageById,currentPackage};
 });

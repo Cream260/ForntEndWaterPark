@@ -57,6 +57,8 @@ onMounted(() => {
   orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
 });
+
+orderStore.findQrById(orderStore.currentOrder.id!);
 </script>
 
 <template>
@@ -181,6 +183,11 @@ onMounted(() => {
               </v-col>
             </v-row>
           </div>
+          <v-row>
+              <v-col class="d-flex justify-center align-center">
+                <v-img :src="orderStore.Qr" max-width="100" max-height="100"></v-img>
+              </v-col>
+            </v-row>
         </v-card>
       </div>
       <v-row class="pt-7">

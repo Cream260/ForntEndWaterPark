@@ -5,7 +5,13 @@ import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
 import promotionService from "@/components/services/promotion";
+import packageService from '@/components/services/package'
+import eventService from '../components/services/event';
+import type Package from "@/type/package";
+import type Event from "@/type/event";
 import router from "@/router";
+import event from "../components/services/event";
+import order from "@/components/services/order";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -16,6 +22,10 @@ export const useOrderStore = defineStore("order", () => {
   const EnAdultqty = ref(0);
   const payment = ref("");
   const nameComp = ref("");
+  const event_ = ref<Event>()
+  const package_ = ref<Package>()
+  const orderItem_ = ref<OrderItem[]>([]);
+  const Qr = ref('');
   const startDate = ref(new Date());
   const expDate = ref(new Date());
   const currentOrder = ref<Order>({
@@ -314,6 +324,17 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
 
+  async function findQrById(id: number) {
+    try {
+      const res = await orderService.getOrderQR(id);
+      const imageDataUrl = `${res.data}`;
+      Qr.value = imageDataUrl;
+      console.log('found', Qr.value);
+    } catch (error) {
+      console.error('Error while fetching QR code:', error);
+    }
+  }
+
   async function updatePromotion(id: number, discount: number) {
     const orderItems = orderList.value;
     const order = {
@@ -342,8 +363,29 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
+  async function findEventById(id: number) {
+    const res = await eventService.getEventById(id);
+    event_.value = res.data;
+    return event_;
+  }
+  async function findPackageById(id: number) {
+    const res = await packageService.getPackageById(id);
+    package_.value = res.data;
+    package_.value?.package_detail
+    console.log(res.data);
+    return package_;
+  }
+
+
 
   return {
+    findPackageById,
+    findEventById,
+    orderItem_,
+    event_,
+    package_,
+    Qr,
+    findQrById,
     updatePromotion,
     getOrderById_,
     updatePayment,
