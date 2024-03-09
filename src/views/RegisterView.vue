@@ -1,5 +1,5 @@
 <script setup lang = "ts">
-import { RouterLink } from "vue-router";
+import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { ref, watch } from "vue";
 import router from "@/router";
@@ -18,58 +18,58 @@ const showDialog = ref(false);
 const errorMessage = ref("");
 const passwordRegex =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
 let isValid = true;
+
+const redirectToHome = () => {
+  const router = useRouter();
+  router.push('/');
+}; 
 const validateForm = () => {
   isValid = true; 
   showDialog.value = false;
-  errorMessage.value = "Please fill all the form, thank you."
-  // if (!email.value) {
-  //   errorMessage.value;
-  //   isValid = false;
-  // } else if (
-  //   !/^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com)$/.test(email.value)
-  // ) {
-  //   emailError.value = "Only Gmail or Hotmail accounts are accepted";
-  //   isValid = false;
-  // } else {
-  //   emailError.value = "";
-  // }
+  if (!email.value) {
+    emailError.value = "โปรดใส่อีเมล์";
+    isValid = false;
+  } else if (
+    !/^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com)$/.test(email.value)
+  ) {
+    emailError.value = "Gmail หรือ Hotmail เท่านั้น";
+    isValid = false;
+  } else {
+    emailError.value = "";
+  }
 
 
 // Updated Username validation
-//   if (!username.value) {
-//     errorMessage.value;
-//     isValid = false;
-//   } else if (username.value.length < 5 || username.value.length > 20) {
-//     usernameError.value = "Username must be between 8-20 characters";
-//     isValid = false;
-//   } else if (/[\u0E00-\u0E7F]+/.test(username.value)) {
-//     usernameError.value = "Thai characters are not supported";
-//     isValid = false;
-//   } else {
-//     usernameError.value = "";
-//   }
+  if (!username.value) {
+    usernameError.value = "โปรดใส่ชื่อผู้ใช้";
+    isValid = false;
+  } else if (username.value.length < 5 || username.value.length > 20) {
+    usernameError.value = "ชื่อผู้ใช้ต้องไม่ต่ำกว่า 8 - 20 ตัวอักษร";
+    isValid = false;
+  }else {
+    usernameError.value = "";
+  }
 
-//   if (!password.value) {
-//     errorMessage.value;
-//     isValid = false;
-//   } else if (password.value.length < 6) {
-//     passwordError.value = "Password must be at least 6 characters";
-//     isValid = false;
-//   } else if (!passwordRegex.test(password.value)) {
-//     passwordError.value =
-//       "Password must have uppercase lowercase number and special characters";
-//     isValid = false;
-//   } else {
-//     passwordError.value = "";
-//   }
+  if (!password.value) {
+    passwordError.value = "โปรดใส่รหัสผ่าน";
+    isValid = false;
+  } else if (password.value.length < 6) {
+    passwordError.value = "รหัสผ่านต้องไม่ต่ำกว่า 6 ตักอักษร";
+    isValid = false;
+  } else if (!passwordRegex.test(password.value)) {
+    passwordError.value =
+      "รหัสผ่านจะต้องมีตัวเลขตัวพิมพ์ใหญ่ตัวพิมพ์เล็กและอักขระพิเศษ";
+    isValid = false;
+  } else {
+    passwordError.value = "";
+  }
 
-//   watch(username, (newValue) => {
-//   if (newValue.length > 20) {
-//     username.value = newValue.slice(0, 20);
-//   }
-// });
+  watch(username, (newValue) => {
+  if (newValue.length > 20) {
+    username.value = newValue.slice(0, 20);
+  }
+});
 }
-
 const register = async (event: Event) => {
   try {
     event.preventDefault();
@@ -90,13 +90,13 @@ const register = async (event: Event) => {
 
       if (res === null) {
         console.log("Setting error message and showing dialog");
-        errorMessage.value = "Email already registered";
+        errorMessage.value = "อีเมล์ที่ลงทะเบียนไว้แล้ว";
         showDialog.value = true;
         
       }
       if (res != null && res === true) {
     // Display a simple native JavaScript alert
-    alert('Registration Successful! You can now log in with your credentials.');
+    alert('การลงทะเบียนสำเร็จ! ตอนนี้คุณสามารถเข้าสู่ระบบด้วยข้อมูลประจำตัวของคุณ');
 
     // Redirect to login page
     router.push('/');
@@ -105,11 +105,10 @@ const register = async (event: Event) => {
       showDialog.value = true;
     }
   } catch (error) {
-    errorMessage.value = "Email already registered";
+    errorMessage.value = "อีเมล์ที่ลงทะเบียนไว้แล้ว";
     showDialog.value = true;
   }
 };
-
 </script>
 <template>
      <div class="login-container">
@@ -155,7 +154,11 @@ const register = async (event: Event) => {
                                 :type="showPassword ? 'text' : 'password'"
                 placeholder="password"
                 class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full"
-                                 ></v-text-field>
+                                 ></v-text-field>      
+                                 <button
+                @click.prevent="showPassword = !showPassword" style="float: right; background-color: #808080;" >
+                <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"  >Show Password</i>
+              </button> 
                          </div>
                     </v-col>
                 </v-row>
@@ -185,12 +188,24 @@ const register = async (event: Event) => {
                     </v-col>
                     
                 </v-row>
-                <div class="mt-2 px-7 py-3" >
-              <p class="text-sm text-gray-500" style="color: red; text-align: center;">{{ errorMessage }}</p>
+                <div
+              v-if="
+                usernameError || emailError || passwordError  || errorMessage
+              "
+              class="border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3"
+            >
+              <ul class="mt-1 list-disc list-inside text-start">
+                <li v-if="errorMessage" >{{ errorMessage }}</li>
+                <li v-if="usernameError">{{ usernameError }}</li>
+                <li v-if="emailError">{{ emailError }}</li>
+                <li v-if="passwordError">{{ passwordError }}</li>            
+              </ul>
             </div>
             <div>
-                <button style="margin-bottom:40px ; border-color: #22668D; background-color: #427D9D;"   @click="register" >Submit   </button>.
-                <button style="margin-bottom:40px ; border-color: #22668D; background-color: #FF0000;"  >Cancel   </button>
+                <button style="margin-bottom:40px ; border-color: #22668D; background-color: #427D9D;"   @click="register" >Submit   </button>
+                <router-link to = "/">
+                <button style="margin-bottom: 40px; border-color: #22668D; background-color: #FF0000; float: left;" @click = "redirectToHome">Cancel</button>
+              </router-link>
               </div>
               </v-card>
         </form>

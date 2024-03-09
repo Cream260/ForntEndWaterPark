@@ -84,6 +84,7 @@ function updatePayment(payment: string) {
         </div>
         
         <v-card class="pa-4 ma-4 detailCard">
+
           <v-row>
             <v-col cols="12" lg="3" class="text-left smallnormalFont">
               <h5>ชื่อ</h5>
@@ -170,7 +171,7 @@ function updatePayment(payment: string) {
                   <h5 class="smallnormalFont">ชื่อ</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.name }}</h5>
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.name }}</h5>
                 </v-col>
               </v-row>
               <v-row>
@@ -178,7 +179,7 @@ function updatePayment(payment: string) {
                   <h5 class="smallnormalFont">อีเมลล์</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.email }}</h5>
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.email }}</h5>
                 </v-col>
               </v-row>
               <v-row>
@@ -186,7 +187,7 @@ function updatePayment(payment: string) {
                   <h5 class="smallnormalFont">เบอร์โทรศัพท์</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ customerStore.currentUser.tel }}</h5>
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.tel }}</h5>
                 </v-col>
               </v-row>
               <v-row>
@@ -202,7 +203,7 @@ function updatePayment(payment: string) {
                   <h5 class="smallnormalFont">บัตรหมดอายุ</h5>
                 </v-col>
                 <v-col cols="12" lg="8" class="text-left">
-                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate}}</h5>
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</h5>
                 </v-col>
                 <v-col cols="12" lg="12">
                   <v-divider class="border-opacity-50 mt-8"></v-divider>

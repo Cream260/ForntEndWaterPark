@@ -3,15 +3,19 @@ import order from "@/components/services/order";
 import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
+import { usePackageStore } from "@/stores/package.store";
 import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
 import { computed, onMounted, ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRoute } from "vue-router";
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
+const packageStore = usePackageStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
+const totalPrice = ref(0);
 const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
+const route = useRoute();
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -71,7 +75,7 @@ function clearFillDetail() {
           รายละเอียดของคุณ
         </div>
 
-        <v-row class="ml-8">
+        <v-row class="ml-8" >
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
@@ -106,8 +110,8 @@ function clearFillDetail() {
         <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
-                v-model="orderStore.currentOrder.totalPrice" />
+              <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
+                v-model="packageStore.currentPackage.price" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">

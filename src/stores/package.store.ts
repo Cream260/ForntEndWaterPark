@@ -5,8 +5,7 @@ import type Package from '@/type/package';
 
 export const usePackageStore = defineStore("package", () => {
   const packages = ref<Package[]>([])
-  const currentPackage = ref<Package>({
-    
+  const currentPackage = ref<Package>({   
     name: " ",
     price: 0,
     qty: 0,
@@ -18,7 +17,8 @@ export const usePackageStore = defineStore("package", () => {
     try {
       const res = await packageService.getPackage();
       packages.value = res.data;
-      
+      console.log(res);
+      console.log(packages.value );
     } catch (e) {
       console.log(e);
     }

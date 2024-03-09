@@ -15,18 +15,18 @@ const login = async (event: Event) => {
     errorMessage.value = "";
 
     if (!username.value || !password.value) {
-        errorMessage.value = "Username and password are required.";
+        errorMessage.value = "โปรดระบุชื่อและรหัสผ่าน";
         showDialog.value = true;
         return;
     }
 try {
    const res =  await authStore.login(username.value, password.value);
  if(res == null){
-    errorMessage.value = "Your username or password is incorrect. Please try again.";
+    errorMessage.value = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
     showDialog.value = true;
   }
     } catch (error) {
-      errorMessage.value ="Your username or password is incorrect. Please try again.";
+      errorMessage.value ="ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
       showDialog.value = true;
     }
 };
@@ -49,7 +49,7 @@ try {
                 v-model="username"
                 type="text"
                 :rules="[
-                        (v) => !!v || 'Username is required'
+                        (v) => !!v || 'โปรดระบุชื่อผู้ใช้'
                       ]" required
                 label="Username"
             ></v-text-field>
@@ -61,7 +61,7 @@ try {
                 :type="showPassword ? 'text' : 'password'"
                 placeholder="Password"
                 :rules="[
-                        (v) => !!v || 'Password is required'
+                        (v) => !!v || 'โปรดระบุรหัสผ่าน'
                       ]" required
             ></v-text-field>
             <div class="mt-2 px-7 py-3" >

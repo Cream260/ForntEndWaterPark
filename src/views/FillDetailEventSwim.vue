@@ -11,7 +11,6 @@ import { useEventStore } from "@/stores/event.store";
 import type Order from "@/type/order";
 const selectedDate = ref<Date>(new Date());
 const form = ref<VForm | null>(null);
-const nameComp = ref("");
 const orderStore = useOrderStore();
 const userStore = useUserStore();
 const authStore = useAuthStore();
@@ -21,6 +20,12 @@ const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
 const type = ref(""); 
+const nameComp = ref("");
+const ppiError = ref("");
+const nameCompError = ref("");
+const typeError = ref("");
+const showDialog = ref(false);
+let isValid = true;
 var expDate = new Date(selectedDate.value);
 const day = selectedDate.value.getDate();
 const month = selectedDate.value.getMonth();
@@ -41,7 +46,41 @@ function minus() {
     PeopleIncrement.value--;
   }
 }
+const validateForm = () => {
+  showDialog.value = false;
+  isValid = true; 
+
+if (!nameComp.value) {
+      nameCompError.value = "โปรดใส่ชื่อบริษัท";
+      isValid = false;
+  } else if (nameComp.value.length < 3 || nameComp.value.length > 100) {
+      nameCompError.value = "ชื่อบริษัทต้องมี 3-100 ตัวอักษร";
+      isValid = false;
+  } else {
+      nameCompError.value = "";
+  }
+
+if (type.value === null || !type.value) {
+    typeError.value = "โปรดเลือกหลักสูตร";
+    isValid = false;
+} else {
+    typeError.value = "";
+}
+
+if (PeopleIncrement.value === 0) {
+    ppiError.value = "จำนวนผู้เข้าร่วมไม่สามารถเป็น 0";
+    isValid = false;
+} else if (PeopleIncrement.value == null) {
+    ppiError.value = "โปรดระบุจำนวนผู้เข้าร่วม";
+    isValid = false;
+} else {
+    ppiError.value = "";
+}
+    return isValid;
+
+}
 async function save() {
+  validateForm();
   if (
     type.value ==
     "หลักสูตร การว่ายน้ำ ขั้นพื้นฐาน"
@@ -99,7 +138,7 @@ async function save() {
                 <input
                   type="text"
                   placeholder="ชื่อ"
-                  required
+                  disabled
                   v-model="userStore.currentUser.name "
                   class="placeholder-color forumSize0"
                 />
@@ -110,7 +149,7 @@ async function save() {
                 <input
                   type="text"
                   placeholder="เบอร์โทรศัพท์"
-                  required
+                  disabled
                   v-model="userStore.currentUser.tel "
                   class="placeholder-color forumSize0"
                 />
@@ -125,7 +164,7 @@ async function save() {
                   class="placeholder-color forumSize0"
                   style="font-size: 35px"
                   label="หลักสูตร"
-                  v-model="eventStore.currentEvent.type"
+                  v-model="type"
                   :items="[
                     'หลักสูตร การว่ายน้ำ ขั้นพื้นฐาน',
                     'หลักสูตร การว่ายน้ำ ขั้นสูง',
@@ -133,6 +172,7 @@ async function save() {
                   ]"
                 >
                 </v-select>
+                <p v-if="typeError" class="error-message small-text" style="color: red">{{ typeError }}</p>
               <!-- </v-flex> -->
             </v-col>
             <v-col cols="12" lg="6">
@@ -145,6 +185,7 @@ async function save() {
                   class="placeholder-color forumSize0"
                 />
               </v-flex>
+              <p v-if="nameCompError" class="error-message small-text" style="color: red">{{ nameCompError }}</p>
             </v-col>
           </v-row>
           <v-row>
@@ -153,7 +194,7 @@ async function save() {
                 <input
                   type="text"
                   placeholder="อีเมล"
-                  required
+                  disabled
                   v-model="userStore.currentUser.tel "
                   class="placeholder-color forumSize0"
                 />
@@ -193,6 +234,7 @@ async function save() {
                 <button style="font-size: 30px" @click="minus()">−</button>
               </div>
               </div>
+              <p v-if="ppiError" class="error-message small-text" style="color: red">{{ ppiError  }}</p>
             </v-col>
           </v-row>
           
@@ -230,7 +272,9 @@ body {
   z-index: 2;
   
 }
-
+.small-text {
+  font-size: 18px; /* Adjust the font size as needed */
+}
 .placeholder-color::placeholder {
   color: #00000045;
 }
