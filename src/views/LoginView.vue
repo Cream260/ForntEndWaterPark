@@ -41,9 +41,9 @@ try {
       
       <div class="form-container">
         <img src="../images/logo.png" style="height: 10vw;width: 23vh; margin-left: 37%;"/>
-        <h2 style="text-align: center; font-size: 500%;">Login</h2>
+        <h2 style="text-align: center; font-size: 300%;">Login</h2>
         <form >
-          <div class="input-container">
+          <!-- <div class="input-container"> -->
             <label style="font-size: 200%;">User name:</label>
             <v-text-field
                 v-model="username"
@@ -53,8 +53,8 @@ try {
                       ]" required
                 label="Username"
             ></v-text-field>
-          </div>
-          <div class="input-container">
+          <!-- </div> -->
+          <!-- <div class="input-container"> -->
             <label style="font-size: 200%;">Password:</label>
             <v-text-field
                 v-model="password"
@@ -67,9 +67,9 @@ try {
             <div class="mt-2 px-7 py-3" >
               <p class="text-sm text-gray-500" style="color: red; text-align: center;">{{ errorMessage }}</p>
             </div>
-          </div>
+          <!-- </div> -->
           <v-col>
-                  <button  type="submit" style="border-color: #22668D; background-color: #427D9D;"   @click="login" >Sign in</button>
+                  <button  type="submit" style="border-color: #22668D; background-color: #427D9D; "   @click="login" >Sign in</button>
           </v-col>
           
           <a href="#">Forgot Password?</a>
