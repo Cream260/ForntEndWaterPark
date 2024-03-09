@@ -134,11 +134,11 @@ export const useAuthStore = defineStore("auth", () => {
     password: string,
     username: string,
     email: string,
-    tel:string,
-    name:string
+    name:string,
+    tel:string
   ) => {
     try {
-      const response = await auth.authenticate(password, username, email, tel, name);
+      const response = await auth.authenticate(password, username, email, name, tel);
      console.log(response);
       if ( response.data != null) { // Add a null check for response.data
         const user: User = {

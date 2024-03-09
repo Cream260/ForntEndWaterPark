@@ -82,8 +82,8 @@ const register = async (event: Event) => {
         password.value,
         username.value,
         email.value,
-        tel.value,
         name.value,
+        tel.value
      
       );
       console.log(res);

@@ -72,7 +72,7 @@ try {
                   <button  type="submit" style="border-color: #22668D; background-color: #427D9D;"   @click="login" >Sign in</button>
           </v-col>
           
-          <a href="/Register">Register</a>
+          <a href="/Register">Register?</a>
         </form>
       </div>
     </div>
