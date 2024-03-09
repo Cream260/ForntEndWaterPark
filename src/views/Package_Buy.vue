@@ -3,14 +3,16 @@ import { onMounted} from "vue";
 import { ref } from 'vue';
 import { usePackageStore } from "@/stores/package.store";
 import type Package from "@/type/package" ;
+import { useOrderStore } from "@/stores/order.store";
 const packageStore = usePackageStore();
-const addPackage = (packageItem: Package) => {
+const orderStore = useOrderStore();
+const addPackage = async (packageItem: Package) => {
   console.log("Adding package :", packageItem);
-
+ 
 }
 onMounted(async () => {
   await packageStore.getPackage();
-  
+  await orderStore.getOrder();
 })
 </script>
 
@@ -39,13 +41,13 @@ onMounted(async () => {
                 
                 <v-card-actions class="no-padding">
                   <!-- <div> -->
-                  <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                  <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
                   <!-- </div> -->
                   <v-spacer></v-spacer>
                   
-                  
+                  <RouterLink to="/fillpackage">
                   <v-btn class="large-button" color="#00000"@click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
-                
+                </RouterLink>
                 </v-card-actions>
               </v-card-title>
             </v-layout>
@@ -69,12 +71,12 @@ onMounted(async () => {
                
                 <v-card-actions class="no-padding">
                   <!-- <div> -->
-                  <p3 class="smallfont">ราคา {{ item.price }} บาท</p3>
+                  <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
                   <!-- </div> -->
                   <v-spacer></v-spacer>
-                  
+                  <RouterLink to="/fillpackage">
                   <v-btn class="large-button" color="#00000" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
-                
+                </RouterLink>
                 </v-card-actions>
               </v-card-title>
             </v-layout>

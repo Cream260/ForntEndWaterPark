@@ -18,8 +18,7 @@ export const usePackageStore = defineStore("package", () => {
     try {
       const res = await packageService.getPackage();
       packages.value = res.data;
-      console.log(res);
-      console.log(packages.value );
+      
     } catch (e) {
       console.log(e);
     }
