@@ -8,6 +8,7 @@ const packageStore = usePackageStore();
 const orderStore = useOrderStore();
 const addPackage = async (packageItem: Package) => {
   console.log(packageItem);
+  orderStore.packageOrder();
 
 }
 onMounted(async () => {
