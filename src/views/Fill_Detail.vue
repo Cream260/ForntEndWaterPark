@@ -15,14 +15,14 @@ const userStore = useUserStore();
 
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const selectedDate = ref<string>(minDate.value);
-const expDate = ref<Date>(new Date(selectedDate.value));
-// แปลง selectedDate เป็นวัตถุของวันที่ (Date object)
-const selectedDateObj = new Date(selectedDate.value);
-// เพิ่มหนึ่งวันเข้าไปใน expDate
-expDate.value.setDate(selectedDateObj.getDate() + 1);
 
-console.log("startDate", selectedDate.value);
-console.log("endDate", expDate.value);
+// Get the selected date as a Date object
+const selectedDateObject = new Date(selectedDate.value);
+
+// Set expDate to be one day ahead of selectedDate
+const expDate = ref<Date>(new Date(selectedDateObject.getTime())); // Make a copy of selectedDateObject
+expDate.value.setDate(expDate.value.getDate() + 1); // Increment the date by one day
+
 
 
 function updateOrderDates() {
