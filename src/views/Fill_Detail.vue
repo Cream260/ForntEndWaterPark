@@ -13,14 +13,21 @@ const customerStore = useCustomerStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
 
-const selectedDate = ref<Date>(new Date());
+const minDate = ref<string>(new Date().toISOString().split("T")[0]);
+const selectedDate = ref<string>(minDate.value);
+const expDate = ref<Date>(new Date(selectedDate.value));
+// แปลง selectedDate เป็นวัตถุของวันที่ (Date object)
+const selectedDateObj = new Date(selectedDate.value);
+// เพิ่มหนึ่งวันเข้าไปใน expDate
+expDate.value.setDate(selectedDateObj.getDate() + 1);
 
-const expDate = new Date(selectedDate.value);
-expDate.setFullYear(expDate.getFullYear());
-const day = selectedDate.value.getDate();
-const month = selectedDate.value.getMonth();
-expDate.setMonth(month);
-expDate.setDate(day);
+console.log("startDate", selectedDate.value);
+console.log("endDate", expDate.value);
+
+
+function updateOrderDates() {
+  orderStore.ticketOrder(new Date(selectedDate.value), expDate.value);
+}
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -110,7 +117,8 @@ function clearFillDetail() {
             </v-flex> -->
             <form action="/action_page.php">
               <label for="dateday"></label>
-              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
+              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" v-model="selectedDate"
+                :min="minDate" />
             </form>
           </v-col>
         </v-row>
@@ -140,7 +148,7 @@ function clearFillDetail() {
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
             
-              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="orderStore.ticketOrder">ซื้อเลยตอนนี้</v-btn>
+              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="updateOrderDates()">ซื้อเลยตอนนี้</v-btn>
             
 
           </v-col>

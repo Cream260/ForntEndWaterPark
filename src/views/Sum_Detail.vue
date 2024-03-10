@@ -229,7 +229,8 @@ function updatePayment(payment: string) {
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
                 <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ?
                   formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
-                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate }}</div>
+                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.startDate ?
+                  formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
               </div>
               <hr class="divider" />
               <div class="payment-options">

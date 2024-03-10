@@ -191,8 +191,12 @@ export const useOrderStore = defineStore("order", () => {
   }
   
 
-  async function ticketOrder() {
+  async function ticketOrder(startDate_:Date, endDate_:Date) {
     try {
+      currentOrder.value.startDate = startDate_;
+      currentOrder.value.expDate = endDate_;
+      await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
+      console.log("Order", currentOrder.value)
       router.push("/sumdetail/" + currentOrder.value.id);
     } catch (e) {
       console.log(e);
