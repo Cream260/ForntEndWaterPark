@@ -125,7 +125,7 @@ const router = createRouter({
       component: () => import('../views/FillDetailEvent.vue')
     },
     {
-      path: '/CheckRequire',
+      path: '/CheckRequire/:id',
       name: 'checkrequire',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route

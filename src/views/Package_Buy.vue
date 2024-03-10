@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { onMounted} from "vue";
+import { onMounted } from "vue";
 import { ref } from 'vue';
 import { usePackageStore } from "@/stores/package.store";
-import type Package from "@/type/package" ;
+import type Package from "@/type/package";
 import { useOrderStore } from "@/stores/order.store";
 const packageStore = usePackageStore();
 const orderStore = useOrderStore();
 const addPackage = async (packageItem: Package) => {
   console.log(packageItem);
- 
+
+  orderStore.packageOrder();
+
 }
 onMounted(async () => {
   await packageStore.getPackage();
@@ -38,16 +40,16 @@ onMounted(async () => {
 
                 </div>
                 <!-- <div></div> -->
-                
+
                 <v-card-actions class="no-padding">
                   <!-- <div> -->
                   <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
                   <!-- </div> -->
                   <v-spacer></v-spacer>
-                  
+
                   <RouterLink to="/fillpackage">
-                  <v-btn class="large-button" color="#00000"@click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
-                </RouterLink>
+                    <v-btn class="large-button" color="#00000" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
+                  </RouterLink>
                 </v-card-actions>
               </v-card-title>
             </v-layout>
@@ -68,15 +70,15 @@ onMounted(async () => {
 
                 </div>
                 <!-- <div></div> -->
-               
+
                 <v-card-actions class="no-padding">
                   <!-- <div> -->
                   <h2 class="smallfont">ราคา {{ item.price }} บาท</h2>
                   <!-- </div> -->
                   <v-spacer></v-spacer>
                   <RouterLink to="/fillpackage">
-                  <v-btn class="large-button" color="#00000" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
-                </RouterLink>
+                    <v-btn class="large-button" color="#00000" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
+                  </RouterLink>
                 </v-card-actions>
               </v-card-title>
             </v-layout>

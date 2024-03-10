@@ -6,8 +6,13 @@ import { useOrderStore } from "@/stores/order.store";
 import { usePackageStore } from "@/stores/package.store";
 import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
+import type Package from "@/type/package";
 import { computed, onMounted, ref } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
+
+const route = useRoute()
+const packageData = route.params.package as Package 
+
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const packageStore = usePackageStore();
@@ -15,7 +20,9 @@ const authStore = useAuthStore();
 const userStore = useUserStore();
 const totalPrice = ref(0);
 const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
-const route = useRoute();
+
+const price = computed(() => orderStore.currentOrder.totalPrice);
+
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -27,41 +34,6 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
-
-
-// let lastuserId = 1
-// interface InfoDetail {
-//   userId: number
-//   customername: ''
-//   tel: string
-//   email: string
-//   price: number
-//   discount: number
-//   totalPrice: number
-// }
-// const infoStore = ref<InfoDetail>({
-//   userId: 1,
-//   customername: '',
-//   tel: '',
-//   email: '',
-//   price: 0,
-//   discount: 0,
-//   totalPrice: 0
-// })
-// const personalinfoList = ref<InfoDetail[]>([])
-// function save() {
-//   infoStore.value.userId = lastuserId++
-//   personalinfoList.value.push(infoStore.value)
-//   infoStore.value = {
-//   userId: 1,
-//   customername: '',
-//   tel: '',
-//   email: '',
-//   price: 0,
-//   discount: 0,
-//   totalPrice: 0
-//   }
-// }
 
 </script>
 
@@ -110,8 +82,13 @@ function clearFillDetail() {
         <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
+<<<<<<< HEAD
               <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
                 v-model="packageStore.currentPackage.price" />
+=======
+              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                v-model="price" />
+>>>>>>> 3eb9feede344daa0515749ab0829d8911981f5f4
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
@@ -130,13 +107,13 @@ function clearFillDetail() {
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/sumdetail">
+      
               <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
-            </RouterLink>
+            
 
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/BuyTicket">
+            <RouterLink to="/BuyPackage">
             <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
             </RouterLink>
           </v-col>

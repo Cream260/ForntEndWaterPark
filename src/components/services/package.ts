@@ -15,7 +15,6 @@ function deletePackage(id: number) {
 const getPackageById = (id:number)=>{
   return http.get(`/package/${id}`);
 }
-
 function savePackage(packageData: Package){
   console.log(JSON.stringify(packageData));
   return http.post("/package", packageData);

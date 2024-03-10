@@ -23,6 +23,7 @@ export const usePackageStore = defineStore("package", () => {
       console.log(e);
     }
   }
+
   function setCurrentPackages(packageData: Package) {
     currentPackage.value = packageData;
     console.log(currentPackage.value);
@@ -37,5 +38,7 @@ export const usePackageStore = defineStore("package", () => {
       console.log(e);
     }
   }
+
   return { packages, getPackage, currentPackage,getPackageById,setCurrentPackages };
+
 });
