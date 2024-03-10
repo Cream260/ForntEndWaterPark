@@ -29,7 +29,7 @@ const formatDate = (dateStr: string | number | Date) => {
   <body>
     <v-row>
       <v-col cols="12" sm="4" v-for="(item, index) of promotionStore.promotions" :key="index"> 
-        <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center">
+        <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style=" width: 20vw;">
           <div>
             <h2 class="extraBoldfont2">{{ item.name }}</h2>
           </div>
@@ -112,6 +112,7 @@ const formatDate = (dateStr: string | number | Date) => {
 <style scoped>
 body {
   font-family: "Kanit", sans-serif;
+  background-color: #FFFBF5;
 
 }
 .borderradius {
@@ -127,11 +128,12 @@ body {
 }
 
 .large-button {
-  width: 222px;
-  height: 77px;
+  width: 200px;
+  height: 57px;
   border-radius: 60px;
-  margin: 28px;
-  font-size: 30px;
+  margin: 10px;
+  margin-bottom: 20px;
+  font-size: 23px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #FAEF9B;
@@ -152,27 +154,27 @@ body {
 }
 
 .smallBoldfont {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   color: #0b2c44;
   margin: 10px 10px 10px 10px;
 }
 
 .smallBoldfont2 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: #0b2c44;
   margin: 10px 10px 10px 10px;
 }
 
 .extraBoldfont {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bolder;
   color: #0b2c44;
 }
 
 .extraBoldfont2 {
-  font-size: 40px;
+  font-size: 28px;
   font-weight: bolder;
   color: #024864;
 }</style>
