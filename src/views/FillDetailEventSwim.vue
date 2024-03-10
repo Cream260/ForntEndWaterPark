@@ -44,26 +44,24 @@ function minus() {
 async function save() {
   if (
     type.value ==
-    "หลักสูตร การว่ายน้ำ ขั้นพื้นฐาน"
+    'หลักสูตร การว่ายน้ำ ขั้นพื้นฐาน'
   ) {
-    //get event id 35
+    //get event id 40
     eventStore.currentEvent.id = 40;
 
   }
-  if (type.value == "หลักสูตร การว่ายน้ำ ขั้นสูง") {
-    //get event id 36
+  if (type.value == 'หลักสูตร การว่ายน้ำ ขั้นสูง') {
+    //get event id 41
     eventStore.currentEvent.id = 41;
     // console.log(event);
 
   }
   if (
-    type.value == "หลักสูตร การว่ายน้ำ สำหรับผู้ใหญ่"
+    type.value == 'หลักสูตร การว่ายน้ำ สำหรับผู้ใหญ่'
   ) {
     //get event id 37
     eventStore.currentEvent.id = 42;
     // console.log(event);
-  }else{
-    eventStore.currentEvent.id = 40;
   }
   const order:Order = {
     cusID:1,
@@ -125,7 +123,7 @@ async function save() {
                   class="placeholder-color forumSize0"
                   style="font-size: 35px"
                   label="หลักสูตร"
-                  v-model="eventStore.currentEvent.type"
+                  v-model="type"
                   :items="[
                     'หลักสูตร การว่ายน้ำ ขั้นพื้นฐาน',
                     'หลักสูตร การว่ายน้ำ ขั้นสูง',

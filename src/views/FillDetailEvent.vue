@@ -40,22 +40,22 @@ onMounted(async () => {
 async function save() {
   if (
     type.value ==
-    "การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล"
+    'การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล'
   ) {
-    //get event id 35
-    eventStore.currentEvent.id = 35;
-
-  }
-  if (type.value == "หลักสูตร จูเนียร์ ไลฟ์การ์ด") {
     //get event id 36
     eventStore.currentEvent.id = 36;
+
+  }
+  if (type.value =='การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล') {
+    //get event id 35
+    eventStore.currentEvent.id = 35;
     // console.log(event);
 
   }
   if (
-    type.value == "การฝึกอบรมไลฟ์การ์ดในแหล่งน้ำเปิดแบบสากล"
+    type.value == 'หลักสูตร จูเนียร์ ไลฟ์การ์ด'
   ) {
-    //get event id 37
+    //get event id 34
     eventStore.currentEvent.id = 34;
     // console.log(event);
   }
