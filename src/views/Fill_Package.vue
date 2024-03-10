@@ -102,12 +102,12 @@ const saveOrder = async ()=>{
 
             </v-flex>
           </v-col> -->
-          <v-col cols="12" lg="6">
+          <!-- <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
                 v-model="orderStore.currentOrder.discount" />
             </v-flex>
-          </v-col>
+          </v-col> -->
 
         </v-row>
         <v-row class="ml-8">
