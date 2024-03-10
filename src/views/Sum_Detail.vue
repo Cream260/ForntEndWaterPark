@@ -90,8 +90,8 @@ function updatePayment(payment: string) {
             
             <div class="card-container">
               <div class="customer-details">
-                <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
-                <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name}}</div>
+                <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email}}</div>
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
                 <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
                 <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate}}</div>
@@ -129,7 +129,7 @@ function updatePayment(payment: string) {
                 <div class="detail"><span class="label">ส่วนลด</span>xx</div>
               </div>
             </div>
-            <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>xx บาท</div>
+            <div class="detail" style="font-size: 45px;"><span class="label ml-2">ราคาสุทธิ</span>xx บาท</div>
           </v-col>
           
         </v-row>
