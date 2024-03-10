@@ -37,20 +37,20 @@ import Receipt from "@/views/ReceiptView.vue"
   </header>
   <body>
     <v-row>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">ชื่อผู้ชำระเงิน</label>
         <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">จำนวนเงิน</label>
         <input type="text" placeholder="THB" />
       </v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">อีเมลล์</label>
         <input type="text" placeholder="Email" />
       </v-col>
       <v-col cols="12" lg="6" ></v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">หมายเลขโทรศัพท์</label>
         <input type="text" placeholder="(+66)" />
       </v-col>
@@ -80,39 +80,40 @@ header {
   background-color: #d9d9d940;
 }
 .fontheader {
-  font-size: 59px;
+  font-size: 50px;
   font-weight: normal;
   margin-left: 19px;
+  margin-top: 4%;
 }
 body {
   position: sticky;
   font-family: 'Kanit', 'sans-serif';
-  padding: 40px;
+  padding: 30px;
 }
 .placeholder-color::placeholder {
   color: #00000045;
 }
 
 .large-button1 {
-  width: 230px;
-  height: 87px;
+  width: 200px;
+  height: 80px;
   border-radius: 35px;
-  margin-top: 145px;
+  
   background-color: #dd5353;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 45%;
+  margin-top: 3%;
 }
 .large-button2 {
-  width: 230px;
-  height: 87px;
+  width: 200px;
+  height: 80px;
   border-radius: 35px;
-  margin-top: 145px;
+  
   background-color: #1f798f;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 5.6%;
+  margin-top: 0.5%;
 }
 .smallnormalFont {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: normal;
   color: #ffffff;
 }
