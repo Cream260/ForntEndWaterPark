@@ -237,7 +237,6 @@ function updatePayment(payment: string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
->>>>>>> 52f96cd24fe5a9cd7647807f3b2ce07abccef7c5
                     <RouterLink to="/CreditCard">
                       <button class="payment-btn ma-2" id="credit-card"
                         @click="updatePayment('Credit Card')">Credit/Debit Card</button>
@@ -267,6 +266,7 @@ function updatePayment(payment: string) {
                   <hr class="divider" />
                 </div>
                 <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
+                <div class="detail"><span class="label">Package</span>{{ orderStore.currentOrder.package?.name }}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice }}</div>
                 <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount }}</div>
               </div>

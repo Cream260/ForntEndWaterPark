@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import order from "@/components/services/order";
+import router from "@/router";
 import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -11,18 +12,16 @@ import { computed, onMounted, ref } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
 
 const route = useRoute()
-const packageData = route.params.package as Package 
 
 const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const packageStore = usePackageStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
-const totalPrice = ref(0);
-const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
-
-const price = computed(() => orderStore.currentOrder.totalPrice);
-
+// const selectDate = ref
+//enddare is 1 year
+const minDate = ref<string>(new Date().toISOString().split("T")[0]);
+  const selectedDate = ref<Date>(new Date(minDate.value));
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -33,6 +32,16 @@ onMounted(async () => {
 function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
+}
+
+//caerte save function
+const saveOrder = async ()=>{
+  if(!selectedDate.value){
+    alert("Please select a date");
+    return;
+  }
+  await orderStore.packageOrder(packageStore.currentPackage);
+  router.push('/sumdetail/'+orderStore.currentOrder.id)
 }
 
 </script>
@@ -50,13 +59,13 @@ function clearFillDetail() {
         <v-row class="ml-8" >
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
                 v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
+              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
                 v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
@@ -64,7 +73,7 @@ function clearFillDetail() {
         <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
-              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
+              <input type="text" disabled placeholder="อีเมลล์" class="placeholder-color forumSize0"
                 v-model="userStore.currentUser.email" />
             </v-flex>
           </v-col>
@@ -75,39 +84,24 @@ function clearFillDetail() {
             </v-flex> -->
             <form action="/action_page.php">
               <label for="dateday"></label>
-              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
+              <input :min="minDate" v-model="selectedDate" class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
             </form>
           </v-col>
         </v-row>
         <v-row class="ml-8">
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
-                v-model="packageStore.currentPackage.price" />
-
-              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
-                v-model="price" />
-
-            </v-flex>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
-                v-model="orderStore.currentOrder.discount" />
-            </v-flex>
-          </v-col>
+          
         </v-row>
         <v-row class="ml-8">
           <v-col cols="12" lg="12">
             <v-flex>
-              <h2 class="forumSize">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2>
+              <h2 class="forumSize">{{ packageStore.currentPackage.name }} ราคา {{packageStore.currentPackage.price}} บาท</h2>
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
       
-              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
+              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="saveOrder()" >ซื้อเลยตอนนี้</v-btn>
             
 
           </v-col>

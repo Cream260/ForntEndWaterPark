@@ -82,21 +82,25 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
   //function create order by event
-  async function packageOrder() {
-    const pack = {
-      cusID: 1,
-      qty: 0,
-      totalPrice: 0,
-      netPrice: 0,
-      received: 0,
+  async function packageOrder(package_: Package) {
+    const order:Order = {
+      cusID:1,
+      packageId: package_.id,
+      qty: package_.qty,
+      totalPrice:package_.price!,
+      netPrice: package_.price!,
+      numPeople: null,
+      nameComp: null,
       discount: 0,
-      payments: "",
-      startDate: new Date(),
+      received:package_.price,
+      payments:"",
+      startDate:new Date(),
       expDate: new Date(),
-    };
-    console.log(pack);
+      orderItems: []
+  }
+    console.log(order);
     try {
-      const res = await orderService.saveOrder(pack);
+      const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("Order", currentOrder.value);
       //Json

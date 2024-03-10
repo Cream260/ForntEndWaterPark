@@ -282,7 +282,7 @@ function minus() {
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="12">
+           npm <v-col cols="12" lg="12">
               <div class="d-flex align-center forumSize">
                 <input
                   type="text"
