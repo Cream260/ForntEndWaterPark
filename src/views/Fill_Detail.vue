@@ -83,12 +83,14 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+              disabled
                 v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
+              disabled
                 v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
@@ -97,6 +99,7 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
+              disabled
                 v-model="userStore.currentUser.email" />
             </v-flex>
           </v-col>
@@ -115,12 +118,14 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                disabled
                 v-model="orderStore.currentOrder.totalPrice" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
+              disabled
                 v-model="orderStore.currentOrder.discount" />
             </v-flex>
           </v-col>
