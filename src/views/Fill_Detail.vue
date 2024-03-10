@@ -128,7 +128,10 @@ function clearFillDetail() {
           <v-row class="ml-8">
             <v-col cols="12" lg="12">
               <v-flex>
-                <h2 class="forumSize">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2>
+                <!-- <h2 type="text" class="forumSize0">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2> -->
+                <div type="text" class="forumSize0" style="text-align: left;">
+                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                </div>
               </v-flex>
             </v-col>
           </v-row>
