@@ -83,6 +83,10 @@ function clearFillDetail() {
           <v-col cols="12" lg="6">
             <v-flex>
 
+              <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
+                v-model="packageStore.currentPackage.price" />
+
+
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
                 v-model="price" />
 
