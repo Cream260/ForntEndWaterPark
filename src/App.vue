@@ -36,9 +36,9 @@ const showNav = () => {
       <RouterLink to="/Event">กิจกรรม</RouterLink>
       <RouterLink to="/BuyPromotion">โปรโมชั่น</RouterLink>
       <RouterLink to="/BuyPackage">แพ็คเกจ</RouterLink>
-      <RouterLink to="/CheckRequire">CheckRequire</RouterLink>
+      <!-- <RouterLink to="/CheckRequire">CheckRequire</RouterLink> -->
       <!-- <RouterLink to="/Receipt">Receipt</RouterLink> -->
-      <RouterLink to="/review">review</RouterLink>
+      <!-- <RouterLink to="/review">review</RouterLink> -->
     </nav>
     <MemberHeader></MemberHeader>
   </header>

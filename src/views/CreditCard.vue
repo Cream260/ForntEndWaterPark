@@ -1,6 +1,19 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import Receipt from "@/views/ReceiptView.vue"
+import { ref } from "vue";
+import { useOrderStore } from "@/stores/order.store";
+const orderStore = useOrderStore();
+const received = ref(0);
+const route = useRoute();
+
+function updateRe(received: number) {
+  const orderId = route.params.id;
+  // Your logic to handle credit card update with the orderId
+  console.log("Updating receive:", orderId+" and "+ received);
+  // You can now use the orderId as needed in this method
+  orderStore.updateReceived(parseInt(orderId.toString()), received);
+}
 </script>
 
 <template>
@@ -36,14 +49,14 @@ import Receipt from "@/views/ReceiptView.vue"
     </v-row>
   </header>
   <body>
-    <v-row>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+    <v-row >
+      <v-col cols="12" lg="6" style="font-size: 30px;" >
         <label for="fname">หมายเลขบัตร</label>
         <input type="text" placeholder="0000-0000-0000-0000" />
       </v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 30px;" >
         <label for="fname">จำนวนเงิน</label>
-        <input type="text" placeholder="THB" />
+        <input type="text" placeholder="THB" v-model="received"/>
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>
@@ -62,7 +75,7 @@ import Receipt from "@/views/ReceiptView.vue"
       >
       <v-dialog transition="dialog-bottom-transition" width="auto" >
             <template v-slot:activator="{ props: activatorProps }">
-              <v-btn class="large-button2 ml-12 smallnormalFont" v-bind="activatorProps"  text="ชำระเงิน"></v-btn>          
+              <v-btn class="large-button2 ml-12 smallnormalFont" v-bind="activatorProps"  text="ชำระเงิน" @click="updateRe(received)"></v-btn>          
             </template>                    
                 <Receipt></Receipt>  
           </v-dialog>

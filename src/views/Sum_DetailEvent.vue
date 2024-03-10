@@ -18,10 +18,10 @@ const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
 const manageTimeStore = useManageTime();
-const event_ = ref<Event>();
+const event_  = ref<Event>();
 const userStore = useUserStore();
 const authStore = useAuthStore();
-const PromotionStore = usePromotionStore();
+
 
 // const formatDate = (dateStr: string | number | Date) => {
 //   console.log('Input date string:', dateStr);
@@ -55,14 +55,13 @@ onMounted(async () => {
   orderStore.getOrder();
   await orderStore.getOrder;
   await customerStore.getCustomer;
-  const paramValue = route.params.id;
-  //getOrderById
-  console.log(paramValue);
-  await orderStore.getOrderById(parseInt(paramValue.toString()));
-  // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
+const paramValue = route.params.id;
+//getOrderById
+console.log(paramValue);
+ await orderStore.getOrderById(parseInt(paramValue.toString()));
+ const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
-  // await eventStore.getEventById(res?.data.event!.id);
-  // await orderStore.getOrderById(res?.data.event!.id);
+ await eventStore.getEventById(res?.data.event!.id);
 })
 
 function updatePayment(payment: string) {
@@ -70,7 +69,7 @@ function updatePayment(payment: string) {
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
-  orderStore.updatePayment(parseInt(orderId.toString()), payment);
+  orderStore.updatePayment(parseInt(orderId.toString()),payment);
 }
 
 
@@ -82,69 +81,61 @@ function updatePayment(payment: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class="fontheader" style="font-size: 40px;">
+        <div class ="fontheader" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
         <v-row>
           <v-col>
-
-
+            
+            
             <div class="card-container">
               <div class="customer-details">
-                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
-                <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
+                <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
-                <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ?
-                  formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
-                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate }}</div>
+                <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
+                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate}}</div>
               </div>
-              <hr class="divider" />
+              <hr class="divider"/>
               <div class="payment-options">
-
+                
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
                     <RouterLink to="/CreditCard">
-                      <button class="payment-btn ma-2" id="credit-card"
-                        @click="updatePayment('Credit Card')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="credit-card" @click="updatePayment('Credit Card')">Credit/Debit Card</button>
                     </RouterLink>
                     <RouterLink to="/TrueWallet">
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
-                        Wallet</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True Wallet</button>
                     </RouterLink>
                     <RouterLink to="/PromptPay">
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
-                        Pay</button>
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt Pay</button>
                     </RouterLink>
-
+                    
                   </div>
                 </div>
               </div>
-
-            </div>
+                
+              </div>
           </v-col>
           <v-col>
-            <v-card>
-              <div class="card-container2 scroll-container">
-                <div class="customer-details" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
-                  <div class="detail"><span class="label">ชื่อบัตร</span>{{ item.name }}</div>
-                  <div class="detail"><span class="label">ประเภทบัตร</span>{{ item.type }}</div>
-                  <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
-                  <hr class="divider" />
-                </div>
-                <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
-                <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice }}</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount }}</div>
+            
+            <div class="card-container2">
+              <div class="customer-details">
+                <div class="detail"><span class="label">ชื่อบัตร</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">ประเภทบัตร</span></div>
+                <div class="detail"><span class="label">โปรโมชั่น</span>{{usePromotionStore.name}}</div>
+                <div class="detail"><span class="label">ราคา</span>xx</div>
+                <div class="detail"><span class="label">ส่วนลด</span>xx</div>
               </div>
-              <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>{{
-                  orderStore.currentOrder.netPrice }} บาท</div>
-            </v-card>
+            </div>
+            <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>xx บาท</div>
           </v-col>
-
+          
         </v-row>
-
+        
       </v-card>
-
+      
     </container>
   </body>
 </template>
@@ -181,7 +172,7 @@ body {
 .detailCard {
   height: 270px;
   position: sticky;
-
+  
   z-index: 2;
   background-color: #f5f1dc34;
 }
