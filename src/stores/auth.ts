@@ -132,27 +132,32 @@ export const useAuthStore = defineStore("auth", () => {
   // create register user store
   const register = async (
     password: string,
-    username: string
+    username: string,
+    email: string,
+    name:string,
+    tel:string
   ) => {
     try {
-      const response = await auth.authenticate(password, username);
-      if (response != null) {
-        const user__: User = {
-          id: response.data.user_id,
-          username: response.data.user_name,
-          email: response.data.user_email,
-          password: response.data.user_password, // Storing password in frontend is usually not advisable.
-          role: response.data.user_role,
-          name: response.data.user_name,
-          tel: response.data.user_tel,
+      const response = await auth.authenticate(password, username, email, name, tel);
+     console.log(response);
+      if ( response.data != null) { // Add a null check for response.data
+        const user: User = {
+          id: response.data.id,
+          username: response.data.name,
+          email: response.data.email,
+          password: response.data.password, // Storing password in frontend is usually not advisable.
+          role: response.data.role,
+          name: response.data.name,
+          tel: response.data.tel,
           customer: {
-            id: response.data.customer.cus_id,
-            name: response.data.customer.cus_name,
+            id: response.data.customer.id, // Add a null check for response.data.customer
+            name: response.data.customer.name,
+            email: response.data.customer.email,
+            tel: response.data.customer.tel
           },
         };
-        userStore.setUser(user__);
-        console.log(user__);
-     
+        userStore.setUser(user);
+        console.log(user);
       } else {
         console.error("User does not have customer");
         return null;
@@ -160,11 +165,12 @@ export const useAuthStore = defineStore("auth", () => {
 
       authName.value = JSON.parse(JSON.stringify(localStorage.getItem("user")));
       isLogin.value = true;
-      router.push("");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
   };
+
 
   //get User from localStorage
   const getUserFromLocalStorage = () => {

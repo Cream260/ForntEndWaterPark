@@ -39,7 +39,7 @@ const handleMenuItemClick = (item: { route: RouteLocationRaw; }) => {
 
                                 <!-- เพิ่ม Icon -->
                                 <div class="d-flex">
-                                    <v-icon class="text-black":icon="mdiLogout"></v-icon>
+                                    <v-icon class="text-black" :icon="mdiLogout"></v-icon>
                                     <v-list-item-title class="pl-2" >{{ item.title }}</v-list-item-title>
                                 </div>
                                 <!-- เพิ่ม Icon -->
