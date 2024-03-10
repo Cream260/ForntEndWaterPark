@@ -46,6 +46,14 @@ const validateForm = () => {
   showDialog.value = false;
   isValid = true; 
 
+   // Date Validation
+   if (!selectedDate.value || isNaN(selectedDate.value.getTime())) {
+        dateError.value = "โปรดเลือกวันที่";
+        isValid = false;
+    } else {
+        dateError.value = "";
+    }
+
 if (!nameComp.value || nameComp.value === null) {
       nameCompError.value = "โปรดใส่ชื่อบริษัท";
       isValid = false;
@@ -264,11 +272,6 @@ function minus() {
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
-              <!-- <v-flex>
-                <input type="text" placeholder="เลือกวันที่จะเข้าอบรม" class="placeholder-color forumSize0" />
-              </v-flex> -->
-              <!-- <form action="/action_page.php"> -->
-              <!-- <label for="dateday"></label> -->
               <input
                 class="placeholder-color forumSize0"
                 type="date"
@@ -277,7 +280,8 @@ function minus() {
                v-model="selectedDate"
                 :min="minDate"
                 />
-                <p  class="small-text" >(หากคุณไม่เลือกวันที่, ทางระบบจะเลือกวันที่ปัจจุบันโดยอัตโนมัติ)</p>
+                <p  class="small-text" >(หากคุณไม่เลือกวันที่, ทางระบบจะเลือกวันที่ปัจจุบันโดยอัตโนมัติ)</p>  
+                <p v-if="dateError" class="error-message small-text" style="color: red">{{ dateError }}</p>
               <!-- </form>  -->
             </v-col>
           </v-row>
