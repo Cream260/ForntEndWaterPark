@@ -12,6 +12,7 @@ import type Event from "@/type/event";
 import router from "@/router";
 import event from "../components/services/event";
 import order from "@/components/services/order";
+import type Promotion from "@/type/promotion";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -25,6 +26,7 @@ export const useOrderStore = defineStore("order", () => {
   const event_ = ref<Event>()
   const package_ = ref<Package>()
   const orderItem_ = ref<OrderItem[]>([]);
+  const promo = ref<Promotion>();
   const Qr = ref('');
   const startDate = ref(new Date());
   const expDate = ref(new Date());
@@ -110,8 +112,8 @@ export const useOrderStore = defineStore("order", () => {
       qty: 0,
       totalPrice: 0,
       netPrice: 0,
-      numPeople: 0,
-      nameComp: "",
+      numPeople: null,
+      nameComp: null,
       discount: 0,
       received: 0,
       payments: "",
@@ -123,6 +125,7 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
+      console.log("currentOrder",currentOrder.value);
       clearOrder();
     } catch (e) {
       console.log("e");
@@ -376,14 +379,18 @@ export const useOrderStore = defineStore("order", () => {
 
   async function updatePromotion(id: number, discount: number) {
     const orderItems = orderList.value;
+    const res = await promotionService.getPromotionById(id);
+    promo.value = res.data;
+    console.log("update promotion",promo);
     const order = {
       cusID: 1,
       qty: 0,
+      promoId: promo.value!.id,
       totalPrice: 0,
       netPrice: 0,
       numPeople: null,
       nameComp: null,
-      discount: 0,
+      discount: discount,
       received: 0,
       payments: "",
       startDate: new Date(),
@@ -392,11 +399,14 @@ export const useOrderStore = defineStore("order", () => {
     };
     try {
       const res = await orderService.saveOrder(order);
-      const promo = await promotionService.getPromotionById(id);
       currentOrder.value = res.data;
-      currentOrder.value.promoId = promo.data;
-      currentOrder.value.discount = discount;
-      await orderService.updateOrder(id, currentOrder.value);
+      console.log(res.data);
+      // const promo = await promotionService.getPromotionById(id);
+      // currentOrder.value = res.data;
+      // currentOrder.value.promoId = promo.data;
+      // currentOrder.value.discount = discount;
+      // await orderService.updateOrder(id, currentOrder.value);
+
       clearOrder();
     } catch (e) {
       console.log(e);

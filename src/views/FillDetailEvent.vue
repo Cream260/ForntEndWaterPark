@@ -24,6 +24,12 @@ const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const PeopleIncrement = ref(0);
 const type = ref(""); 
 const nameComp = ref("");
+const ppiError = ref("");
+const nameCompError = ref("");
+const typeError = ref("");
+const showDialog = ref(false);
+const dateError = ref("");
+let isValid = true;
 const expDate = new Date(selectedDate.value);
 expDate.setFullYear(expDate.getFullYear());
 const day = selectedDate.value.getDate();
@@ -36,8 +42,42 @@ onMounted(async () => {
   await orderStore.getOrder();
 });
 
+const validateForm = () => {
+  showDialog.value = false;
+  isValid = true; 
+
+if (!nameComp.value || nameComp.value === null) {
+      nameCompError.value = "โปรดใส่ชื่อบริษัท";
+      isValid = false;
+  } else if (nameComp.value.length < 3 || nameComp.value.length > 100) {
+      nameCompError.value = "ชื่อบริษัทต้องมี 3-100 ตัวอักษร";
+      isValid = false;
+  } else {
+      nameCompError.value = "";
+  }
+
+if (type.value === null || !type.value) {
+    typeError.value = "โปรดเลือกหลักสูตร";
+    isValid = false;
+} else {
+    typeError.value = "";
+}
+
+if (PeopleIncrement.value === 0) {
+    ppiError.value = "จำนวนผู้เข้าร่วมไม่สามารถเป็น 0";
+    isValid = false;
+} else if (PeopleIncrement.value == null) {
+    ppiError.value = "โปรดระบุจำนวนผู้เข้าร่วม";
+    isValid = false;
+} else {
+    ppiError.value = "";
+}
+    return isValid;
+
+}
 
 async function save() {
+  validateForm();
   if (
     type.value ==
     "การฝึกอบรมไลฟ์การ์ดในน้ำตื้นและสระว่ายน้ำระดับสากล"
@@ -70,7 +110,7 @@ async function save() {
     numPeople: PeopleIncrement.value,
     netPrice:0,
     totalPrice:0,
-    received: 1,
+    received: 0,
     payments: "",
   }
   console.log(order.nameComp);
@@ -150,7 +190,7 @@ function minus() {
                 <input
                   type="text"
                   placeholder="ชื่อ"
-                  required
+                  disabled
                   v-model="userStore.currentUser.name "
                   class="placeholder-color forumSize0"
                 />
@@ -161,7 +201,7 @@ function minus() {
                 <input
                   type="text"
                   placeholder="เบอร์โทรศัพท์"
-                  required
+                  disabled
                   v-model="userStore.currentUser.tel "
                   class="placeholder-color forumSize0"
                 />
@@ -196,6 +236,7 @@ function minus() {
                 >
                 </v-select>
               </v-flex>
+              <p v-if="typeError" class="error-message small-text" style="color: red">{{ typeError }}</p>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
@@ -206,6 +247,7 @@ function minus() {
                   v-model="nameComp"
                   class="placeholder-color forumSize0"
                 />
+                <p v-if="nameCompError" class="error-message small-text" style="color: red">{{ nameCompError }}</p>
               </v-flex>
             </v-col>
           </v-row>
@@ -215,7 +257,7 @@ function minus() {
                 <input
                   type="text"
                   placeholder="อีเมลล์"
-                  required
+                  disabled
                   v-model="userStore.currentUser.email"
                   class="placeholder-color forumSize0"
                 />
@@ -234,7 +276,8 @@ function minus() {
                 name="dateday"
                v-model="selectedDate"
                 :min="minDate"
-              />
+                />
+                <p  class="small-text" >(หากคุณไม่เลือกวันที่, ทางระบบจะเลือกวันที่ปัจจุบันโดยอัตโนมัติ)</p>
               <!-- </form>  -->
             </v-col>
           </v-row>
@@ -257,6 +300,7 @@ function minus() {
                 <div class="smallfont mr-4">{{ PeopleIncrement }}</div>
                 <button style="font-size: 30px" @click="minus()">−</button>
               </div>
+              <p v-if="ppiError" class="error-message small-text" style="color: red">{{ppiError}}</p>
             </v-col>
           </v-row>
 
@@ -345,5 +389,8 @@ input[type="text"]:focus {
   font-size: 38px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.small-text {
+  font-size: 18px; /* Adjust the font size as needed */
 }
 </style>

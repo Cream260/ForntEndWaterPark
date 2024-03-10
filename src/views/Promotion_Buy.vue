@@ -6,6 +6,14 @@ const promotionStore = usePromotionStore();
 onMounted(async () => {
   await promotionStore.getPromotion();
 })
+const formatDate = (dateStr: string | number | Date) => {
+  if (!dateStr) return ''; // Handle case where dateStr is undefined or null
+
+  const date = new Date(dateStr);
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-GB', options as Intl.DateTimeFormatOptions);
+  return formattedDate;
+}
 
 </script>
 <template>
@@ -33,7 +41,7 @@ onMounted(async () => {
                 <v-btn class="large-button">{{ item.code }}</v-btn>
               </v-flex>
               <div>
-                <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate }} ถึงวันที่ {{ item.endDate }}</p10>
+                <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate ? formatDate(item.startDate) : 'N/A' }} ถึงวันที่ {{ item.endDate ? formatDate(item.endDate) : 'N/A' }}</p10>
               </div>
             </v-card>
           </v-col>
