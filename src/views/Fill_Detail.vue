@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import order from "@/components/services/order";
+import router from "@/router";
 import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -11,7 +12,15 @@ const orderStore = useOrderStore();
 const customerStore = useCustomerStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
-const sum = orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount;
+
+const selectedDate = ref<Date>(new Date());
+
+const expDate = new Date(selectedDate.value);
+expDate.setFullYear(expDate.getFullYear());
+const day = selectedDate.value.getDate();
+const month = selectedDate.value.getMonth();
+expDate.setMonth(month);
+expDate.setDate(day);
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -23,7 +32,6 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
-
 
 // let lastuserId = 1
 // interface InfoDetail {
@@ -126,9 +134,9 @@ function clearFillDetail() {
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/sumdetail">
-              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" >ซื้อเลยตอนนี้</v-btn>
-            </RouterLink>
+            
+              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="orderStore.ticketOrder">ซื้อเลยตอนนี้</v-btn>
+            
 
           </v-col>
           <v-col cols="12" lg="6" class="text-left">

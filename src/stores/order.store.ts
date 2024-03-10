@@ -5,8 +5,8 @@ import type Ticket from "@/type/ticket";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
 import promotionService from "@/components/services/promotion";
-import packageService from '@/components/services/package'
-import eventService from '../components/services/event';
+import packageService from "@/components/services/package";
+import eventService from "../components/services/event";
 import type Package from "@/type/package";
 import type Event from "@/type/event";
 import router from "@/router";
@@ -23,11 +23,12 @@ export const useOrderStore = defineStore("order", () => {
   const EnAdultqty = ref(0);
   const payment = ref("");
   const nameComp = ref("");
-  const event_ = ref<Event>()
-  const package_ = ref<Package>()
+  const received = ref(0);
+  const event_ = ref<Event>();
+  const package_ = ref<Package>();
   const orderItem_ = ref<OrderItem[]>([]);
   const promo = ref<Promotion>();
-  const Qr = ref('');
+  const Qr = ref("");
   const startDate = ref(new Date());
   const expDate = ref(new Date());
   const currentOrder = ref<Order>({
@@ -41,7 +42,7 @@ export const useOrderStore = defineStore("order", () => {
     numPeople: 0,
     nameComp: "",
     discount: 0,
-    received: 0,
+    received: received.value,
     payments: payment.value,
     startDate: startDate.value,
     expDate: expDate.value,
@@ -80,31 +81,30 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
-    //function create order by event
-    async function packageOrder() {
-      const pack = {
-        cusID: 1,
-        qty: 0,
-        totalPrice: 0,
-        netPrice: 0,
-        received: 0,
-        discount: 0,
-        payments: "",
-        startDate: new Date(),
-        expDate: new Date(),
-      };
-      console.log(pack);
-      try {
-        const res = await orderService.saveOrder(pack);
-        currentOrder.value = res.data;
-        console.log("Order", currentOrder.value);
-        //Json
-        clearOrder();
-        
-      } catch (e) {
-        console.log(e);
-      }
+  //function create order by event
+  async function packageOrder() {
+    const pack = {
+      cusID: 1,
+      qty: 0,
+      totalPrice: 0,
+      netPrice: 0,
+      received: 0,
+      discount: 0,
+      payments: "",
+      startDate: new Date(),
+      expDate: new Date(),
+    };
+    console.log(pack);
+    try {
+      const res = await orderService.saveOrder(pack);
+      currentOrder.value = res.data;
+      console.log("Order", currentOrder.value);
+      //Json
+      clearOrder();
+    } catch (e) {
+      console.log(e);
     }
+  }
   async function openOrder() {
     const orderItems = orderList.value;
     const order = {
@@ -125,10 +125,32 @@ export const useOrderStore = defineStore("order", () => {
     try {
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
-      console.log("currentOrder",currentOrder.value);
+      console.log("currentOrder", currentOrder.value);
       clearOrder();
     } catch (e) {
       console.log("e");
+    }
+  }
+
+  async function ticketOrder() {
+    try {
+      router.push("/sumdetail/" + currentOrder.value.id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  //function create order by event
+  async function eventOrder(order: Order) {
+    try {
+      const res = await orderService.saveOrder(order);
+      currentOrder.value = res.data;
+      console.log("Order", currentOrder.value);
+      //Json
+      clearOrder();
+      router.push("/sumdetailevent/" + currentOrder.value.id);
+    } catch (e) {
+      console.log(e);
     }
   }
 
@@ -302,20 +324,6 @@ export const useOrderStore = defineStore("order", () => {
     }
   };
 
-  //function create order by event
-  async function eventOrder(order: Order) {
-    try {
-      const res = await orderService.saveOrder(order);
-      currentOrder.value = res.data;
-      console.log("Order", currentOrder.value);
-      //Json
-      clearOrder();
-      router.push("/sumdetail/" + currentOrder.value.id);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   //getOrder by id
   async function getOrderById(id: number) {
     try {
@@ -357,9 +365,9 @@ export const useOrderStore = defineStore("order", () => {
       const res = await orderService.getOrderQR(id);
       const imageDataUrl = `${res.data}`;
       Qr.value = imageDataUrl;
-      console.log('found', Qr.value);
+      console.log("found", Qr.value);
     } catch (error) {
-      console.error('Error while fetching QR code:', error);
+      console.error("Error while fetching QR code:", error);
     }
   }
 
@@ -381,7 +389,7 @@ export const useOrderStore = defineStore("order", () => {
     const orderItems = orderList.value;
     const res = await promotionService.getPromotionById(id);
     promo.value = res.data;
-    console.log("update promotion",promo);
+    console.log("update promotion", promo);
     const order = {
       cusID: 1,
       qty: 0,
@@ -420,14 +428,13 @@ export const useOrderStore = defineStore("order", () => {
   async function findPackageById(id: number) {
     const res = await packageService.getPackageById(id);
     package_.value = res.data;
-    package_.value?.package_detail
+    package_.value?.package_detail;
     console.log(res.data);
     return package_;
   }
 
-
-
   return {
+    ticketOrder,
     findPackageById,
     findEventById,
     orderItem_,
