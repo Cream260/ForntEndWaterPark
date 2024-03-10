@@ -134,12 +134,12 @@ async function save() {
       console.log("********************************")
 
       await Swal.fire({
-        title: "Please confirm your Date",
-        text: `"Are you sure?" `,
+        title: "โปรดยืนยันวันที่เข้าใช้บริการ",
+        text: `"คุณต้องการเข้าใช้บริการวันที่ปัจจุบันหรือไม่?" `,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No, keep it",
+        confirmButtonText: "ใช่",
+        cancelButtonText: "ไม่",
       }).then(async (result) => {
         if (result.isConfirmed) {
             const order: Order = {
