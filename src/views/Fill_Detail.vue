@@ -33,6 +33,10 @@ function clearFillDetail() {
   orderStore.clearOrderDetail();
 }
 
+
+
+
+
 // let lastuserId = 1
 // interface InfoDetail {
 //   userId: number
