@@ -6,6 +6,7 @@ const promotionStore = usePromotionStore();
 onMounted(async () => {
   await promotionStore.getPromotion();
 })
+
 const formatDate = (dateStr: string | number | Date) => {
   if (!dateStr) return ''; // Handle case where dateStr is undefined or null
 
@@ -14,7 +15,6 @@ const formatDate = (dateStr: string | number | Date) => {
   const formattedDate = date.toLocaleDateString('en-GB', options as Intl.DateTimeFormatOptions);
   return formattedDate;
 }
-
 </script>
 <template>
   <body>
