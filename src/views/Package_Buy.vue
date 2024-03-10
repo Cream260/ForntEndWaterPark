@@ -4,13 +4,12 @@ import { ref } from 'vue';
 import { usePackageStore } from "@/stores/package.store";
 import type Package from "@/type/package";
 import { useOrderStore } from "@/stores/order.store";
+import router from "@/router";
 const packageStore = usePackageStore();
 const orderStore = useOrderStore();
-const addPackage = async (packageItem: Package) => {
-  console.log(packageItem);
-
-  orderStore.packageOrder();
-
+const addPackage =  (packageItem: Package) => {
+  packageStore.currentPackage = packageItem;
+  router.push('/fillpackage');
 }
 onMounted(async () => {
   await packageStore.getPackage();

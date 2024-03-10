@@ -301,7 +301,7 @@ function minus() {
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" lg="12">
+           npm <v-col cols="12" lg="12">
               <div class="d-flex align-center forumSize">
                 <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color mr-2" readonly />
                 <button @click="add()" class="mr-4" style="margin-left: 350px; font-size: 30px">
