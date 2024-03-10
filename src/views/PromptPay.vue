@@ -2,9 +2,13 @@
 import { RouterLink, useRoute } from "vue-router";
 import Receipt from "@/views/ReceiptView.vue"
 import { useOrderStore } from "@/stores/order.store";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useAuthStore } from "@/stores/auth";
+import { useUserStore } from "@/stores/user.store";
 const route = useRoute();
 const received = ref(0);
+const authStore = useAuthStore();
+const userStore = useUserStore();
 const orderStore = useOrderStore();
 function updateReceive(received: number) {
   const orderId = route.params.id;
@@ -12,6 +16,9 @@ function updateReceive(received: number) {
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
   orderStore.updateReceived(parseInt(orderId.toString()),received);
+onMounted(async () => {
+  authStore.getUserFromLocalStorage();
+});
 }
 </script>
 
@@ -35,21 +42,17 @@ function updateReceive(received: number) {
   <body>
     <v-row>
       <v-col cols="12" lg="6" style="font-size: 30px;">
-        <label for="fname">ชื่อผู้ชำระเงิน</label>
-        <input type="text" placeholder="ชื่อ - นามสกุล" />
-      </v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
-        <label for="fname">จำนวนเงิน</label>
-        <input type="text" placeholder="THB" v-model="received"/>
+        <label for="fname">ชื่อผู้จ่าย</label>
+        <input type="text" placeholder="ชื่อ-นามสกุล" v-model="userStore.currentUser.name" disabled/>
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">อีเมลล์</label>
-        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Email" v-model="userStore.currentUser.email" disabled/>
       </v-col>
       <v-col cols="12" lg="6"></v-col>
       <v-col cols="12" lg="6" style="font-size: 30px;">
         <label for="fname">หมายเลขโทรศัพท์</label>
-        <input type="text" placeholder="(+66)" />
+        <input type="text"  placeholder="(+66)" v-model="userStore.currentUser.tel" disabled/>
       </v-col>
     </v-row>
     <v-row>
