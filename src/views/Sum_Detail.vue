@@ -84,7 +84,7 @@ function updatePayment(payment: string) {
         <div class ="fontheader" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
         
         <v-card class="pa-4 ma-4 detailCard">
 
@@ -216,7 +216,7 @@ function updatePayment(payment: string) {
                 </v-col>
                 <v-row class="mt-6">
                   <v-col cols="12" lg="4">
-=======
+======= -->
         <v-row>
           <v-col>
             
