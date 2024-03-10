@@ -84,6 +84,139 @@ function updatePayment(payment: string) {
         <div class ="fontheader" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
+<!-- <<<<<<< HEAD
+        
+        <v-card class="pa-4 ma-4 detailCard">
+
+          <v-row>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ชื่อ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>{{ userStore.currentUser.name }}</h5>
+            </v-col>
+            
+            <v-divider class="border-opacity-50" vertical></v-divider>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ชื่อบัตร</h5>
+            </v-col>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{ eventStore.currentEvent.name }}</h5>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>อีเมลล์</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>{{ userStore.currentUser.email}}</h5>
+            </v-col>
+            <v-divider class="border-opacity-50" vertical></v-divider>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>โปรโมชั่น</h5>
+            </v-col>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>-</h5>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>เบอร์โทรศัพท์</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>{{ userStore.currentUser.tel }}</h5>
+            </v-col>
+            <v-divider class="border-opacity-50" vertical></v-divider>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ราคา</h5>
+            </v-col>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{eventStore.currentEvent.price }} THB x {{ orderStore.currentOrder.qty }}</h5>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>วันที่มาใช้บริการ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
+            </v-col>
+            <v-divider class="border-opacity-50" vertical></v-divider>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ส่วนลด</h5>
+            </v-col>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{ orderStore.currentOrder.totalPrice }} THB</h5>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>บัตรหมดอายุ</h5>
+            </v-col>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</h5>
+            </v-col>
+            <v-divider class="border-opacity-50" vertical></v-divider>
+            <v-col cols="12" lg="3" class="text-left smallnormalFont">
+              <h5>ราคาสุทธิ</h5>
+            </v-col>
+            <v-col cols="12" lg="2" class="text-left smallnormalFont">
+              <h5>{{ orderStore.currentOrder.netPrice }} THB</h5>
+            </v-col>
+          </v-row>
+        </v-card>
+
+        <v-row>
+          <v-col cols="12" lg="6">
+            <v-card class="pa-4 ml-4 detailCard">
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">ชื่อ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.name }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">อีเมลล์</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.email }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">เบอร์โทรศัพท์</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ userStore.currentUser.tel }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">วันที่มาใช้บริการ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</h5>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" lg="4" class="text-left">
+                  <h5 class="smallnormalFont">บัตรหมดอายุ</h5>
+                </v-col>
+                <v-col cols="12" lg="8" class="text-left">
+                  <h5 class="smallnormalFont">{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</h5>
+                </v-col>
+                <v-col cols="12" lg="12">
+                  <v-divider class="border-opacity-50 mt-8"></v-divider>
+                </v-col>
+                <v-col>
+                  <h1 class="lgallfont mt-4">ช่องทางการจ่ายเงิน</h1>
+                </v-col>
+                <v-row class="mt-6">
+                  <v-col cols="12" lg="4">
+======= -->
         <v-row>
           <v-col>
             
@@ -102,6 +235,7 @@ function updatePayment(payment: string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
+>>>>>>> 52f96cd24fe5a9cd7647807f3b2ce07abccef7c5
                     <RouterLink to="/CreditCard">
                       <button class="payment-btn ma-2" id="credit-card" @click="updatePayment('Credit Card')">Credit/Debit Card</button>
                     </RouterLink>

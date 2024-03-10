@@ -19,6 +19,7 @@ const handleMenuItemClick = (item: { route: RouteLocationRaw; }) => {
 
 const showNav = () => {
   
+
   const excludedRoutes = ['/', '/Login','/Register']; 
   return !excludedRoutes.includes(route.path);
 }

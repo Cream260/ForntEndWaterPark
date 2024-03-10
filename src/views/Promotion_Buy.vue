@@ -41,7 +41,7 @@ const formatDate = (dateStr: string | number | Date) => {
                 <v-btn class="large-button">{{ item.code }}</v-btn>
               </v-flex>
               <div>
-                <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate ? formatDate(item.startDate) : 'N/A' }} ถึงวันที่ {{ item.endDate ? formatDate(item.endDate) : 'N/A'}}</p10>
+                <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate ? formatDate(item.startDate) : 'N/A' }} ถึงวันที่ {{ item.endDate ? formatDate(item.endDate) : 'N/A' }}</p10>
               </div>
             </v-card>
           </v-col>
