@@ -269,8 +269,10 @@ function updatePayment(payment: string) {
                   <hr class="divider" />
                 </div>
                 <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
+
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
                 <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
+
               </div>
               <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{
                   orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>

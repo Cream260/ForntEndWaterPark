@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
+import { onMounted, ref } from "vue";
 import Receipt from "@/views/ReceiptView.vue"
+import { useAuthStore } from "@/stores/auth";
+import { useUserStore } from "@/stores/user.store";
+
+const authStore = useAuthStore();
+const userStore = useUserStore();
+onMounted(async () => {
+  authStore.getUserFromLocalStorage();
+});
 </script>
 
 <template>
@@ -44,15 +53,16 @@ import Receipt from "@/views/ReceiptView.vue"
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">จำนวนเงิน</label>
         <input type="text" placeholder="THB" />
+
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">อีเมลล์</label>
-        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Email" v-model = "userStore.currentUser.email" disabled/>
       </v-col>
       <v-col cols="12" lg="6" ></v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">หมายเลขโทรศัพท์</label>
-        <input type="text" placeholder="(+66)" />
+        <input type="text" placeholder="(+66)" v-model = "userStore.currentUser.tel" disabled/>
       </v-col>
     </v-row>
     <v-row

@@ -138,6 +138,7 @@ function clearFillDetail() {
         </div>
         
         <v-row class="mt-3">
+
           <v-col cols="12" lg="6" class="text-left">
             
               <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="orderStore.ticketOrder">ซื้อเลยตอนนี้</v-btn>

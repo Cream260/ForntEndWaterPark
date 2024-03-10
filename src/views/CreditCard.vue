@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "vue-router";
 import Receipt from "@/views/ReceiptView.vue"
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useOrderStore } from "@/stores/order.store";
+import { useAuthStore } from "@/stores/auth";
+import { useUserStore } from "@/stores/user.store";
 const orderStore = useOrderStore();
 const received = ref(0);
 const route = useRoute();
-
+const authStore = useAuthStore();
+const userStore = useUserStore();
+onMounted(async () => {
+  authStore.getUserFromLocalStorage();
+});
 function updateRe(received: number) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
@@ -60,12 +66,12 @@ function updateRe(received: number) {
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>
-        <input type="text" placeholder="ชื่อ - นามสกุล"/>
+        <input type="text" placeholder="ชื่อ - นามสกุล" v-model="userStore.currentUser.name" disabled/>
       </v-col>
       <v-col cols="12" lg="6"></v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">อีเมลล์</label>
-        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Email" v-model="userStore.currentUser.email" disabled/>
       </v-col>
       <v-col cols="12" lg="6"></v-col>
       <RouterLink to="/BuyTicket">

@@ -69,6 +69,7 @@ const formatDate = (dateStr: string | number | Date) => {
           </v-col>
           <v-col>
             <div style="margin-top: 1%;">
+              
               <v-row class="pt-6">
                 <v-col cols="12" lg="3" class="lgallfont">
                   <h5 class="ml-4">ชื่อบัตร</h5>
@@ -92,8 +93,28 @@ const formatDate = (dateStr: string | number | Date) => {
                     </template>
                   </h5>
                 </v-col>
-
+                <v-col cols="12" lg="2" class="lgallfont" style="margin-left: 13%;">
+                  <h5 v-if="orderStore.currentOrder.eventId">{{ orderStore.currentOrder.numPeople}}</h5>
+                  <h5 v-if="orderStore.currentOrder.packageId">
+                    <template v-if="orderStore.package_?.package_detail">
+                      <div v-for="(detail, index) in orderStore.package_.package_detail" :key="index">
+                        {{ detail.qty }} ใบ
+                        <!-- แสดงข้อมูลอื่น ๆ จาก package_detail ตามความเหมาะสม -->
+                      </div>
+                    </template>
+                  </h5>
+                  <h5 v-if="orderStore.currentOrder.orderItems!.length > 0">
+                    <template v-if="orderStore.currentOrder.orderItems!.length > 0">
+                      <div v-for="(detail, index) in orderStore.currentOrder.orderItems" :key="index">
+                        {{ detail.qty }}
+                        <!-- แสดงข้อมูลอื่น ๆ จาก package_detail ตามความเหมาะสม -->
+                      </div>
+                    </template>
+                  </h5>
+                </v-col>
               </v-row>
+
+
               <v-row class="pt-6">
                 <v-col cols="12" lg="3" class="lgallfont">
                   <h5 class="ml-4">ประเภทบัตร</h5>
@@ -118,6 +139,7 @@ const formatDate = (dateStr: string | number | Date) => {
                   </h5>
                 </v-col>
               </v-row>
+                
               <v-row class="pt-6">
                 <v-col cols="12" lg="4" class="lgallfont">
                   <h5 class="ml-4">วันที่เข้าสวนน้ำ</h5>

@@ -13,6 +13,7 @@ import router from "@/router";
 import event from "../components/services/event";
 import order from "@/components/services/order";
 import type Promotion from "@/type/promotion";
+import Swal from "sweetalert2";
 
 export const useOrderStore = defineStore("order", () => {
   const orders = ref<Order[]>([]);
@@ -82,21 +83,25 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
   //function create order by event
-  async function packageOrder() {
-    const pack = {
-      cusID: 1,
-      qty: 0,
-      totalPrice: 0,
-      netPrice: 0,
-      received: 0,
+  async function packageOrder(package_: Package) {
+    const order:Order = {
+      cusID:1,
+      packageId: package_.id,
+      qty: package_.qty,
+      totalPrice:package_.price!,
+      netPrice: package_.price!,
+      numPeople: null,
+      nameComp: null,
       discount: 0,
-      payments: "",
-      startDate: new Date(),
+      received:package_.price,
+      payments:"",
+      startDate:new Date(),
       expDate: new Date(),
-    };
-    console.log(pack);
+      orderItems: []
+  }
+    console.log(order);
     try {
-      const res = await orderService.saveOrder(pack);
+      const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("Order", currentOrder.value);
       //Json
@@ -105,6 +110,34 @@ export const useOrderStore = defineStore("order", () => {
       console.log(e);
     }
   }
+  // async function openOrder() {
+  //   const orderItems = orderList.value;
+  //   const order = {
+  //     cusID: 1,
+  //     qty: 0,
+  //     totalPrice: 0,
+  //     netPrice: 0,
+  //     numPeople: null,
+  //     nameComp: null,
+  //     discount: 0,
+  //     received: 0,
+  //     payments: "",
+  //     startDate: new Date(),
+  //     expDate: new Date(),
+  //     orderItems: orderItems,
+  //   };
+  //   console.log(order);
+  //   try {
+  //     const res = await orderService.saveOrder(order);
+  //     currentOrder.value = res.data;
+  //     console.log("currentOrder", currentOrder.value);
+  //     clearOrder();
+  //     router.push("/filldetail"); 
+  //   } catch (e) {
+  //     console.log("e");
+  //   }
+  // }
+
   async function openOrder() {
     const orderItems = orderList.value;
     const order = {
@@ -121,16 +154,42 @@ export const useOrderStore = defineStore("order", () => {
       expDate: new Date(),
       orderItems: orderItems,
     };
+  
     console.log(order);
+  
     try {
+      if (ThChildqty.value <=0 && ThAdultqty.value <=0) {
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: `"กรุณาเลือกจำนวนบัตร" `,
+          icon: "warning",
+          showCloseButton: true,
+        })
+        console.log("เลือกตั๋ว");  
+        return; // Exit function early if qty is 0
+      }
+      if(ThChildqty.value >0 && ThAdultqty.value ===0){
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
+          icon: "warning",
+          showCloseButton: true,
+        })
+        console.log("เลือกตั๋ว");  
+        return; // Exit function early if qty is 0
+      }
+  
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
       clearOrder();
+      router.push("/filldetail"); 
     } catch (e) {
-      console.log("e");
+      console.log("Error:", e);
+      // Handle the error here if necessary
     }
   }
+  
 
   async function ticketOrder() {
     try {
