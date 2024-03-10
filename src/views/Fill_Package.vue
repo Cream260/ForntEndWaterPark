@@ -82,13 +82,12 @@ function clearFillDetail() {
         <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
-<<<<<<< HEAD
               <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
                 v-model="packageStore.currentPackage.price" />
-=======
+
               <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
                 v-model="price" />
->>>>>>> 3eb9feede344daa0515749ab0829d8911981f5f4
+
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
