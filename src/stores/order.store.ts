@@ -131,10 +131,13 @@ export const useOrderStore = defineStore("order", () => {
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
       clearOrder();
+      router.push("/filldetail"); 
     } catch (e) {
       console.log("e");
     }
   }
+ 
+
 
   async function ticketOrder() {
     try {

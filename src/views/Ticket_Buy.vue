@@ -86,7 +86,7 @@ onMounted(async () => {
                   </div>
                 </div>
               </v-col>
-            </v-row>
+            </v-row> 
           </v-container>
         </v-window-item>
         <v-window-item :value="2">
@@ -178,9 +178,9 @@ onMounted(async () => {
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
           <v-flex>
-            <RouterLink to="/filldetail">
+            <!-- <RouterLink to="/filldetail"> -->
               <v-btn color="#87B859" class="large-button" @click="orderStore.openOrder()">ยืนยัน</v-btn>
-            </RouterLink>
+            <!-- </RouterLink> -->
           </v-flex>
         </v-col>
       </v-row>

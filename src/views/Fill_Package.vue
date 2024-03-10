@@ -89,7 +89,26 @@ const saveOrder = async ()=>{
           </v-col>
         </v-row>
         <v-row class="ml-8">
-          
+
+          <v-col cols="12" lg="6">
+            <v-flex>
+
+              <input type="text" placeholder="ราคารวม" class="placeholder-color forumSize0"
+                v-model="packageStore.currentPackage.price" />
+
+
+              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                v-model="price" />
+
+            </v-flex>
+          </v-col>
+          <v-col cols="12" lg="6">
+            <v-flex>
+              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
+                v-model="orderStore.currentOrder.discount" />
+            </v-flex>
+          </v-col>
+>>>>>>> 8b1698212fd83681d5ee0b9dafb119da0c259a90
         </v-row>
         <v-row class="ml-8">
           <v-col cols="12" lg="12">

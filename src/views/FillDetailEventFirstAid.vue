@@ -9,7 +9,7 @@ import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
 import { useEventStore } from "@/stores/event.store";
 import type Order from "@/type/order";
-const selectedDate = ref<Date>(new Date());
+import Swal from "sweetalert2";
 const form = ref<VForm | null>(null);
 const orderStore = useOrderStore();
 const userStore = useUserStore();
@@ -18,19 +18,22 @@ const eventStore = useEventStore();
 //enddare is 1 year
 const endDate = ref<string>("");
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
+const selectedDate = ref(minDate);
 const PeopleIncrement = ref(0);
+const currentDate = new Date().toISOString().split("T")[0];
 const type = ref(""); 
 const nameComp = ref("");
 const ppiError = ref("");
 const nameCompError = ref("");
 const typeError = ref("");
+const dateError = ref("");
 const showDialog = ref(false);
 let isValid = true;
 var expDate = new Date(selectedDate.value);
-const day = selectedDate.value.getDate();
-const month = selectedDate.value.getMonth();
-expDate.setMonth(month);
-expDate.setDate(day);
+// const day = selectedDate.value.getDate();
+// const month = selectedDate.value.getMonth();
+// expDate.setMonth(month);
+// expDate.setDate(day);
 onMounted(() => {
   authStore.getUserFromLocalStorage();
 });
@@ -76,6 +79,15 @@ if (PeopleIncrement.value === 0) {
 } else {
     ppiError.value = "";
 }
+
+if (!selectedDate.value) {
+    dateError.value = "โปรดเลือกวันที่";
+    isValid = false;
+    
+  } else {
+    dateError.value = "";
+  }
+
     return isValid;
 
 }
@@ -102,21 +114,45 @@ async function save() {
     eventStore.currentEvent.id = 39;
     // console.log(event);
   }
-  const order:Order = {
-    cusID:1,
-    eventId: eventStore.currentEvent.id,
-    nameComp: nameComp.value,
-    discount: 0,
-    expDate: expDate,
-    startDate: new Date(selectedDate.value),
-    qty: PeopleIncrement.value,
-    numPeople: PeopleIncrement.value,
-    netPrice:0, 
-    totalPrice:0,
-    received: 1,
-    payments: "",
+  if (isValid === true) {
+    if (currentDate.toString() === selectedDate.value.toString()) {
+      console.log("********************************")
+
+      await Swal.fire({
+        title: "Please confirm your Date",
+        text: `"Are you sure?" `,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, keep it",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            const order: Order = {
+              cusID: 1,
+              eventId: eventStore.currentEvent.id,
+              nameComp: nameComp.value,
+              discount: 0,
+              expDate: expDate,
+              startDate: new Date(selectedDate.value),
+              qty: PeopleIncrement.value,
+              numPeople: PeopleIncrement.value,
+              netPrice: 0,
+              totalPrice: 0,
+              received: 0,
+              payments: "",
+            }
+            console.log(order.nameComp);
+            await orderStore.eventOrder(order);
+
+        } if(result.isDenied) {
+          return;
+        }
+      })
+
+    }
+
+
   }
-  await orderStore.eventOrder(order);
 }
 </script>
 
