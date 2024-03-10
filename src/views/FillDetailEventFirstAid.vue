@@ -83,26 +83,24 @@ async function save() {
   validateForm();
   if (
     type.value ==
-    "การฝึกฝนการปฐมพยาบาล จูเนียร์"
+    'การฝึกฝนการปฐมพยาบาล จูเนียร์'
   ) {
-    //get event id 35
+    //get event id 37
     eventStore.currentEvent.id = 37;
 
   }
-  if (type.value == "หลักสูตร First aid,CPR & AED ระดับสากล") {
-    //get event id 36
+  if (type.value == 'หลักสูตร First aid,CPR & AED ระดับสากล') {
+    //get event id 38
     eventStore.currentEvent.id = 38;
     // console.log(event);
 
   }
   if (
-    type.value == "หลักสูตรCPR & AED"
+    type.value == 'หลักสูตรCPR & AED'
   ) {
     //get event id 37
     eventStore.currentEvent.id = 39;
     // console.log(event);
-  }else{
-    eventStore.currentEvent.id = 37;
   }
   const order:Order = {
     cusID:1,

@@ -66,10 +66,10 @@ orderStore.findQrById(orderStore.currentOrder.id!);
 
 <template>
   <div class="d-flex align-center flex-column" style="font-family: 'Kanit', 'sans-serif';">
-    <v-card class="borderradius" width="620" height="780">
+    <v-card class="borderradius" width="620" height="880">
       <h1 class="text-center bignormalFont">ชำระเสร็จสิ้น</h1>
       <div class="d-flex align-center flex-column">
-        <v-card class="mt-3 invcard" width="500" height="580">
+        <v-card class="mt-3 invcard" width="500" height="680">
           <div class="d-flex align-center justify-space-around">
             <v-avatar color="grey" size="70" rounded="10" class="mt-3">
               <v-img cover src="../src/images/Ticket/Icon.png"></v-img>
@@ -138,7 +138,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
                 <h5 class="normalFont">รวม : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">{{ orderStore.currentOrder.netPrice }}</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
