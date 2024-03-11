@@ -8,6 +8,7 @@ import { usePackageStore } from "@/stores/package.store";
 import { useUserStore } from "@/stores/user.store";
 import type Order from "@/type/order";
 import type Package from "@/type/package";
+import Swal from "sweetalert2";
 import { computed, onMounted, ref } from "vue";
 import { RouterLink, RouterView, useRoute } from "vue-router";
 
@@ -18,10 +19,15 @@ const customerStore = useCustomerStore();
 const packageStore = usePackageStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
+const typeError = ref("");
+const showDialog = ref(false);
+const currentDate = new Date().toISOString().split("T")[0];
+const dateError = ref("");
+let isValid = true;
 // const selectDate = ref
 //enddare is 1 year
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
-  const selectedDate = ref<Date>(new Date(minDate.value));
+const selectedDate = ref(minDate);
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -33,15 +39,57 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
+const validateForm = async () => {
+  showDialog.value = false;
+  isValid = true;
+
+  if (!selectedDate.value) {
+    dateError.value = "โปรดเลือกวันที่";
+    isValid = false;
+
+  } else {
+    dateError.value = "";
+  }
+  console.log("---------------------------");
+
+
+  return isValid;
+
+}
 
 //caerte save function
-const saveOrder = async ()=>{
-  if(!selectedDate.value){
-    alert("Please select a date");
-    return;
+const saveOrder = async () => {
+  validateForm();
+  if (isValid === true) {
+    if (currentDate.toString() === selectedDate.value.toString()) {
+      console.log("********************************")
+
+      await Swal.fire({
+        title: "โปรดยืนยันวันที่เข้าใช้บริการ",
+        text: `"คุณต้องการเข้าใช้บริการวันที่ปัจจุบันหรือไม่?" `,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "ใช่",
+        cancelButtonText: "ไม่",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (!selectedDate.value) {
+            alert("Please select a date");
+            return;
+          }
+          await orderStore.packageOrder(packageStore.currentPackage);
+          router.push('/sumdetail/' + orderStore.currentOrder.id)
+
+        } if (result.isDenied) {
+          return;
+        }
+      })
+
+    }
+
+
   }
-  await orderStore.packageOrder(packageStore.currentPackage);
-  router.push('/sumdetail/'+orderStore.currentOrder.id)
+
 }
 
 </script>
@@ -56,7 +104,7 @@ const saveOrder = async ()=>{
           รายละเอียดของคุณ
         </div>
 
-        <v-row class="ml-8" >
+        <v-row class="ml-8">
           <v-col cols="12" lg="6">
             <v-flex>
               <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
@@ -84,7 +132,8 @@ const saveOrder = async ()=>{
             </v-flex> -->
             <form action="/action_page.php">
               <label for="dateday"></label>
-              <input :min="minDate" v-model="selectedDate" class="placeholder-color forumSize0" type="date" id="dateday" name="dateday">
+              <input :min="minDate" v-model="selectedDate" class="placeholder-color forumSize0" type="date" id="dateday"
+                name="dateday">
             </form>
           </v-col>
         </v-row>
@@ -102,31 +151,33 @@ const saveOrder = async ()=>{
 
             </v-flex>
           </v-col> -->
-          <v-col cols="12" lg="6">
+          <!-- <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
-                v-model="orderStore.currentOrder.discount" />
+                v-model="orderStore.currentOrder.discount" disabled />
             </v-flex>
-          </v-col>
+          </v-col> -->
 
         </v-row>
         <v-row class="ml-8">
           <v-col cols="12" lg="12">
             <v-flex>
-              <h2 class="forumSize">{{ packageStore.currentPackage.name }} ราคา {{packageStore.currentPackage.price}} บาท</h2>
+              <h2 class="forumSize">{{ packageStore.currentPackage.name }} ราคา {{ packageStore.currentPackage.price }}
+                บาท</h2>
             </v-flex>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" lg="6" class="text-left">
-      
-              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="saveOrder()" >ซื้อเลยตอนนี้</v-btn>
-            
+
+            <v-btn color="#87B859" class="large-button" style="margin-left: 28%;"
+              @click="saveOrder()">ซื้อเลยตอนนี้</v-btn>
+
 
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
             <RouterLink to="/BuyPackage">
-            <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
+              <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
             </RouterLink>
           </v-col>
           <v-col></v-col>

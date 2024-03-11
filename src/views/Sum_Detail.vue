@@ -5,6 +5,7 @@ import { useOrderStore } from "@/stores/order.store";
 import { useManageTime } from "@/stores/manageDate"
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+import orderService from "@/components/services/order";
 //get id from param
 import { useRoute } from "vue-router";
 import { useEventStore } from "@/stores/event.store";
@@ -58,13 +59,19 @@ onMounted(async () => {
   await customerStore.getCustomer;
   const paramValue = route.params.id;
   //getOrderById
-  console.log(paramValue);
-  await orderStore.getOrderById(parseInt(paramValue.toString()));
+  console.log("id", paramValue);
+  if(orderStore.currentOrder) {
+  const promoId = orderService.getPromotionByOrder(parseInt(paramValue.toString()));
+  orderStore.findPromotionById((await promoId).data);
+  console.log((await promoId).data);
+  }
+
   // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
   // await eventStore.getEventById(res?.data.event!.id);
   // await orderStore.getOrderById(res?.data.event!.id);
 })
+
 
 function updatePayment(payment: string) {
   const orderId = route.params.id;
@@ -86,7 +93,7 @@ function updatePayment(payment: string) {
         <div class="fontheader mt-2" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
-<!-- <<<<<<< HEAD
+        <!-- <<<<<<< HEAD
         
         <v-card class="pa-4 ma-4 detailCard">
 
@@ -268,10 +275,12 @@ function updatePayment(payment: string) {
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
+
                 <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
 
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
                 <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
+
 
               </div>
               <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{

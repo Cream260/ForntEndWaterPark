@@ -35,6 +35,11 @@ function getPackageByOrder(id: number) {
   return http.get(`/orders/${id}/package`);
 }
 
+function getPromotionByOrder(id: number) {
+  return http.get(`/orders/${id}/promotion`);
+}
 
 
-export default { getOrder, saveOrder, updateOrder, deleteOrder,getOrderById,getOrderQR ,getEventByOrder, getPackageByOrder};
+
+
+export default { getOrder, saveOrder, updateOrder, deleteOrder,getOrderById,getOrderQR ,getEventByOrder, getPackageByOrder,getPromotionByOrder};

@@ -107,9 +107,16 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               </v-col>
               <v-col cols="12" sm="3">
                 <h5 class="normalFont">{{ orderStore.currentOrder.payments }}</h5>
-              </v-col>
-              <v-col>
+              </v-col><v-col>
                 <h5 class="text-center headnormalFont">Queue # {{ orderStore.currentOrder.id }}</h5>
+              </v-col>          
+            </v-row>
+          </div>
+          <div class="pt-4" >
+            <v-row>
+              <v-col v-if="orderStore.promo_">
+              <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
+                <h5 class="normalFont">โปรโมชั่น {{ orderStore.promo_?.name}}</h5>
               </v-col>
               <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
             </v-row>

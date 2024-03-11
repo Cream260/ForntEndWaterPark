@@ -13,14 +13,21 @@ const customerStore = useCustomerStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
 
-const selectedDate = ref<Date>(new Date());
+const minDate = ref<string>(new Date().toISOString().split("T")[0]);
+const selectedDate = ref<string>(minDate.value);
 
-const expDate = new Date(selectedDate.value);
-expDate.setFullYear(expDate.getFullYear());
-const day = selectedDate.value.getDate();
-const month = selectedDate.value.getMonth();
-expDate.setMonth(month);
-expDate.setDate(day);
+// Get the selected date as a Date object
+const selectedDateObject = new Date(selectedDate.value);
+
+// Set expDate to be one day ahead of selectedDate
+const expDate = ref<Date>(new Date(selectedDateObject.getTime())); // Make a copy of selectedDateObject
+expDate.value.setDate(expDate.value.getDate() + 1); // Increment the date by one day
+
+
+
+function updateOrderDates() {
+  orderStore.ticketOrder(new Date(selectedDate.value), expDate.value);
+}
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -32,6 +39,10 @@ function clearFillDetail() {
   customerStore.clearUser();
   orderStore.clearOrderDetail();
 }
+
+
+
+
 
 // let lastuserId = 1
 // interface InfoDetail {
@@ -142,10 +153,9 @@ function clearFillDetail() {
         </div>
         
         <v-row class="mt-3">
-
           <v-col cols="12" lg="6" class="text-left">
             
-              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="orderStore.ticketOrder">ซื้อเลยตอนนี้</v-btn>
+              <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="updateOrderDates()">ซื้อเลยตอนนี้</v-btn>
             
 
           </v-col>

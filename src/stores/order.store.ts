@@ -26,6 +26,7 @@ export const useOrderStore = defineStore("order", () => {
   const nameComp = ref("");
   const received = ref(0);
   const event_ = ref<Event>();
+  const promo_ = ref<Promotion>();
   const package_ = ref<Package>();
   const orderItem_ = ref<OrderItem[]>([]);
   const promo = ref<Promotion>();
@@ -191,8 +192,14 @@ export const useOrderStore = defineStore("order", () => {
   }
   
 
-  async function ticketOrder() {
+  async function ticketOrder(startDate_:Date, endDate_:Date) {
     try {
+      currentOrder.value.startDate = startDate_;
+      currentOrder.value.expDate = endDate_;
+      await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
+      console.log("Order ticket", currentOrder.value)
+      const promo_ = orderService.getPromotionByOrder(currentOrder.value.id!);
+      console.log("Prom", promo_);
       router.push("/sumdetail/" + currentOrder.value.id);
     } catch (e) {
       console.log(e);
@@ -491,8 +498,16 @@ export const useOrderStore = defineStore("order", () => {
     console.log(res.data);
     return package_;
   }
+  async function findPromotionById(id: number) {
+    const res = await promotionService.getPromotionById(id);
+    promo_.value = res.data;
+    console.log(res.data);
+    return promo_;
+  }
 
   return {
+    promo_,
+    findPromotionById,
     ticketOrder,
     findPackageById,
     findEventById,
