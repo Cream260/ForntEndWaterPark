@@ -92,11 +92,11 @@ function updatePayment(payment: string,routurname:string) {
             
             <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
-                <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
-                <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
+                <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
                 <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
-                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate}}</div>
+                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</div>
               </div>
               <hr class="divider"/>
               <div class="payment-options">
@@ -123,10 +123,8 @@ function updatePayment(payment: string,routurname:string) {
               <div class="customer-details" >
                 <div class="detail"><span class="label">ชื่อบัตร</span>{{ eventStore.currentEvent.name }}</div>
                 <div class="detail"><span class="label">ประเภทบัตร</span>{{ eventStore.currentEvent.type }}</div>
-                <div class="detail"><span class="label">โปรโมชั่น</span>{{usePromotionStore.name}}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ eventStore.currentEvent.price.toLocaleString() }}</div>
                 <div class="detail"><span class="label">จำนวน</span>{{ orderStore.currentOrder.qty }} ใบ</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
               </div>
             </div>
             <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{

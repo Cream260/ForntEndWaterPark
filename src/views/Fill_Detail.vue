@@ -142,7 +142,7 @@ function clearFillDetail() {
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0 mr-9"
+                <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0 mr-9" disabled
                   v-model="orderStore.currentOrder.discount" />
               </v-flex>
             </v-col>
