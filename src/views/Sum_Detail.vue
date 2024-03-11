@@ -13,6 +13,7 @@ import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
 import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
+import router from "@/router";
 const route = useRoute();
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
@@ -65,12 +66,14 @@ onMounted(async () => {
   // await orderStore.getOrderById(res?.data.event!.id);
 })
 
-function updatePayment(payment: string) {
+function updatePayment(payment: string,routuename: string) {
+
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
+  router.push('/'+routuename+'/'+orderId)
 }
 
 
@@ -238,18 +241,12 @@ function updatePayment(payment: string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
-                    <RouterLink to="/CreditCard">
                       <button class="payment-btn ma-2" id="credit-card"
-                        @click="updatePayment('Credit Card')">Credit/Debit Card</button>
-                    </RouterLink>
-                    <RouterLink to="/TrueWallet">
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
+                        @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
                         Wallet</button>
-                    </RouterLink>
-                    <RouterLink to="/PromptPay">
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay','PromptPay')">Prompt
                         Pay</button>
-                    </RouterLink>
 
                   </div>
                 </div>

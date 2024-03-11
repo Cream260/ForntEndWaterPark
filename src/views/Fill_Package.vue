@@ -61,12 +61,12 @@ const validateForm = async () => {
 const saveOrder = async () => {
   validateForm();
   if (isValid === true) {
-    if (currentDate.toString() === selectedDate.value.toString()) {
+    // if (currentDate.toString() === selectedDate.value.toString()) {
       console.log("********************************")
 
       await Swal.fire({
         title: "โปรดยืนยันวันที่เข้าใช้บริการ",
-        text: `"คุณต้องการเข้าใช้บริการวันที่ปัจจุบันหรือไม่?" `,
+        text: `"คุณต้องการเข้าใช้บริการ ณ วันที่ ${selectedDate.value.toString().split("T")[0]} ใช่หรือไม่?"`, 
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "ใช่",
@@ -85,7 +85,7 @@ const saveOrder = async () => {
         }
       })
 
-    }
+    // }
 
 
   }

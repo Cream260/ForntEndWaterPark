@@ -84,21 +84,21 @@ export const useOrderStore = defineStore("order", () => {
   }
   //function create order by event
   async function packageOrder(package_: Package) {
-    const order:Order = {
-      cusID:1,
+    const order: Order = {
+      cusID: 1,
       packageId: package_.id,
       qty: package_.qty,
-      totalPrice:package_.price!,
+      totalPrice: package_.price!,
       netPrice: package_.price!,
       numPeople: null,
       nameComp: null,
       discount: 0,
-      received:package_.price,
-      payments:"",
-      startDate:new Date(),
+      received: package_.price,
+      payments: "",
+      startDate: new Date(),
       expDate: new Date(),
       orderItems: []
-  }
+    }
     console.log(order);
     try {
       const res = await orderService.saveOrder(order);
@@ -154,44 +154,45 @@ export const useOrderStore = defineStore("order", () => {
       expDate: new Date(),
       orderItems: orderItems,
     };
-  
+
     console.log(order);
-  
+
     try {
-      if (ThChildqty.value <=0 && ThAdultqty.value <=0) {
+      if (ThChildqty.value <= 0 && ThAdultqty.value <= 0 && EnChildqty.value <= 0 && EnAdultqty.value <= 0) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตร" `,
           icon: "warning",
           showCloseButton: true,
         })
-        console.log("เลือกตั๋ว");  
+        console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
-      if(ThChildqty.value >0 && ThAdultqty.value ===0){
+      if (ThChildqty.value > 0 && ThAdultqty.value === 0 && EnChildqty.value > 0 && EnAdultqty.value === 0) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
           icon: "warning",
           showCloseButton: true,
         })
-        console.log("เลือกตั๋ว");  
-        return; // Exit function early if qty is 0
+        console.log("เลือกตั๋ว");
+        return; // Exit function early if qty is 0    
       }
-  
+      
+
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
       clearOrder();
-      router.push("/filldetail"); 
+      router.push("/filldetail");
     } catch (e) {
       console.log("Error:", e);
       // Handle the error here if necessary
     }
   }
-  
 
-  async function ticketOrder(startDate_:Date, endDate_:Date) {
+
+  async function ticketOrder(startDate_: Date, endDate_: Date) {
     try {
       currentOrder.value.startDate = startDate_;
       currentOrder.value.expDate = endDate_;
@@ -261,7 +262,7 @@ export const useOrderStore = defineStore("order", () => {
       if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
         orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
-        return;
+        return orderList.value[i].qty;
       }
     }
     orderList.value.push({
@@ -273,6 +274,7 @@ export const useOrderStore = defineStore("order", () => {
       totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
+    return 1;
   }
 
   function ThAdultdecrement(index: number) {

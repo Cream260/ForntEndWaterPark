@@ -49,19 +49,23 @@ onMounted(async () => {
 const validateForm = async () => {
   showDialog.value = false;
   isValid = true;
+  // Regular expression to check if nameComp contains special characters
+  const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
 
+  // Regular expression to check if nameComp is a number
+  const numeric = /^\d+$/;
 
   if (nameComp.value.length <= 0 || nameComp.value === null) {
     nameCompError.value = "โปรดใส่ชื่อบริษัท";
     isValid = false;
-  
-
-
-  } else if (nameComp.value.length < 3 || nameComp.value.length > 100) {
-    nameCompError.value = "ชื่อบริษัทต้องมี 3-100 ตัวอักษร";
+  } else if (
+    nameComp.value.length < 3 ||
+    nameComp.value.length > 100 ||
+    specialChars.test(nameComp.value) ||
+    numeric.test(nameComp.value)
+  ) {
+    nameCompError.value = "ชื่อบริษัทต้องมี 3-100 ตัวอักษร และไม่มีอักขระพิเศษหรือตัวเลข";
     isValid = false;
-
-
   } else {
     nameCompError.value = "";
   }
@@ -130,12 +134,12 @@ async function save() {
     // console.log(event);
   }
   if (isValid === true) {
-    if (currentDate.toString() === selectedDate.value.toString()) {
+    // if (currentDate.toString() === selectedDate.value.toString()) {
       console.log("********************************")
 
       await Swal.fire({
         title: "โปรดยืนยันวันที่เข้าใช้บริการ",
-        text: `"คุณต้องการเข้าใช้บริการวันที่ปัจจุบันหรือไม่?" `,
+        text: `"คุณต้องการเข้าใช้บริการ ณ วันที่ ${selectedDate.value.toString().split("T")[0]} ใช่หรือไม่?"`, // Include expDate in the text
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "ใช่",
@@ -164,7 +168,7 @@ async function save() {
         }
       })
 
-    }
+    // }
 
 
   }

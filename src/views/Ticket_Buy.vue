@@ -6,6 +6,7 @@ import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
 import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
 const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
+const showDialog = ref(false)
 const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTickets();
@@ -162,18 +163,12 @@ onMounted(async () => {
           <!-- <v-flex>
             <input type="text" id="fname" name="fname" placeholder="โปรโมโค้ด" class="placeholder-color" />
           </v-flex> -->
-          <v-dialog transition="dialog-bottom-transition" width="auto">
-            <template v-slot:activator="{ props: activatorProps }">
-              <v-btn color="#8eadcdeb" class="promo-button whitefont" v-bind="activatorProps"  text="โปรโมโค้ด" style="margin-right: 30%;"></v-btn>
-              
-            </template>
-
-            <template v-slot:default="{ isActive }">
+          <v-btn color="#8eadcdeb" class="promo-button whitefont" text="โปรโมโค้ด" style="margin-right: 30%;"></v-btn>
+          <v-dialog >
               <v-card>
-                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="isActive.value = false" ></v-btn></v-toolbar>           
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text"></v-btn></v-toolbar>           
                 <PromotionBuy></PromotionBuy>
-              </v-card>
-            </template>        
+              </v-card>  
           </v-dialog>
         </v-col>
         <v-col cols="12" sm="5" class="text-left">
