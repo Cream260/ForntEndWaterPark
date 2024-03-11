@@ -1,9 +1,11 @@
+
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
 import { useManageTime } from "@/stores/manageDate"
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
+import orderService from "@/components/services/order";
 //get id from param
 import { useRoute } from "vue-router";
 import { useEventStore } from "@/stores/event.store";
@@ -58,22 +60,28 @@ onMounted(async () => {
   await customerStore.getCustomer;
   const paramValue = route.params.id;
   //getOrderById
-  console.log(paramValue);
-  await orderStore.getOrderById(parseInt(paramValue.toString()));
+  console.log("id", paramValue);
+  if(orderStore.currentOrder) {
+  const promoId = orderService.getPromotionByOrder(parseInt(paramValue.toString()));
+  orderStore.findPromotionById((await promoId).data);
+  console.log((await promoId).data);
+  }
+
   // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
   // await eventStore.getEventById(res?.data.event!.id);
   // await orderStore.getOrderById(res?.data.event!.id);
 })
 
-function updatePayment(payment: string,routuename: string) {
 
+
+function updatePayment(payment: string) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
-  router.push('/'+routuename+'/'+orderId)
+  router.push('/'+ routuename +'/'+orderId)
 }
 
 
@@ -85,10 +93,10 @@ function updatePayment(payment: string,routuename: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class="fontheader" style="font-size: 40px;">
+        <div class="fontheader mt-2" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
-<!-- <<<<<<< HEAD
+        <!-- <<<<<<< HEAD
         
         <v-card class="pa-4 ma-4 detailCard">
 
@@ -225,7 +233,7 @@ function updatePayment(payment: string,routuename: string) {
           <v-col>
 
 
-            <div class="card-container">
+            <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
                 <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
                 <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
@@ -235,6 +243,7 @@ function updatePayment(payment: string,routuename: string) {
                 <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate ?
                   formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</div>
               </div>
+              <br/>
               <hr class="divider" />
               <div class="payment-options">
 
@@ -242,10 +251,10 @@ function updatePayment(payment: string,routuename: string) {
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
                       <button class="payment-btn ma-2" id="credit-card"
-                        @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
+                        @click="updatePayment('Credit Card')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
                         Wallet</button>
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay','PromptPay')">Prompt
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
                         Pay</button>
 
                   </div>
@@ -255,7 +264,7 @@ function updatePayment(payment: string,routuename: string) {
             </div>
           </v-col>
           <v-col>
-            <v-card>
+            <!-- <v-card> -->
               <div class="card-container2 scroll-container">
                 <div class="customer-details" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
                   <div class="detail"><span class="label">ชื่อบัตร</span>{{ item.name }}</div>
@@ -263,14 +272,17 @@ function updatePayment(payment: string,routuename: string) {
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
+
                 <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
-                <div class="detail"><span class="label">Package</span>{{ orderStore.currentOrder.package?.name }}</div>
-                <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice }}</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount }}</div>
+
+                <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
+                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
+
+
               </div>
-              <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>{{
-                  orderStore.currentOrder.netPrice }} บาท</div>
-            </v-card>
+              <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{
+                  orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
+            <!-- </v-card> -->
           </v-col>
 
         </v-row>
