@@ -36,8 +36,10 @@ onMounted(async () => {
 })
 
 function clearFillDetail() {
+  orderStore.showDialog = false;
   customerStore.clearUser();
   orderStore.clearOrderDetail();
+  router.push("/BuyTicket");
 }
 
 
@@ -157,9 +159,7 @@ function clearFillDetail() {
 
           </v-col>
           <v-col cols="12" lg="6" class="text-left">
-            <RouterLink to="/BuyTicket">
             <v-btn color="#FF835A" class="large-button" @click="clearFillDetail">ยกเลิกการซื้อ</v-btn>
-            </RouterLink>
           </v-col>
           <v-col></v-col>
         </v-row>
