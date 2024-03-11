@@ -45,7 +45,6 @@ function clearFillDetail() {
 
 
 
-
 // let lastuserId = 1
 // interface InfoDetail {
 //   userId: number
@@ -131,7 +130,7 @@ function clearFillDetail() {
                   
                 /> -->
                 <div type="text" placeholder="ราคา" class="placeholder-color forumSize0" style="text-align: left; margin-left: 5%;">
-                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                  {{ (orderStore.currentOrder.totalPrice).toLocaleString() }}
                 </div>
               </v-flex>
             </v-col>
