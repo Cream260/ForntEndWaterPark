@@ -11,6 +11,7 @@ function saveOrder(order: Order){
 }
 
 function updateOrder(id: number, order: Order) {
+  console.log(JSON.stringify(order));
   return http.patch(`/orders/${id}`, order);
 }
 

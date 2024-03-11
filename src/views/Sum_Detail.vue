@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -17,7 +16,7 @@ import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
 import router from "@/router";
 const route = useRoute();
-const routurname = route.params.is;
+const routurname = route.params.id;
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
@@ -54,8 +53,6 @@ const formatDate = (dateStr: string | number | Date) => {
 onMounted(async () => {
   // 🥲
   authStore.getUserFromLocalStorage();
-  orderStore.currentOrder.expDate = new Date();
-  orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
   await orderStore.getOrder;
   await customerStore.getCustomer;
@@ -67,6 +64,9 @@ onMounted(async () => {
   orderStore.findPromotionById((await promoId).data);
   console.log((await promoId).data);
   }
+  //get order by id
+  await orderStore.getOrderById(parseInt(paramValue.toString()));
+
   // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
   // await eventStore.getEventById(res?.data.event!.id);
@@ -83,7 +83,6 @@ function updatePayment(payment: string,routurname:string) {
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
   router.push('/'+ routurname +'/'+orderId)
 }
-
 
 
 </script>
@@ -232,7 +231,7 @@ function updatePayment(payment: string,routurname:string) {
 ======= -->
         <v-row>
           <v-col>
-
+<!-- {{ orderStore.currentOrder }} -->
 
             <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
@@ -251,7 +250,7 @@ function updatePayment(payment: string,routurname:string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
-                    <button class="payment-btn ma-2" id="credit-card"
+                      <button class="payment-btn ma-2" id="credit-card"
                         @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
                       <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
                         Wallet</button>
@@ -266,23 +265,19 @@ function updatePayment(payment: string,routurname:string) {
           </v-col>
           <v-col>
             <!-- <v-card> -->
-              <div class="card-container2 scroll-container" v-if="orderStore.currentOrder.orderItems!.length > 0">
+              <div class="card-container2 scroll-container">
                 <div class="customer-details" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
                   <div class="detail"><span class="label">ชื่อบัตร</span>{{ item.name }}</div>
                   <div class="detail"><span class="label">ประเภทบัตร</span>{{ item.type }}</div>
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
-                <div v-if="orderStore.currentOrder.orderItems!.length > 0">
-                <div class="detail" v-if="orderStore.promo_" ><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
-                  <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
-              </div>
-            </div>
 
-              <div class="card-container2 scroll-container" v-if="orderStore.currentOrder.package?.id">
-                <div class="detail"><span class="label">ชื่อบัตร</span>{{
+                <div class="detail" v-if="orderStore.promo_"><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
+                <div class="detail"><span class="label" v-if="orderStore.currentOrder.packageId">Package</span>{{
                   orderStore.currentOrder.package?.name }}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
+                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
               </div>
               <div class="detail" style="font-size: 45px;"><span class="label ml-2">ราคาสุทธิ</span>{{
                   orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
