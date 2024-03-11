@@ -43,7 +43,7 @@ onMounted(async () => {
     <v-row>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">ชื่อผู้ชำระเงิน</label>
-        <input type="text" placeholder="ชื่อ - นามสกุล" />
+        <input type="text" placeholder="ชื่อ - นามสกุล" v-model="userStore.currentUser.name" disabled/>
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
       </v-col>

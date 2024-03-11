@@ -13,6 +13,7 @@ import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
 import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
+import router from "@/router";
 const route = useRoute();
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
@@ -64,12 +65,13 @@ console.log(paramValue);
  await eventStore.getEventById(res?.data.event!.id);
 })
 
-function updatePayment(payment: string) {
+function updatePayment(payment: string,routurname:string) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
-  orderStore.updatePayment(parseInt(orderId.toString()),payment);
+  orderStore.updatePayment(parseInt(orderId.toString()), payment);
+  router.push('/'+ routurname +'/'+orderId)
 }
 
 
@@ -90,11 +92,11 @@ function updatePayment(payment: string) {
             
             <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
-                <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
-                <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
+                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
+                <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
                 <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
-                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate}}</div>
+                <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate ? formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</div>
               </div>
               <hr class="divider"/>
               <div class="payment-options">
@@ -102,15 +104,12 @@ function updatePayment(payment: string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
-                    <RouterLink to="/CreditCard">
-                      <button class="payment-btn ma-2" id="credit-card" @click="updatePayment('Credit Card')">Credit/Debit Card</button>
-                    </RouterLink>
-                    <RouterLink to="/TrueWallet">
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True Wallet</button>
-                    </RouterLink>
-                    <RouterLink to="/PromptPay">
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt Pay</button>
-                    </RouterLink>
+                    <button class="payment-btn ma-2" id="credit-card"
+                        @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
+                        Wallet</button>
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay','PromptPay')">Prompt
+                        Pay</button>
                     
                   </div>
                 </div>
@@ -124,10 +123,8 @@ function updatePayment(payment: string) {
               <div class="customer-details" >
                 <div class="detail"><span class="label">ชื่อบัตร</span>{{ eventStore.currentEvent.name }}</div>
                 <div class="detail"><span class="label">ประเภทบัตร</span>{{ eventStore.currentEvent.type }}</div>
-                <div class="detail"><span class="label">โปรโมชั่น</span>{{usePromotionStore.name}}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ eventStore.currentEvent.price.toLocaleString() }}</div>
                 <div class="detail"><span class="label">จำนวน</span>{{ orderStore.currentOrder.qty }} ใบ</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
               </div>
             </div>
             <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{

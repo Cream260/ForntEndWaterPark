@@ -60,6 +60,7 @@ onMounted(() => {
   orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
 });
+console.log(orderStore.event_);
 
 orderStore.findQrById(orderStore.currentOrder.id!);
 </script>
@@ -122,8 +123,8 @@ orderStore.findQrById(orderStore.currentOrder.id!);
             </v-row>
           </div>
           
-          <div class="pt-2" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
-            <v-row class="pl-2">
+          <div class="pt-2"  v-if="orderStore.currentOrder.orderItems!.length > 0">
+            <v-row class="pl-2" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
               <v-col cols="12" sm="5" >
                 <h5 class="normalFont">{{ item.name }} ({{ item.type }})</h5>
               </v-col>
@@ -138,6 +139,41 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               </v-col>
             </v-row>
           </div>
+
+          <div class="pt-2"  v-if="orderStore.event_">
+            <v-row class="pl-2" >
+              <v-col cols="12" sm="5" >
+                <h5 class="normalFont">{{ orderStore.event_.name }}</h5>
+              </v-col>
+              <v-col cols="12" sm="2" class="pl-6">
+                <h5 class="normalFont">{{ orderStore.currentOrder.qty }}</h5>
+              </v-col>
+              <v-col cols="12" sm="3" class="pl-12 text-right">
+                <h5 class="normalFont">{{ orderStore.event_.price }}</h5>
+              </v-col>
+              <v-col cols="12" sm="2">
+                <h5 class="normalFont">THB</h5>
+              </v-col>
+            </v-row>
+          </div>
+
+          <div class="pt-2"  v-if="orderStore.currentOrder.package?.id">
+            <v-row class="pl-2">
+              <v-col cols="12" sm="5" >
+                <h5 class="normalFont">{{ orderStore.currentOrder.package.name }}</h5>
+              </v-col>
+              <v-col cols="12" sm="2" class="pl-6">
+                <h5 class="normalFont">{{ orderStore.currentOrder.package.qty }}</h5>
+              </v-col>
+              <v-col cols="12" sm="3" class="pl-12 text-right">
+                <h5 class="normalFont">{{ orderStore.currentOrder.package.price}}</h5>
+              </v-col>
+              <v-col cols="12" sm="2">
+                <h5 class="normalFont">THB</h5>
+              </v-col>
+            </v-row>
+          </div>
+          
           <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
           <div>
             <v-row class="pl-2 mt-2">
