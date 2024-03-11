@@ -154,10 +154,11 @@ body {
 }
 
 .smallBoldfont {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   color: #0b2c44;
   margin: 10px 10px 10px 10px;
+  
 }
 
 .smallBoldfont2 {
