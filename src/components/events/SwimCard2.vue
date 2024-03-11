@@ -2,15 +2,15 @@
   <div class="offer-card">
     <h1 class="title">หลักสูตร การว่ายน้ำ ขั้นสูง</h1>
     <div class="details">
-      <div class="detail" style="margin-right: 4%; font-size: 18px;">อายุ 6-13 ปี</div>
-      <div class="detail" style=" font-size: 18px; font-size: 18px;">ใบรับรองการฝึก</div>
+      <div class="detail" style="font-size: 10px;">อายุ 6-13 ปี</div>
+      <div class="detail" style="margin-right: 3%; font-size: 10px;">ใบรับรองการฝึก</div>
     </div>
     <div class="price">ราคาต่อคน 1,799 บาท</div>
-    <div style="margin-top: 20%;">
+    <!-- <div style="margin-top: 20%;"> -->
       <div class="image-container">
         <img class="corner-image" src="../../images/Event/swimming.png">
       </div>
-    </div>
+    <!-- </div> -->
     
   </div>
 </template>
@@ -27,45 +27,45 @@ export default {
   position: relative;
   border-radius: 20px;
   margin-left: 20px;
-  margin-top: 20px;
-  width: 300px; /* Adjust as necessary */
+  margin-top: 10px;
+  height: 100px;
+  width: 100px; /* Adjust as necessary */
   color: white; /* Adjust as necessary */
   font-family: 'Kanit', sans-serif;
+  width: fit-content;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .details {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  
+  margin-bottom: 10px;
 }
 
 .detail {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 15px 13px;
+  padding: 10px 18px;
   border-radius: 35px;
-  margin-right: 18px ;
+  margin-right: 10px ;
 }
 
 
 .price {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
 .image-container {
   position: absolute;
-  top: 210px;
-  right: 10px;
+  top: 172px;
+  right: 12px;
 }
 
 .corner-image {
-  width: 65px; /* Adjust as necessary */
+  width: 50px; /* Adjust as necessary */
   height: auto;
 }
 </style>
