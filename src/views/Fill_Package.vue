@@ -104,21 +104,21 @@ const saveOrder = async () => {
           รายละเอียดของคุณ
         </div>
 
-        <v-row class="ml-8">
+        <v-row class="ml-1">
           <v-col cols="12" lg="6">
-            <v-flex>
-              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+            <v-flex >
+              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" 
                 v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
+            <v-flex >
+              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" 
                 v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
-        <v-row class="ml-8">
+        <v-row class="ml-1">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" disabled placeholder="อีเมลล์" class="placeholder-color forumSize0"
@@ -137,7 +137,7 @@ const saveOrder = async () => {
             </form>
           </v-col>
         </v-row>
-        <v-row class="ml-8">
+        <v-row class="ml-1">
 
           <!-- <v-col cols="12" lg="6">
             <v-flex>
