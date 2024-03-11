@@ -2,9 +2,10 @@ import orderService from "@/components/services/order";
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import type Ticket from "@/type/ticket";
+//inport promotionService
+import promotionService from "@/components/services/promotion";
 import type Order from "@/type/order";
 import type OrderItem from "@/type/OrderItem";
-import promotionService from "@/components/services/promotion";
 import packageService from "@/components/services/package";
 import eventService from "../components/services/event";
 import type Package from "@/type/package";
@@ -99,8 +100,8 @@ export const useOrderStore = defineStore("order", () => {
       payments: "",
       startDate: new Date(),
       expDate: new Date(),
-      orderItems: []
-    }
+      orderItems: [],
+    };
     console.log(order);
     try {
       const res = await orderService.saveOrder(order);
@@ -134,7 +135,7 @@ export const useOrderStore = defineStore("order", () => {
   //     currentOrder.value = res.data;
   //     console.log("currentOrder", currentOrder.value);
   //     clearOrder();
-  //     router.push("/filldetail"); 
+  //     router.push("/filldetail");
   //   } catch (e) {
   //     console.log("e");
   //   }
@@ -160,38 +161,44 @@ export const useOrderStore = defineStore("order", () => {
     console.log(order);
 
     try {
-
-      if (ThChildqty.value <= 0 && ThAdultqty.value <= 0 && EnChildqty.value <= 0 && EnAdultqty.value <= 0) {
-
+      if (
+        ThChildqty.value <= 0 &&
+        ThAdultqty.value <= 0 &&
+        EnChildqty.value <= 0 &&
+        EnAdultqty.value <= 0
+      ) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตร" `,
           icon: "warning",
           showCloseButton: true,
-        })
+        });
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
 
-      if (ThChildqty.value > 0 && ThAdultqty.value === 0 && EnChildqty.value > 0 && EnAdultqty.value === 0) {
-
+      if (
+        ThChildqty.value > 0 &&
+        ThAdultqty.value === 0 &&
+        EnChildqty.value > 0 &&
+        EnAdultqty.value === 0
+      ) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
           icon: "warning",
           showCloseButton: true,
-        })
+        });
         console.log("เลือกตั๋ว");
-        return; // Exit function early if qty is 0    
+        return; // Exit function early if qty is 0
       }
-      
 
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
       clearOrder();
       ThChildqty.value = 0;
-      ThAdultqty.value = 0
+      ThAdultqty.value = 0;
       EnChildqty.value = 0;
       EnAdultqty.value = 0;
       router.push("/filldetail");
@@ -201,14 +208,31 @@ export const useOrderStore = defineStore("order", () => {
     }
   }
 
-
-  async function ticketOrder(startDate_: Date, endDate_: Date) {
+  async function ticketOrder(startDate_: Date) {
     try {
-      currentOrder.value.startDate = startDate_;
-      currentOrder.value.expDate = endDate_;
-      await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
-      console.log("Order ticket", currentOrder.value)
-      router.push("/sumdetail/" + currentOrder.value.id);
+      //set time to next day
+      console.log("startDate", currentOrder.value.startDate);
+
+      // Set the expiration date to the next day at midnight
+      const expDate = new Date(startDate_);
+      expDate.setDate(expDate.getDate() + 1);
+      console.log("expDate", expDate);
+      currentOrder.value.expDate = expDate;
+      currentOrder.value.startDate = new Date(startDate_);
+      console.log("currentOrder", JSON.stringify(currentOrder.value));
+currentOrder.value.cusID = 1;
+      const res = await orderService.updateOrder(
+        currentOrder.value.id!,
+        currentOrder.value
+      );
+      if (res.status === 200) {
+        console.log("Order**********", res.data.expDate);
+        //set the current order to the updated order
+        currentOrder.value = res.data;
+        console.log("Order", currentOrder.value);
+
+        router.push("/sumdetail/" + currentOrder.value.id);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -482,8 +506,7 @@ export const useOrderStore = defineStore("order", () => {
     };
     try {
       const orderQty = orderItems.reduce((total, item) => total + item.qty, 0);
-      console.log(orderQty)
-
+      console.log(orderQty);
 
       if (EnChildqty.value > 0 && EnAdultqty.value === 0) {
         showDialog.value = false;
@@ -492,20 +515,17 @@ export const useOrderStore = defineStore("order", () => {
           text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
           icon: "warning",
           showCloseButton: true,
-        })
-      } 
-
-      else if (ThChildqty.value > 0 && ThAdultqty.value === 0) {
+        });
+      } else if (ThChildqty.value > 0 && ThAdultqty.value === 0) {
         showDialog.value = false;
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
           icon: "warning",
           showCloseButton: true,
-        })
-      } 
-      else{
-        if (promo.value?.code === 'Happy2024') {
+        });
+      } else {
+        if (promo.value?.code === "Happy2024") {
           if (orderQty <= 0) {
             showDialog.value = false;
             await Swal.fire({
@@ -513,13 +533,13 @@ export const useOrderStore = defineStore("order", () => {
               text: "โปรโมชั่น หรรษาคลายร้อน จำเป็นต้องใช้สำหรับการซื้อบัตรตั้งแต่ 1 ใบขึ้นไป",
               icon: "warning",
               showCloseButton: true,
-            })
+            });
           } else {
             const res = await orderService.saveOrder(order);
             currentOrder.value = res.data;
             console.log(res.data);
             ThChildqty.value = 0;
-            ThAdultqty.value = 0
+            ThAdultqty.value = 0;
             EnChildqty.value = 0;
             EnAdultqty.value = 0;
             router.push("/filldetail");
@@ -527,7 +547,7 @@ export const useOrderStore = defineStore("order", () => {
           console.log("เลือกตั๋ว");
           return; // Exit function early if qty is 0
         }
-        if (promo.value?.code === 'Promo123') {
+        if (promo.value?.code === "Promo123") {
           if (orderQty !== 2) {
             showDialog.value = false;
             await Swal.fire({
@@ -535,9 +555,9 @@ export const useOrderStore = defineStore("order", () => {
               text: "โปรโมชั่น มา 2 จ่าย 1 จำเป็นต้องใช้สำหรับการซื้อบัตร 2 ใบ",
               icon: "warning",
               showCloseButton: true,
-            })
+            });
             ThChildqty.value = 0;
-            ThAdultqty.value = 0
+            ThAdultqty.value = 0;
             EnChildqty.value = 0;
             EnAdultqty.value = 0;
           } else {
@@ -545,7 +565,7 @@ export const useOrderStore = defineStore("order", () => {
             currentOrder.value = res.data;
             console.log(res.data);
             ThChildqty.value = 0;
-            ThAdultqty.value = 0
+            ThAdultqty.value = 0;
             EnChildqty.value = 0;
             EnAdultqty.value = 0;
             router.push("/filldetail");
@@ -553,7 +573,7 @@ export const useOrderStore = defineStore("order", () => {
           console.log("เลือกตั๋ว");
           return; // Exit function early if qty is 0
         }
-        if (promo.value?.code === 'Friend06') {
+        if (promo.value?.code === "Friend06") {
           if (orderQty % 5 !== 0 || orderQty < 5) {
             showDialog.value = false;
             await Swal.fire({
@@ -561,9 +581,9 @@ export const useOrderStore = defineStore("order", () => {
               text: "โปรโมชั่น มันส์ยกแก๊งค์ จำเป็นต้องใช้สำหรับการซื้อบัตร 5 ใบ",
               icon: "warning",
               showCloseButton: true,
-            })
+            });
             ThChildqty.value = 0;
-            ThAdultqty.value = 0
+            ThAdultqty.value = 0;
             EnChildqty.value = 0;
             EnAdultqty.value = 0;
           } else {
@@ -571,7 +591,7 @@ export const useOrderStore = defineStore("order", () => {
             currentOrder.value = res.data;
             console.log(res.data);
             ThChildqty.value = 0;
-            ThAdultqty.value = 0
+            ThAdultqty.value = 0;
             EnChildqty.value = 0;
             EnAdultqty.value = 0;
             router.push("/filldetail");
