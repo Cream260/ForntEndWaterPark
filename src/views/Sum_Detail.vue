@@ -54,8 +54,6 @@ const formatDate = (dateStr: string | number | Date) => {
 onMounted(async () => {
   // 🥲
   authStore.getUserFromLocalStorage();
-  orderStore.currentOrder.expDate = new Date();
-  orderStore.currentOrder.startDate = new Date();
   orderStore.getOrder();
   await orderStore.getOrder;
   await customerStore.getCustomer;
@@ -67,6 +65,8 @@ onMounted(async () => {
   orderStore.findPromotionById((await promoId).data);
   console.log((await promoId).data);
   }
+  //get order by id
+  await orderStore.getOrderById(parseInt(paramValue.toString()));
 
   // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
