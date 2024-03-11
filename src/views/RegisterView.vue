@@ -129,26 +129,26 @@ const register = async (event: Event) => {
     </div>
 
     <div class="form-container">
-      <img src="../images/logo.png" style="height: 10vw;width: 23vh; margin-left: 37%;" />
-      <h2 style="text-align: center; font-size: 500%;">Register</h2>
+      <img src="../images/logo.png" style="height: 8vw;width: 9vw; margin-left: 40%;" />
+      <h2 style="text-align: center; font-size: 300%;">Register</h2>
       <form>
-        <v-card>
+        <!-- <v-card> -->
           <v-row style="margin: 0px 40px 0px 40px;">
             <v-col>
-              <div class="">
+              <!-- <div class=""> -->
                 <label style="font-size: 150%;">Email:</label>
                 <v-text-field v-model="email" type="email" placeholder="email"
                   class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full"></v-text-field>
-              </div>
+              <!-- </div> -->
             </v-col>
           </v-row>
           <v-row style="margin: 0px 40px 0px 40px;">
             <v-col>
-              <div class="">
+              <!-- <div class=""> -->
                 <label style="font-size: 150%;">Username:</label>
                 <v-text-field v-model="username" type="text" placeholder="username"
                   class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full"></v-text-field>
-              </div>
+              <!-- </div> -->
             </v-col>
             <!-- <v-col>
                         <div class="">
@@ -167,7 +167,7 @@ const register = async (event: Event) => {
             <!-- </div>
                     </v-col> -->
             <v-col>
-              <div>
+              <!-- <div> -->
                 <label style="font-size: 150%;">Password:</label>
                 <v-text-field v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="password"
                   class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full">
@@ -175,31 +175,31 @@ const register = async (event: Event) => {
                     <v-btn :icon="mdiEyeOffOutline" @click.prevent="showPassword = !showPassword"></v-btn>
                   </template>
                 </v-text-field>
-              </div>
+              <!-- </div> -->
             </v-col>
           </v-row>
           <v-row style="margin: 0px 40px 0px 40px;">
             <v-col>
-              <div class="">
+              <!-- <div class=""> -->
                 <label style="font-size: 150%;">Name-Surname:</label>
                 <v-text-field v-model="name" type="text" placeholder="name-surname"
                   class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full">
                   <i class="fi fi-rr-eye-crossed"></i> </v-text-field>
-              </div>
+              <!-- </div> -->
             </v-col>
             <v-col>
-              <div class="">
+              <!-- <div class=""> -->
                 <label style="font-size: 150%;">Tel:</label>
                 <v-text-field v-model="tel" type="text" placeholder="tel"
                   class="bg-gray-200 outline-none border-gray-200 focus:ring-gray-200 focus:border-gray-200 text-gray-700 w-full"></v-text-field>
-              </div>
+              <!-- </div> -->
 
             </v-col>
 
           </v-row>
           <div v-if="usernameError || emailError || passwordError || errorMessage || phoneError"
-            class="border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 text-center">
-            <ul class="mt-1 list-disc list-inside" style="color: #FF0000;">
+            class="border border-red-400 text-red-700 px-4  rounded relative text-center">
+            <ul class="list-disc list-inside" style="color: #FF0000;">
               <p v-if="errorMessage">{{ errorMessage }}</p>
               <p v-if="usernameError">{{ usernameError }}</p>
               <p v-if="emailError">{{ emailError }}</p>
@@ -208,15 +208,15 @@ const register = async (event: Event) => {
             </ul>
           </div>
           <div>
-            <button style="margin-bottom:40px ; border-color: #22668D; background-color: #427D9D;"
+            <button style=" border-color: #22668D; background-color: #427D9D;"
               @click="register">Submit
             </button>
             <router-link to="/">
-              <button style="margin-bottom: 40px; border-color: #22668D; background-color: #FF0000; float: left;"
+              <button style="margin-bottom: 1px; border-color: #22668D; background-color: #FF0000; float: left;"
                 @click="redirectToHome">Cancel</button>
             </router-link>
           </div>
-        </v-card>
+        <!-- </v-card> -->
       </form>
     </div>
   </div>
@@ -241,19 +241,13 @@ const register = async (event: Event) => {
 
 .form-container {
   width: 50%;
-  padding: 2em;
+  
   box-sizing: border-box;
 }
 
-.input-container {
-  margin-bottom: 1em;
-}
 
-input {
-  width: 100%;
-  padding: 0.5em;
-  margin-top: 0.5em;
-}
+
+
 
 button {
   width: 50%;
