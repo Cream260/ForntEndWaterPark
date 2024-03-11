@@ -303,7 +303,7 @@ function minus() {
             </v-col>
           </v-row>
           <v-row>
-           npm <v-col cols="12" lg="12">
+            <v-col cols="12" lg="12">
               <div class="d-flex align-center forumSize">
                 <input type="text" placeholder="จำนวนผู้เข้าอบรม" class="placeholder-color mr-2" readonly />
                 <button @click="add()" class="mr-4" style="margin-left: 350px; font-size: 30px">
@@ -402,7 +402,8 @@ input[type="text"]:focus {
 }
 
 .small-text {
-  font-size: 18px;
+  font-size: 14px;
+  padding: 1%;
   /* Adjust the font size as needed */
 }
 </style>
