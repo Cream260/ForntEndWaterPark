@@ -338,9 +338,11 @@ body {
   background-image: url("../images/Event/WallPaper.jpg");
   background-size: cover;
   width: 100vw;
-  height: 89vh;
+  height: 91.3vh;
+  width: 100vw;
+  height: 91.2vh;
   margin-top: 80px;
-  padding: 25px;
+  padding: 15px;
 }
 
 .activeTabs {

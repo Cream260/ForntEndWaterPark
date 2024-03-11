@@ -67,7 +67,6 @@ onMounted(async () => {
   orderStore.findPromotionById((await promoId).data);
   console.log((await promoId).data);
   }
-
   // const res = await orderStore.getOrderById_(parseInt(paramValue.toString()));
 
   // await eventStore.getEventById(res?.data.event!.id);
@@ -76,7 +75,7 @@ onMounted(async () => {
 
 
 
-function updatePayment(payment: string) {
+function updatePayment(payment: string,routurname:string) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
@@ -84,6 +83,7 @@ function updatePayment(payment: string) {
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
   router.push('/'+ routurname +'/'+orderId)
 }
+
 
 
 </script>
@@ -251,11 +251,11 @@ function updatePayment(payment: string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
-                      <button class="payment-btn ma-2" id="credit-card"
-                        @click="updatePayment('Credit Card')">Credit/Debit Card</button>
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
+                    <button class="payment-btn ma-2" id="credit-card"
+                        @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
                         Wallet</button>
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay','PromptPay')">Prompt
                         Pay</button>
 
                   </div>
@@ -266,19 +266,23 @@ function updatePayment(payment: string) {
           </v-col>
           <v-col>
             <!-- <v-card> -->
-              <div class="card-container2 scroll-container">
+              <div class="card-container2 scroll-container" v-if="orderStore.currentOrder.orderItems!.length > 0">
                 <div class="customer-details" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
                   <div class="detail"><span class="label">ชื่อบัตร</span>{{ item.name }}</div>
                   <div class="detail"><span class="label">ประเภทบัตร</span>{{ item.type }}</div>
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
+                <div v-if="orderStore.currentOrder.orderItems!.length > 0">
+                <div class="detail" v-if="orderStore.promo_" ><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
+                  <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
+              </div>
+            </div>
 
-                <div class="detail" v-if="orderStore.promo_"><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
-                <div class="detail"><span class="label" v-if="orderStore.currentOrder.packageId">Package</span>{{
+              <div class="card-container2 scroll-container" v-if="orderStore.currentOrder.package?.id">
+                <div class="detail"><span class="label">ชื่อบัตร</span>{{
                   orderStore.currentOrder.package?.name }}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
               </div>
               <div class="detail" style="font-size: 45px;"><span class="label ml-2">ราคาสุทธิ</span>{{
                   orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
