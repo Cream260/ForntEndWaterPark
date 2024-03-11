@@ -31,7 +31,7 @@ console.log(expDate.value);
 
 
 function updateOrderDates() {
-  orderStore.ticketOrder(new Date(selectedDate.value), expDate.value);
+  orderStore.ticketOrder(new Date(selectedDate.value));
 }
 
 onMounted(async () => {
@@ -124,8 +124,8 @@ function clearFillDetail() {
               </v-flex> -->
               <form action="/action_page.php">
                 <label for="dateday"></label>
-                <input class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday" v-model="selectedDate"
-                :min="minDate">
+                <input v-model="selectedDate"  :min="minDate" class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday">
+
               </form>
             </v-col>
           </v-row>
