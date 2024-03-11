@@ -214,7 +214,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
         <v-col cols="12" sm="5">
           <div class="btn-right">
             <RouterLink to="/BuyTicket">
-              <v-btn class="large-button1 btnnormalFont" style="margin-left: 23%;">ตกลง</v-btn>
+              <v-btn class="large-button1 btnnormalFont" style="margin-left: 23%;" @click="orderStore.showDialog = false">ตกลง</v-btn>
             </RouterLink>
           </div>
         </v-col>
