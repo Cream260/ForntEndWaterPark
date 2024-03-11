@@ -166,7 +166,7 @@ body {
 
 .full-card {
   width: 70%;
-  height: 80vh;
+  height: 76vh;
   align-items: center;
   border-radius: 20px;
   margin-left: 15%;
