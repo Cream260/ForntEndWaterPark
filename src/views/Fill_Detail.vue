@@ -114,8 +114,12 @@ function clearFillDetail() {
           <v-row class="ml-4">
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
-                  v-model="orderStore.currentOrder.totalPrice" />
+                <!-- <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                  
+                /> -->
+                <div type="text" placeholder="ราคา" class="placeholder-color forumSize0" style="text-align: left; margin-left: 5%;">
+                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                </div>
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
@@ -129,7 +133,7 @@ function clearFillDetail() {
             <v-col cols="12" lg="12">
               <v-flex>
                 <!-- <h2 type="text" class="forumSize0">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2> -->
-                <div type="text" class="forumSize0" style="text-align: left;">
+                <div type="text" class="forumSize0" style="text-align: left; width: 850px;">
                   {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
                 </div>
               </v-flex>

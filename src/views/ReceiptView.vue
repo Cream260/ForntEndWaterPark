@@ -69,13 +69,13 @@ orderStore.findQrById(orderStore.currentOrder.id!);
     <v-card class="borderradius" width="620" height="700">
       <h1 class="text-center bignormalFont ">ชำระเสร็จสิ้น</h1>
       <div class="d-flex align-center flex-column">
-        <v-card class="mt-1 invcard" width="500" height="540">
+        <v-card class=" invcard" width="500" height="600">
           <div class="d-flex align-center justify-space-around">
-            <v-avatar color="grey" size="70" rounded="10" class="mt-3">
+            <v-avatar color="grey" size="70" rounded="10" class="mt-2">
               <v-img cover src="../src/images/Ticket/Icon.png"></v-img>
             </v-avatar>
           </div>
-          <v-divider :thickness="2" class="border-opacity-50 mt-2"></v-divider>
+          <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
           <div class="pt-2">
             <v-row class="pl-2">
               <v-col cols="12" sm="2">
@@ -111,7 +111,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               <v-col>
                 <h5 class="text-center headnormalFont">Queue # {{ orderStore.currentOrder.id }}</h5>
               </v-col>
-              <v-divider :thickness="2" class="border-opacity-50 mt-2"></v-divider>
+              <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
             </v-row>
           </div>
           
@@ -131,7 +131,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               </v-col>
             </v-row>
           </div>
-          <v-divider :thickness="2" class="border-opacity-50 mt-2"></v-divider>
+          <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
           <div>
             <v-row class="pl-2 mt-2">
               <v-col cols="12" sm="2">
@@ -163,8 +163,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
               </v-col>
-            </v-row>
-            <v-row class="pl-2 mt-2">
+
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">รวมสุทธิ : </h5>
               </v-col>
@@ -174,8 +173,19 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>
               </v-col>
-              <v-divider :thickness="2" class="border-opacity-50 mt-2"></v-divider>
             </v-row>
+            <!-- <v-row class="pl-2 mt-2">
+              <v-col cols="12" sm="2">
+                <h5 class="normalFont">รวมสุทธิ : </h5>
+              </v-col>
+              <v-col cols="12" sm="2">
+                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h5>
+              </v-col>
+              <v-col cols="12" sm="2">
+                <h5 class="normalFont">THB</h5>
+              </v-col>
+              <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
+            </v-row> -->
           </div>
           <div class="pt-5">
             <v-row>
@@ -191,13 +201,13 @@ orderStore.findQrById(orderStore.currentOrder.id!);
             </v-row>
         </v-card>
       </div>
-      <v-row class="pt-4">
+      <v-row class="pt-2">
         <v-col cols="12" sm="7">
         </v-col>
         <v-col cols="12" sm="5">
           <div class="btn-right">
             <RouterLink to="/BuyTicket">
-              <v-btn class="large-button1 btnnormalFont ml-7">ตกลง</v-btn>
+              <v-btn class="large-button1 btnnormalFont" style="margin-left: 23%;">ตกลง</v-btn>
             </RouterLink>
           </div>
         </v-col>
@@ -228,22 +238,22 @@ body {
 }
 
 .large-button1 {
-  width: 150px;
-  height: 45px;
+  width: 120px;
+  height: 35px;
   border-radius: 20px;
   background-color: #A3D0A2;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btnnormalFont {
-  font-size: 30px;
+  font-size: 23px;
   font-weight: bold;
   color: #000000;
 }
 
 
 .bignormalFont {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: normal;
   color: #000000;
 }
@@ -261,7 +271,7 @@ body {
 }
 
 .btmnormalFont {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: normal;
   color: #000000;
 }
