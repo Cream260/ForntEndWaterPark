@@ -165,9 +165,9 @@ onMounted(async () => {
           </v-flex> -->
           <v-btn color="#8eadcdeb" class="promo-button whitefont" text="โปรโมโค้ด" style="margin-right: 30%;" @click="orderStore.showDialog = true"></v-btn>
           <v-dialog v-model="orderStore.showDialog">
-              <v-card>
+              <v-card style="width: 80%; margin-left: 10%;">
                 <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="orderStore.showDialog = false"></v-btn></v-toolbar>           
-                <PromotionBuy></PromotionBuy>
+                <PromotionBuy ></PromotionBuy>
               </v-card>  
           </v-dialog>
         </v-col>

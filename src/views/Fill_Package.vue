@@ -100,7 +100,6 @@ const saveOrder = async () => {
     <container class="fluid">
       <v-card class="activeTabs lgallfont" style="width: 63%; height: 75vh; margin-left: 18%;margin-top: 1.5%">
         <div style="font-size: 50px; margin-top: 3%; margin-bottom: 3%">
-
           รายละเอียดของคุณ
         </div>
 
