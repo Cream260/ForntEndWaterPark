@@ -41,7 +41,7 @@ onMounted(async () => {
                     ของขวัญเล็กๆน้อยๆสำหรับผู้ฉลอง
                     </h2>
                 </div>
-                  <p3 class="smallBoldfont d-flex justify-start" style="text-align: left;">ราคา {{ item.price }} บาท</p3>
+                  <p3 class="smallBoldfont d-flex justify-start" style="text-align: left;">ราคา {{ item.price.toLocaleString() }} บาท</p3>
                   <RouterLink to="/fillpackage" style="margin-left: 80%; ">
                     <v-btn class="large-button " style="align-self: flex-end;" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
                   </RouterLink>
@@ -67,7 +67,7 @@ onMounted(async () => {
                   <p3 class="smallBoldfont d-flex justify-start line-clamp">แพ็คเกจพิเศษสำหรับครอบครัวซึ่งในเเพ็คเกจนี้จะประกอบไปด้วย ตั๋วเข้าสวนน้ำสำหรับ
                     ผู้ใหญ่สองคนและเด็กสองคน พร้อมที่จอดรถฟรีและส่วนลดสำหรับอาหารภายในสวนน้ำ</p3>
                 </div>
-                  <h2 class="smallBoldfont d-flex justify-start" style="text-align: left;">ราคา {{ item.price }} บาท</h2>
+                  <h2 class="smallBoldfont d-flex justify-start" style="text-align: left;">ราคา {{ item.price.toLocaleString() }} บาท</h2>
                   <RouterLink to="/fillpackage" style="margin-left: 80%;">
                     <v-btn class="large-button" style="align-self: flex-end; margin-bottom: 15px;" @click="addPackage(item)">ซื้อเลยตอนนี้</v-btn>
                   </RouterLink>
