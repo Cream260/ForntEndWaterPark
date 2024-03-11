@@ -40,7 +40,7 @@ const formatDate = (dateStr: string | number | Date) => {
             <p3 class="smallBoldfont">{{ item.detail }}</p3>
           </div>
           <v-flex>
-            <RouterLink to="/filldetail"><v-btn class="large-button" @click="updatePromotion(item.id!,item.discount)">{{ item.code }}</v-btn></RouterLink>
+            <v-btn class="large-button" @click="updatePromotion(item.id!,item.discount)">{{ item.code }}</v-btn>
           </v-flex>
           <div>
             <p10 class="smallBoldfont2">เริ่มตั้งแต่วันที่ {{ item.startDate ? formatDate(item.startDate) : 'N/A' }}ถึงวันที่ {{ item.endDate ? formatDate(item.endDate) : 'N/A'}}</p10>

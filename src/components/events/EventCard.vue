@@ -61,8 +61,8 @@ onMounted(() => {
 
   <style scoped>
   .card {
-    max-width: 300px;
-    height: 90%;
+    max-width: 200px;
+    height: 100%;
     border-radius: 10% 10% 10% 10%;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);

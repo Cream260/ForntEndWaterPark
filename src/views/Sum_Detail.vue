@@ -17,6 +17,7 @@ import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
 import router from "@/router";
 const route = useRoute();
+const routurname = route.params.is;
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
@@ -81,7 +82,7 @@ function updatePayment(payment: string) {
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
-  router.push('/'+ routuename +'/'+orderId)
+  router.push('/'+ routurname +'/'+orderId)
 }
 
 
@@ -273,14 +274,13 @@ function updatePayment(payment: string) {
                   <hr class="divider" />
                 </div>
 
-                <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
-
+                <div class="detail" v-if="orderStore.promo_"><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
+                <div class="detail"><span class="label" v-if="orderStore.currentOrder.packageId">Package</span>{{
+                  orderStore.currentOrder.package?.name }}</div>
                 <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
                 <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
-
-
               </div>
-              <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{
+              <div class="detail" style="font-size: 45px;"><span class="label ml-2">ราคาสุทธิ</span>{{
                   orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
             <!-- </v-card> -->
           </v-col>

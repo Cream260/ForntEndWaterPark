@@ -163,10 +163,10 @@ onMounted(async () => {
           <!-- <v-flex>
             <input type="text" id="fname" name="fname" placeholder="โปรโมโค้ด" class="placeholder-color" />
           </v-flex> -->
-          <v-btn color="#8eadcdeb" class="promo-button whitefont" text="โปรโมโค้ด" style="margin-right: 30%;"></v-btn>
-          <v-dialog >
+          <v-btn color="#8eadcdeb" class="promo-button whitefont" text="โปรโมโค้ด" style="margin-right: 30%;" @click="orderStore.showDialog = true"></v-btn>
+          <v-dialog v-model="orderStore.showDialog">
               <v-card>
-                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text"></v-btn></v-toolbar>           
+                <v-toolbar title="Promotion"><v-btn :icon="mdiClose" variant="text" @click="orderStore.showDialog = false"></v-btn></v-toolbar>           
                 <PromotionBuy></PromotionBuy>
               </v-card>  
           </v-dialog>

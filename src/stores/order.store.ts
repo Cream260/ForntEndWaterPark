@@ -25,7 +25,9 @@ export const useOrderStore = defineStore("order", () => {
   const payment = ref("");
   const nameComp = ref("");
   const received = ref(0);
+  const showDialog = ref(false);
   const event_ = ref<Event>();
+  const promo_ = ref<Promotion>();
   const package_ = ref<Package>();
   const orderItem_ = ref<OrderItem[]>([]);
   const promo = ref<Promotion>();
@@ -158,7 +160,9 @@ export const useOrderStore = defineStore("order", () => {
     console.log(order);
 
     try {
+
       if (ThChildqty.value <= 0 && ThAdultqty.value <= 0 && EnChildqty.value <= 0 && EnAdultqty.value <= 0) {
+
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตร" `,
@@ -168,7 +172,9 @@ export const useOrderStore = defineStore("order", () => {
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
+
       if (ThChildqty.value > 0 && ThAdultqty.value === 0 && EnChildqty.value > 0 && EnAdultqty.value === 0) {
+
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
@@ -184,6 +190,10 @@ export const useOrderStore = defineStore("order", () => {
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
       clearOrder();
+      ThChildqty.value = 0;
+      ThAdultqty.value = 0
+      EnChildqty.value = 0;
+      EnAdultqty.value = 0;
       router.push("/filldetail");
     } catch (e) {
       console.log("Error:", e);
@@ -197,7 +207,7 @@ export const useOrderStore = defineStore("order", () => {
       currentOrder.value.startDate = startDate_;
       currentOrder.value.expDate = endDate_;
       await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
-      console.log("Order", currentOrder.value)
+      console.log("Order ticket", currentOrder.value)
       router.push("/sumdetail/" + currentOrder.value.id);
     } catch (e) {
       console.log(e);
@@ -471,9 +481,105 @@ export const useOrderStore = defineStore("order", () => {
       orderItems: orderItems,
     };
     try {
-      const res = await orderService.saveOrder(order);
-      currentOrder.value = res.data;
-      console.log(res.data);
+      const orderQty = orderItems.reduce((total, item) => total + item.qty, 0);
+      console.log(orderQty)
+
+
+      if (EnChildqty.value > 0 && EnAdultqty.value === 0) {
+        showDialog.value = false;
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
+          icon: "warning",
+          showCloseButton: true,
+        })
+      } 
+
+      else if (ThChildqty.value > 0 && ThAdultqty.value === 0) {
+        showDialog.value = false;
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
+          icon: "warning",
+          showCloseButton: true,
+        })
+      } 
+      else{
+        if (promo.value?.code === 'Happy2024') {
+          if (orderQty <= 0) {
+            showDialog.value = false;
+            await Swal.fire({
+              title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+              text: "โปรโมชั่น หรรษาคลายร้อน จำเป็นต้องใช้สำหรับการซื้อบัตรตั้งแต่ 1 ใบขึ้นไป",
+              icon: "warning",
+              showCloseButton: true,
+            })
+          } else {
+            const res = await orderService.saveOrder(order);
+            currentOrder.value = res.data;
+            console.log(res.data);
+            ThChildqty.value = 0;
+            ThAdultqty.value = 0
+            EnChildqty.value = 0;
+            EnAdultqty.value = 0;
+            router.push("/filldetail");
+          }
+          console.log("เลือกตั๋ว");
+          return; // Exit function early if qty is 0
+        }
+        if (promo.value?.code === 'Promo123') {
+          if (orderQty !== 2) {
+            showDialog.value = false;
+            await Swal.fire({
+              title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+              text: "โปรโมชั่น มา 2 จ่าย 1 จำเป็นต้องใช้สำหรับการซื้อบัตร 2 ใบ",
+              icon: "warning",
+              showCloseButton: true,
+            })
+            ThChildqty.value = 0;
+            ThAdultqty.value = 0
+            EnChildqty.value = 0;
+            EnAdultqty.value = 0;
+          } else {
+            const res = await orderService.saveOrder(order);
+            currentOrder.value = res.data;
+            console.log(res.data);
+            ThChildqty.value = 0;
+            ThAdultqty.value = 0
+            EnChildqty.value = 0;
+            EnAdultqty.value = 0;
+            router.push("/filldetail");
+          }
+          console.log("เลือกตั๋ว");
+          return; // Exit function early if qty is 0
+        }
+        if (promo.value?.code === 'Friend06') {
+          if (orderQty % 5 !== 0 || orderQty < 5) {
+            showDialog.value = false;
+            await Swal.fire({
+              title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+              text: "โปรโมชั่น มันส์ยกแก๊งค์ จำเป็นต้องใช้สำหรับการซื้อบัตร 5 ใบ",
+              icon: "warning",
+              showCloseButton: true,
+            })
+            ThChildqty.value = 0;
+            ThAdultqty.value = 0
+            EnChildqty.value = 0;
+            EnAdultqty.value = 0;
+          } else {
+            const res = await orderService.saveOrder(order);
+            currentOrder.value = res.data;
+            console.log(res.data);
+            ThChildqty.value = 0;
+            ThAdultqty.value = 0
+            EnChildqty.value = 0;
+            EnAdultqty.value = 0;
+            router.push("/filldetail");
+          }
+          console.log("เลือกตั๋ว");
+          return; // Exit function early if qty is 0
+        }
+      }
       // const promo = await promotionService.getPromotionById(id);
       // currentOrder.value = res.data;
       // currentOrder.value.promoId = promo.data;
@@ -497,8 +603,17 @@ export const useOrderStore = defineStore("order", () => {
     console.log(res.data);
     return package_;
   }
+  async function findPromotionById(id: number) {
+    const res = await promotionService.getPromotionById(id);
+    promo_.value = res.data;
+    console.log(res.data);
+    return promo_;
+  }
 
   return {
+    showDialog,
+    promo_,
+    findPromotionById,
     ticketOrder,
     findPackageById,
     findEventById,

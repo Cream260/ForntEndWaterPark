@@ -81,14 +81,14 @@ function updatePayment(payment: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class ="fontheader" style="font-size: 40px;">
+        <div class ="fontheader mt-2" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
         <v-row>
           <v-col>
             
             
-            <div class="card-container">
+            <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
                 <div class="detail"><span class="label">ชื่อ</span>{{ eventStore.currentEvent.name }}</div>
                 <div class="detail"><span class="label">อีเมลล์</span>{{ eventStore.currentEvent.name }}</div>
@@ -121,15 +121,17 @@ function updatePayment(payment: string) {
           <v-col>
             
             <div class="card-container2">
-              <div class="customer-details">
+              <div class="customer-details" >
                 <div class="detail"><span class="label">ชื่อบัตร</span>{{ eventStore.currentEvent.name }}</div>
-                <div class="detail"><span class="label">ประเภทบัตร</span></div>
+                <div class="detail"><span class="label">ประเภทบัตร</span>{{ eventStore.currentEvent.type }}</div>
                 <div class="detail"><span class="label">โปรโมชั่น</span>{{usePromotionStore.name}}</div>
-                <div class="detail"><span class="label">ราคา</span>xx</div>
-                <div class="detail"><span class="label">ส่วนลด</span>xx</div>
+                <div class="detail"><span class="label">ราคา</span>{{ eventStore.currentEvent.price.toLocaleString() }}</div>
+                <div class="detail"><span class="label">จำนวน</span>{{ orderStore.currentOrder.qty }} ใบ</div>
+                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
               </div>
             </div>
-            <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>xx บาท</div>
+            <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{
+              orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
           </v-col>
           
         </v-row>
