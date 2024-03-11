@@ -230,8 +230,10 @@ function minus() {
             align-items: center;
             border-radius: 20px;
             background-color: #fffbf5;
-          " elevation="5">
-          <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
+          "
+          elevation="5"
+        >
+          <div style="font-size: 50px; margin-top: 1%; margin-bottom: 1%">
             รายละเอียดของคุณ
           </div>
 

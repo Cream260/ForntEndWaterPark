@@ -1,6 +1,6 @@
 <template>
     <div class="info-box">
-      <h2 style="font-size: 24px;">สิ่งที่คุณจะได้เรียนรู้</h2>
+      <h2 style="font-size: 20px;">สิ่งที่คุณจะได้เรียนรู้</h2>
       <ul class="info-list">
         <li v-for="(item, index) in infoItems" :key="index">
           <span class="bullet-point">•</span>{{ item }}
@@ -30,10 +30,10 @@
   <style scoped>
   .info-box {
     font-family: 'Kanit', sans-serif;
+    border-radius: 15px;
+    padding: 10px;
     
-    padding: 20px;
-    
-    
+    width: fit-content;
   }
   
   .info-list {
@@ -44,7 +44,7 @@
   .info-list li {
     margin-bottom: 10px;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 12px;
   }
   
   .bullet-point {
@@ -59,14 +59,12 @@
   }
 
   .image-container {
-    
     position: absolute;
-    bottom: 1px; /* Adjust as necessary */
+    bottom: 0.5px; /* Adjust as necessary */
     right: 10px; /* Adjust as necessary */
   }
   .corner-image {
-    
-    width: 65px; /* Adjust as necessary */
+    width: 50px; /* Adjust as necessary */
     height: auto;
     /* Add more styles if needed */
   }

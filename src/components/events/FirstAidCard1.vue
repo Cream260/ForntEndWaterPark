@@ -33,7 +33,7 @@
   .info-box {
     font-family: 'Kanit', sans-serif;
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px;
     
     width: fit-content;
   }
@@ -46,7 +46,7 @@
   .info-list li {
     margin-bottom: 10px;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 12px;
   }
   
   .bullet-point {
@@ -68,7 +68,7 @@
   }
   .corner-image {
     
-    width: 65px; /* Adjust as necessary */
+    width: 50px; /* Adjust as necessary */
     height: auto;
     /* Add more styles if needed */
   }

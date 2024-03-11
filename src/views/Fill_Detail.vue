@@ -87,71 +87,74 @@ function clearFillDetail() {
   <body>
     <container class="fluid">
       <v-card class="activeTabs lgallfont" style="width: 63%; height: 80vh; margin-left: 18%;margin-top: 0.7%">
-        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
+        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 1%">
 
           รายละเอียดของคุณ
         </div>
-
-        <v-row class="ml-8">
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
-              disabled
-                v-model="userStore.currentUser.name" />
-            </v-flex>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
-              disabled
-                v-model="userStore.currentUser.tel" />
-            </v-flex>
-          </v-col>
-        </v-row>
-        <v-row class="ml-8">
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
-              disabled
-                v-model="userStore.currentUser.email" />
-            </v-flex>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <!-- <v-flex>
-              <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0"
-                v-model="orderStore.currentOrder.startDate" />
-            </v-flex> -->
-            <form action="/action_page.php">
-              <label for="dateday"></label>
-              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" v-model="selectedDate"
-                :min="minDate" />
-            </form>
-          </v-col>
-        </v-row>
-        <v-row class="ml-8">
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
-                disabled
-                v-model="orderStore.currentOrder.totalPrice" />
-            </v-flex>
-          </v-col>
-          <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0"
-              disabled
-                v-model="orderStore.currentOrder.discount" />
-            </v-flex>
-          </v-col>
-        </v-row>
-        <v-row class="ml-8">
-          <v-col cols="12" lg="12">
-            <v-flex>
-              <h2 class="forumSize">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2>
-            </v-flex>
-          </v-col>
-        </v-row>
-        <v-row>
+        <div style="display: block; margin: 0 auto;">
+          <v-row class="ml-4">
+            <v-col cols="12" lg="6">
+              <v-flex>
+                <input type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+                  v-model="userStore.currentUser.name" />
+              </v-flex>
+            </v-col>
+            <v-col cols="12" lg="6">
+              <v-flex>
+                <input type="text" placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0 mr-9"
+                  v-model="userStore.currentUser.tel" />
+              </v-flex>
+            </v-col>
+          </v-row>
+          <v-row class="ml-4">
+            <v-col cols="12" lg="6">
+              <v-flex>
+                <input type="text" placeholder="อีเมลล์" class="placeholder-color forumSize0"
+                  v-model="userStore.currentUser.email" />
+              </v-flex>
+            </v-col>
+            <v-col cols="12" lg="6">
+              <!-- <v-flex>
+                <input type="text" placeholder="เลือกวันที่มาใช้บริการ" class="placeholder-color forumSize0"
+                  v-model="orderStore.currentOrder.startDate" />
+              </v-flex> -->
+              <form action="/action_page.php">
+                <label for="dateday"></label>
+                <input class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday">
+              </form>
+            </v-col>
+          </v-row>
+          <v-row class="ml-4">
+            <v-col cols="12" lg="6">
+              <v-flex>
+                <!-- <input type="text" placeholder="ราคา" class="placeholder-color forumSize0"
+                  
+                /> -->
+                <div type="text" placeholder="ราคา" class="placeholder-color forumSize0" style="text-align: left; margin-left: 5%;">
+                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                </div>
+              </v-flex>
+            </v-col>
+            <v-col cols="12" lg="6">
+              <v-flex>
+                <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0 mr-9"
+                  v-model="orderStore.currentOrder.discount" />
+              </v-flex>
+            </v-col>
+          </v-row>
+          <v-row class="ml-8">
+            <v-col cols="12" lg="12">
+              <v-flex>
+                <!-- <h2 type="text" class="forumSize0">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2> -->
+                <div type="text" class="forumSize0" style="text-align: left; width: 850px;">
+                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                </div>
+              </v-flex>
+            </v-col>
+          </v-row>
+        </div>
+        
+        <v-row class="mt-3">
           <v-col cols="12" lg="6" class="text-left">
             
               <v-btn color="#87B859" class="large-button" style="margin-left: 28%;" @click="updateOrderDates()">ซื้อเลยตอนนี้</v-btn>

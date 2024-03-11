@@ -1,4 +1,4 @@
-<script setup lang="ts">
+.l<script setup lang="ts">
 import { RouterLink, useRoute } from "vue-router";
 import Receipt from "@/views/ReceiptView.vue"
 import { useOrderStore } from "@/stores/order.store";
@@ -41,16 +41,20 @@ onMounted(async () => {
 
   <body>
     <v-row>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
-        <label for="fname">ชื่อผู้จ่าย</label>
-        <input type="text" placeholder="ชื่อ-นามสกุล" v-model="userStore.currentUser.name" disabled/>
+      <v-col cols="12" lg="6" style="font-size: 25px;">
+        <label for="fname">ชื่อผู้ชำระเงิน</label>
+        <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
+        <label for="fname">จำนวนเงิน</label>
+        <input type="text" placeholder="THB" v-model="received"/>
+      </v-col>
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">อีเมลล์</label>
         <input type="text" placeholder="Email" v-model="userStore.currentUser.email" disabled/>
       </v-col>
       <v-col cols="12" lg="6"></v-col>
-      <v-col cols="12" lg="6" style="font-size: 30px;">
+      <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">หมายเลขโทรศัพท์</label>
         <input type="text"  placeholder="(+66)" v-model="userStore.currentUser.tel" disabled/>
       </v-col>
@@ -82,7 +86,7 @@ header {
 }
 
 .fontheader {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: normal;
   margin-left: 14px;
 }
@@ -90,7 +94,7 @@ header {
 body {
   position: sticky;
   font-family: 'Kanit', 'sans-serif';
-  padding: 40px;
+  padding: 30px;
 }
 
 .placeholder-color::placeholder {
@@ -98,27 +102,27 @@ body {
 }
 
 .large-button1 {
-  width: 230px;
-  height: 87px;
+  width: 200px;
+  height: 80px;
   border-radius: 35px;
-  margin-top: 145px;
+  
   background-color: #dd5353;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 45%;
+  margin-top: 3%;
 }
 
 .large-button2 {
-  width: 230px;
-  height: 87px;
+  width: 200px;
+  height: 80px;
   border-radius: 35px;
-  margin-top: 145px;
+  
   background-color: #1f798f;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 5.6%;
+  margin-top: 0.5%;
 }
 
 .smallnormalFont {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: normal;
   color: #ffffff;
 }

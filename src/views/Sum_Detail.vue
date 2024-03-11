@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -89,7 +90,7 @@ function updatePayment(payment: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class="fontheader" style="font-size: 40px;">
+        <div class="fontheader mt-2" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
         <!-- <<<<<<< HEAD
@@ -229,7 +230,7 @@ function updatePayment(payment: string) {
           <v-col>
 
 
-            <div class="card-container">
+            <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
                 <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
                 <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
@@ -239,6 +240,7 @@ function updatePayment(payment: string) {
                 <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate ?
                   formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</div>
               </div>
+              <br/>
               <hr class="divider" />
               <div class="payment-options">
 
@@ -265,7 +267,7 @@ function updatePayment(payment: string) {
             </div>
           </v-col>
           <v-col>
-            <v-card>
+            <!-- <v-card> -->
               <div class="card-container2 scroll-container">
                 <div class="customer-details" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
                   <div class="detail"><span class="label">ชื่อบัตร</span>{{ item.name }}</div>
@@ -273,15 +275,17 @@ function updatePayment(payment: string) {
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
-                <div class="detail" v-if="orderStore.promo_"><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
-                <div class="detail"><span class="label" v-if="orderStore.currentOrder.packageId">Package</span>{{
-                  orderStore.currentOrder.package?.name }}</div>
-                <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice }}</div>
-                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount }}</div>
+
+                <div class="detail"><span class="label">โปรโมชั่น</span>{{ PromotionStore.getPromotion.name }}</div>
+
+                <div class="detail"><span class="label">ราคา</span>{{ orderStore.currentOrder.totalPrice.toLocaleString() }}</div>
+                <div class="detail"><span class="label">ส่วนลด</span>{{ orderStore.currentOrder.discount.toLocaleString() }}</div>
+
+
               </div>
-              <div class="detail" style="font-size: 45px;"><span class="label">ราคาสุทธิ</span>{{
-                  orderStore.currentOrder.netPrice }} บาท</div>
-            </v-card>
+              <div class="detail" style="font-size: 45px;"><span class="label ml-2 mt-2">ราคาสุทธิ</span>{{
+                  orderStore.currentOrder.netPrice.toLocaleString() }} บาท</div>
+            <!-- </v-card> -->
           </v-col>
 
         </v-row>
