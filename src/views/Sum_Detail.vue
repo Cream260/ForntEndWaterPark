@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -14,7 +15,9 @@ import { useUserStore } from "@/stores/user.store";
 import { useAuthStore } from "@/stores/auth";
 import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
+import router from "@/router";
 const route = useRoute();
+const routurname = route.params.is;
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
@@ -72,12 +75,14 @@ onMounted(async () => {
 })
 
 
+
 function updatePayment(payment: string) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
   // You can now use the orderId as needed in this method
   orderStore.updatePayment(parseInt(orderId.toString()), payment);
+  router.push('/'+ routurname +'/'+orderId)
 }
 
 
@@ -89,7 +94,7 @@ function updatePayment(payment: string) {
     <!-- {{ orderStore.currentOrder.expDate }} -->
     <container class="fluid">
       <v-card class="activeTabs">
-        <div class="fontheader" style="font-size: 40px;">
+        <div class="fontheader mt-2" style="font-size: 40px;">
           รายละเอียดของคุณ
         </div>
         <!-- <<<<<<< HEAD
@@ -229,7 +234,7 @@ function updatePayment(payment: string) {
           <v-col>
 
 
-            <div class="card-container">
+            <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
                 <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
                 <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
@@ -239,24 +244,19 @@ function updatePayment(payment: string) {
                 <div class="detail"><span class="label">บัตรหมดอายุ</span>{{ orderStore.currentOrder.expDate ?
                   formatDate(orderStore.currentOrder.expDate) : 'N/A' }}</div>
               </div>
+              <br/>
               <hr class="divider" />
               <div class="payment-options">
 
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
-                    <RouterLink to="/CreditCard">
                       <button class="payment-btn ma-2" id="credit-card"
                         @click="updatePayment('Credit Card')">Credit/Debit Card</button>
-                    </RouterLink>
-                    <RouterLink to="/TrueWallet">
                       <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
                         Wallet</button>
-                    </RouterLink>
-                    <RouterLink to="/PromptPay">
                       <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
                         Pay</button>
-                    </RouterLink>
 
                   </div>
                 </div>
@@ -273,6 +273,7 @@ function updatePayment(payment: string) {
                   <div class="detail"><span class="label">จำนวน</span>{{ item.qty }} ใบ</div>
                   <hr class="divider" />
                 </div>
+
                 <div class="detail" v-if="orderStore.promo_"><span class="label">โปรโมชั่น</span>{{ orderStore.promo_?.name }}</div>
                 <div class="detail"><span class="label" v-if="orderStore.currentOrder.packageId">Package</span>{{
                   orderStore.currentOrder.package?.name }}</div>

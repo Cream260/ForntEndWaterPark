@@ -101,7 +101,7 @@ const router = createRouter({
       component: () => import('../views/Sum_DetailEvent.vue')
     },
     {
-      path: '/CreditCard',
+      path: '/CreditCard/:id',
       name: 'creditcard',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -109,7 +109,7 @@ const router = createRouter({
       component: () => import('../views/CreditCard.vue')
     },
     {
-      path: '/TrueWallet',
+      path: '/TrueWallet/:id',
       name: 'truewallet',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -117,7 +117,7 @@ const router = createRouter({
       component: () => import('../views/TrueWallet.vue')
     },
     {
-      path: '/PromptPay',
+      path: '/PromptPay/:id',
       name: 'promptpay',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route

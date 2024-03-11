@@ -16,13 +16,18 @@ const userStore = useUserStore();
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
 const selectedDate = ref<string>(minDate.value);
 
-// Get the selected date as a Date object
-const selectedDateObject = new Date(selectedDate.value);
+// Compute expDate based on selectedDate
+const expDate = computed<Date>(() => {
+    const selectedDateObject = new Date(selectedDate.value);
+    const nextDay = new Date(selectedDateObject.getTime());
+    nextDay.setDate(nextDay.getDate() + 1);
+    return nextDay;
+});
 
-// Set expDate to be one day ahead of selectedDate
-const expDate = ref<Date>(new Date(selectedDateObject.getTime())); // Make a copy of selectedDateObject
-expDate.value.setDate(expDate.value.getDate() + 1); // Increment the date by one day
+// Example usage
+selectedDate.value = '2024-03-11'; // Set selected date
 
+console.log(expDate.value);
 
 
 function updateOrderDates() {
@@ -41,7 +46,6 @@ function clearFillDetail() {
   orderStore.clearOrderDetail();
   router.push("/BuyTicket");
 }
-
 
 
 
@@ -131,7 +135,7 @@ function clearFillDetail() {
                   
                 /> -->
                 <div type="text" placeholder="ราคา" class="placeholder-color forumSize0" style="text-align: left; margin-left: 5%;">
-                  {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
+                  {{ (orderStore.currentOrder.totalPrice).toLocaleString() }}
                 </div>
               </v-flex>
             </v-col>

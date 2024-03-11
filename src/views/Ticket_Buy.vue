@@ -6,6 +6,7 @@ import { mdiPlus, mdiMinus, mdiClose } from "@mdi/js";
 import PromotionBuy from "@/views/Dialogs/PromotionTicket.vue"
 const orderStore = useOrderStore();
 const ticketStore = useTicketStore();
+const showDialog = ref(false)
 const tab = ref(1);
 onMounted(async () => {
   await ticketStore.getTickets();
