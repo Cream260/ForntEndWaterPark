@@ -25,7 +25,7 @@ const expDate = computed<Date>(() => {
 });
 
 // Example usage
-selectedDate.value = '2024-03-11'; // Set selected date
+ // Set selected date
 
 console.log(expDate.value);
 
@@ -124,7 +124,8 @@ function clearFillDetail() {
               </v-flex> -->
               <form action="/action_page.php">
                 <label for="dateday"></label>
-                <input class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday">
+                <input class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday" v-model="selectedDate"
+                :min="minDate">
               </form>
             </v-col>
           </v-row>

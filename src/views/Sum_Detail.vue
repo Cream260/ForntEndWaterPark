@@ -17,7 +17,7 @@ import { useTicketStore } from "@/stores/ticket.store";
 import { usePromotionStore } from "@/stores/promotion";
 import router from "@/router";
 const route = useRoute();
-const routurname = route.params.is;
+const routurname = route.params.id;
 const orderStore = useOrderStore();
 const eventStore = useEventStore();
 const customerStore = useCustomerStore();
@@ -76,7 +76,7 @@ onMounted(async () => {
 
 
 
-function updatePayment(payment: string) {
+function updatePayment(payment: string,routurname:string) {
   const orderId = route.params.id;
   // Your logic to handle credit card update with the orderId
   console.log("Updating credit for order with ID:", orderId);
@@ -252,10 +252,10 @@ function updatePayment(payment: string) {
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
                       <button class="payment-btn ma-2" id="credit-card"
-                        @click="updatePayment('Credit Card')">Credit/Debit Card</button>
-                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet')">True
+                        @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
+                      <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
                         Wallet</button>
-                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay')">Prompt
+                      <button class="payment-btn ma-2" id="prompt-pay" @click="updatePayment('Prompt Pay','PromptPay')">Prompt
                         Pay</button>
 
                   </div>

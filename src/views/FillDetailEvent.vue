@@ -300,7 +300,7 @@ function minus() {
             </v-col>
             <v-col cols="12" lg="6">
               <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" v-model="selectedDate"
-                :min="minDate" />
+              />
               <p class="small-text">(หากคุณไม่เลือกวันที่, ทางระบบจะเลือกวันที่ปัจจุบันโดยอัตโนมัติ)</p>
               <p v-if="dateError" class="error-message small-text" style="color: red">{{ dateError }}</p>
               <!-- </form>  -->

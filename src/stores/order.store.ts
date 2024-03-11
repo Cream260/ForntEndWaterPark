@@ -160,9 +160,7 @@ export const useOrderStore = defineStore("order", () => {
     console.log(order);
 
     try {
-
       if (ThChildqty.value <= 0 && ThAdultqty.value <= 0 && EnChildqty.value <= 0 && EnAdultqty.value <= 0) {
-
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตร" `,
@@ -172,19 +170,16 @@ export const useOrderStore = defineStore("order", () => {
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
-
       if (ThChildqty.value > 0 && ThAdultqty.value === 0 && EnChildqty.value > 0 && EnAdultqty.value === 0) {
-
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
-          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
           icon: "warning",
           showCloseButton: true,
         })
         console.log("เลือกตั๋ว");
-        return; // Exit function early if qty is 0    
+        return; // Exit function early if qty is 0
       }
-      
 
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
@@ -206,7 +201,8 @@ export const useOrderStore = defineStore("order", () => {
     try {
       currentOrder.value.startDate = startDate_;
       currentOrder.value.expDate = endDate_;
-      await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
+      const res = await orderService.updateOrder(currentOrder.value.id!, currentOrder.value);
+      console.log(res.data);
       console.log("Order ticket", currentOrder.value)
       router.push("/sumdetail/" + currentOrder.value.id);
     } catch (e) {
@@ -272,7 +268,7 @@ export const useOrderStore = defineStore("order", () => {
       if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
         orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
-        return orderList.value[i].qty;
+        return;
       }
     }
     orderList.value.push({
@@ -284,7 +280,6 @@ export const useOrderStore = defineStore("order", () => {
       totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
-    return 1;
   }
 
   function ThAdultdecrement(index: number) {
