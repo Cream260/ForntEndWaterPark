@@ -161,12 +161,8 @@ export const useOrderStore = defineStore("order", () => {
     console.log(order);
 
     try {
-      if (
-        ThChildqty.value <= 0 &&
-        ThAdultqty.value <= 0 &&
-        EnChildqty.value <= 0 &&
-        EnAdultqty.value <= 0
-      ) {
+
+      if (ThChildqty.value <= 0 && ThAdultqty.value <= 0 && EnChildqty.value <= 0 && EnAdultqty.value <= 0) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
           text: `"กรุณาเลือกจำนวนบัตร" `,
@@ -177,22 +173,27 @@ export const useOrderStore = defineStore("order", () => {
         return; // Exit function early if qty is 0
       }
 
-      if (
-        ThChildqty.value > 0 &&
-        ThAdultqty.value === 0 &&
-        EnChildqty.value > 0 &&
-        EnAdultqty.value === 0
-      ) {
+
+      if (ThChildqty.value > 0 && ThAdultqty.value === 0 ) {
         await Swal.fire({
           title: "กรุณาเลือกบัตรให้ถูกต้อง!",
-          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่หากมีบัตรเด็กอยู่ด้วย" `,
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
           icon: "warning",
           showCloseButton: true,
         });
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
-
+      if (EnChildqty.value > 0 && EnAdultqty.value === 0 ) {
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
+          icon: "warning",
+          showCloseButton: true,
+        });
+        console.log("เลือกตั๋ว");
+        return; // Exit function early if qty is 0
+      }
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
@@ -210,6 +211,7 @@ export const useOrderStore = defineStore("order", () => {
 
   async function ticketOrder(startDate_: Date) {
     try {
+
       //set time to next day
       console.log("startDate", currentOrder.value.startDate);
 
@@ -233,6 +235,7 @@ currentOrder.value.cusID = 1;
 
         router.push("/sumdetail/" + currentOrder.value.id);
       }
+
     } catch (e) {
       console.log(e);
     }
@@ -296,7 +299,7 @@ currentOrder.value.cusID = 1;
       if (orderList.value[i].ticketId === item.id) {
         orderList.value[i].qty++;
         orderList.value[i].totalPrice = orderList.value[i].qty * item.price!;
-        return orderList.value[i].qty;
+        return;
       }
     }
     orderList.value.push({
@@ -308,7 +311,6 @@ currentOrder.value.cusID = 1;
       totalPrice: 1 * item.price!,
     });
     console.log(orderList.value);
-    return 1;
   }
 
   function ThAdultdecrement(index: number) {

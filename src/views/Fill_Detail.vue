@@ -25,7 +25,7 @@ const expDate = computed<Date>(() => {
 });
 
 // Example usage
-selectedDate.value = '2024-03-11'; // Set selected date
+ // Set selected date
 
 console.log(expDate.value);
 
@@ -125,6 +125,7 @@ function clearFillDetail() {
               <form action="/action_page.php">
                 <label for="dateday"></label>
                 <input v-model="selectedDate"  :min="minDate" class="placeholder-color forumSize0 mr-9" type="date" id="dateday" name="dateday">
+
               </form>
             </v-col>
           </v-row>
@@ -141,7 +142,7 @@ function clearFillDetail() {
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0 mr-9"
+                <input type="text" placeholder="ส่วนลด" class="placeholder-color forumSize0 mr-9" disabled
                   v-model="orderStore.currentOrder.discount" />
               </v-flex>
             </v-col>

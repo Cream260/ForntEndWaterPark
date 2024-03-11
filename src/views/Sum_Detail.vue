@@ -250,6 +250,7 @@ function updatePayment(payment: string,routurname:string) {
                 <div class="payment-section">
                   <h5 class="payment-title mt-8">ช่องทางการจ่ายเงิน</h5>
                   <div class="payment-options">
+
                       <button class="payment-btn ma-2" id="credit-card"
                         @click="updatePayment('Credit Card','CreditCard')">Credit/Debit Card</button>
                       <button class="payment-btn ma-2" id="true-wallet" @click="updatePayment('True Wallet','TrueWallet')">True
