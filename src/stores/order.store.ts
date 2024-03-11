@@ -194,6 +194,36 @@ export const useOrderStore = defineStore("order", () => {
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
+      if (EnChildqty.value > 0 && (EnAdultqty.value === 0 && ThAdultqty.value === 0)) {
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: "กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก",
+          icon: "warning",
+          showCloseButton: true,
+        });
+        console.log("เลือกตั๋ว");
+        return; // Exit function early if qty is 0
+      }
+      // if (EnChildqty.value > 0 && ThChildqty.value > 0 && EnAdultqty.value === 0) {
+      //   await Swal.fire({
+      //     title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+      //     text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
+      //     icon: "warning",
+      //     showCloseButton: true,
+      //   });
+      //   console.log("เลือกตั๋ว");
+      //   return; // Exit function early if qty is 0
+      // }
+      // if (EnChildqty.value > 0 && ThChildqty.value > 0 && ThAdultqty.value === 0) {
+      //   await Swal.fire({
+      //     title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+      //     text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
+      //     icon: "warning",
+      //     showCloseButton: true,
+      //   });
+      //   console.log("เลือกตั๋ว");
+      //   return; // Exit function early if qty is 0
+      // }
       const res = await orderService.saveOrder(order);
       currentOrder.value = res.data;
       console.log("currentOrder", currentOrder.value);
