@@ -92,7 +92,7 @@ function updatePayment(payment: string,routurname:string) {
             
             <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
-                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.username }}</div>
+                <div class="detail"><span class="label">ชื่อ</span>{{ userStore.currentUser.name }}</div>
                 <div class="detail"><span class="label">อีเมลล์</span>{{ userStore.currentUser.email }}</div>
                 <div class="detail"><span class="label">เบอร์โทรศัพท์</span>{{ userStore.currentUser.tel }}</div>
                 <div class="detail"><span class="label">วันที่เข้าใช้บริการ</span>{{ orderStore.currentOrder.startDate ? formatDate(orderStore.currentOrder.startDate) : 'N/A' }}</div>
