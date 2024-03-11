@@ -46,8 +46,6 @@ onMounted(async () => {
         <input type="text" placeholder="ชื่อ - นามสกุล" />
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
-        <label for="fname">จำนวนเงิน</label>
-        <input type="text" placeholder="THB" v-model="received"/>
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">อีเมลล์</label>

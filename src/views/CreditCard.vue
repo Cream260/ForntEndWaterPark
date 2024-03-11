@@ -61,8 +61,6 @@ function updateRe(received: number) {
         <input type="text" placeholder="0000-0000-0000-0000" />
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;" >
-        <label for="fname">จำนวนเงิน</label>
-        <input type="text" placeholder="THB" v-model="received"/>
       </v-col>
       <v-col cols="12" lg="6" style="font-size: 25px;">
         <label for="fname">ชื่อผู้ถือบัตร (ภาษาอังกฤษ)</label>

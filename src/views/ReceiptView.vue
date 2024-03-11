@@ -112,17 +112,17 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               </v-col>          
             </v-row>
           </div>
-          <div class="pt-4" >
+          <div class="pt-2 pb-1" >
             <v-row>
               <v-col v-if="orderStore.promo_">
-              <v-divider :thickness="3" class="border-opacity-50 mt-2"></v-divider>
-                <h5 class="normalFont">โปรโมชั่น {{ orderStore.promo_?.name}}</h5>
+              <v-divider :thickness="3" class="border-opacity-50 mt-1"></v-divider>
+                <h5 class="normalFont pt-2">โปรโมชั่น {{ orderStore.promo_?.name}}</h5>
               </v-col>
-              <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
+              <v-divider :thickness="2" class="border-opacity-50 "></v-divider>
             </v-row>
           </div>
           
-          <div class="pt-4" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
+          <div class="pt-2" v-for="item of orderStore.currentOrder.orderItems" :key="item.id">
             <v-row class="pl-2">
               <v-col cols="12" sm="5" >
                 <h5 class="normalFont">{{ item.name }} ({{ item.type }})</h5>
@@ -194,7 +194,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
               <v-divider :thickness="2" class="border-opacity-50 mt-1"></v-divider>
             </v-row> -->
           </div>
-          <div class="pt-5">
+          <div class="pt-2">
             <v-row>
               <v-col>
                 <h5 class="text-center btmnormalFont ">Thank you, Please come again.</h5>
