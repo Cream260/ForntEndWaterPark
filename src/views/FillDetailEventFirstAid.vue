@@ -172,21 +172,25 @@ async function save() {
     <container >
       <v-row justify="center" align="center">
         <v-card 
-          class="activeTabs lgallfont my-12"
-          style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
+          class="activeTabs lgallfont my-5"
+          style="
+            width: 55%;
+            height: 80vh;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #fffbf5;
+          "
           elevation="5" 
         >
+        <div style="font-size: 50px; margin-top: 1%; margin-bottom: 1%">
           รายละเอียดของคุณ
+        </div>
+          
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input
-                  type="text"
-                  placeholder="ชื่อ"
-                  disabled
-                  v-model="userStore.currentUser.name "
-                  class="placeholder-color forumSize0"
-                />
+                <input type="text" placeholder="ชื่อ" disabled v-model="userStore.currentUser.name"
+                  class="placeholder-color forumSize0" />
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
@@ -203,11 +207,11 @@ async function save() {
           </v-row>
           <v-row>
             <v-col cols="12" lg="6">
-              <!-- <v-flex> -->
+              <v-flex>
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
                 <v-select
                   class="placeholder-color forumSize0"
-                  style="font-size: 35px"
+                  style="font-size: 35px; margin-left: 5%;"
                   label="หลักสูตร"
                   v-model="type"
                   :items="[
@@ -217,12 +221,13 @@ async function save() {
                   ]"
                 >
                 </v-select>
-                <p v-if="typeError" class="error-message small-text" style="color: red">{{ typeError }}</p>
-              <!-- </v-flex> -->
+                
+              </v-flex>
+              <p v-if="typeError" class="error-message small-text" style="color: red">{{ typeError }}</p>
             </v-col>
             <v-col cols="12" lg="6">
               <v-flex>
-                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" v-model="nameComp"/>
+                <input type="text" placeholder="ชื่อบริษัท" class="placeholder-color forumSize0" required v-model="nameComp"/>
               </v-flex>
               <p v-if="nameCompError" class="error-message small-text" style="color: red">{{ nameCompError }}</p>
             </v-col>
@@ -232,7 +237,7 @@ async function save() {
               <v-flex>
                 <input
                   type="text"
-                  placeholder="อีเมล"
+                  placeholder="อีเมลล์"
                   disabled
                   v-model="userStore.currentUser.email "
                   class="placeholder-color forumSize0"
@@ -255,7 +260,7 @@ async function save() {
           </v-row>
           <v-row>
             <v-col cols="12" lg="12">
-              <div class="d-flex align-center">
+              <!-- <div class="d-flex align-center"> -->
                 <div class="d-flex align-center forumSize">
                 <input
                   type="text"
@@ -273,7 +278,7 @@ async function save() {
                 <div class="smallfont mr-4">{{ PeopleIncrement }}</div>
                 <button style="font-size: 30px" @click="minus()">−</button>
               </div>
-              </div>
+              <!-- </div> -->
               <p v-if="ppiError" class="error-message small-text" style="color: red">{{ppiError}}</p>
             </v-col>
           </v-row>
@@ -298,17 +303,14 @@ body {
   background-image: url('../images/Event/WallPaper.jpg');
   background-size: cover;
   width: 100vw;
-  height: 91.3vh;
-  width: 100vw;
-  height: 91.2vh;
+  height: 89vh;
   margin-top: 80px;
-  padding: 15px;
+  padding: 25px;
 }
 
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
   z-index: 2;
   
 }
@@ -321,12 +323,12 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px; 
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
@@ -347,18 +349,20 @@ body {
   width: 90%;
 }
 .small-text {
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 14px;
+  padding: 1%;/* Adjust the font size as needed */
 }
 .forumSize {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin-left: 23px;
+  margin-top: 4px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 95%;
@@ -369,18 +373,18 @@ input[type="text"]:focus {
 }
 
 .lgallfont {
-  font-size: 48px;
+  font-size: 28px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
 }
 
 .large-button {
-  width: 599px;
-  height: 77px;
+  width: 315px;
+  height: 57px;
   border-radius: 20px;
   margin-left: 30px;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

@@ -29,7 +29,7 @@ const formatDate = (dateStr: string | number | Date) => {
   <body>
     <v-row>
       <v-col cols="12" sm="4" v-for="(item, index) of promotionStore.promotions" :key="index"> 
-        <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style=" width: 20vw;">
+        <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style=" width: 20vw;margin-left: 7%;">
           <div>
             <h2 class="extraBoldfont2">{{ item.name }}</h2>
           </div>

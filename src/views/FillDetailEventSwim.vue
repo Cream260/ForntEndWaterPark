@@ -170,12 +170,19 @@ async function save() {
   <body>
     <container >
       <v-row justify="center" align="center">
-        <v-card 
-          class="activeTabs lgallfont my-12"
-          style="width: 70%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5;"
-          elevation="5" 
+        <v-card class="activeTabs lgallfont my-5" style="
+            width: 55%;
+            height: 80vh;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #fffbf5;
+          "
+          elevation="5"
         >
+        <div style="font-size: 50px; margin-top: 1%; margin-bottom: 1%">
           รายละเอียดของคุณ
+        </div>
+          
           <v-row>
             <v-col cols="12" lg="6">
               <v-flex>
@@ -206,7 +213,7 @@ async function save() {
                 <!-- <input type="text" placeholder="หลักสูตร" class="placeholder-color forumSize0" /> -->
                 <v-select
                   class="placeholder-color forumSize0"
-                  style="font-size: 35px"
+                  style="font-size: 35px;margin-left: 5%;"
                   label="หลักสูตร"
                   v-model="type"
                   :items="[
@@ -245,16 +252,11 @@ async function save() {
               </v-flex>
             </v-col>
             <v-col cols="12" lg="6">
-              <v-flex>
-                <input
-                class="placeholder-color forumSize0"
-                type="date"
-                id="dateday"
-                name="dateday"
-               v-model="selectedDate"
-                :min="minDate"
-              />
-              </v-flex>
+              <input class="placeholder-color forumSize0" type="date" id="dateday" name="dateday" v-model="selectedDate"
+                :min="minDate" />
+              <p class="small-text">(หากคุณไม่เลือกวันที่, ทางระบบจะเลือกวันที่ปัจจุบันโดยอัตโนมัติ)</p>
+              <p v-if="dateError" class="error-message small-text" style="color: red">{{ dateError }}</p>
+              <!-- </form>  -->
             </v-col>
           </v-row>
           <v-row>
@@ -312,12 +314,12 @@ body {
 .activeTabs {
   border-radius: 20px;
   position: sticky;
-  top: 3rem;
   z-index: 2;
   
 }
 .small-text {
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 14px;
+  /* Adjust the font size as needed */
 }
 .placeholder-color::placeholder {
   color: #00000045;
@@ -327,12 +329,12 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin: 5px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px; 
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 90%;
@@ -357,12 +359,13 @@ body {
   background-color: rgba(0, 0, 0, 0.07);
   border-radius: 40px;
   width: 555px;
-  height: 77px;
-  padding: 12px 20px;
-  margin: 12px;
+  height: 57px;
+  padding: 8px 10px;
+  margin-left: 23px;
+  margin-top: 4px;
   box-sizing: border-box;
   outline: none;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: lighter;
   border: 2px solid #0ebfd7;
   width: 95%;
@@ -373,18 +376,18 @@ input[type="text"]:focus {
 }
 
 .lgallfont {
-  font-size: 48px;
+  font-size: 28px;
   font-weight: normal;
   color: #00000056;
   text-align: center;
 }
 
 .large-button {
-  width: 599px;
-  height: 77px;
+  width: 315px;
+  height: 57px;
   border-radius: 20px;
   margin-left: 30px;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

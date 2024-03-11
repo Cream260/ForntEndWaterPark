@@ -98,27 +98,26 @@ const saveOrder = async () => {
 
   <body>
     <container class="fluid">
-      <v-card class="activeTabs lgallfont" style="width: 63%; height: 80vh; margin-left: 18%;margin-top: 0.7%">
-        <div style="font-size: 50px; margin-top: 2%; margin-bottom: 2%">
-
+      <v-card class="activeTabs lgallfont" style="width: 63%; height: 75vh; margin-left: 18%;margin-top: 1.5%">
+        <div style="font-size: 50px; margin-top: 3%; margin-bottom: 3%">
           รายละเอียดของคุณ
         </div>
 
-        <v-row class="ml-8">
+        <v-row class="ml-1">
           <v-col cols="12" lg="6">
-            <v-flex>
-              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
+            <v-flex >
+              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" 
                 v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
-            <v-flex>
-              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
+            <v-flex >
+              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" 
                 v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
         </v-row>
-        <v-row class="ml-8">
+        <v-row class="ml-1">
           <v-col cols="12" lg="6">
             <v-flex>
               <input type="text" disabled placeholder="อีเมลล์" class="placeholder-color forumSize0"
@@ -137,7 +136,7 @@ const saveOrder = async () => {
             </form>
           </v-col>
         </v-row>
-        <v-row class="ml-8">
+        <v-row class="ml-1">
 
           <!-- <v-col cols="12" lg="6">
             <v-flex>
@@ -159,10 +158,10 @@ const saveOrder = async () => {
           </v-col> -->
 
         </v-row>
-        <v-row class="ml-8">
+        <v-row class="ml-5">
           <v-col cols="12" lg="12">
             <v-flex>
-              <h2 class="forumSize">{{ packageStore.currentPackage.name }} ราคา {{ packageStore.currentPackage.price }}
+              <h2 class="forumSize" style="text-align: left; width: 880px;">{{ packageStore.currentPackage.name }} ราคา {{ packageStore.currentPackage.price }}
                 บาท</h2>
             </v-flex>
           </v-col>
@@ -234,7 +233,7 @@ body {
   width: 555px;
   height: 57px;
   padding: 8px 10px;
-  margin: 5px;
+  margin: 6px;
   box-sizing: border-box;
   outline: none;
   font-size: 25px;
@@ -255,7 +254,7 @@ body {
   width: 315px;
   height: 57px;
   border-radius: 20px;
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: 30px;
   font-size: 38px;
   font-weight: bold;
