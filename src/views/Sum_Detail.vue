@@ -232,7 +232,7 @@ function updatePayment(payment: string) {
 ======= -->
         <v-row>
           <v-col>
-{{ orderStore.currentOrder }}
+<!-- {{ orderStore.currentOrder }} -->
 
             <div class="card-container" style="margin-left: 8%;">
               <div class="customer-details">
