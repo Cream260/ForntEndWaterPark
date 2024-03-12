@@ -184,7 +184,31 @@ export const useOrderStore = defineStore("order", () => {
         console.log("เลือกตั๋ว");
         return; // Exit function early if qty is 0
       }
+<<<<<<< HEAD
       // if (EnChildqty.value > 0 && EnAdultqty.value === 0 ) {
+=======
+      if (EnChildqty.value > 0 && (EnAdultqty.value === 0 && ThAdultqty.value === 0)) {
+        await Swal.fire({
+          title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+          text: "กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก",
+          icon: "warning",
+          showCloseButton: true,
+        });
+        console.log("เลือกตั๋ว");
+        return; // Exit function early if qty is 0
+      }
+      // if (EnChildqty.value > 0 && ThChildqty.value > 0 && EnAdultqty.value === 0) {
+      //   await Swal.fire({
+      //     title: "กรุณาเลือกบัตรให้ถูกต้อง!",
+      //     text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
+      //     icon: "warning",
+      //     showCloseButton: true,
+      //   });
+      //   console.log("เลือกตั๋ว");
+      //   return; // Exit function early if qty is 0
+      // }
+      // if (EnChildqty.value > 0 && ThChildqty.value > 0 && ThAdultqty.value === 0) {
+>>>>>>> ebc5acbbfd175c3eb5d5809961daa9d90dedb74c
       //   await Swal.fire({
       //     title: "กรุณาเลือกบัตรให้ถูกต้อง!",
       //     text: `"กรุณาเลือกจำนวนบัตรผู้ใหญ่ถ้ามีบัตรเด็ก" `,
