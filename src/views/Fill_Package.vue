@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import order from "@/components/services/order";
 import router from "@/router";
+import orderService from "@/components/services/order";
 import { useAuthStore } from "@/stores/auth";
 import { useCustomerStore } from "@/stores/customer";
 import { useOrderStore } from "@/stores/order.store";
@@ -27,7 +28,17 @@ let isValid = true;
 // const selectDate = ref
 //enddare is 1 year
 const minDate = ref<string>(new Date().toISOString().split("T")[0]);
-const selectedDate = ref(minDate);
+const selectedDate = ref<string>(minDate.value);
+
+// Compute expDate based on selectedDate
+const expDate = computed<Date>(() => {
+  const selectedDateObject = new Date(selectedDate.value);
+  const nextDay = new Date(selectedDateObject.getTime());
+  nextDay.setDate(nextDay.getDate() + 1);
+  return nextDay;
+});
+
+console.log(expDate.value);
 
 onMounted(async () => {
   authStore.getUserFromLocalStorage();
@@ -58,26 +69,42 @@ const validateForm = async () => {
 }
 
 //caerte save function
-const saveOrder = async () => {
+const saveOrder = async (startDate_: Date) => {
   validateForm();
   if (isValid === true) {
     // if (currentDate.toString() === selectedDate.value.toString()) {
-      console.log("********************************")
+    console.log("********************************")
 
-      await Swal.fire({
-        title: "โปรดยืนยันวันที่เข้าใช้บริการ",
-        text: `"คุณต้องการเข้าใช้บริการ ณ วันที่ ${selectedDate.value.toString().split("T")[0]} ใช่หรือไม่?"`, 
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "ใช่",
-        cancelButtonText: "ไม่",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          if (!selectedDate.value) {
-            alert("Please select a date");
-            return;
-          }
-          await orderStore.packageOrder(packageStore.currentPackage);
+    await Swal.fire({
+      title: "โปรดยืนยันวันที่เข้าใช้บริการ",
+      text: `"คุณต้องการเข้าใช้บริการ ณ วันที่ ${selectedDate.value.toString().split("T")[0]} ใช่หรือไม่?"`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (!selectedDate.value) {
+          alert("Please select a date");
+          return;
+        }
+        await orderStore.packageOrder(packageStore.currentPackage);
+        const expDate = new Date(startDate_);
+        expDate.setDate(expDate.getDate() + 1);
+        console.log("expDate", expDate);
+        orderStore.currentOrder.expDate = expDate;
+        orderStore.currentOrder.startDate = new Date(startDate_);
+        console.log("currentOrder", JSON.stringify(orderStore.currentOrder));
+        orderStore.currentOrder.cusID = 1;
+        const res = await orderService.updateOrder(
+          orderStore.currentOrder.id!,
+          orderStore.currentOrder
+        );
+        if (res.status === 200) 
+          console.log("Order**********", res.data.expDate);
+          //set the current order to the updated order
+          orderStore.currentOrder = res.data;
+          console.log("Order", orderStore.currentOrder);
           router.push('/sumdetail/' + orderStore.currentOrder.id)
 
         } if (result.isDenied) {
@@ -105,14 +132,14 @@ const saveOrder = async () => {
 
         <v-row class="ml-1">
           <v-col cols="12" lg="6">
-            <v-flex >
-              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0" 
+            <v-flex>
+              <input disabled type="text" placeholder="ชื่อ" class="placeholder-color forumSize0"
                 v-model="userStore.currentUser.name" />
             </v-flex>
           </v-col>
           <v-col cols="12" lg="6">
-            <v-flex >
-              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0" 
+            <v-flex>
+              <input type="text" disabled placeholder="เบอร์โทรศัพท์" class="placeholder-color forumSize0"
                 v-model="userStore.currentUser.tel" />
             </v-flex>
           </v-col>
@@ -131,8 +158,8 @@ const saveOrder = async () => {
             </v-flex> -->
             <form action="/action_page.php">
               <label for="dateday"></label>
-              <input :min="minDate" v-model="selectedDate" class="placeholder-color forumSize0" type="date" id="dateday"
-                name="dateday">
+              <input v-model="selectedDate" :min="minDate" class="placeholder-color forumSize0 mr-9" type="date"
+                id="dateday" name="dateday">
             </form>
           </v-col>
         </v-row>
@@ -161,7 +188,8 @@ const saveOrder = async () => {
         <v-row class="ml-5">
           <v-col cols="12" lg="12">
             <v-flex>
-              <h2 class="forumSize" style="text-align: left; width: 880px;">{{ packageStore.currentPackage.name }} ราคา {{ packageStore.currentPackage.price }}
+              <h2 class="forumSize" style="text-align: left; width: 880px;">{{ packageStore.currentPackage.name }} ราคา
+                {{ packageStore.currentPackage.price }}
                 บาท</h2>
             </v-flex>
           </v-col>
@@ -170,7 +198,7 @@ const saveOrder = async () => {
           <v-col cols="12" lg="6" class="text-left">
 
             <v-btn color="#87B859" class="large-button" style="margin-left: 28%;"
-              @click="saveOrder()">ซื้อเลยตอนนี้</v-btn>
+              @click="saveOrder(new Date(selectedDate))">ซื้อเลยตอนนี้</v-btn>
 
 
           </v-col>
