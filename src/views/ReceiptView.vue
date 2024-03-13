@@ -190,7 +190,7 @@ orderStore.findQrById(orderStore.currentOrder.id!);
                 <h5 class="normalFont">ได้รับ : </h5>
               </v-col>
               <v-col cols="12" sm="2">
-                <h5 class="normalFont">{{ orderStore.currentOrder.received }}</h5>
+                <h5 class="normalFont">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h5>
               </v-col>
               <v-col cols="12" sm="2">
                 <h5 class="normalFont">THB</h5>

@@ -58,7 +58,7 @@ const formatDate = (dateStr: string | number | Date) => {
       <v-card class="lgallfont borderradius"
         style="width: 75%; height: 80vh;align-items: center;border-radius: 20px; background-color: #FFFBF5; margin-top: 0.5%; margin-left: 13%;"
         elevation="5">
-        <div class="headFont" style="margin-left: 5%; margin-top: 4%;">
+        <div class="headFont" style="margin-left: 5%; margin-top: 2%;">
           รายละเอียดบัตร
         </div>
         <v-row>

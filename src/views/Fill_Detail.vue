@@ -151,7 +151,7 @@ function clearFillDetail() {
             <v-col cols="12" lg="12">
               <v-flex>
                 <!-- <h2 type="text" class="forumSize0">{{ orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount }}</h2> -->
-                <div type="text" class="forumSize0" style="text-align: left; width: 850px;">
+                <div type="text" class="forumSize0" style="text-align: left; width: 960px;">
                   {{ (orderStore.currentOrder.totalPrice - orderStore.currentOrder.discount).toLocaleString() }}
                 </div>
               </v-flex>

@@ -27,7 +27,7 @@ const formatDate = (dateStr: string | number | Date) => {
       <v-col>
         <v-row>
           <v-col cols="12" sm="4" v-for="(item, index) of promotionStore.promotions" :key="index" > 
-            <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style=" width: 17vw;">
+            <v-card color="#F5F1DC" theme="dark" class="borderradius2 text-center" style=" width: 17vw; height: 60vh;">
               <div>
                 <h2 class="extraBoldfont2">{{ item.name }}</h2>
               </div>
@@ -187,7 +187,7 @@ body {
 }
 
 .smallBoldfont {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   color: #0b2c44;
   margin: 10px 10px 10px 10px;

@@ -188,7 +188,7 @@ const saveOrder = async (startDate_: Date) => {
         <v-row class="ml-5">
           <v-col cols="12" lg="12">
             <v-flex>
-              <h2 class="forumSize" style="text-align: left; width: 880px;">{{ packageStore.currentPackage.name }} ราคา
+              <h2 class="forumSize" style="text-align: left; width: 960px;">{{ packageStore.currentPackage.name }} ราคา
                 {{ packageStore.currentPackage.price }}
                 บาท</h2>
             </v-flex>

@@ -21,7 +21,7 @@ onMounted(() => {
       <v-col cols="4" offset="0.5">
         <router-link to="/LifeGuard">
           <v-card class="card">
-            <img src="../images/lifeGuard.jpg">
+            <img src="https://media.discordapp.net/attachments/1178632991925346326/1212086330901930024/image.png?ex=65f9c8dc&is=65e753dc&hm=1f03e28bc6c57a6d81000ff37994c671e70355dfff84ba9243d31a6c9204fc0f&=&format=webp&quality=lossless&width=825&height=348">
             <div class="card-text">
               <h2>Life Guard</h2>
               <p>3 หลักสูตร</p>
@@ -34,7 +34,7 @@ onMounted(() => {
       <v-col cols="4" offset="0.5"> <!-- Adjust offset here -->
         <router-link to="/FirstAid">
           <v-card class="card">
-            <img src="../images/Safety.jpg">
+            <img src="https://media.discordapp.net/attachments/1178632991925346326/1212086372655964261/image.png?ex=65f9c8e6&is=65e753e6&hm=d82a27fbcfc62e7af84b159e96589e437d3faea6f63b8819cead6be99d1f2ec1&=&format=webp&quality=lossless&width=825&height=348">
             <div class="card-text">
               <h2>First Aid</h2>
               <p>3 หลักสูตร</p>
@@ -47,7 +47,7 @@ onMounted(() => {
       <v-col cols="4" offset="0.5"> <!-- Adjust offset here -->
         <router-link to="/Swim">
           <v-card class="card">
-            <img src="../images/swim.jpg">
+            <img src="https://media.discordapp.net/attachments/1178632991925346326/1212086404839116810/image.png?ex=65f9c8ee&is=65e753ee&hm=b910653afc825cbc7f55812613ad6fde33576909a9b46c0eaf8cd39a7e0aab9a&=&format=webp&quality=lossless&width=1440&height=606">
             <div class="card-text">
               <h2>Swim</h2>
               <p>3 หลักสูตร</p>
